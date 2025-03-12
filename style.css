@@ -1,6 +1,91 @@
 * {
     scroll-behavior: smooth;
     font-family: 'inter', sans-serif;
-    margin: 0px;
+    margin: 0;
     overflow: hidden;
 }
+
+body {
+    display: flex;
+    height: 100vh;
+}
+
+.left-side {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 232px;
+    background-color: #2A3647;
+    position: relative;
+}
+
+.left-side a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color:#CDCDCD;
+}
+
+
+.join-logo {
+    position: absolute;
+    top: 64px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 100px;
+}
+
+nav{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 15px;
+}
+
+nav a{
+    padding-left: 25%;
+}
+
+nav a:hover {
+    /* aktuell active color */
+    background-color: #091931; 
+}
+
+footer{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: absolute;
+    bottom: 64px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.right-side {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 96px;
+    padding: 0 40px 0 100px;
+    background-color: #FFFFFF;
+}
+
+.user-info {
+    display: flex;
+    gap: 16px;
+}
+
+.content{
+    flex: 1;
+    width: 100%;
+    background-color: #f5f6f7;
+    background: linear-gradient(0deg, rgba(245,246,247,1) 99%, rgb(223, 224, 225) 100%);
+}
+
