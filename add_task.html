@@ -52,8 +52,8 @@
 
         <div class="content">
             <div class="content-add-task">
-                <h1>Add Task</h1>
                 <div>
+                    <h1>Add Task</h1>
                     <form class="form-add-task"  action="">
                         <div class="left-form">
                             <div>
@@ -66,7 +66,7 @@
                             </div>
                             <div>
                                 <label for="date">Due date<p class="required-star">*</p></label>
-                                <input type="date" name="date" placeholder="dd/mm/yyyy" required>
+                                <input type="date" name="date" placeholder="dd-mm-yyyy" required>
                             </div>                      
                         </div>
 
@@ -78,15 +78,15 @@
                                 <div class="piority">
                                     <div id="bt-urgent" onclick="selectPiority('urgent')" class="bt-piority">
                                         <p>Urgent</p>
-                                        <img src="" alt="">
+                                        <img src="./assets/icons/Prio urgent.svg">
                                     </div>
                                     <div id="bt-medium" onclick="selectPiority('medium')" class="bt-piority">
                                         <p>Medium</p>
-                                        <img src="" alt="">
+                                        <img src="./assets/icons/Prio medium.svg">
                                     </div>
                                     <div id="bt-low" onclick="selectPiority('low')" class="bt-piority">
                                         <p>Low</p>
-                                        <img src="" alt="">
+                                        <img src="./assets/icons/Prio low.svg">
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +96,7 @@
                             </div>
                             <div>
                                 <label for="category">Category<p class="required-star">*</p></label>
-                                <input type="text" name="category" placeholder="Select task category" required>
+                                <input type="" name="category" placeholder="Select task category" required>
                             </div>
                             <div>
                                 <label for="subtask">Subtasks</label>
@@ -105,7 +105,24 @@
                         </div>
                     </form>
                 </div> 
-            </div>           
+
+                <div class="bt-container">
+                    <div class="required-info">
+                        <p class="required-star">*</p>
+                        This field is required
+                    </div>
+                    <div class="bt-add-task">
+                        <div id="bt-clear">
+                            <p>Clear</p>
+                            <img src="./assets/icons/close.svg">
+                        </div>
+                        <div id="bt-create-task">
+                            <p>Create Task</p>
+                            <img src="./assets/icons/check.svg">
+                        </div>
+                    </div>
+                </div>
+            </div>          
         </div>
 
     </section>    
