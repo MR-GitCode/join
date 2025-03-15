@@ -51,3 +51,9 @@ let users = [
 
 
 ];
+
+let tasks = [
+    { id: 0, title: 'Meeting vorbereiten', description: 'Folien für das Meeting erstellen', assignedTo: 1, status: 'open' },
+    { id: 1, title: 'Kundengespräch', description: 'Kunde anrufen und Angebot besprechen', assignedTo: 0, status: 'in progress' },
+    { id: 2, title: 'Bug fixen', description: 'Fehler in der App beheben', assignedTo: 2, status: 'done' },
+];
