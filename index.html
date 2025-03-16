@@ -5,21 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./styles/index.css">
+
     <link rel="icon" type="image/x-icon" href="./assets/icons/favicon.svg">
     <title>Join</title>
 </head>
 
-<body onload="loadData()">
+<body onload="init()">
+<div class="log-in-container">
+    <div class="log-in-card">
+        <h1>Log in</h1>
+        <form onsubmit="loginUser(); return false;">
+            <input type="email" id="email" required><br>
+            <input type="password" id="password" required><br>
+            <button>Log in</button>
+            <button>Guest Log in</button>
 
-    <section class="startpage-logo-container">
-        <object data="./assets/icons/logo_black.svg" type="image/svg+xml" class="startpage-logo">
-            <!---Fallback--->
-            Ihr Browser kann leider kein svg darstellen!
-        </object>
+        </form>
+    </div>
+</div>
+
+
+    <section id="startpage-logo-container" class="d_none">
+
     </section>
 
 </body>
 <script src="./scripts/db.js"></script>
+<script src="./scripts/templates.js"></script>
 <script src="script.js"></script>
 
 </html>
