@@ -5,7 +5,7 @@ let users = [
     email: "antom@gmail.com",
     phone: "+49 1111111111",
     password: "mypassword123",
-    badge: "assets/icons/profilebadge/anton.svg",
+    badge: "./assets/icons/profilebadge/anton.svg",
   },
   {
     id: 1,
@@ -13,7 +13,7 @@ let users = [
     email: "schulz@hotmail.com",
     phone: "+49 2222222222",
     password: "mypassword123",
-    badge: "assets/icons/profilebadge/anja.svg",
+    badge: "./assets/icons/profilebadge/anja.svg",
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ let users = [
     email: "benedikt@gmail.com",
     phone: "+49 3333333333",
     password: "mypassword123",
-    badge: "assets/icons/profilebadge/benedikt.svg",
+    badge: "./assets/icons/profilebadge/benedikt.svg",
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ let users = [
     email: "davidberg@gmail.com",
     phone: "+49 4444444444",
     password: "mypassword123",
-    badge: "assets/icons/profilebadge/david.svg",
+    badge: "./assets/icons/profilebadge/david.svg",
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ let users = [
     email: "eva@gmail.com",
     phone: "+49 5555555555",
     password: "mypassword123",
-    badge: "assets/icons/profilebadge/eva.svg",
+    badge: "./assets/icons/profilebadge/eva.svg",
   },
   {
     id: 5,
@@ -45,7 +45,7 @@ let users = [
     email: "emmanuelma@gmail.com",
     phone: "+49 6666666666",
     password: "mypassword123",
-    badge: "assets/icons/profilebadge/emmanuel.svg",
+    badge: "./assets/icons/profilebadge/emmanuel.svg",
   },
   {
     id: 6,
@@ -53,7 +53,7 @@ let users = [
     email: "bauer@gmail.com",
     phone: "+49 7777777777",
     password: "mypassword123",
-    badge: "assets/icons/profilebadge/marcel.svg",
+    badge: "./assets/icons/profilebadge/marcel.svg",
   },
   {
     id: 7,
@@ -61,7 +61,7 @@ let users = [
     email: "wolf@gmail.com",
     phone: "+49 8888888888",
     password: "mypassword123",
-    badge: "assets/icons/profilebadge/tatjana.svg",
+    badge: "./assets/icons/profilebadge/tatjana.svg",
   },
 ];
 
