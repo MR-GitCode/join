@@ -3,11 +3,21 @@
  * @param {string} piority
  */
 function selectPiority(piority) {
-    document.getElementById('bt-urgent').classList.remove('bt-urgent');
-    document.getElementById('bt-medium').classList.remove('bt-medium');
-    document.getElementById('bt-low').classList.remove('bt-low');
+    resetPriority()
     document.getElementById(`bt-${piority}`).classList.add(`bt-${piority}`);
+    document.getElementById(`svg-${piority}`).src = `./assets/icons/add_task/Prio_${piority}_white.svg`
 } 
+
+/**
+ * This function reset the img source and css.
+ */
+function resetPriority() {
+    let piorities = ['urgent', 'medium', 'low'];
+    for (let i = 0; i < piorities.length; i++) {
+        document.getElementById(`bt-${piorities[i]}`).classList.remove(`bt-${piorities[i]}`);
+        document.getElementById(`svg-${piorities[i]}`).src = `./assets/icons/add_task/Prio_${piorities[i]}.svg`;
+    }
+}
 
 /**
  * This function open the drop down menu for the category input field with ease-out.
