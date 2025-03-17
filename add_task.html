@@ -79,7 +79,7 @@
                                 <div class="piority">
                                     <div id="bt-urgent" onclick="selectPiority('urgent')" class="bt-piority">
                                         <p>Urgent</p>
-                                        <img src="./assets/icons/add_task/urgent.svg">
+                                        <img src="./assets/icons/add_task/Prio urgent.svg">
                                     </div>
                                     <div id="bt-medium" onclick="selectPiority('medium')" class="bt-piority">
                                         <p>Medium</p>
@@ -99,13 +99,15 @@
 
                             <div>
                                 <label for="category">Category<p class="required-star">*</p></label>
-                                <div onclick="openCategoryMenu()" id="tasks-category">
-                                    <input id="category-input" placeholder="Select task category" required>
-                                    <img id="arrow-down" src="./assets/icons/add_task/arrow_drop_down_down.svg">
-                                </div>
-                                <div id="categories">
-                                    <div class="category-option" onclick="selectCategory('Technical Task')">Technical Task</div>
-                                    <div class="category-option" onclick="selectCategory('User Story')">User Story</div>
+                                <div class="bg-category">
+                                    <div onclick="openCategoryMenu()" id="tasks-category">
+                                        <input id="category-input" placeholder="Select task category" required>
+                                        <img id="arrow-drop-down" src="./assets/icons/add_task/arrow_drop_down_down.svg">
+                                    </div>
+                                    <div id="categories">
+                                        <div class="category-option" onclick="selectCategory('Technical Task')">Technical Task</div>
+                                        <div class="category-option" onclick="selectCategory('User Story')">User Story</div>
+                                    </div>
                                 </div>
                             </div>
 

@@ -5,17 +5,41 @@
 #tasks-category img{
     position: absolute;
     width: 24px;
-    right: 10px;
+    right: 16px;
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
 }
 
 #categories {
-    display: none;
-    /* position: absolute; */
-    background: white;
-    border: 1px solid #ccc;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 100ms ease-out, max-height 100ms ease-out;
     width: 440px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+#categories.show {
+    opacity: 1;
+    max-height: 200px;
+}
+
+.category-option{
+    display: flex;
+    align-items: center;
+    height: 48px;
+    padding-left: 16px;
+}
+
+.category-option:hover{
+    background-color: rgb(238, 238, 238);
+    border-radius: 10px;
+}
+
+.bg-category{
+    background: white;
+    border: 1px solid #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0px 0px 14px 3px rgba(0,0,0,0.04);
 }

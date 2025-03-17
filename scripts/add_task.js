@@ -10,12 +10,18 @@ function selectPiority(piority) {
 } 
 
 /**
- * This function open the drop down menu for the category input field.
+ * This function open the drop down menu for the category input field with ease-out.
  * 
  */
 function openCategoryMenu() {
     let categories = document.getElementById("categories");
-    categories.style.display = categories.style.display === "block" ? "none" : "block";
+    let droptDownImg = document.getElementById("arrow-drop-down");
+    if (categories.classList.contains("show")) {
+        categories.classList.remove("show");
+    } else {
+        categories.classList.add("show");
+        droptDownImg.src = "./assets/icons/add_task/arrow_drop_down_up.svg";
+    }
 }
 
 /**
@@ -24,5 +30,6 @@ function openCategoryMenu() {
  */
 function selectCategory(category) {
     document.getElementById('category-input').value = category;
-    document.getElementById("categories").style.display = "none";
+    document.getElementById("categories").classList.remove("show");
+    document.getElementById("arrow-drop-down").src = "./assets/icons/add_task/arrow_drop_down_down.svg";
 }
