@@ -40,6 +40,19 @@ h1{
     cursor: pointer;
 }
 
+#tasks-category{
+    position: relative;
+}
+
+#tasks-category img{
+    position: absolute;
+    width: 24px;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
 .form-add-task input[type=text]:focus,
 .form-add-task input[type=date]:focus,
 .form-add-task textarea:focus{

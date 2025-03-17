@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="assets/icons/favicon.svg">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="./styles/add_task.css">
+    <link rel="stylesheet" href="./styles/add_task/add_task.css">
+    <link rel="stylesheet" href="./styles/add_task/category.css">
     <title>Add Task</title>
 </head>
 <body>
@@ -78,26 +79,36 @@
                                 <div class="piority">
                                     <div id="bt-urgent" onclick="selectPiority('urgent')" class="bt-piority">
                                         <p>Urgent</p>
-                                        <img src="./assets/icons/Prio urgent.svg">
+                                        <img src="./assets/icons/add_task/urgent.svg">
                                     </div>
                                     <div id="bt-medium" onclick="selectPiority('medium')" class="bt-piority">
                                         <p>Medium</p>
-                                        <img src="./assets/icons/Prio medium.svg">
+                                        <img src="./assets/icons/add_task/Prio medium.svg">
                                     </div>
                                     <div id="bt-low" onclick="selectPiority('low')" class="bt-piority">
                                         <p>Low</p>
-                                        <img src="./assets/icons/Prio low.svg">
+                                        <img src="./assets/icons/add_task/Prio low.svg">
                                     </div>
                                 </div>
                             </div>
+
                             <div>
                                 <label for="assign">Assigned to</label>
                                 <input type="text" name="assign" placeholder="Select contacts to assign">
                             </div>
+
                             <div>
                                 <label for="category">Category<p class="required-star">*</p></label>
-                                <input type="" name="category" placeholder="Select task category" required>
+                                <div onclick="openCategoryMenu()" id="tasks-category">
+                                    <input id="category-input" placeholder="Select task category" required>
+                                    <img id="arrow-down" src="./assets/icons/add_task/arrow_drop_down_down.svg">
+                                </div>
+                                <div id="categories">
+                                    <div class="category-option" onclick="selectCategory('Technical Task')">Technical Task</div>
+                                    <div class="category-option" onclick="selectCategory('User Story')">User Story</div>
+                                </div>
                             </div>
+
                             <div>
                                 <label for="subtask">Subtasks</label>
                                 <input type="text" name="subtask" placeholder="Add new subtask">

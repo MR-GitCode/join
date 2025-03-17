@@ -1,0 +1,21 @@
+#tasks-category{
+    position: relative;
+}
+
+#tasks-category img{
+    position: absolute;
+    width: 24px;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+#categories {
+    display: none;
+    /* position: absolute; */
+    background: white;
+    border: 1px solid #ccc;
+    width: 440px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
