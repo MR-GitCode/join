@@ -1,17 +1,32 @@
+/**
+ * Defines variables who needs to be for global use. 
+ */
 let contentRef;
 
+/**
+ * This function initializes the page by calling other functions.
+ */
 function init() {
     toggleLoadingSpinner();
     loadingSpinner();
     loadData();
-    toggleLoadingSpinner();
+    setTimeout(toggleLoadingSpinner(), 3000);
 };
 
-
+/**
+ * This function change the visibility to hidden and back to visible.
+ * 
+ * @param {string} id - The ID of the element that should be toggled.
+ * @param {string} d_none - The class with the display none property.
+ */
 function toggleDNone(id) {
     document.getElementById(id).classList.toggle('d_none')
 };
-
+/**
+ * This function stops the function from propagating to parent elements.
+ * 
+ * @param {string} event - The event itself to stop from propagation.
+ */
 function noBubbling(event) {
     event.stopPropagation()
 };
@@ -21,11 +36,21 @@ function setContentRef(elementID) {
     contentRef.innerHTML = '';
 };
 
+/**
+ * This function toggles the loading spinner on and off.
+ * 
+ * @param {string} startpage-logo-container - The ID of the element that contains the loading spinner.
+ */
 function toggleLoadingSpinner() {
     toggleDNone('startpage-logo-container');
     setContentRef('startpage-logo-container');
 };
 
+/**
+ * This function starts the loading spinner by using a template with another function.
+ * 
+* @param {Function} getLoadingSpinnerTemplate() - Insert the template for the loading spinner
+ */
 function loadingSpinner() {
     contentRef.innerHTML += getLoadingSpinnerTemplate();
 };
