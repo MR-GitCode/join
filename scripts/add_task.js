@@ -45,6 +45,9 @@ function selectCategory(category) {
     document.getElementById("arrow-drop-down").src = "./assets/icons/add_task/arrow_drop_down_down.svg";
 }
 
+/**
+ * This function open the drop down menu for the assigned to input field with ease-out.
+ */
 function openAssignedMenu() {
     let contacts = document.getElementById("contacts");
     let droptDownImg = document.getElementById("arrow-contacts");
@@ -55,4 +58,25 @@ function openAssignedMenu() {
         contacts.classList.add("show");
         droptDownImg.src = "./assets/icons/add_task/arrow_drop_down_up.svg";
     }
+}
+
+//add push to firebase
+function createTask() {
+    checkInputValue();
+}
+
+/**
+ * The function adds an error message to the input fields without any entry.
+ */
+function checkInputValue() {
+    document.querySelectorAll(".error-message").forEach(error => error.remove());
+    let requiredFields = document.querySelectorAll("input[required]");
+    requiredFields.forEach(field => {
+        if (field.value === "") {
+            let error = document.createElement("p");
+            error.classList.add("error-message");
+            error.innerText = "This field is required";
+            field.parentNode.appendChild(error);
+        }
+    });
 }

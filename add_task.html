@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./styles/add_task/add_task.css">
     <link rel="stylesheet" href="./styles/add_task/category_assign.css">
     <link rel="stylesheet" href="./styles/add_task/priority.css">
+    <link rel="stylesheet" href="../styles/fonts.css">
     <title>Add Task</title>s
 </head>
 <body>
@@ -68,7 +69,7 @@
                             </div>
                             <div>
                                 <label for="date">Due date<p class="required-star">*</p></label>
-                                <input type="date" name="date" placeholder="dd-mm-yyyy" required>
+                                <input type="date" lang="en" placeholder="dd/mm/yyyy"  required>
                             </div>                      
                         </div>
 
@@ -145,7 +146,7 @@
                             <p>Clear</p>
                             <img src="./assets/icons/close.svg">
                         </div>
-                        <div id="bt-create-task">
+                        <div onclick="createTask()" id="bt-create-task">
                             <p>Create Task</p>
                             <img src="./assets/icons/check.svg">
                         </div>

@@ -137,3 +137,13 @@ h1{
 #bt-create-task:hover{
     background-color: #29ABE2;
 }
+
+.error-message{
+    color: #FF8190;
+    font-size: 12px;
+    width: 100%;
+    font-family: 'Poppins', 'inter', sans-serif !important;
+    padding-top: 4px;
+    background-color: #f5f6f7;
+
+}
