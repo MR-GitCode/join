@@ -15,11 +15,11 @@
 <div class="log-in-container">
     <div class="log-in-card">
         <h1>Log in</h1>
-        <form onsubmit="loginUser(); return false;">
+        <form onclick="fillForm()" onsubmit="loginUser(); return false;">
             <input type="email" id="email" required><br>
             <input type="password" id="password" required><br>
             <button>Log in</button>
-            <button>Guest Log in</button>
+            <button onclick="loginAsGuest(); return false;">Guest Log in</button>
         </form>
     </div>
 </div>
@@ -32,6 +32,7 @@
 </body>
 <script src="./scripts/db.js"></script>
 <script src="./scripts/templates.js"></script>
+<script src="./scripts/login.js"></script>
 <script src="script.js"></script>
 
 </html>

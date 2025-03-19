@@ -1,4 +1,4 @@
-let users = [
+users = [
   {
     id: 0,
     name: "Anton Mayer",

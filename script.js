@@ -2,7 +2,13 @@
  * Defines variables who needs to be for global use. 
  */
 let contentRef;
-
+/**
+ * This variabel is set for aktive user data
+ * 
+ * @param {string} user - The Variable for the aktive user data.
+ */
+let user;
+let users;
 /**
  * This function initializes the page by calling other functions.
  */
@@ -31,6 +37,11 @@ function noBubbling(event) {
     event.stopPropagation()
 };
 
+/**
+ * This function defines the content reference and sets the inner HTML to an empty string.
+ * 
+ * @param {string} elementID - The ID of the element that should be referenced.
+ */
 function setContentRef(elementID) {
     contentRef = document.getElementById(elementID);
     contentRef.innerHTML = '';
