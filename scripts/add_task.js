@@ -73,10 +73,14 @@ function checkInputValue() {
     let requiredFields = document.querySelectorAll("input[required]");
     requiredFields.forEach(field => {
         if (field.value === "") {
+            field.classList.add("error-border");
             let error = document.createElement("p");
             error.classList.add("error-message");
             error.innerText = "This field is required";
             field.parentNode.appendChild(error);
+        }
+        else {
+            field.classList.remove("error-border");
         }
     });
 }
