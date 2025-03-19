@@ -1,0 +1,152 @@
+.summary-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+   min-height: 100vh; 
+   flex-grow: 1;
+}
+
+.todo {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    margin-left: 50px;
+}
+
+.summary-todo {
+    background-color: white;
+    border-radius: 30px;
+    width: 264px;
+    height: 168px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.summary-task-status {
+    background-color: white;
+    border-radius: 30px;
+    height: 168px;
+    width: 520px;
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+  
+}
+
+.summary-count {
+    height: 168px;
+    width: 560px;
+    margin-left: 50px;
+    display: flex;
+    gap: 30px;
+}
+
+.count,
+.count1 {
+    width: 168px;
+    height: 168px;
+    background-color: white;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.day {
+    margin-top: 20px;
+    margin-left: 50px;
+}
+
+.day span {
+    font-size: 47px;
+}
+
+.icon-summary {
+    width: 69px;
+    height: 69px;
+    margin-top: 40px;
+    margin-left: 40px;
+}
+
+.number-container {
+    margin-top: 30px;
+    margin-left: 30px;
+    text-align: center;
+}
+
+.number-urgent-container {
+    display: flex;
+    align-items: center;  
+    gap: 10px;            
+    height: auto;  ;
+}
+
+.number {
+    width: 31px;
+    height: 77px;
+    font-size: 64px;
+}
+
+.number span {
+    font-size: 20px;
+}
+
+.vector {
+    height: 120px;      
+    margin-top: 0;  
+    display: flex ;
+    justify-content: center;
+    margin-left: 50px;
+}
+
+body {
+    background-color: #F6F7F8;
+}
+
+.summary-todo,
+.summary-task-status,
+.count,
+.count1 {
+    cursor: pointer; 
+    transition: background-color 0.3s ease;
+}
+
+.summary-todo:hover,
+.summary-task-status:hover,
+.count:hover,
+.count1:hover {
+    background-color: #e0e0e0;
+}
+
+.task-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.task-content {
+    display: flex;
+    gap: 20px;
+}
+
+.day {
+    text-align: right;
+    font-weight: bold;
+    padding-right: 20px;
+}
+
+.summary-header{
+
+    display: flex;
+    flex-direction: row;
+    margin-top: 150px;
+    margin-left:100px;
+}
+
+.summary-header p{
+    font-size: 59px;
+    color: #29ABE2;
+}
