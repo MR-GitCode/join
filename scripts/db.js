@@ -15,14 +15,18 @@ const BASE_URL = 'https://join-441-default-rtdb.europe-west1.firebasedatabase.ap
 async function loadData() {
     try {
         let usersData = await fetch(`${BASE_URL}/users.json`);
-        users = (await usersData.json()) || [];
+        let usersJson = await usersData.json();
+        users = usersJson ? Object.values(usersJson) : [];
 
         let tasksData = await fetch(`${BASE_URL}/tasks.json`);
-        tasks = (await tasksData.json()) || [];
+        let tasksJson = await tasksData.json();
+        tasks = tasksJson ? Object.values(tasksJson) : [];
+
     } catch (error) {
         console.error('Fehler beim Laden der Daten:', error);
     }
 };
+
 
 /**
  * This function saves the data in the database using the transmitData function.
@@ -32,13 +36,13 @@ async function loadData() {
  * 
 
 /* type = 'users' || 'tasks' || '' (alle Daten) und data = null (alle Daten) oder id */
-function saveData(type = '', data = null) {
+async function saveData(type = '', data = null) {
     if (data) {
-        transmitData(type, data);
+        return await transmitData(type, data);
     } else {
-        users.forEach(user => transmitData('users', user));
-        tasks.forEach(task => transmitData('tasks', task));
-    }
+        let userPromises = users.map(user => transmitData('users', user));
+        let taskPromises = tasks.map(task => transmitData('tasks', task));
+        return await Promise.all([...userPromises, ...taskPromises]);    }
 };
 /**
  * This function safes the data in the database.
@@ -64,9 +68,16 @@ async function transmitData(path = '', data = {}) {
  * @param {*} id - The id of the data to be deleted.
  */
 async function deleteData(path = '', id) {
-    let response = await fetch(`${BASE_URL}/${path}/${id}.json`, {
-        method: 'DELETE',
-    });
-    return await response.json();
+    switch (id) {
+        case 8:
+            break;
+
+        default:
+            let response = await fetch(`${BASE_URL}/${path}/${id}.json`, {
+                method: 'DELETE',
+            });
+            return await response.json();
+            break;
+    }
 };
 

@@ -1,11 +1,11 @@
 users = [
   {
     id: 0,
-    name: "Anton Mayer",
-    email: "antom@gmail.com",
-    phone: "+49 1111111111",
-    password: "mypassword123",
-    badge: "./assets/icons/profilebadge/anton.svg",
+    name: "Gast",
+    email: "",
+    phone: "",
+    password: "",
+    badge: "./assets/icons/profilebadge/guest.svg",
   },
   {
     id: 1,
@@ -62,73 +62,80 @@ users = [
     phone: "+49 8888888888",
     password: "mypassword123",
     badge: "./assets/icons/profilebadge/tatjana.svg",
-  },
+  }, {
+    id: 8,
+    name: "Anton Mayer",
+    email: "antom@gmail.com",
+    phone: "+49 1111111111",
+    password: "mypassword123",
+    badge: "./assets/icons/profilebadge/anton.svg",
+  }
 ];
 
 let tasks = [
-    {
-        id: 0,
-        main: 'userstory',
-        title: 'Kochwelt Page & Recipe Recommender',
-        description: 'Build start page with recipe recommendation...',
-        enddate: '2025-03-30',
-        assigned: {
-            id: 0,
-        },
-        subtasks: [],
-        priority: 'urgent',
-        status: 'todo'
+  {
+    id: 0,
+    main: 'userstory',
+    title: 'Kochwelt Page & Recipe Recommender',
+    description: 'Build start page with recipe recommendation...',
+    enddate: '2025-03-30',
+    assigned: {
+      id: 0,
     },
-    {
-        id: 1,
-        main: 'techtask',
-        title: 'HTML Base Template Creation',
-        description: 'Create reusable HTML base templates...',
-        enddate: '2025-03-30',
-        assigned: {
-            id: 0,
-        },
-        subtasks: [],
-        priority: 'medium',
-        status: 'inprogress'
+    subtasks: [],
+    priority: 'urgent',
+    status: 'todo'
+  },
+  {
+    id: 1,
+    main: 'techtask',
+    title: 'HTML Base Template Creation',
+    description: 'Create reusable HTML base templates...',
+    enddate: '2025-03-30',
+    assigned: {
+      id: 0,
     },
-    {
-        id: 2,
-        main: 'userstory',
-        title: 'Contact Form & Impring',
-        description: 'Create a contact form and impring page...',
-        enddate: '2025-03-30',
-        assigned: {
-            id: 0,
-        },
-        subtasks: [],
-        priority: 'low',
-        status: 'review'
+    subtasks: [],
+    priority: 'medium',
+    status: 'inprogress'
+  },
+  {
+    id: 2,
+    main: 'userstory',
+    title: 'Contact Form & Impring',
+    description: 'Create a contact form and impring page...',
+    enddate: '2025-03-30',
+    assigned: {
+      id: 0,
     },
-    {
-        id: 3,
-        main: 'techtask',
-        title: 'CSS Architecture Planning',
-        description: 'Define CSS naming conventions and structure...',
-        enddate: '2025-03-30',
-        assigned: {
-            id: 0,
-            },
-        subtasks: [],
-        priority: 'urgent',
-        status: 'done'
-    }, {
-        id: 4,
-        main: 'userstory',
-        title: 'Daily Kochwelt Recipe',
-        description: 'Implement daily recipe and portion calculator...',
-        enddate: '2025-03-30',
-        assigned: {
-            id: 0,
-            },
-        subtasks: [],
-        priority: 'urgent',
-        status: 'done'
+    subtasks: [],
+    priority: 'low',
+    status: 'review'
+  },
+  {
+    id: 3,
+    main: 'techtask',
+    title: 'CSS Architecture Planning',
+    description: 'Define CSS naming conventions and structure...',
+    enddate: '2025-03-30',
+    assigned: {
+      id: 0,
     },
+    subtasks: [],
+    priority: 'urgent',
+    status: 'done'
+  }, {
+    id: 4,
+    main: 'userstory',
+    title: 'Daily Kochwelt Recipe',
+    description: 'Implement daily recipe and portion calculator...',
+    enddate: '2025-03-30',
+    assigned: {
+      id: 0,
+    },
+    subtasks: [],
+    priority: 'urgent',
+    status: 'done'
+  },
 
 ];
