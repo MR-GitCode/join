@@ -16,13 +16,21 @@ async function loginUser() {
         location.reload();
     }
 };
-
+/**
+ * This Function takes the first Data in DB for Guest-Login
+ * 
+ * @param {string} id - The Variable for the ID. 
+ */
 async function loginAsGuest(id) {
     users[id].login = 1;
     await saveData('users', users[id]);
     window.location = 'start.html'
 };
-
+/**
+ * This Function is for testing the side. It fills a user and password in the form
+ * 
+ * @param {string} user - The Variable for the User.
+ */
 function fillForm() {
     user = users[1];
     document.getElementById("email").value = users[1].email;
