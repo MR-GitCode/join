@@ -16,7 +16,7 @@
         <a href="./index.html"><img class="join-logo" src="./assets/icons/logo_white.svg" alt="Join"></a>
 
         <nav>
-            <a href="">
+            <a href="./summary.html">
                 <img src="./assets/icons/summary.svg">
                 <p>Summary</p>
             </a>
@@ -54,101 +54,103 @@
         </header>
 
         <div class="content">
-            <div class="content-add-task">
-                <div>
-                    <h1>Add Task</h1>
-                    <form class="form-add-task"  action="">
-                        <div class="left-form">
-                            <div>
-                                <label for="title">Title<p class="required-star">*</p></label>
-                                <input type="text" name="title" placeholder="Enter a title" required>
-                            </div>
-                            <div>
-                                <label for="description">Description</label>
-                                <textarea name="description" id="description" placeholder="Enter a Description"></textarea>
-                            </div>
-                            <div>
-                                <label for="date">Due date<p class="required-star">*</p></label>
-                                <input type="date" lang="en" placeholder="dd/mm/yyyy"  required>
-                            </div>                      
-                        </div>
-
-                        <div class="divider"></div>
-
-                        <div class="right-form">
-                            <div>
-                                <label for="priority">Priority</label>
-                                <div class="piority">
-                                    <div id="bt-urgent" onclick="selectPiority('urgent')" class="bt-piority">
-                                        <p>Urgent</p>
-                                        <img id="svg-urgent" src="./assets/icons/add_task/Prio_urgent.svg">
-                                    </div>
-                                    <div id="bt-medium" onclick="selectPiority('medium')" class="bt-piority">
-                                        <p>Medium</p>
-                                        <img id="svg-medium" src="./assets/icons/add_task/Prio_medium.svg">
-                                    </div>
-                                    <div id="bt-low" onclick="selectPiority('low')" class="bt-piority">
-                                        <p>Low</p>
-                                        <img id="svg-low" src="./assets/icons/add_task/Prio_low.svg">
-                                    </div>
+            <div class="display-position">
+                <div class="content-add-task">
+                    <div>
+                        <h1>Add Task</h1>
+                        <form class="form-add-task"  action="">
+                            <div class="left-form">
+                                <div>
+                                    <label for="title">Title<p class="required-star">*</p></label>
+                                    <input type="text" name="title" placeholder="Enter a title" required>
                                 </div>
+                                <div>
+                                    <label for="description">Description</label>
+                                    <textarea name="description" id="description" placeholder="Enter a Description"></textarea>
+                                </div>
+                                <div>
+                                    <label for="date">Due date<p class="required-star">*</p></label>
+                                    <input type="date" lang="en" placeholder="dd/mm/yyyy"  required>
+                                </div>                      
                             </div>
 
-                            <div>
-                                <label for="assign">Assigned to</label>
-                                <div class="bg-drop-down">
-                                    <div onclick="openAssignedMenu()" class="input-menu">
-                                        <input type="text" placeholder="Select contacts to assign">
-                                        <img id="arrow-contacts" src="./assets/icons/add_task/arrow_drop_down_down.svg">
-                                    </div>
-                                    <div class="menu-drop-down" id="contacts">
-                                        <div class="menu-option">
-                                            <p>Name One</p>
-                                            <img src="./assets/icons/add_task/default.svg">
+                            <div class="divider"></div>
+
+                            <div class="right-form">
+                                <div>
+                                    <label for="priority">Priority</label>
+                                    <div class="piority">
+                                        <div id="bt-urgent" onclick="selectPiority('urgent')" class="bt-piority">
+                                            <p>Urgent</p>
+                                            <img id="svg-urgent" src="./assets/icons/add_task/Prio_urgent.svg">
                                         </div>
-                                        <div class="menu-option">
-                                            <p>Name Two</p>
-                                            <img src="./assets/icons/add_task/default.svg">
+                                        <div id="bt-medium" onclick="selectPiority('medium')" class="bt-piority">
+                                            <p>Medium</p>
+                                            <img id="svg-medium" src="./assets/icons/add_task/Prio_medium.svg">
+                                        </div>
+                                        <div id="bt-low" onclick="selectPiority('low')" class="bt-piority">
+                                            <p>Low</p>
+                                            <img id="svg-low" src="./assets/icons/add_task/Prio_low.svg">
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div>
-                                <label for="category">Category<p class="required-star">*</p></label>
-                                <div class="bg-drop-down">
-                                    <div onclick="openCategoryMenu()" class="input-menu">
-                                        <input id="category-input" placeholder="Select task category" required>
-                                        <img id="arrow-category" src="./assets/icons/add_task/arrow_drop_down_down.svg">
-                                    </div>
-                                    <div class="menu-drop-down" id="categories">
-                                        <div class="menu-option" onclick="selectCategory('Technical Task')">Technical Task</div>
-                                        <div class="menu-option" onclick="selectCategory('User Story')">User Story</div>
+                                <div>
+                                    <label for="assign">Assigned to</label>
+                                    <div class="bg-drop-down">
+                                        <div onclick="openAssignedMenu()" class="input-menu">
+                                            <input type="text" placeholder="Select contacts to assign">
+                                            <img id="arrow-contacts" src="./assets/icons/add_task/arrow_drop_down_down.svg">
+                                        </div>
+                                        <div class="menu-drop-down" id="contacts">
+                                            <div class="menu-option">
+                                                <p>Name One</p>
+                                                <img src="./assets/icons/add_task/default.svg">
+                                            </div>
+                                            <div class="menu-option">
+                                                <p>Name Two</p>
+                                                <img src="./assets/icons/add_task/default.svg">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div>
-                                <label for="subtask">Subtasks</label>
-                                <input type="text" name="subtask" placeholder="Add new subtask">
-                            </div>
-                        </div>
-                    </form>
-                </div> 
+                                <div>
+                                    <label for="category">Category<p class="required-star">*</p></label>
+                                    <div class="bg-drop-down">
+                                        <div onclick="openCategoryMenu()" class="input-menu">
+                                            <input id="category-input" placeholder="Select task category" required>
+                                            <img id="arrow-category" src="./assets/icons/add_task/arrow_drop_down_down.svg">
+                                        </div>
+                                        <div class="menu-drop-down" id="categories">
+                                            <div class="menu-option" onclick="selectCategory('Technical Task')">Technical Task</div>
+                                            <div class="menu-option" onclick="selectCategory('User Story')">User Story</div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                <div class="bt-container">
-                    <div class="required-info">
-                        <p class="required-star">*</p>
-                        This field is required
-                    </div>
-                    <div class="bt-add-task">
-                        <div id="bt-clear">
-                            <p>Clear</p>
-                            <img src="./assets/icons/close.svg">
+                                <div>
+                                    <label for="subtask">Subtasks</label>
+                                    <input type="text" name="subtask" placeholder="Add new subtask">
+                                </div>
+                            </div>
+                        </form>
+                    </div> 
+
+                    <div class="bt-container">
+                        <div class="required-info">
+                            <p class="required-star">*</p>
+                            This field is required
                         </div>
-                        <div onclick="createTask()" id="bt-create-task">
-                            <p>Create Task</p>
-                            <img src="./assets/icons/check.svg">
+                        <div class="bt-add-task">
+                            <div id="bt-clear">
+                                <p>Clear</p>
+                                <img src="./assets/icons/close.svg">
+                            </div>
+                            <div onclick="createTask()" id="bt-create-task">
+                                <p>Create Task</p>
+                                <img src="./assets/icons/check.svg">
+                            </div>
                         </div>
                     </div>
                 </div>
