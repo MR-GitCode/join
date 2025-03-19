@@ -11,7 +11,7 @@ body {
 }
 
 .d_none {
-    display: none;
+    display: none !important;
 }
 
 .left-side {
@@ -99,7 +99,6 @@ header {
     height: 100vh;
     position: relative;
     background-color: #f5f6f7;
-
 }
 
 .startpage-logo {

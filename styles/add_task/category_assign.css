@@ -1,8 +1,8 @@
-#tasks-category{
+.input-menu{
     position: relative;
 }
 
-#tasks-category img{
+.input-menu img{
     position: absolute;
     width: 24px;
     right: 16px;
@@ -11,33 +11,35 @@
     pointer-events: none;
 }
 
-#categories {
+.menu-drop-down {
     opacity: 0;
     max-height: 0;
     overflow: hidden;
     transition: opacity 100ms ease-out, max-height 100ms ease-out;
-    width: 440px;
+    width: 444px;
     cursor: pointer;
 }
 
-#categories.show {
+.show {
     opacity: 1;
     max-height: 200px;
 }
 
-.category-option{
+.menu-option{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: 48px;
-    padding-left: 16px;
+    padding: 0 16px;
 }
 
-.category-option:hover{
+.menu-option:hover{
     background-color: rgb(238, 238, 238);
     border-radius: 10px;
+    width: 412px;
 }
 
-.bg-category{
+.bg-drop-down{
     background: white;
     border: 1px solid #FFFFFF;
     border-radius: 10px;

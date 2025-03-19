@@ -6,9 +6,9 @@
     <link rel="icon" type="image/x-icon" href="assets/icons/favicon.svg">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./styles/add_task/add_task.css">
-    <link rel="stylesheet" href="./styles/add_task/category.css">
+    <link rel="stylesheet" href="./styles/add_task/category_assign.css">
     <link rel="stylesheet" href="./styles/add_task/priority.css">
-    <title>Add Task</title>
+    <title>Add Task</title>s
 </head>
 <body>
     <section class="left-side">
@@ -95,19 +95,34 @@
 
                             <div>
                                 <label for="assign">Assigned to</label>
-                                <input type="text" name="assign" placeholder="Select contacts to assign">
+                                <div class="bg-drop-down">
+                                    <div onclick="openAssignedMenu()" class="input-menu">
+                                        <input type="text" placeholder="Select contacts to assign">
+                                        <img id="arrow-contacts" src="./assets/icons/add_task/arrow_drop_down_down.svg">
+                                    </div>
+                                    <div class="menu-drop-down" id="contacts">
+                                        <div class="menu-option">
+                                            <p>Name One</p>
+                                            <img src="./assets/icons/add_task/default.svg">
+                                        </div>
+                                        <div class="menu-option">
+                                            <p>Name Two</p>
+                                            <img src="./assets/icons/add_task/default.svg">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div>
                                 <label for="category">Category<p class="required-star">*</p></label>
-                                <div class="bg-category">
-                                    <div onclick="openCategoryMenu()" id="tasks-category">
+                                <div class="bg-drop-down">
+                                    <div onclick="openCategoryMenu()" class="input-menu">
                                         <input id="category-input" placeholder="Select task category" required>
-                                        <img id="arrow-drop-down" src="./assets/icons/add_task/arrow_drop_down_down.svg">
+                                        <img id="arrow-category" src="./assets/icons/add_task/arrow_drop_down_down.svg">
                                     </div>
-                                    <div id="categories">
-                                        <div class="category-option" onclick="selectCategory('Technical Task')">Technical Task</div>
-                                        <div class="category-option" onclick="selectCategory('User Story')">User Story</div>
+                                    <div class="menu-drop-down" id="categories">
+                                        <div class="menu-option" onclick="selectCategory('Technical Task')">Technical Task</div>
+                                        <div class="menu-option" onclick="selectCategory('User Story')">User Story</div>
                                     </div>
                                 </div>
                             </div>

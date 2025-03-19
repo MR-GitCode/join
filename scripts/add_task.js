@@ -25,9 +25,10 @@ function resetPriority() {
  */
 function openCategoryMenu() {
     let categories = document.getElementById("categories");
-    let droptDownImg = document.getElementById("arrow-drop-down");
+    let droptDownImg = document.getElementById("arrow-category");
     if (categories.classList.contains("show")) {
         categories.classList.remove("show");
+        droptDownImg.src = "./assets/icons/add_task/arrow_drop_down_down.svg";
     } else {
         categories.classList.add("show");
         droptDownImg.src = "./assets/icons/add_task/arrow_drop_down_up.svg";
@@ -42,4 +43,16 @@ function selectCategory(category) {
     document.getElementById('category-input').value = category;
     document.getElementById("categories").classList.remove("show");
     document.getElementById("arrow-drop-down").src = "./assets/icons/add_task/arrow_drop_down_down.svg";
+}
+
+function openAssignedMenu() {
+    let contacts = document.getElementById("contacts");
+    let droptDownImg = document.getElementById("arrow-contacts");
+    if (contacts.classList.contains("show")) {
+        contacts.classList.remove("show");
+        droptDownImg.src = "./assets/icons/add_task/arrow_drop_down_down.svg";
+    } else {
+        contacts.classList.add("show");
+        droptDownImg.src = "./assets/icons/add_task/arrow_drop_down_up.svg";
+    }
 }
