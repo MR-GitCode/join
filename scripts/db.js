@@ -25,6 +25,7 @@ async function loadData() {
     } catch (error) {
         console.error('Fehler beim Laden der Daten:', error);
     }
+    loggedInUser = users.find(u => u.login == 1);
 };
 
 
@@ -38,7 +39,7 @@ async function loadData() {
 /* type = 'users' || 'tasks' || '' (alle Daten) und data = null (alle Daten) oder id */
 async function saveData(type = '', data = null) {
     if (data) {
-        return await transmitData(type, data);
+        return await transmitData(`${type}/${data.id}`, data);
     } else {
         let userPromises = users.map(user => transmitData('users', user));
         let taskPromises = tasks.map(task => transmitData('tasks', task));

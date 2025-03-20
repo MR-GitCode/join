@@ -2,6 +2,7 @@
  * Defines variables who needs to be for global use. 
  */
 let contentRef;
+let loggedInUser;
 /**
  * This variabel is set for aktive user data
  * 
@@ -12,11 +13,19 @@ let users;
 /**
  * This function initializes the page by calling other functions.
  */
-function init() {
-    toggleLoadingSpinner();
-    loadingSpinner();
-    loadData();
-    setTimeout(toggleLoadingSpinner(), 3000);
+function init(version) {
+    switch (version) {
+        case 0:
+            toggleLoadingSpinner();
+            loadingSpinner();
+            loadData();
+            setTimeout(toggleLoadingSpinner(), 3000);
+            break;
+
+        default:
+            loadData();
+            break;
+    }
 };
 
 /**

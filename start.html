@@ -7,7 +7,7 @@
     <link rel="icon" type="image/x-icon" href="./assets/icons/favicon.svg">
     <title>Join</title>
 </head>
-<body>
+<body onload="init(1)">
     <section class="left-side">
         <a href="./index.html"><img class="join-logo" src="./assets/icons/logo_white.svg" alt="Join"></a>
 
@@ -45,7 +45,7 @@
             <h3>Kanban Project Management Tool</h3>
             <div class="user-info">
                 <img src="./assets/icons/help.svg" alt="help">
-                <img src="./assets/icons/profilebadge/sofia.svg" alt="">
+                <img src={require(`${loggedInUser.badge}`)} />
             </div>
         </header>
 

@@ -5,6 +5,7 @@ users = [
     email: "",
     phone: "",
     password: "",
+    login: 0,
     badge: "./assets/icons/profilebadge/guest.svg",
   },
   {
@@ -13,6 +14,7 @@ users = [
     email: "schulz@hotmail.com",
     phone: "+49 2222222222",
     password: "mypassword123",
+    login: 0,
     badge: "./assets/icons/profilebadge/anja.svg",
   },
   {
@@ -21,6 +23,7 @@ users = [
     email: "benedikt@gmail.com",
     phone: "+49 3333333333",
     password: "mypassword123",
+    login: 0,
     badge: "./assets/icons/profilebadge/benedikt.svg",
   },
   {
@@ -29,6 +32,7 @@ users = [
     email: "davidberg@gmail.com",
     phone: "+49 4444444444",
     password: "mypassword123",
+    login: 0,
     badge: "./assets/icons/profilebadge/david.svg",
   },
   {
@@ -37,6 +41,7 @@ users = [
     email: "eva@gmail.com",
     phone: "+49 5555555555",
     password: "mypassword123",
+    login: 0,
     badge: "./assets/icons/profilebadge/eva.svg",
   },
   {
@@ -45,6 +50,7 @@ users = [
     email: "emmanuelma@gmail.com",
     phone: "+49 6666666666",
     password: "mypassword123",
+    login: 0,
     badge: "./assets/icons/profilebadge/emmanuel.svg",
   },
   {
@@ -53,6 +59,7 @@ users = [
     email: "bauer@gmail.com",
     phone: "+49 7777777777",
     password: "mypassword123",
+    login: 0,
     badge: "./assets/icons/profilebadge/marcel.svg",
   },
   {
@@ -61,6 +68,7 @@ users = [
     email: "wolf@gmail.com",
     phone: "+49 8888888888",
     password: "mypassword123",
+    login: 0,
     badge: "./assets/icons/profilebadge/tatjana.svg",
   }, {
     id: 8,
@@ -68,6 +76,7 @@ users = [
     email: "antom@gmail.com",
     phone: "+49 1111111111",
     password: "mypassword123",
+    login: 0,
     badge: "./assets/icons/profilebadge/anton.svg",
   }
 ];
