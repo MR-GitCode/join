@@ -103,6 +103,7 @@
 
 body {
     background-color: #F6F7F8;
+    max-width: 1440px;
 }
 
 .summary-todo,
