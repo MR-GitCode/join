@@ -20,7 +20,7 @@ function displayTasksUntilNextDeadline() {
         console.log(`Deadline: ${task.enddate}`);
         console.log(`Status: ${task.status}`);
         console.log('----------------------------------');
-    });
+    });                                                         
 
     return upcomingTasks;
 }
