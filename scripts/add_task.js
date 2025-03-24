@@ -106,3 +106,23 @@ function changeIconsSubtask() {
         }
     })
 }
+
+/**
+ * The function clears the subtask input field.
+ */
+function clearSubtaskInput() {
+    let clearInput = document.getElementById('subtask-input');
+    clearInput.value = ""
+}
+
+function addSubtask() {
+    let subtaskValue = document.getElementById('subtask-input').value;
+    
+    console.log(subtaskValue);
+    
+}
+
+function editSubtask(subtaskNum) {
+    let subtask = document.getElementById(`subtask(${subtaskNum})`);
+    subtask.classList.toggle('edit-subtask');
+}

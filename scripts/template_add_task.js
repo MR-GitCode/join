@@ -4,9 +4,9 @@
  * @returns Returned the template for the icon container in the subtask input field.
  */
 function loadSubtaskIcons() {
-    return `<img id="close-subtask" src="./assets/icons/close.svg">
+    return `<img id="close-subtask" onclick="clearSubtaskInput()" src="./assets/icons/close.svg">
             <div class="subtask-divider"></div>
-            <img id="done-subtask" src="./assets/icons/add_task/done.svg">`
+            <img id="done-subtask" onclick="addSubtask()" src="./assets/icons/add_task/done.svg">`
 }
 
 /**

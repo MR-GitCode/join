@@ -21,3 +21,75 @@
     width: 1px;
     background-color: #D1D1D1;
 }
+
+ul{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 8px;
+    padding-inline-start: 0px;
+}
+
+.list-subtask{
+    height: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    position: relative;
+}
+
+.list-subtask::before {
+    content: "•";
+    font-size: 16px;
+    color: black;
+}
+
+.list-subtask:hover{
+    cursor: pointer;
+    background-color: #EEEEEE;
+    border-radius: 10px;
+}
+
+.list-subtask:hover .edit-bts-subtask {
+    display: flex !important;
+}
+
+.flex-li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 408px;
+}
+
+.edit-bts-subtask{
+    display: flex;
+    gap: 4px;
+}
+
+.edit-bts-subtask img:hover{
+background-color: #EEEEEE;
+border-radius: 50px;
+cursor: pointer;
+}
+
+#list-subtasks li{
+    list-style-position: outside;
+    overflow: visible;
+    font-size: 16px;
+}
+
+.edit-subtask{
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #29ABE2;
+}
+
+.edit-subtask::before {
+    content: none;
+}
+
+.edit-subtask:hover{
+    background-color: #FFFFFF !important;
+    border-radius: 0;
+    cursor: default;
+}

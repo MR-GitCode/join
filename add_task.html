@@ -138,6 +138,28 @@
                                         <div id="subtask-icons">
                                             <img id="plus-subtask" src="./assets/icons/add_task/plus.svg">
                                         </div>
+                                        <ul id="list-subtasks">
+                                            <li class="list-subtask" id="subtask(1)" onclick="editSubtask(1)" contenteditable="true">
+                                                <div class="flex-li">
+                                                    <span>Test 1</span>
+                                                    <div class="edit-bts-subtask" style="display: none;" contenteditable="false">
+                                                        <img id="edit-subtask(1)" src="./assets/icons/add_task/edit.svg">
+                                                        <div class="subtask-divider"></div>
+                                                        <img id="delete-subtask(1)" onclick="deleteSubtaskInput()" src="./assets/icons/add_task/delete.svg">
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="list-subtask" id="subtask(1)">
+                                                <div class="flex-li">
+                                                    <span contenteditable="true">Test 2</span>
+                                                    <div class="edit-bts-subtask" style="display: none;">
+                                                        <img id="delete-subtask(1)" onclick="deleteSubtaskInput()" src="./assets/icons/add_task/delete.svg">
+                                                        <div class="subtask-divider"></div>
+                                                        <img id="done-subtask(1)" src="./assets/icons/add_task/done.svg">
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
