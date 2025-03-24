@@ -66,8 +66,7 @@
 .icon-summary {
     width: 69px;
     height: 69px;
-    margin-top: 40px;
-    margin-left: 40px;
+    margin-left: 30px;
 }
 
 .number-container {
@@ -79,8 +78,10 @@
 .number-urgent-container {
     display: flex;
     align-items: center;  
+    flex-direction: column;
     gap: 10px;            
-    height: auto;  ;
+    height: auto;  
+    margin-left: 40px;
 }
 
 .number {
@@ -98,7 +99,7 @@
     margin-top: 0;  
     display: flex ;
     justify-content: center;
-    margin-left: 50px;
+    margin-left: 60px;
 }
 
 body {
@@ -150,4 +151,21 @@ body {
 .summary-header p{
     font-size: 59px;
     color: #29ABE2;
+}
+
+.info-date{
+ margin-left: 30px;
+ display: flex;
+ flex-direction: column;
+
+  
+}
+.date{
+
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+.info{
+    font-size: 16px;
 }

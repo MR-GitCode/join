@@ -23,9 +23,9 @@ function createSummaryTaskStatus(date, info, link = './board.html') {
             <img class="icon-summary" src="./assets/icons/urgent-icon.png" alt="urgent">
             <div class="number-urgent-container">
                 <div class="number">1</div>
-                <span>Urgent</span>
-                <img class="vector" src="./assets/icons/Vector 5.png">
+                <span>Urgent</span>  
             </div>
+            <img class="vector" src="./assets/icons/Vector 5.png">
             <div class="info-date">
                 <span class="date">${date}</span>
                 <span class="info">${info}</span>
