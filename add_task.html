@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./styles/add_task/priority.css">
     <link rel="stylesheet" href="../styles/fonts.css">
     <link rel="stylesheet" href="./styles/add_task/subtask.css">
+    <script src="./scripts/template_add_task.js"></script>
     <title>Add Task</title>
 </head>
 <body>
@@ -132,9 +133,11 @@
 
                                 <div>
                                     <label for="subtask">Subtasks</label>
-                                    <div class="input-menu">
-                                        <input type="text" name="subtask" placeholder="Add new subtask">
-                                        <img id="plus-subtask" src="./assets/icons/add_task/plus.svg">
+                                    <div class="subtask-input">
+                                        <input type="text" id="subtask-input" name="subtask" placeholder="Add new subtask">
+                                        <div id="subtask-icons">
+                                            <img id="plus-subtask" src="./assets/icons/add_task/plus.svg">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -160,11 +163,11 @@
                 </div>
             </div>          
         </div>
-
     </section>    
-    
 </body>
-<script src="./scripts/db.js"></script>
-<script src="script.js"></script>
-<script src="./scripts/add_task.js"></script>
+
+<script src="./scripts/add_task.js" defer></script>
+<script src="./scripts/script.js" defer></script>
+<script src="./scripts/db.js" defer></script>
+
 </html>

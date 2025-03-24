@@ -1,3 +1,9 @@
+let subtaskTemplateLoaded = false;
+
+document.addEventListener("DOMContentLoaded", function() {
+    changeIconsSubtask();
+});
+
 /**
  * This function is used to change the backgroundcolor of the piority buttons.
  * @param {string} piority
@@ -66,7 +72,7 @@ function createTask() {
 }
 
 /**
- * The function adds an error message to the input fields without any entry.
+ * This function adds an error message to the input fields without any entry.
  */
 function checkInputValue() {
     document.querySelectorAll(".error-message").forEach(error => error.remove());
@@ -83,4 +89,20 @@ function checkInputValue() {
             field.classList.remove("error-border");
         }
     });
+}
+
+/**
+ * This function change the icon plus to close ande done.
+ */
+function changeIconsSubtask() {
+    document.getElementById('subtask-input').addEventListener("input", function () {
+        const subtaskIcons = document.getElementById('subtask-icons'); 
+        if (this.value !== "" && !subtaskTemplateLoaded) {
+                subtaskIcons.innerHTML = loadSubtaskIcons();
+                subtaskTemplateLoaded = true;
+        } else if (this.value === "") {
+            subtaskIcons.innerHTML = loadSubtaskIconsDefault();
+            subtaskTemplateLoaded = false;          
+        }
+    })
 }
