@@ -8,7 +8,12 @@
     right: 16px;
     top: 24px;
     transform: translateY(-50%);
-    pointer-events: none;
+}
+
+.input-menu img:hover {
+    background-color: #EEEEEE;
+    border-radius: 50px;
+    cursor: pointer;
 }
 
 .menu-drop-down {

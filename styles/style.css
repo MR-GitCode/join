@@ -5,6 +5,10 @@
     overflow: hidden;
 }
 
+.bg-color{
+    background-color: #091931;
+}
+
 body {
     display: flex;
     height: 100vh;

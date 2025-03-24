@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="./styles/styleSummary.css">
     <link rel="icon" type="image/x-icon" href="assets/icons/favicon.svg">
-    <title>Join</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="../styles/fonts.css">
+    <title>Add Task</title>
 </head>
-<body onload="init(1)">
+<body>
     <section class="left-side">
         <a href="./index.html"><img class="join-logo" src="./assets/icons/logo_white.svg" alt="Join"></a>
+
         <nav>
-            <a class="bg-color" href="./summary.html">
+            <a href="./summary.html">
                 <img src="./assets/icons/summary.svg">
                 <p>Summary</p>
             </a>
@@ -20,7 +21,7 @@
                 <img src="./assets/icons/add_task.svg">
                 <p>Add Task</p>
             </a>
-            <a href="./board.html">
+            <a class="bg-color" href="./board.html">
                 <img src="./assets/icons/board.svg">
                 <p>Board</p>
             </a>
@@ -39,29 +40,27 @@
             </a>
         </footer>
     </section>
-       
-    </section>
 
     <section class="right-side">
         <header>
             <h3>Kanban Project Management Tool</h3>
             <div class="user-info">
                 <img src="./assets/icons/help.svg" alt="help">
-                <img src="./assets/icons/profilebadge/sofía.svg" alt="">
+                <img src="./assets/icons/profilebadge/sofia.svg" alt="">
             </div>
         </header>
 
-        <div class="task"></div>
-        
-        <div id="task-container"></div>
+        <div class="content">
+            <div class="display-position">
+                <div class="content-board">
+                </div>
+            </div>          
+        </div>
 
     </section>    
     
 </body>
-<script src="scripts/db.js"></script>
-<script src="scripts/firstdata.js"></script>
-<script src="./scripts/script-summay.js"></script>
-<script src="./scripts/template-summary.js"></script>
 <script src="./scripts/db.js"></script>
-
+<script src="script.js"></script>
+<script src="./scripts/add_task.js"></script>
 </html>
