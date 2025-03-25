@@ -1,3 +1,4 @@
 .DS_Store
 up.bat
 up.sh
+/node_modules

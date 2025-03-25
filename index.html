@@ -12,21 +12,19 @@
     <title>Join</title>
 </head>
 
-<body onload="init(0)">
-<div class="log-in-container">
-    <div class="log-in-card">
-        <h1>Log in</h1>
-        
-      
-        <form onclick="fillForm()" onsubmit="loginUser(); return false;">
-            
-            <input type="email" id="email" required><br>
-            <input type="password" id="password" required><br>
-            <button>Log in</button>
-            <button class="guest" onclick="loginAsGuest(0); return false;">Guest Log in</button>
-        </form>
+<body>
+    <div class="log-in-container">
+        <div class="log-in-card">
+            <h1>Log in</h1>
+
+            <form onclick="fillForm()" onsubmit="loginUser(); return false;">
+                <input type="email" id="loginEmail" required><br>
+                <input type="password" id="loginPassword" value="mypassword123" required><br>
+                <button id="loginBtn">Log in</button>
+                <button class="guest" id="guestBtn">Guest Log in</button>
+            </form>
+        </div>
     </div>
-</div>
 
 
     <section id="startpage-logo-container" class="d_none">
@@ -34,6 +32,23 @@
     </section>
 
 </body>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
+    const firebaseConfig = {
+        apiKey: "AIzaSyA3Z2wSjOOA6Qcae1-qy6p5tFPLNjLd4bk",
+        authDomain: "join-441.firebaseapp.com",
+        databaseURL: "https://join-441-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "join-441",
+        storageBucket: "join-441.firebasestorage.app",
+        messagingSenderId: "830251331110",
+        appId: "1:830251331110:web:6463be5c4dc792abb640e7"
+    };
+    const firebase = initializeApp(firebaseConfig);
+    import { getDatabase, set, get, update, remove, ref, child } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-database.js";
+    const database = getDatabase();
+</script>
+
 <script src="./scripts/db.js"></script>
 <script src="./scripts/templates.js"></script>
 <script src="./scripts/login.js"></script>
