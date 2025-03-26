@@ -5,8 +5,8 @@
  * @param {string} password - The Variable for the Password.
  */
 async function loginUser() {
-    let email = document.getElementById('email');
-    let password = document.getElementById('password');
+    let email = document.getElementById('loginEmail');
+    let password = document.getElementById('loginPassword');
     user = users.find(u => u.email == email.value && u.password == password.value);
     if (user) {
         user.login = 1;

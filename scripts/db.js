@@ -1,3 +1,26 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
+import { getDatabase, set, get, update, remove, ref, child, onValue } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-database.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyA3Z2wSjOOA6Qcae1-qy6p5tFPLNjLd4bk",
+    authDomain: "join-441.firebaseapp.com",
+    databaseURL: "https://join-441-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "join-441",
+    storageBucket: "join-441.firebasestorage.app",
+    messagingSenderId: "830251331110",
+    appId: "1:830251331110:web:6463be5c4dc792abb640e7"
+  };
+
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+export {database, set, get, update, remove, ref, child, onValue};
+
 /**
  * This variable ist set for further need
  * 
@@ -100,3 +123,15 @@ updateBtn.addEventListener('click', updateData);
 removeBtn.addEventListener('click', removeData);
 findBtn.addEventListener('click', findData);
  */
+
+function writeUserData(userId, name, email) {
+    set(ref(database, "join/users/" + userId), {
+      username: name,
+      email: email,
+    }).then(() => {
+      console.log("Daten erfolgreich gespeichert!");
+    }).catch((error) => {
+      console.error("Fehler beim Speichern:", error);
+    });
+  }
+  
