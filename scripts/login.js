@@ -1,3 +1,6 @@
+import { database, ref, set, get, update, remove, child, onValue } from "./db.js";
+
+
 /**
  * This function checks the login data
  * 
@@ -36,3 +39,23 @@ function fillForm() {
     document.getElementById("email").value = users[1].email;
     document.getElementById("password").value = users[1].password;
 };
+
+loginBtn.addEventListener("click", loginEmail, loginPassword);
+guestBtn.addEventListener("click", guestBtn);
+
+export function getAllDataRealtime() {
+    const joinDatabaseUsersRef = ref(database, "join/users");
+
+    onValue(joinDatabaseUsersRef, (snapshot) => {
+        let users = [];
+
+        snapshot.forEach(childSnapshot => {
+            users.push(childSnapshot.val());
+        });
+
+    });
+
+    console.table(users);
+
+    };
+    

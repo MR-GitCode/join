@@ -1,15 +1,6 @@
-/**
- * Defines variables who needs to be for global use. 
- */
-let contentRef;
-let loggedInUser;
-/**
- * This variabel is set for aktive user data
- * 
- * @param {string} user - The Variable for the aktive user data.
- */
-let user;
-let users;
+import { database, ref, set, get, update, remove, child, onValue } from "./scripts/db.js";
+import { getAllDataRealtime } from "./scripts/login.js";
+
 /**
  * This function initializes the page by calling other functions.
  */
@@ -73,4 +64,8 @@ function toggleLoadingSpinner() {
  */
 function loadingSpinner() {
     contentRef.innerHTML += getLoadingSpinnerTemplate();
+};
+
+window.onload = () => {
+    getAllDataRealtime();
 };
