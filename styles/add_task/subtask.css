@@ -43,6 +43,7 @@ ul{
     content: "•";
     font-size: 16px;
     color: black;
+    padding-right: 5px;
 }
 
 .list-subtask:hover{
@@ -92,4 +93,12 @@ cursor: pointer;
     background-color: #FFFFFF !important;
     border-radius: 0;
     cursor: default;
+}
+
+.subtask-icon-flex{
+    display: flex !important;
+}
+
+[contenteditable]:focus {
+    outline: 0px solid transparent;
 }

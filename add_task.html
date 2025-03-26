@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="assets/icons/favicon.svg">
-    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./styles/add_task/add_task.css">
     <link rel="stylesheet" href="./styles/add_task/category_assign.css">
     <link rel="stylesheet" href="./styles/add_task/priority.css">
@@ -136,30 +136,9 @@
                                     <div class="subtask-input">
                                         <input type="text" id="subtask-input" name="subtask" placeholder="Add new subtask">
                                         <div id="subtask-icons">
-                                            <img id="plus-subtask" src="./assets/icons/add_task/plus.svg">
+                                            <img id="plus-subtask" onclick="addSubtask()" src="./assets/icons/add_task/plus.svg">
                                         </div>
-                                        <ul id="list-subtasks">
-                                            <li class="list-subtask" id="subtask(1)" onclick="editSubtask(1)" contenteditable="true">
-                                                <div class="flex-li">
-                                                    <span>Test 1</span>
-                                                    <div class="edit-bts-subtask" style="display: none;" contenteditable="false">
-                                                        <img id="edit-subtask(1)" src="./assets/icons/add_task/edit.svg">
-                                                        <div class="subtask-divider"></div>
-                                                        <img id="delete-subtask(1)" onclick="deleteSubtaskInput()" src="./assets/icons/add_task/delete.svg">
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-subtask" id="subtask(1)">
-                                                <div class="flex-li">
-                                                    <span contenteditable="true">Test 2</span>
-                                                    <div class="edit-bts-subtask" style="display: none;">
-                                                        <img id="delete-subtask(1)" onclick="deleteSubtaskInput()" src="./assets/icons/add_task/delete.svg">
-                                                        <div class="subtask-divider"></div>
-                                                        <img id="done-subtask(1)" src="./assets/icons/add_task/done.svg">
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                        <ul id="list-subtasks"></ul>
                                     </div>
                                 </div>
                             </div>
@@ -189,7 +168,7 @@
 </body>
 
 <script src="./scripts/add_task.js" defer></script>
-<script src="./scripts/script.js" defer></script>
+<script src="./script.js" defer></script>
 <script src="./scripts/db.js" defer></script>
 
 </html>

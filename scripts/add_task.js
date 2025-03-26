@@ -1,4 +1,5 @@
 let subtaskTemplateLoaded = false;
+let subtaskID = 0;
 
 document.addEventListener("DOMContentLoaded", function() {
     changeIconsSubtask();
@@ -108,21 +109,55 @@ function changeIconsSubtask() {
 }
 
 /**
- * The function clears the subtask input field.
+ * This function clears the subtask input field.
  */
 function clearSubtaskInput() {
     let clearInput = document.getElementById('subtask-input');
     clearInput.value = ""
 }
 
+/**
+ * This function add a subtask.
+ */
 function addSubtask() {
     let subtaskValue = document.getElementById('subtask-input').value;
-    
-    console.log(subtaskValue);
-    
+    let ulContainer = document.getElementById('list-subtasks');
+    ulContainer.innerHTML += loadAddSubtask(subtaskID, subtaskValue);
+    subtaskID ++    
 }
 
-function editSubtask(subtaskNum) {
-    let subtask = document.getElementById(`subtask(${subtaskNum})`);
-    subtask.classList.toggle('edit-subtask');
+/**
+ * This function delete subtask.
+ * @param {number} subtaskID This is the ID of the subtask.
+ */
+function deleteSubtaskInput(subtaskID) {
+    let subtask = document.getElementById(`subtask(${subtaskID})`);
+    subtask.remove()
 }
+
+/**
+ * This function edit the subtask and changed the icons.
+ * @param {number} subtaskID This is the ID of the subtask.
+ */
+function editSubtask(subtaskID) {
+    let subtask = document.getElementById(`subtask(${subtaskID})`);
+    let subtaskIcons = document.getElementById(`icons-subtask(${subtaskID})`);
+    let checkIcon = document.getElementById(`edit-subtask(${subtaskID})`);
+    console.log(checkIcon);
+    subtask.classList.toggle('edit-subtask');
+    if (checkIcon !== null) {
+        subtaskIcons.innerHTML = changeSubtaskIcons(subtaskID);
+        subtaskIcons.classList.add('subtask-icon-flex');
+    } else {
+        subtaskIcons.innerHTML = defaultSubtaskIcons(subtaskID);
+        subtaskIcons.classList.remove('subtask-icon-flex');
+    }
+}
+
+// /**
+//  * 
+//  * @param {number} subtaskID  This is the ID of the subtask.
+//  */
+// function sendSubtask(subtaskID) {
+//     let subtaskContent = document.getElementById(`subtaskContent(${subtaskID})`); //push to fireBase
+// }
