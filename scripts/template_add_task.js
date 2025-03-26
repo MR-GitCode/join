@@ -23,10 +23,10 @@ function loadSubtaskIconsDefault() {
  * @param {string} subtaskValue  This is the subtask text.
  * @returns Returned the subtasked template unter the input field.
  */
-function loadAddSubtask(subtaskID, subtaskValue) {
+function loadAddSubtask(subtaskID, subtaskContent) {
     return `<li class="list-subtask" id="subtask(${subtaskID})" onclick="editSubtask(${subtaskID})" contenteditable="true">
                 <div class="flex-li">
-                    <span id="subtaskContent(${subtaskID})">${subtaskValue}</span>
+                    <span id="subtaskContent(${subtaskID})">${subtaskContent}</span>
                     <div id="icons-subtask(${subtaskID})" class="edit-bts-subtask" style="display: none;" contenteditable="false">
                         <img id="edit-subtask(${subtaskID})" src="./assets/icons/add_task/edit.svg">
                         <div class="subtask-divider"></div>

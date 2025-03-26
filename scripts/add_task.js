@@ -120,10 +120,12 @@ function clearSubtaskInput() {
  * This function add a subtask.
  */
 function addSubtask() {
-    let subtaskValue = document.getElementById('subtask-input').value;
+    let subtaskInput = document.getElementById('subtask-input'); 
+    let subtaskContent = subtaskInput.value; 
     let ulContainer = document.getElementById('list-subtasks');
-    ulContainer.innerHTML += loadAddSubtask(subtaskID, subtaskValue);
-    subtaskID ++    
+    ulContainer.innerHTML += loadAddSubtask(subtaskID, subtaskContent);
+    subtaskInput.value = "";
+    subtaskID++;    
 }
 
 /**
@@ -143,7 +145,6 @@ function editSubtask(subtaskID) {
     let subtask = document.getElementById(`subtask(${subtaskID})`);
     let subtaskIcons = document.getElementById(`icons-subtask(${subtaskID})`);
     let checkIcon = document.getElementById(`edit-subtask(${subtaskID})`);
-    console.log(checkIcon);
     subtask.classList.toggle('edit-subtask');
     if (checkIcon !== null) {
         subtaskIcons.innerHTML = changeSubtaskIcons(subtaskID);
@@ -161,3 +162,11 @@ function editSubtask(subtaskID) {
 // function sendSubtask(subtaskID) {
 //     let subtaskContent = document.getElementById(`subtaskContent(${subtaskID})`); //push to fireBase
 // }
+
+document.addEventListener("click", function (event) {
+    document.querySelectorAll("#list-subtasks .list-subtask").forEach((li) => {
+        if (!li.contains(event.target)) {
+            li.classList.remove("edit-subtask", "subtask-icon-flex");
+        }
+    });
+});
