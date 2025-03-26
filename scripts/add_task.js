@@ -1,5 +1,19 @@
+import {database, ref, get} from "./db.js";
+console.log(database);
+
 let subtaskTemplateLoaded = false;
 let subtaskID = 0;
+
+window.selectPiority = selectPiority;
+window.resetPriority = resetPriority;
+window.openAssignedMenu = openAssignedMenu;
+window.openCategoryMenu = openCategoryMenu;
+window.selectCategory = selectCategory;
+window.createTask = createTask;
+window.clearSubtaskInput = clearSubtaskInput;
+window.addSubtask = addSubtask;
+window.deleteSubtaskInput = deleteSubtaskInput;
+window.editSubtask = editSubtask
 
 document.addEventListener("DOMContentLoaded", function() {
     changeIconsSubtask();
@@ -65,6 +79,7 @@ function openAssignedMenu() {
         contacts.classList.add("show");
         droptDownImg.src = "./assets/icons/add_task/arrow_drop_down_up.svg";
     }
+    getContactsDatabank()
 }
 
 //add push to firebase
@@ -170,3 +185,20 @@ document.addEventListener("click", function (event) {
         }
     });
 });
+
+/**
+ * This function load the menu under the "assigned to" input field.
+ * @param {object} data This is a object of the firebase database. 
+ */
+async function getContactsDatabank(data = database) {
+    let assignedMenu = document.getElementById('menu-drop-down');
+    let contactsRef = ref(data,'join/users');
+    let userData = await get(contactsRef);
+    let usersList = Object.values(userData.val());        
+    for (let userIndex = 0; userIndex < usersList.length; userIndex++) {
+        let user = usersList[userIndex];       
+        let badge = user.badge;
+        let name = user.name;
+        assignedMenu.innerHTML += loadAssignedMenu(badge, name, userIndex);
+    }
+}

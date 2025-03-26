@@ -19,6 +19,24 @@ function loadSubtaskIconsDefault() {
 
 /**
  * 
+ * @param {image} badge This is the badge image of the user. 
+ * @param {string} name This is the name of the user.
+ * @param {number} userIndex This is the ID of the user.
+ * @returns Returned the template of the menu for the "assigned to".
+ */
+function loadAssignedMenu(badge, name, userIndex) {
+   return  `<div class="menu-option">
+            <div class="assigned-username">
+                <img src="${badge}">
+                <p>${name}</p>
+            </div>
+            <img id="user(${userIndex})" src="./assets/icons/add_task/default.svg">
+            </div> `
+}
+
+
+/**
+ * 
  * @param {number} subtaskID This is the ID of the subtask.
  * @param {string} subtaskValue  This is the subtask text.
  * @returns Returned the subtasked template unter the input field.
