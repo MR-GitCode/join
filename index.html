@@ -33,25 +33,10 @@
 
 </body>
 
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
-    const firebaseConfig = {
-        apiKey: "AIzaSyA3Z2wSjOOA6Qcae1-qy6p5tFPLNjLd4bk",
-        authDomain: "join-441.firebaseapp.com",
-        databaseURL: "https://join-441-default-rtdb.europe-west1.firebasedatabase.app",
-        projectId: "join-441",
-        storageBucket: "join-441.firebasestorage.app",
-        messagingSenderId: "830251331110",
-        appId: "1:830251331110:web:6463be5c4dc792abb640e7"
-    };
-    const firebase = initializeApp(firebaseConfig);
-    import { getDatabase, set, get, update, remove, ref, child } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-database.js";
-    const database = getDatabase();
-</script>
-
-<script src="./scripts/db.js"></script>
+<script src="./scripts/global_vars.js"></script>
+<script type="module" src="./scripts/db.js"></script>
 <script src="./scripts/templates.js"></script>
-<script src="./scripts/login.js"></script>
-<script src="script.js"></script>
+<script type="module" src="./scripts/login.js"></script>
+<script type="module" src="script.js"></script>
 
 </html>
