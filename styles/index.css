@@ -15,3 +15,28 @@
     height: 50%;
     background-color: #FFFFFF;
 }
+
+form input{
+    width: 422px;
+    height: 48px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    padding-left: 16px;
+}
+
+form input:focus {
+    outline: 1px solid #29ABE2;
+    outline-offset: -2px;
+}
+
+form input::placeholder {
+    padding-left: 16px;
+}
+
+form input:hover{
+    cursor: pointer;
+}
+
+form button:hover{
+    cursor: pointer;
+}

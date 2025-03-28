@@ -1,6 +1,5 @@
 import { database, ref, set, get, update, remove, child, onValue } from "./db.js";
 
-
 /**
  * This function checks the login data
  * 

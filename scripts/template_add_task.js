@@ -1,4 +1,3 @@
-
 /**
  * 
  * @returns Returned the template for the icon container in the subtask input field.
@@ -25,15 +24,14 @@ function loadSubtaskIconsDefault() {
  * @returns Returned the template of the menu for the "assigned to".
  */
 function loadAssignedMenu(badge, name, userIndex) {
-   return  `<div class="menu-option">
-            <div class="assigned-username">
-                <img src="${badge}">
-                <p>${name}</p>
-            </div>
-            <img id="user(${userIndex})" src="./assets/icons/add_task/default.svg">
-            </div> `
+   return  `<div class="menu-option" >
+                <div class="assigned-username">
+                    <img src="${badge}">
+                    <p>${name}</p>
+                </div>
+                <img class="button-transition" id="user(${userIndex})" src="./assets/icons/add_task/default.svg">
+            </div>`
 }
-
 
 /**
  * 
@@ -46,9 +44,9 @@ function loadAddSubtask(subtaskID, subtaskContent) {
                 <div class="flex-li">
                     <span id="subtaskContent(${subtaskID})">${subtaskContent}</span>
                     <div id="icons-subtask(${subtaskID})" class="edit-bts-subtask" style="display: none;" contenteditable="false">
-                        <img id="edit-subtask(${subtaskID})" src="./assets/icons/add_task/edit.svg">
+                        <img class="button-transition" id="edit-subtask(${subtaskID})" src="./assets/icons/add_task/edit.svg">
                         <div class="subtask-divider"></div>
-                        <img id="delete-subtask(${subtaskID})" onclick="deleteSubtaskInput(${subtaskID})" src="./assets/icons/add_task/delete.svg">
+                        <img class="button-transition" id="delete-subtask(${subtaskID})" onclick="deleteSubtaskInput(${subtaskID})" src="./assets/icons/add_task/delete.svg">
                     </div>
                 </div>
             </li>`
@@ -60,9 +58,9 @@ function loadAddSubtask(subtaskID, subtaskContent) {
  * @returns Returned the active icons template.
  */
 function changeSubtaskIcons(subtaskID) {
-    return `<img id="delete-subtask(${subtaskID})" onclick="deleteSubtaskInput(${subtaskID})" src="./assets/icons/add_task/delete.svg">
+    return `<img class="button-transition" id="delete-subtask(${subtaskID})" onclick="deleteSubtaskInput(${subtaskID})" src="./assets/icons/add_task/delete.svg">
             <div class="subtask-divider"></div>
-            <img id="done-subtask(${subtaskID})" onclick="sendSubtask(${subtaskID})" src="./assets/icons/add_task/done.svg">`
+            <img class="button-transition" id="done-subtask(${subtaskID})" onclick="sendSubtask(${subtaskID})" src="./assets/icons/add_task/done.svg">`
 }
 
 /**

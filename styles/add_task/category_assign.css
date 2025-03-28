@@ -67,6 +67,7 @@
 .menu-option:hover{
     background-color: rgb(238, 238, 238);
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .bg-drop-down{
@@ -86,3 +87,15 @@
     width: 42px;
     height: 42px;
 }
+
+.button-transition{
+    transition: all 100ms ease-out;
+}
+
+.button-transition:hover{
+transform: translate3d(1px, -1px, 1px);
+}
+
+/* .menu-option.active {
+    background-color: #2A3647;
+} */

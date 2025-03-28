@@ -178,6 +178,7 @@ function editSubtask(subtaskID) {
 //     let subtaskContent = document.getElementById(`subtaskContent(${subtaskID})`); //push to fireBase
 // }
 
+
 document.addEventListener("click", function (event) {
     document.querySelectorAll("#list-subtasks .list-subtask").forEach((li) => {
         if (!li.contains(event.target)) {
