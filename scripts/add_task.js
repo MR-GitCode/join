@@ -3,6 +3,7 @@ console.log(database);
 
 let subtaskTemplateLoaded = false;
 let subtaskID = 0;
+let selectedUsers = new Set(); //Set doesn't allow same elements.
 
 window.selectPiority = selectPiority;
 window.resetPriority = resetPriority;
@@ -14,6 +15,7 @@ window.clearSubtaskInput = clearSubtaskInput;
 window.addSubtask = addSubtask;
 window.deleteSubtaskInput = deleteSubtaskInput;
 window.editSubtask = editSubtask
+window.displaySelectedContacts = displaySelectedContacts
 
 document.addEventListener("DOMContentLoaded", function() {
     changeIconsSubtask();
@@ -193,6 +195,7 @@ document.addEventListener("click", function (event) {
  */
 async function getContactsDatabank(data = database) {
     let assignedMenu = document.getElementById('menu-drop-down');
+    assignedMenu.innerHTML = "";
     let contactsRef = ref(data,'join/users');
     let userData = await get(contactsRef);
     let usersList = Object.values(userData.val());        
@@ -202,4 +205,53 @@ async function getContactsDatabank(data = database) {
         let name = user.name;
         assignedMenu.innerHTML += loadAssignedMenu(badge, name, userIndex);
     }
+    selectContact();
+}
+
+/**
+ * This function sets an event listener on all selected contacts in the dropdown menu.
+ */
+function selectContact() {
+    document.querySelectorAll(".menu-option").forEach((option, userIndex) => {
+        option.addEventListener("click", function () {
+            toggleUserSelection(userIndex);
+        });
+    });
+}
+
+
+/**
+ * Toggles the select container a user in the assigned contacts menu.
+ * If the user is selected, it ... * 
+ * - Changes the background color of the selected contact.
+ * - Updates the contact's icon in checked or default.
+ * - Adds or removes the user from the `selectedUsers` set.
+ * @param {number} userIndex The ID of the contact in the menu.
+ */
+function toggleUserSelection(userIndex) {
+    let userContainer = document.getElementById(`user(${userIndex})`);
+    let optionOfMenu = document.querySelectorAll(".menu-option")[userIndex];
+    if (selectedUsers.has(userIndex)) {
+        selectedUsers.delete(userIndex);
+        optionOfMenu.classList.remove('bg-menu-option');
+        userContainer.src = "./assets/icons/add_task/default.svg";
+    } else {
+        selectedUsers.add(userIndex);
+        optionOfMenu.classList.add('bg-menu-option');
+        userContainer.src = "./assets/icons/add_task/checked_white.svg";
+    }
+    console.log(selectedUsers);
+}
+
+/**
+ * 
+ */
+function displaySelectedContacts() {
+    let selectedContainer = document.getElementById("selectedContacts");
+    selectedContainer.innerHTML = ""; 
+
+    // - ID von selectedUsers laden
+    // - badges laden und darstellen
+    // - in toggleUsersSelction css für ausgewählte Kontakte beim Aufrufen des Menus anzeigen lassen
+
 }
