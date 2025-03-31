@@ -39,15 +39,11 @@ function fillForm() {
     document.getElementById("password").value = users[1].password;
 };
 
-loginBtn.addEventListener("click", loginEmail, loginPassword);
-guestBtn.addEventListener("click", guestBtn);
 
 export function getAllDataRealtime() {
     const joinDatabaseUsersRef = ref(database, "join/users");
 
     onValue(joinDatabaseUsersRef, (snapshot) => {
-        let users = [];
-
         snapshot.forEach(childSnapshot => {
             users.push(childSnapshot.val());
         });

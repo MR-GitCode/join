@@ -1,4 +1,4 @@
-users = [
+let join = {"users": [
   {
     id: 0,
     name: "Gast",
@@ -79,9 +79,8 @@ users = [
     login: 0,
     badge: "./assets/icons/profilebadge/anton.svg",
   }
-];
-
-let tasks = [
+], 
+"tasks": [
   {
     id: 0,
     main: 'userstory',
@@ -147,4 +146,5 @@ let tasks = [
     status: 'done'
   },
 
-];
+]
+}

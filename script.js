@@ -67,5 +67,5 @@ function loadingSpinner() {
 };
 
 window.onload = () => {
-    getAllDataRealtime();
+    init();
 };

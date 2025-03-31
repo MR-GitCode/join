@@ -1,159 +1,91 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
-import { getDatabase, set, get, update, remove, ref, child, onValue } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-database.js";
+/**
+  * This variable ist set constant for the Path to the Database.
+  * 
+  * @param {string} BASE_URL - The URL of the database.
+  */
+const BASE_URL = 'https://join-441-default-rtdb.europe-west1.firebasedatabase.app/join/';
+ 
+/**
+ * This function loads all the datas from the database.
+ * 
+ * @param {string} BASE_URL - The URL of the database.
+ * @param {string} users - For storing the users from the database.
+ * @param {string} tasks - For storing the tasks to be done from the database.
+ */
+async function loadData() {
+    try {
+        let usersData = await fetch(`${BASE_URL}/users.json`);
+        let usersJson = await usersData.json();
+        users = usersJson ? Object.values(usersJson) : [];
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyA3Z2wSjOOA6Qcae1-qy6p5tFPLNjLd4bk",
-    authDomain: "join-441.firebaseapp.com",
-    databaseURL: "https://join-441-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "join-441",
-    storageBucket: "join-441.firebasestorage.app",
-    messagingSenderId: "830251331110",
-    appId: "1:830251331110:web:6463be5c4dc792abb640e7"
+        let tasksData = await fetch(`${BASE_URL}/tasks.json`);
+        let tasksJson = await tasksData.json();
+        tasks = tasksJson ? Object.values(tasksJson) : [];
+
+    } catch (error) {
+        console.error('Fehler beim Laden der Daten:', error);
+    }
+    loggedInUser = users.find(u => u.login == 1);
 };
 
+<<<<<<< Updated upstream
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 export { database, ref, set, get, update, remove, child, onValue };
+=======
 
 /**
- * This variable ist set for further need
+ * This function saves the data in the database using the transmitData function.
+ *
+ * @param {string} type - The type of data to save. Use 'users' for users, 'tasks' for tasks and '' (standard value) for all datas.
+ * @param {string} data - The data to save. Use the id-number for 1 entry or null (standard value) for all datas.
  * 
- */
-let loginEmail = document.querySelector("loginEmail");
-/**
- * This variable ist set for further need
- * 
- */
-let loginPassword = document.querySelector("loginPassword");
-/**
- * This variable ist set for further need
- * 
- */
-let enterID = document.querySelector('#enterID');
-/**
- * This variable ist set for further need
- * 
- */
-let enterName = document.querySelector('#enterName');
-/**
- * This variable ist set for further need
- * 
- */
-let enterEmail = document.querySelector('#enterEmail');
-/**
- * This variable ist set for further need
- * 
- */
-let enterPhone = document.querySelector('#enterPhone');
-/**
- * This variable ist set for further need
- * 
- */
-let enterPassword = document.querySelector('#enterPassword');
-/**
- * This variable ist set for further need
- * 
- */
-let enterConfirmPassword = document.querySelector('#enterConfirmPassword');
+>>>>>>> Stashed changes
 
-let insertBtn = document.querySelector('#insert');
-let updateBtn = document.querySelector('#update');
-let removeBtn = document.querySelector('#remove');
-let findBtn = document.querySelector('#find');
-
-/**
- * This function adds a new data to the firebase database
- * 
- * @param {string} path - the subpath for choosing the right database 'join/users/' or 'join/tasks/'
- */
-function insertData(path = '') {
-    set(ref(database, path + enterID.value), {
-        id: enterID,
-        name: enterName.value,
-        email: enterEmail.value,
-        phone: enterPhone,
-        password: "mypassword123",
-    })
-        .then(() => {
-            alert('Data added successfully!')
-        })
-        .catch((error) => {
-            alert(error);
-        });
+/* type = 'users' || 'tasks' || '' (alle Daten) und data = null (alle Daten) oder id */
+async function saveData(type = '', data = null) {
+    if (data) {
+        return await transmitData(type, data);
+        return await transmitData(`${type}/${data.id}`, data);
+    } else {
+        let userPromises = users.map(user => transmitData('users', user));
+        let taskPromises = tasks.map(task => transmitData('tasks', task));
+        return await Promise.all([...userPromises, ...taskPromises]);    }
 };
-
 /**
- * This function adds a new data to the firebase database
+ * This function safes the data in the database.
  * 
- * @param {string} path - the subpath for choosing the right database 'users/' or 'tasks/'
+ * @param {string} path - The subpath to the database given from the saveData function.
+ * @param {string} data - The data to save given from the saveData function.
  */
-function findData(path = '') {
-    const dbref = ref(database);
-    get(child(dbref, path + findID.value))
-        .then((snapshot) => {
-            if (snapshot.exists()) {
-                findName.innerHTML = snapshot.val().name; // noch Anpassen!
-                findEmail.innerHTML = snapshot.val().email; // noch Anpassen!
-
-            } else {
-                alert('No data found');
-            }
-        })
-        .catch((error) => {
-            alert(error)
-        });
-};
-
-/**
- * This function adds a new data to the firebase database
- * 
- * @param {string} path - the subpath for choosing the right database 'users/' or 'tasks/'
- */
-function updateData(path = '') {
-    update(ref(database, path + enterID.value), {
-        name: enterName.value,
-        email: enterEmail.value,
-    })
-        .then(() => {
-            alert('Data updated successfully');
-        })
-        .catch((error) => {
-            alert(error);
-        });
-};
-
-/**
- * This function adds a new data to the firebase database
- * 
- * @param {string} path - the subpath for choosing the right database 'users/' or 'tasks/'
- */
-function removeData(path = 'stop') {
-    remove(ref(database, path + enterID.value))
-        .then(() => {
-            alert('Data removed successfully');
-        })
-        .catch((error) => {
-            alert(error);
-        });
-};
-
-/* 
-insertBtn.addEventListener('click', insertData);
-updateBtn.addEventListener('click', updateData);
-removeBtn.addEventListener('click', removeData);
-findBtn.addEventListener('click', findData);
- */
-
-function writeUserData(userId, name, email) {
-    set(ref(database, "join/users/" + userId), {
-        username: name,
-        email: email,
-    }).then(() => {
-        console.log("Daten erfolgreich gespeichert!");
-    }).catch((error) => {
-        console.error("Fehler beim Speichern:", error);
+async function transmitData(path = '', data = {}) {
+    let response = await fetch(`${BASE_URL}/${path}/${data.id}.json`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
     });
-}
+    return await response.json();
+};
 
+/**
+ * This function deletes one Data.
+ * 
+ * @param {*} path - The path to the data to be deleted. Use 'users' for users and 'tasks' for tasks.
+ * @param {*} id - The id of the data to be deleted.
+ */
+async function deleteData(path = '', id) {
+    switch (id) {
+        case 8:
+            break;
+
+        default:
+            let response = await fetch(`${BASE_URL}/${path}/${id}.json`, {
+                method: 'DELETE',
+            });
+            return await response.json();
+            break;
+    }
+};
