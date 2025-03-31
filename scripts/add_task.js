@@ -1,4 +1,4 @@
-import {database, ref, get} from "./db.js";
+import {database, ref, get} from "./db_alt.js";
 console.log(database);
 
 let subtaskTemplateLoaded = false;
@@ -79,7 +79,7 @@ function openAssignedMenu() {
         droptDownImg.src = "./assets/icons/add_task/arrow_drop_down_down.svg";
     } else {
         contacts.classList.add("show");
-        droptDownImg.src = "./assets/icons/add_task/arrow_drop_down_up.svg";
+        droptDownImg.src = "./assets/icons/add_task/arrow_drop_down_up.svg";  
     }
     getContactsDatabank()
 }
@@ -205,7 +205,8 @@ async function getContactsDatabank(data = database) {
         let name = user.name;
         assignedMenu.innerHTML += loadAssignedMenu(badge, name, userIndex);
     }
-    selectContact();
+    checkSelectedUsers()
+    selectContact()
 }
 
 /**
@@ -240,7 +241,7 @@ function toggleUserSelection(userIndex) {
         optionOfMenu.classList.add('bg-menu-option');
         userContainer.src = "./assets/icons/add_task/checked_white.svg";
     }
-    console.log(selectedUsers);
+    checkSelectedUsers()
 }
 
 /**
@@ -254,4 +255,17 @@ function displaySelectedContacts() {
     // - badges laden und darstellen
     // - in toggleUsersSelction css für ausgewählte Kontakte beim Aufrufen des Menus anzeigen lassen
 
+}
+
+/**
+ * Checked if the user already exist in 'selectedUsers' Set.
+ * If the user is in the set. it updates the background and image
+ */
+function checkSelectedUsers() {
+        for (let selectedUsersId of selectedUsers) {
+            let userContainer = document.getElementById(`user(${selectedUsersId})`);
+            let optionOfMenu = document.querySelectorAll(".menu-option")[selectedUsersId];
+            optionOfMenu.classList.add('bg-menu-option');
+            userContainer.src = "./assets/icons/add_task/checked_white.svg";
+    }
 }

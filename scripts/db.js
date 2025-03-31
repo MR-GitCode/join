@@ -28,12 +28,6 @@ async function loadData() {
     loggedInUser = users.find(u => u.login == 1);
 };
 
-<<<<<<< Updated upstream
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
-export { database, ref, set, get, update, remove, child, onValue };
-=======
 
 /**
  * This function saves the data in the database using the transmitData function.
@@ -41,7 +35,6 @@ export { database, ref, set, get, update, remove, child, onValue };
  * @param {string} type - The type of data to save. Use 'users' for users, 'tasks' for tasks and '' (standard value) for all datas.
  * @param {string} data - The data to save. Use the id-number for 1 entry or null (standard value) for all datas.
  * 
->>>>>>> Stashed changes
 
 /* type = 'users' || 'tasks' || '' (alle Daten) und data = null (alle Daten) oder id */
 async function saveData(type = '', data = null) {
