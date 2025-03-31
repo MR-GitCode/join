@@ -83,11 +83,6 @@ function openAssignedMenu() {
     getContactsDatabank()
 }
 
-//add push to firebase
-function createTask() {
-    checkInputValue();
-}
-
 /**
  * This function adds an error message to the input fields without any entry.
  */
@@ -170,15 +165,6 @@ function editSubtask(subtaskID) {
         subtaskIcons.classList.remove('subtask-icon-flex');
     }
 }
-
-// /**
-//  * 
-//  * @param {number} subtaskID  This is the ID of the subtask.
-//  */
-// function sendSubtask(subtaskID) {
-//     let subtaskContent = document.getElementById(`subtaskContent(${subtaskID})`); //push to fireBase
-// }
-
 
 document.addEventListener("click", function (event) {
     document.querySelectorAll("#list-subtasks .list-subtask").forEach((li) => {
@@ -265,4 +251,20 @@ function checkSelectedUsers() {
             optionOfMenu.classList.add('bg-menu-option');
             userContainer.src = "./assets/icons/add_task/checked_white.svg";
     }
+}
+
+/**
+ * Event listener to close the dropdown menu.
+ */
+document.addEventListener("click", function(event) {
+    let menu = document.getElementById('contacts');
+    let inputField = document.querySelector(".input-menu input"); 
+    if (!menu.contains(event.target) && event.target !== inputField) {
+        menu.classList.remove('show');
+    }
+})
+
+//add push to firebase
+function createTask() {
+    checkInputValue();
 }
