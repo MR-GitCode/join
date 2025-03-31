@@ -1,5 +1,4 @@
 import {database, ref, get} from "./db_alt.js";
-console.log(database);
 
 let subtaskTemplateLoaded = false;
 let subtaskID = 0;
@@ -220,7 +219,6 @@ function selectContact() {
     });
 }
 
-
 /**
  * Toggles the select container a user in the assigned contacts menu.
  * If the user is selected, it ... * 
@@ -241,20 +239,19 @@ function toggleUserSelection(userIndex) {
         optionOfMenu.classList.add('bg-menu-option');
         userContainer.src = "./assets/icons/add_task/checked_white.svg";
     }
+    displaySelectedContacts()
     checkSelectedUsers()
 }
 
 /**
- * 
+ * This function show the bages of the select contacts above the assign input field.
  */
-function displaySelectedContacts() {
-    let selectedContainer = document.getElementById("selectedContacts");
-    selectedContainer.innerHTML = ""; 
-
-    // - ID von selectedUsers laden
-    // - badges laden und darstellen
-    // - in toggleUsersSelction css für ausgewählte Kontakte beim Aufrufen des Menus anzeigen lassen
-
+async function displaySelectedContacts() {
+    let selectedContainer = document.getElementById("selected-contacts");
+    selectedContainer.innerHTML = "";
+    for (let selectedUsersId of selectedUsers) {
+        selectedContainer.innerHTML += `<img src=./assets/icons/profilebadge/${selectedUsersId}.svg </img>`
+    }
 }
 
 /**
