@@ -3,8 +3,8 @@ import {database, ref, get} from "./db_alt.js";
 let subtaskTemplateLoaded = false;
 let subtaskID = 0;
 let selectedUsers = new Set(); //Set doesn't allow same elements.
-console.log(selectedUsers);
-
+let selectedPiority = "";
+let selectedTasks = [];
 
 window.selectPiority = selectPiority;
 window.resetPriority = resetPriority;
@@ -17,7 +17,7 @@ window.addSubtask = addSubtask;
 window.deleteSubtaskInput = deleteSubtaskInput;
 window.editSubtask = editSubtask;
 window.displaySelectedContacts = displaySelectedContacts;
-window.clearTask =clearTask
+window.clearTask =clearTask;
 
 document.addEventListener("DOMContentLoaded", function() {
     changeIconsSubtask();
@@ -31,6 +31,9 @@ function selectPiority(piority) {
     resetPriority()
     document.getElementById(`bt-${piority}`).classList.add(`bt-${piority}`);
     document.getElementById(`svg-${piority}`).src = `./assets/icons/add_task/Prio_${piority}_white.svg`
+    selectedPiority = piority;
+    console.log(selectedPiority);
+    
 } 
 
 /**
@@ -42,6 +45,7 @@ function resetPriority() {
         document.getElementById(`bt-${piorities[i]}`).classList.remove(`bt-${piorities[i]}`);
         document.getElementById(`svg-${piorities[i]}`).src = `./assets/icons/add_task/Prio_${piorities[i]}.svg`;
     }
+    selectedPiority = "";
 }
 
 /**
@@ -138,6 +142,7 @@ function addSubtask() {
     let subtaskContent = subtaskInput.value; 
     let ulContainer = document.getElementById('list-subtasks');
     ulContainer.innerHTML += loadAddSubtask(subtaskID, subtaskContent);
+    selectedTasks.push({id: subtaskID, content: subtaskContent});
     subtaskInput.value = "";
     subtaskID++;    
 }
@@ -292,9 +297,13 @@ document.addEventListener('click', function (event) {
     }
 });
 
+/**
+ * Cleared the entries for the task.
+ */
 function clearTask() {
     document.querySelector("form").reset();
     selectedUsers.clear();
+    selectedTasks = [];
     displaySelectedContacts();
     resetPriority() 
 }
@@ -302,4 +311,15 @@ function clearTask() {
 //add push to firebase
 function createTask() {
     checkInputValue();
+    let task = {
+        title : document.getElementById('input-title').value,
+        description : document.getElementById('description').value,
+        date : document.getElementById('input-date').value,
+        piority : selectedPiority,
+        assignedID : selectedUsers,
+        category : document.getElementById('category-input').value, //
+        subtasks : selectedTasks,
+    }
+    console.log(task);
+    clearTask()
 }
