@@ -7,25 +7,41 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./styles/index.css">
     <link rel="stylesheet" href="./styles/fonts.css">
-    <link rel="stylesheet" href="./styles/index_style.css">
     <link rel="icon" type="image/x-icon" href="./assets/icons/favicon.svg">
     <title>Join</title>
 </head>
 
-<body">
+<body>
+    <div class="index-header">
+        <img src="./assets/icons/logo_black.svg">
+        <div class="bt-sing-up">
+            <p>Not a Join user?</p>
+            <button class="buttons">Sign up</button>
+        </div>
+    </div>
+    
     <div class="log-in-container">
         <div class="log-in-card">
-            <h1>Log in</h1>
-
+            <div>
+                <h1>Log in</h1>
+                <img src="./assets/icons/Vector 5.svg">
+            </div>
+            
             <form onclick="fillForm()" onsubmit="loginUser(); return false;">
                 <input type="email" id="loginEmail" required><br>
                 <input type="password" id="loginPassword" value="mypassword123" required><br>
-                <button id="loginBtn">Log in</button>
-                <button class="guest" id="guestBtn">Guest Log in</button>
+                <div class="login-buttons">
+                    <button class="buttons" id="loginBtn">Log in</button>
+                    <button class="guest" id="guestBtn">Guest Log in</button>             
+                </div>
             </form>
         </div>
     </div>
 
+    <div class="index-footer">
+        <p>Privacy Policy</p>
+        <p>Legal notice</p>
+    </div>
 
     <section id="startpage-logo-container" class="d_none">
 

@@ -317,7 +317,7 @@ function createTask() {
         date : document.getElementById('input-date').value,
         piority : selectedPiority,
         assignedID : selectedUsers,
-        category : document.getElementById('category-input').value, //
+        category : document.getElementById('category-input').value,
         subtasks : selectedTasks,
     }
     console.log(task);

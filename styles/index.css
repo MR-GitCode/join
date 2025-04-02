@@ -1,3 +1,46 @@
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+.index-header{
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 80px;
+    left: 77px;
+    right: 77Px;
+}
+
+.index-header img{
+    width: 100px;
+}
+
+.bt-sing-up{
+    display: flex;
+    align-items: baseline;
+    gap: 35px;
+}
+
+.index-footer {
+    display: flex;
+    position: absolute;
+    width: 246px;
+    margin: 0 8px;
+    justify-content: space-between;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #A8A8A8;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.index-footer p:hover{
+    color: #29ABE2;
+    font-weight: 700;
+}
+
 .log-in-container {
     display: flex;
     align-items: center;
@@ -10,16 +53,22 @@
 .log-in-card {
     display: flex;
     align-items: center;
-    justify-items: center;
+    justify-content: center;
     flex-direction: column;
-    height: 50%;
     background-color: #FFFFFF;
+    border-radius: 30px;
+    width: 652px;
+    height: 449px;
+    text-align: center;
+    gap: 32px;
+    box-shadow: 0px 0px 14px 3px rgba(0,0,0,0.04);
 }
 
 form input{
     width: 422px;
     height: 48px;
     border: 1px solid #D1D1D1;
+    position: relative;
     border-radius: 10px;
     padding-left: 16px;
 }
@@ -29,10 +78,6 @@ form input:focus {
     outline-offset: -2px;
 }
 
-form input::placeholder {
-    padding-left: 16px;
-}
-
 form input:hover{
     cursor: pointer;
 }
@@ -40,3 +85,63 @@ form input:hover{
 form button:hover{
     cursor: pointer;
 }
+
+h1{
+    font-size: 61px;
+    font-weight: 700;
+}
+
+#loginEmail{
+    margin-bottom: 24px;
+    background-image: url('/assets/icons/email_input.svg');
+    background-repeat: no-repeat;
+    /* background-position: right 10px center; */
+}
+
+#loginPassword{
+    background-image: url('/assets/icons/password_input.svg');
+    background-repeat: no-repeat;
+    /* background-position: right 10px center; */
+}
+
+.login-buttons{
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    padding-top: 35px;
+    padding-bottom: 8px;
+}
+
+button{
+    width: 110px;
+    height: 48px;
+    border-radius: 8px;
+    margin-top: 30px;
+    background-color: rgba(42,54,71,1);
+    color: rgba(255, 255, 255, 1);
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.buttons:hover{
+    background-color: #29ABE2;
+    border: none;
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+}
+
+#guestBtn:hover{
+    border: 2px solid #29ABE2;;
+    border-radius: 8px;
+    color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+}
+
+.guest{
+    background-color: white;
+    width: 177px;
+    height: 48px;
+    margin-top: 30px;
+    color: rgba(42, 54, 71, 1);
+    font-weight: 700;
+}
+
