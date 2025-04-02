@@ -103,6 +103,7 @@ function checkInputValue() {
     });
 }
 
+
 /**
  * This function change the icon plus to close ande done.
  */
@@ -165,14 +166,6 @@ function editSubtask(subtaskID) {
         subtaskIcons.classList.remove('subtask-icon-flex');
     }
 }
-
-document.addEventListener("click", function (event) {
-    document.querySelectorAll("#list-subtasks .list-subtask").forEach((li) => {
-        if (!li.contains(event.target)) {
-            li.classList.remove("edit-subtask", "subtask-icon-flex");
-        }
-    });
-});
 
 /**
  * This function load the menu under the "assigned to" input field.
@@ -254,15 +247,48 @@ function checkSelectedUsers() {
 }
 
 /**
- * Event listener to close the dropdown menu.
+ * Event listener to close the dropdown menu of "assigned to".
  */
 document.addEventListener("click", function(event) {
-    let menu = document.getElementById('contacts');
-    let inputField = document.querySelector(".input-menu input"); 
-    if (!menu.contains(event.target) && event.target !== inputField) {
-        menu.classList.remove('show');
+    let menuContacts = document.getElementById('contacts');
+    let inputField = document.getElementById('input-assign'); 
+    if (!menuContacts.contains(event.target) && event.target !== inputField) {
+        menuContacts.classList.remove('show');
     }
 })
+
+/**
+ * Event listener to close the dropdown menu of "category".
+ */
+document.addEventListener("click", function(event) {
+    let menuCategory = document.getElementById('categories');
+    let inputField = document.getElementById("category-input"); 
+    if (!menuCategory.contains(event.target) && event.target !== inputField) {
+        menuCategory.classList.remove('show');
+    }
+})
+
+/**
+ * Event listener to close the dropdown menu of "subtask".
+ */
+document.addEventListener("click", function (event) {
+    document.querySelectorAll("#list-subtasks .list-subtask").forEach((li) => {
+        if (!li.contains(event.target)) {
+            li.classList.remove("edit-subtask", "subtask-icon-flex");
+        }
+    });
+});
+
+/**
+ * Event listener that removes the error message and border from required input fields.
+ */
+document.addEventListener('click', function (event) {
+    if (event.target.matches("input[required]")) {
+        event.target.classList.remove("error-border");
+        let errorMessage = event.target.parentNode.querySelector(".error-message");
+        errorMessage.remove();
+    }
+});
 
 //add push to firebase
 function createTask() {
