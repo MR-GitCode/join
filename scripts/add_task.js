@@ -3,6 +3,8 @@ import {database, ref, get} from "./db_alt.js";
 let subtaskTemplateLoaded = false;
 let subtaskID = 0;
 let selectedUsers = new Set(); //Set doesn't allow same elements.
+console.log(selectedUsers);
+
 
 window.selectPiority = selectPiority;
 window.resetPriority = resetPriority;
@@ -13,8 +15,9 @@ window.createTask = createTask;
 window.clearSubtaskInput = clearSubtaskInput;
 window.addSubtask = addSubtask;
 window.deleteSubtaskInput = deleteSubtaskInput;
-window.editSubtask = editSubtask
-window.displaySelectedContacts = displaySelectedContacts
+window.editSubtask = editSubtask;
+window.displaySelectedContacts = displaySelectedContacts;
+window.clearTask =clearTask
 
 document.addEventListener("DOMContentLoaded", function() {
     changeIconsSubtask();
@@ -102,7 +105,6 @@ function checkInputValue() {
         }
     });
 }
-
 
 /**
  * This function change the icon plus to close ande done.
@@ -289,6 +291,13 @@ document.addEventListener('click', function (event) {
         errorMessage.remove();
     }
 });
+
+function clearTask() {
+    document.querySelector("form").reset();
+    selectedUsers.clear();
+    displaySelectedContacts();
+    resetPriority() 
+}
 
 //add push to firebase
 function createTask() {
