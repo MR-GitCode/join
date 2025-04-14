@@ -6,6 +6,7 @@
     <link rel="icon" type="image/x-icon" href="assets/icons/favicon.svg">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./styles/board/board.css">
+    <link rel="stylesheet" href="./styles/board/cards.css">
     <link rel="stylesheet" href="../styles/fonts.css">
     <title>Board</title>
 </head>
@@ -70,27 +71,63 @@
                                 <p>To do</p>
                                 <img src="./assets/icons/board/plus button.svg">   
                             </div>
-                            <div  id="to-do"></div>
+                            <div  id="to-do">
+                                <div class="tpl-no-task">
+                                    <p>No tasks To do</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="columns">
                             <div class="column-titles">
                                 <p>In progress</p>
                                 <img src="./assets/icons/board/plus button.svg">   
                             </div>
-                            <div id="progress"></div>
+                            <div id="progress">
+                                <div class="card">
+                                    <div class="tpl-progress">
+                                        <div class="card-category bg-blue">User Story</div>
+                                        <div class="card-text">
+                                            <p class="card-title">Kochwelt Page</p>
+                                            <p class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. In atque aliquam, perspiciatis et rerum fugit, accusamus expedita velit illum veniam ex obcaecati, adipisci hic rem asperiores corrupti libero sequi iste!</p>
+                                        </div>
+                                        <div class="card-progress">
+                                            <div class="progress-bar"></div>
+                                            <div class="card-subtasks">0/2 Subtasks</div>
+                                        </div>
+                                        <div class="card-contact">
+                                            <div class="card-badges">
+                                                <img style="z-index: 1;" src="./assets/icons/profilebadge/1.svg">
+                                                <img style="z-index: 2;" src="./assets/icons/profilebadge/2.svg">
+                                                <img style="z-index: 3;" src="./assets/icons/profilebadge/3.svg">
+                                            </div>
+                                            <div>
+                                                <img src="./assets/icons/add_task/Prio_low.svg">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="columns">
                             <div class="column-titles">
                                 <p>Await feedback</p>
                                 <img src="./assets/icons/board/plus button.svg">   
                             </div>
-                            <div id="feedback"></div>
+                            <div id="feedback">
+                                <div class="tpl-no-task">
+                                    <p>No tasks To do</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="columns">
                             <div class="column-titles">
                                 <p>Done</p>
                             </div>
-                            <div id="done"></div>
+                            <div id="done">
+                                <div class="tpl-no-task">
+                                    <p>No tasks Done</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
