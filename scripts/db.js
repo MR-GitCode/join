@@ -4,7 +4,7 @@
   * @param {string} BASE_URL - The URL of the database.
   */
 const BASE_URL = 'https://join-441-default-rtdb.europe-west1.firebasedatabase.app/join/';
- 
+
 /**
  * This function loads all the datas from the database.
  * 

@@ -1,0 +1,74 @@
+.display-position{
+    display: flex;
+    height: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.content-board{
+    padding: 60px 80px;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-board{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 73px;
+    max-width: 1056px;
+}
+
+.header-board h1{
+    font-size: 61px;
+    font-weight: 700;
+}
+
+#input-find-task {
+    width: 312px;
+    border: 1px solid #A8A8A8;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.board-find-task{
+    display: flex;
+    width: 504px;
+    gap: 32px;
+}
+
+#bt-add-task {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    height: 48px;
+    background-color: #2A3647;
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+    border-radius: 10px;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.board{
+    display: flex;
+    justify-content: space-around;
+    gap: 26px;
+}
+
+.columns {
+    display: flex;
+    width: 246px;
+}
+
+.column-titles {
+    display: flex;
+    width: 244px;
+    justify-content: space-between;
+    color: #42526E;
+    font-weight: 700;
+    font-size: 20px;
+    padding-bottom: 32px;
+}

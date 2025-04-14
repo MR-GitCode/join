@@ -32,8 +32,7 @@ function selectPiority(piority) {
     document.getElementById(`bt-${piority}`).classList.add(`bt-${piority}`);
     document.getElementById(`svg-${piority}`).src = `./assets/icons/add_task/Prio_${piority}_white.svg`
     selectedPiority = piority;
-    console.log(selectedPiority);
-    
+    console.log(selectedPiority);  
 } 
 
 /**
@@ -181,9 +180,13 @@ function editSubtask(subtaskID) {
 async function getContactsDatabank(data = database) {
     let assignedMenu = document.getElementById('menu-drop-down');
     assignedMenu.innerHTML = "";
+    console.log(data);
     let contactsRef = ref(data,'join/users');
+    console.log(contactsRef);
     let userData = await get(contactsRef);
-    let usersList = Object.values(userData.val());        
+    console.log(userData);
+    let usersList = Object.values(userData.val());
+    console.log(usersList);
     for (let userIndex = 0; userIndex < usersList.length; userIndex++) {
         let user = usersList[userIndex];       
         let badge = user.badge;

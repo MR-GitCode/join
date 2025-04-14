@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="assets/icons/favicon.svg">
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./styles/board/board.css">
     <link rel="stylesheet" href="../styles/fonts.css">
-    <title>Add Task</title>
+    <title>Board</title>
 </head>
 <body>
     <section class="left-side">
@@ -53,6 +54,45 @@
         <div class="content">
             <div class="display-position">
                 <div class="content-board">
+                    <div class="header-board">
+                        <h1>Board</h1>
+                        <div class="board-find-task">
+                            <input id="input-find-task" type="text" placeholder="Find Task">
+                            <div id="bt-add-task">
+                                <p>Add Task</p>
+                                <img src="./assets/icons/board/add-task-plus.svg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="board">
+                        <div class="columns">
+                            <div class="column-titles">
+                                <p>To do</p>
+                                <img src="./assets/icons/board/plus button.svg">   
+                            </div>
+                            <div  id="to-do"></div>
+                        </div>
+                        <div class="columns">
+                            <div class="column-titles">
+                                <p>In progress</p>
+                                <img src="./assets/icons/board/plus button.svg">   
+                            </div>
+                            <div id="progress"></div>
+                        </div>
+                        <div class="columns">
+                            <div class="column-titles">
+                                <p>Await feedback</p>
+                                <img src="./assets/icons/board/plus button.svg">   
+                            </div>
+                            <div id="feedback"></div>
+                        </div>
+                        <div class="columns">
+                            <div class="column-titles">
+                                <p>Done</p>
+                            </div>
+                            <div id="done"></div>
+                        </div>
+                    </div>
                 </div>
             </div>          
         </div>

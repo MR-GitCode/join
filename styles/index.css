@@ -121,6 +121,7 @@ button{
     color: rgba(255, 255, 255, 1);
     font-size: 21px;
     font-weight: 700;
+    cursor: pointer;
 }
 
 .buttons:hover{

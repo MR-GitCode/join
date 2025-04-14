@@ -18,6 +18,7 @@ async function loginUser() {
         location.reload();
     }
 };
+
 /**
  * This Function takes the first Data in DB for Guest-Login
  * 
@@ -28,6 +29,7 @@ async function loginAsGuest(id) {
     await saveData('users', users[id]);
     window.location = 'start.html'
 };
+
 /**
  * This Function is for testing the side. It fills a user and password in the form
  * 
