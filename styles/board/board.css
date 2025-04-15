@@ -23,13 +23,14 @@
 .header-board h1{
     font-size: 61px;
     font-weight: 700;
+    padding-bottom: 0px;
 }
 
 .board-find-task{
     display: flex;
     width: 504px;
     gap: 32px;
-    padding: 0 3px 7px 3px;
+    padding: 7px 3px 7px 3px;
 }
 
 #input-find-task {
@@ -168,3 +169,7 @@
 .hidden {
     display: none !important;
 }
+
+body.no-scroll {
+    overflow: hidden;
+  }
