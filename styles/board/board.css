@@ -128,3 +128,43 @@
 .column-titles img{
     cursor: pointer;
 }
+
+#overlay-add-task {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.3);
+    width:100%;
+    height:100%;
+}
+
+.bg-overlay {
+    background-color: white !important;
+    border-radius: 30px;
+    height: 700px !important;
+    padding: 64px 74px 64px 74px !important;
+    position: relative;
+}
+
+#selected-contacts{
+    background-color: white !important;
+}
+
+#close-overlay {
+    position: absolute;
+    top: 64px;
+    right: 32px;
+    width: 32px;
+    height: 32px;
+}
+
+#close-overlay:hover{
+    background-color: #EEEEEE;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
