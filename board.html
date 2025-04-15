@@ -58,7 +58,13 @@
                     <div class="header-board">
                         <h1>Board</h1>
                         <div class="board-find-task">
-                            <input id="input-find-task" type="text" placeholder="Find Task">
+                            <div class="input-find">
+                                <input id="input-find-task" type="text" placeholder="Find Task">
+                                <div class="input-find-icon">
+                                    <div id="separator"></div>
+                                    <img src="./assets/icons/board/search.svg" alt="find">
+                                </div>
+                            </div>
                             <div id="bt-add-task">
                                 <p>Add Task</p>
                                 <img src="./assets/icons/board/add-task-plus.svg">
@@ -66,17 +72,21 @@
                         </div>
                     </div>
                     <div class="board">
+                        
                         <div class="columns">
                             <div class="column-titles">
                                 <p>To do</p>
                                 <img src="./assets/icons/board/plus button.svg">   
                             </div>
                             <div  id="to-do">
-                                <div class="tpl-no-task">
-                                    <p>No tasks To do</p>
+                                <div class="card-no-task">
+                                    <div class="tpl-no-task">
+                                        <p>No tasks To do</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="columns">
                             <div class="column-titles">
                                 <p>In progress</p>
@@ -108,24 +118,30 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="columns">
                             <div class="column-titles">
                                 <p>Await feedback</p>
                                 <img src="./assets/icons/board/plus button.svg">   
                             </div>
                             <div id="feedback">
-                                <div class="tpl-no-task">
-                                    <p>No tasks To do</p>
+                                <div class="card-no-task">
+                                    <div class="tpl-no-task">
+                                        <p>No tasks To do</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="columns">
                             <div class="column-titles">
                                 <p>Done</p>
                             </div>
                             <div id="done">
-                                <div class="tpl-no-task">
-                                    <p>No tasks Done</p>
+                                <div class="card-no-task">
+                                    <div class="tpl-no-task">
+                                        <p>No tasks Done</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

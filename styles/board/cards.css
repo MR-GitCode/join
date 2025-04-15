@@ -13,6 +13,10 @@
     cursor: pointer;
 }
 
+.card-no-task{
+    margin: 10px;
+}
+
 .card{
     display: flex;
     justify-content: center;
