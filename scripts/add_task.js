@@ -180,13 +180,9 @@ function editSubtask(subtaskID) {
 async function getContactsDatabank(data = database) {
     let assignedMenu = document.getElementById('menu-drop-down');
     assignedMenu.innerHTML = "";
-    console.log(data);
     let contactsRef = ref(data,'join/users');
-    console.log(contactsRef);
     let userData = await get(contactsRef);
-    console.log(userData);
     let usersList = Object.values(userData.val());
-    console.log(usersList);
     for (let userIndex = 0; userIndex < usersList.length; userIndex++) {
         let user = usersList[userIndex];       
         let badge = user.badge;
@@ -227,6 +223,7 @@ function toggleUserSelection(userIndex) {
         selectedUsers.add(userIndex);
         optionOfMenu.classList.add('bg-menu-option');
         userContainer.src = "./assets/icons/add_task/checked_white.svg";
+        console.log(selectedUsers);
     }
     displaySelectedContacts()
     checkSelectedUsers()
@@ -319,7 +316,7 @@ function createTask() {
         description : document.getElementById('description').value,
         date : document.getElementById('input-date').value,
         piority : selectedPiority,
-        assignedID : selectedUsers,
+        assignedContacts : Array.from(selectedUsers),
         category : document.getElementById('category-input').value,
         subtasks : selectedTasks,
     }

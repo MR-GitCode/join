@@ -3,7 +3,11 @@
   * 
   * @param {string} BASE_URL - The URL of the database.
   */
-const BASE_URL = 'https://join-441-default-rtdb.europe-west1.firebasedatabase.app/join/';
+const BASE_URL = 'https://join-441-default-rtdb.europe-west1.firebasedatabase.app/join';
+
+let users = [];
+let tasks = {};
+let loggedInUser = null;
 
 /**
  * This function loads all the datas from the database.
@@ -12,7 +16,7 @@ const BASE_URL = 'https://join-441-default-rtdb.europe-west1.firebasedatabase.ap
  * @param {string} users - For storing the users from the database.
  * @param {string} tasks - For storing the tasks to be done from the database.
  */
-async function loadData() {
+export async function loadData() {
     try {
         let usersData = await fetch(`${BASE_URL}/users.json`);
         let usersJson = await usersData.json();
@@ -20,14 +24,13 @@ async function loadData() {
 
         let tasksData = await fetch(`${BASE_URL}/tasks.json`);
         let tasksJson = await tasksData.json();
-        tasks = tasksJson ? Object.values(tasksJson) : [];
-
+        tasks = tasksJson ? Object.values(tasksJson) : [];     
+         
     } catch (error) {
         console.error('Fehler beim Laden der Daten:', error);
     }
     loggedInUser = users.find(u => u.login == 1);
 };
-
 
 /**
  * This function saves the data in the database using the transmitData function.
@@ -37,7 +40,7 @@ async function loadData() {
  * 
 
 /* type = 'users' || 'tasks' || '' (alle Daten) und data = null (alle Daten) oder id */
-async function saveData(type = '', data = null) {
+export async function saveData(type = '', data = null) {
     if (data) {
         return await transmitData(type, data);
         return await transmitData(`${type}/${data.id}`, data);
@@ -46,6 +49,7 @@ async function saveData(type = '', data = null) {
         let taskPromises = tasks.map(task => transmitData('tasks', task));
         return await Promise.all([...userPromises, ...taskPromises]);    }
 };
+
 /**
  * This function safes the data in the database.
  * 
@@ -69,7 +73,7 @@ async function transmitData(path = '', data = {}) {
  * @param {*} path - The path to the data to be deleted. Use 'users' for users and 'tasks' for tasks.
  * @param {*} id - The id of the data to be deleted.
  */
-async function deleteData(path = '', id) {
+export async function deleteData(path = '', id) {
     switch (id) {
         case 8:
             break;
@@ -82,3 +86,7 @@ async function deleteData(path = '', id) {
             break;
     }
 };
+
+export function getTasks() {
+    return tasks;
+}

@@ -1,3 +1,16 @@
+import {loadData, getTasks} from './db.js';
+
+document.addEventListener("DOMContentLoaded", () => {
+    init();   
+});
+
+async function init() {
+    await loadData();
+    console.log('Done');
+    updateTasks();
+    console.log('Done');
+}
+
 /**
  * Opens the "Add Task" overlay by removing the 'hidden' class.
  * Triggered when the "Add Task" button is clicked.
@@ -17,9 +30,41 @@ function closeOverlay() {
     document.body.classList.remove('no-scroll');
 }
 
+/**
+ * Closes the overlay when a click occurs outside the content area (".content-add-task").
+ */
 document.getElementById("overlay-add-task").addEventListener("click", function (event) {
     let overlayContainer = document.querySelector(".content-add-task");
     if (!overlayContainer.contains(event.target)) {
         closeOverlay();
     }
 });
+
+/**
+ * Updates the display of tasks on the board.
+ */
+function updateTasks() {
+    let tasks = getTasks();
+        for (let taskIndex = 0; taskIndex < tasks.length; taskIndex++) {
+        let taskID = tasks[taskIndex];
+        let status = tasks[taskIndex].status;
+        let columnOfCard = document.getElementById(`${status}`);
+        columnOfCard.innerHTML += loadCard(taskID);
+        loadAssignedContacts(taskID)      
+    }
+    console.log("Aktuelle Tasks:", tasks);
+} 
+
+/**
+ * Load the bages of the assigned contacts.
+ * @param {number} taskID This is the ID of the task.  
+ */
+function loadAssignedContacts(taskID) {
+    let assignedContacts = taskID.assignedContacts;
+    let assignedContainer = document.getElementById(`card${taskID.id}-contacts`);
+    assignedContainer.innerHTML = "";
+    for (let assignedID = 0; assignedID < assignedContacts.length; assignedID++) {
+        let assignedContact = assignedContacts[assignedID]
+        assignedContainer.innerHTML += loadBagesForCard(assignedContact)
+    }
+}
