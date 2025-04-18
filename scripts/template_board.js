@@ -33,3 +33,27 @@ function loadCard(taskID) {
 function loadBagesForCard(assignedContact) {
     return `<img src="./assets/icons/profilebadge/${assignedContact}.svg">`
 }
+
+/**
+ * 
+ * @returns Return the template of the "No tasks To do" Card.
+ */
+function loadNoTodoCard() {
+    return `<div class="card-no-task">
+                <div class="tpl-no-task">
+                    <p>No tasks To do</p>
+                </div>
+            </div>`
+}
+
+/**
+ * 
+ * @returns Return the template of the "No tasks Done" Card.
+ */
+function loadNoDoneCard() {
+    return `<div class="card-no-task">
+                <div class="tpl-no-task">
+                    <p>No tasks Done</p>
+                </div>
+            </div>`
+}
