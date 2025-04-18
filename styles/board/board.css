@@ -77,10 +77,18 @@
     transform: translateY(-50%);
 }
 
-.input-find-icon img:hover {
+.input-find-icon svg:hover {
     background-color: #EEEEEE;
     border-radius: 50px;
     cursor: pointer;
+}
+
+.input-find-icon svg:active path{
+    fill: #29ABE2;
+}
+
+.input-find-icon svg:active {
+    background-color: transparent;
 }
 
 #bt-add-task {
