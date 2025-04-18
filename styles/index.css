@@ -60,7 +60,6 @@ body{
     width: 652px;
     height: 449px;
     text-align: center;
-    gap: 32px;
     box-shadow: 0px 0px 14px 3px rgba(0,0,0,0.04);
 }
 
@@ -108,7 +107,6 @@ h1{
     display: flex;
     justify-content: center;
     gap: 35px;
-    padding-top: 35px;
     padding-bottom: 8px;
 }
 
@@ -146,3 +144,11 @@ button{
     font-weight: 700;
 }
 
+.login{
+    border-bottom: 3px solid #31a3ef; /* Farbe & Dicke des Randes */
+    padding-bottom: 10px;          /* optional für Abstand zum Inhalt */
+    margin-bottom: 20px; 
+    height: 89px;
+    width: 315px;
+ 
+}
