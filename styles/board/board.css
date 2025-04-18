@@ -126,8 +126,13 @@
     padding: 0 13px;
 }
 
-.column-titles img{
+.column-titles svg{
     cursor: pointer;
+}
+
+.column-titles svg:hover rect,
+.column-titles svg:hover path{
+    stroke: #29ABE2
 }
 
 #overlay-add-task {

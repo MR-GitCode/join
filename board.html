@@ -81,74 +81,50 @@
                         <div class="columns">
                             <div class="column-titles">
                                 <p>To do</p>
-                                <img src="./assets/icons/board/plus button.svg">   
-                            </div>
-                            <div  id="todo">
-                                <div class="card-no-task">
-                                    <div class="tpl-no-task">
-                                        <p>No tasks To do</p>
-                                    </div>
+                                <div onclick="openOverlay()" >
+                                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="1" y="1.5" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2"/>
+                                        <path d="M12 8.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                        <path d="M16 12.5754L8 12.5754" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
                                 </div>
                             </div>
+                            <div  id="todo"></div>
                         </div>
                         
                         <div class="columns">
                             <div class="column-titles">
                                 <p>In progress</p>
-                                <img src="./assets/icons/board/plus button.svg">   
+                                <div onclick="openOverlay()" >
+                                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="1" y="1.5" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2"/>
+                                        <path d="M12 8.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                        <path d="M16 12.5754L8 12.5754" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                </div>  
                             </div>
-                            <div id="inprogress">
-                                <div class="card">
-                                    <div class="tpl-progress">
-                                        <div class="card-category bg-blue">User Story</div>
-                                        <div class="card-text">
-                                            <p class="card-title">Kochwelt Page</p>
-                                            <p class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. In atque aliquam, perspiciatis et rerum fugit, accusamus expedita velit illum veniam ex obcaecati, adipisci hic rem asperiores corrupti libero sequi iste!</p>
-                                        </div>
-                                        <div class="card-progress">
-                                            <div class="progress-bar"></div>
-                                            <div class="card-subtasks">0/2 Subtasks</div>
-                                        </div>
-                                        <div class="card-contact">
-                                            <div class="card-badges">
-                                                <img src="./assets/icons/profilebadge/1.svg">
-                                                <img src="./assets/icons/profilebadge/2.svg">
-                                                <img src="./assets/icons/profilebadge/3.svg">
-                                            </div>
-                                            <div>
-                                                <img src="./assets/icons/add_task/Prio_low.svg">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <div id="inprogress"></div>
                         </div>
                         
                         <div class="columns">
                             <div class="column-titles">
                                 <p>Await feedback</p>
-                                <img src="./assets/icons/board/plus button.svg">   
+                                <div onclick="openOverlay()" >
+                                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="1" y="1.5" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2"/>
+                                        <path d="M12 8.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                        <path d="M16 12.5754L8 12.5754" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                </div>  
                             </div>
-                            <div id="review">
-                                <div class="card-no-task">
-                                    <div class="tpl-no-task">
-                                        <p>No tasks To do</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <div id="review"></div>
                         </div>
                         
                         <div class="columns">
                             <div class="column-titles">
                                 <p>Done</p>
                             </div>
-                            <div id="done">
-                                <div class="card-no-task">
-                                    <div class="tpl-no-task">
-                                        <p>No tasks Done</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <div id="done"></div>
                         </div>
                     </div>
                 </div>

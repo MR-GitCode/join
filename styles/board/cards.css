@@ -50,14 +50,6 @@
     font-weight: 400;
 }
 
-.bg-blue {
-    background-color: #0038FF;
-}
-
-.bg-mint {
-    background-color: #1FD7C1;
-}
-
 .card-text{
     display: flex;
     flex-direction: column;

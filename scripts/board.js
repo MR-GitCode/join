@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
     init();   
 });
 
+window.openOverlay = openOverlay,
+window.closeOverlay = closeOverlay
+
 async function init() {
     await loadData();
     console.log('Done');
@@ -53,6 +56,7 @@ function updateTasks() {
         loadAssignedContacts(taskID)      
     }
     console.log("Aktuelle Tasks:", tasks);
+    checkContentOfColumns()
 } 
 
 /**
@@ -68,3 +72,25 @@ function loadAssignedContacts(taskID) {
         assignedContainer.innerHTML += loadBagesForCard(assignedContact)
     }
 }
+
+/**
+ * Checks each column is empty. If a column is empty, it inserts a placeholder card.
+ */
+function checkContentOfColumns() {
+    let todoContainer = document.getElementById('todo');
+    let inprogressContainer = document.getElementById('inprogress');
+    let reviewContainer = document.getElementById('review');
+    let doneContainer = document.getElementById('done');
+    if (todoContainer.innerHTML === "" ) {
+        todoContainer.innerHTML = loadNoTodoCard()   
+    } 
+    if (inprogressContainer.innerHTML === "" ) {
+        inprogressContainer.innerHTML = loadNoTodoCard()
+    }
+    if (reviewContainer.innerHTML === "" ) {
+        reviewContainer.innerHTML = loadNoTodoCard()
+    }
+    if (doneContainer.innerHTML === "" ) {
+        doneContainer.innerHTML = loadNoDoneCard()
+    }
+ }
