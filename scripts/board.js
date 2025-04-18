@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
     init();   
 });
 
+window.openOverlay = openOverlay,
+window.closeOverlay = closeOverlay
+
 async function init() {
     await loadData();
     console.log('Done');
