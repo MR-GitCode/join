@@ -51,12 +51,11 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="task-status-container">
                 <!-- Task Status bleibt unverändert -->
                 ${createSummaryTaskStatus('October 16, 2022', 'Upcoming Deadline')}
-                <!-- Begrüßungsnachricht wird rechts daneben eingefügt -->
-                ${createGreeting()}
             </div>
         </div>  
     `;
 });
+
 
 
 
@@ -115,12 +114,4 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    const taskContainer = document.querySelector(".task");
-    taskContainer.innerHTML = `
-        <div class="summary-content">
-            <!-- Andere Template-Elemente -->
-            ${createGreeting()}
-        </div>
-    `;
-});
+

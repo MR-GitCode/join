@@ -1,20 +1,20 @@
-// Funktion, die die Aufgaben bis zur nächsten Deadline anzeigt
+import {loadData, getTasks} from './db.js';
+
+
 function displayTasksUntilNextDeadline() {
-    const today = new Date(); // Heute Datum
+    const today = new Date();
     let upcomingTasks = [];
 
-    // Durchlaufe alle Aufgaben und finde die, deren Deadline noch nicht vergangen ist
     tasks.forEach(task => {
-        const taskEndDate = new Date(task.enddate); // Konvertiere die Deadline der Aufgabe in ein Datum
+        const taskEndDate = new Date(task.enddate); 
         if (taskEndDate >= today) {
             upcomingTasks.push(task);
         }
     });
 
-    // Sortiere die Aufgaben nach dem Enddatum (nächste Deadline zuerst)
     upcomingTasks.sort((a, b) => new Date(a.enddate) - new Date(b.enddate));
 
-    // Zeige die Aufgaben an (du kannst die Darstellung anpassen)
+    
     upcomingTasks.forEach(task => {
         console.log(`Titel: ${task.title}`);
         console.log(`Deadline: ${task.enddate}`);
@@ -25,29 +25,28 @@ function displayTasksUntilNextDeadline() {
     return upcomingTasks;
 }
 
-
-
-function createGreeting() {
+function createGreeting(name) {
     const now = new Date();
-    const hours = now.getHours();
+    const hour = now.getHours();
     let greeting;
-
-    if (hours >= 5 && hours < 12) {
-        greeting = "Guten Morgen";
-    } else if (hours >= 12 && hours < 18) {
-        greeting = "Guten Tag";
-    } else if (hours >= 18 && hours < 22) {
-        greeting = "Guten Abend";
+  
+    if (hour < 12) {
+      greeting = "good morning";
+    } else if (hour < 18) {
+      greeting = "Good day";
     } else {
-        greeting = "Gute Nacht";
+      greeting = "good evening";
     }
+  
+    return `${greeting}, ${name}!`;
+  }
 
-    return `
-        <div id="greeting-container" class="greeting-container">
-            <h2>${greeting}</h2>
-        </div>
-    `;
-}
+  document.addEventListener("DOMContentLoaded", () => {
+    const name = "Sarah"; 
+    document.getElementById("greeting").textContent = createGreeting(name);
+  });
+
+
 
 
 
