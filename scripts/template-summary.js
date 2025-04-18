@@ -1,9 +1,11 @@
-// Zentrale Funktion für Navigation
+import { loadData, getTasks } from './db.js';
+
+/** Navigiert zur gewünschten Seite */
 function navigateTo(page) {
     window.location.href = page;
 }
 
-// Template für die To-Do-Elemente
+/** Erstellt ein To-Do-Kachel-Element */
 function createSummaryTodo(icon, number, label, link = './board.html') {
     return `
         <div class="summary-todo" onclick="navigateTo('${link}')">
@@ -16,11 +18,11 @@ function createSummaryTodo(icon, number, label, link = './board.html') {
     `;
 }
 
+/** Erstellt ein Status-Kachel-Element mit nächster Deadline */
 function createSummaryTaskStatus(date, info, link = './board.html') {
-    // Um das Datum in das gewünschte Format (Monat, Tag, Jahr) zu bringen
-    const deadline = new Date(date);  // Umwandlung des Eingabedatums
+    const deadline = new Date(date);
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const formattedDate = deadline.toLocaleDateString('en', options);  // Formatieren des Datums
+    const formattedDate = deadline.toLocaleDateString('en', options);
 
     return `
         <div class="summary-task-status" onclick="navigateTo('${link}')">
@@ -31,36 +33,14 @@ function createSummaryTaskStatus(date, info, link = './board.html') {
             </div>
             <img class="vector" src="./assets/icons/Vector 5.png">
             <div class="info-date">
-                <span class="date">${formattedDate}</span>  <!-- Aktuelles Datum im Format Monat, Tag, Jahr -->
+                <span class="date">${formattedDate}</span>
                 <span class="info">${info}</span>
             </div>
         </div>
     `;
 }
 
-// Seite nach dem Laden des DOMs füllen
-document.addEventListener("DOMContentLoaded", function () {
-    const taskContainer = document.querySelector(".task");
-
-    taskContainer.innerHTML = `
-        <div class="summary-content"> 
-            <div class="summary-header">
-                <h1>Join 360 Key</h1><p>|</p>
-                <span>Metrics at a Glance</span>
-            </div>
-            <div class="task-status-container">
-                <!-- Task Status bleibt unverändert -->
-                ${createSummaryTaskStatus('October 16, 2022', 'Upcoming Deadline')}
-            </div>
-        </div>  
-    `;
-});
-
-
-
-
-
-// Template für die Summary-Count-Elemente
+/** Erstellt ein Zähler-Kachel-Element */
 function createSummaryCount(number, label, link = './board.html') {
     return `
         <div class="count" onclick="navigateTo('${link}')">
@@ -72,25 +52,34 @@ function createSummaryCount(number, label, link = './board.html') {
     `;
 }
 
-
-
-// Template für den gesamten Task-Container
-function createTaskContainer() {
-    return `
-        <div class="task-container">
-            <div class="task-content">
-                ${createSummaryTodo('./assets/icons/pencil.png', 1, 'To-Do')}
-                ${createSummaryTodo('./assets/icons/check.png', 1, 'Done')}
-                ${createSummaryTaskStatus('October 16, 2022', 'Upcoming Deadline')}
-                ${createSummaryCount(5, 'Task <br> in Board')}
-            </div>
-            ${createDayGreeting('Good morning')}
-        </div>
-    `;
+/** Gibt die Anzahl der Tasks mit bestimmtem Status zurück */
+function countTasksByStatus(status) {
+    const tasks = getTasks();
+    return tasks.filter(task => task.status === status).length;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+/** Gibt die nächste anstehende Aufgabe mit Deadline zurück */
+function getNextDeadlineTask() {
+    const today = new Date();
+    const tasks = getTasks();
+
+    const upcoming = tasks.filter(t => new Date(t.enddate) >= today);
+    upcoming.sort((a, b) => new Date(a.enddate) - new Date(b.enddate));
+    return upcoming[0];
+}
+
+/** Lädt Daten und rendert die Task-Übersicht */
+document.addEventListener("DOMContentLoaded", async function () {
+    await loadData();
+
     const taskContainer = document.querySelector(".task");
+
+    const todoCount = countTasksByStatus('todo');
+    const doneCount = countTasksByStatus('done');
+    const inProgress = countTasksByStatus('inProgress');
+    const feedback = countTasksByStatus('feedback');
+    const total = getTasks().length;
+    const deadlineTask = getNextDeadlineTask();
 
     taskContainer.innerHTML = `
         <div class="summary-content"> 
@@ -98,20 +87,22 @@ document.addEventListener("DOMContentLoaded", function () {
                 <h1>Join 360 Key</h1><p>|</p>
                 <span>Metrics at a Glance</span>
             </div>
+
             <div class="todo">
-                ${createSummaryTodo('./assets/icons/pencil.png', 1, 'To-Do')}
-                ${createSummaryTodo('./assets/icons/check.png', 1, 'Done')}
+                ${createSummaryTodo('./assets/icons/pencil.png', todoCount, 'To-Do')}
+                ${createSummaryTodo('./assets/icons/check.png', doneCount, 'Done')}
             </div>
 
-            ${createSummaryTaskStatus('October 16, 2022', 'Upcoming Deadline')}
+            ${deadlineTask 
+                ? createSummaryTaskStatus(deadlineTask.enddate, deadlineTask.title)
+                : '<div class="summary-task-status">Keine anstehende Deadline</div>'
+            }
 
             <div class="summary-count">
-                ${createSummaryCount(5, 'Task in Board')}
-                ${createSummaryCount(2, 'Task in Progress')}
-                ${createSummaryCount(2, 'Awaiting Feedback')}
+                ${createSummaryCount(total, 'Tasks in Board')}
+                ${createSummaryCount(inProgress, 'Task in Progress')}
+                ${createSummaryCount(feedback, 'Awaiting Feedback')}
             </div>
-        </div>  <!-- Hier das schließende div hinzufügen -->
+        </div>
     `;
 });
-
-

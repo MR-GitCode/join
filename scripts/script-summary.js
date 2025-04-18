@@ -1,29 +1,30 @@
-import {loadData, getTasks} from './db.js';
+import { loadData, getTasks } from './db.js';
 
+async function displayTasksUntilNextDeadline() {
+    await loadData();
+    const tasks = getTasks();
 
-function displayTasksUntilNextDeadline() {
     const today = new Date();
     let upcomingTasks = [];
 
     tasks.forEach(task => {
-        const taskEndDate = new Date(task.enddate); 
+        const taskEndDate = new Date(task.enddate);
         if (taskEndDate >= today) {
             upcomingTasks.push(task);
         }
     });
 
     upcomingTasks.sort((a, b) => new Date(a.enddate) - new Date(b.enddate));
-
-    
     upcomingTasks.forEach(task => {
         console.log(`Titel: ${task.title}`);
         console.log(`Deadline: ${task.enddate}`);
         console.log(`Status: ${task.status}`);
         console.log('----------------------------------');
-    });                                                         
+    });
 
     return upcomingTasks;
 }
+
 
 function createGreeting(name) {
     const now = new Date();
@@ -42,7 +43,7 @@ function createGreeting(name) {
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    const name = "Sarah"; 
+    const name = "Sarah"; // Oder dynamisch holen
     document.getElementById("greeting").textContent = createGreeting(name);
   });
 
