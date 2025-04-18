@@ -6,7 +6,7 @@
 function loadCard(taskID) {
     return `<div id="${taskID.id}" class="card">
                 <div class="tpl-progress">
-                    <div class="card-category bg">${taskID.category}</div>
+                    <div class="card-category" style="background-color: ${taskID.category.color}">${taskID.category.name}</div>
                         <div class="card-text">
                             <p class="card-title">${taskID.title}</p>
                             <p class="card-description">${taskID.description}</p>
