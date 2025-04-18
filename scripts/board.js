@@ -5,13 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 window.openOverlay = openOverlay,
-window.closeOverlay = closeOverlay
+window.closeOverlay = closeOverlay,
 
 async function init() {
     await loadData();
-    console.log('Done');
     updateTasks();
-    console.log('Done');
 }
 
 /**
@@ -56,7 +54,8 @@ function updateTasks() {
         loadAssignedContacts(taskID)      
     }
     console.log("Aktuelle Tasks:", tasks);
-    checkContentOfColumns()
+    checkContentOfColumns();
+    addTaskEventListeners();
 } 
 
 /**
@@ -94,3 +93,17 @@ function checkContentOfColumns() {
         doneContainer.innerHTML = loadNoDoneCard()
     }
  }
+
+function addTaskEventListeners() {
+    document.querySelectorAll(".card").forEach(task => {
+        task.addEventListener("click", () => {
+            let taskID = task.id;
+            document.getElementById('overlay-select-task').classList.remove('hidden');
+            console.log("Task was clicked", taskID);
+        });
+    });
+}
+
+// document.getElementById('close-overlay-select-task').addEventListener("click", function() {
+//     console.log("Task closed");
+// } )
