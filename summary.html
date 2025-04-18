@@ -8,7 +8,7 @@
     <link rel="icon" type="image/x-icon" href="assets/icons/favicon.svg">
     <title>Join</title>
 </head>
-<body onload="init(1)">
+<body>
     <section class="left-side">
         <a href="./index.html"><img class="join-logo" src="./assets/icons/logo_white.svg" alt="Join"></a>
         <nav>
@@ -31,15 +31,13 @@
         </nav>
 
         <footer>
-            <a href="">
+            <a href="privacy.html">
                 <p>Privacy Policy</p>
             </a>
-            <a href="">
+            <a href="legal_notice.html">
                 <p>Legal notice</p> 
             </a>
         </footer>
-    </section>
-       
     </section>
 
     <section class="right-side">
@@ -47,21 +45,20 @@
             <h3>Kanban Project Management Tool</h3>
             <div class="user-info">
                 <img src="./assets/icons/help.svg" alt="help">
-                <img src="./assets/icons/profilebadge/sofía.svg" alt="">
+                <img src="./assets/icons/profilebadge/sofia.svg" alt="">
             </div>
         </header>
+       
+        <div class="task">  </div>
+        <div id="task-container"> 
+          
+        </div>
+    </section>
 
-        <div class="task"></div>
-        
-        <div id="task-container"></div>
-
-    </section>    
-    
+    <script src="./scripts/db.js"></script>
+    <script src="./scripts/firstdata.js"></script>
+    <script type="module" src="./scripts/script-summary.js"></script>
+    <script src="./scripts/template-summary.js"></script>
+    <script src="./scripts/script.js"></script>
 </body>
-<script src="scripts/db.js"></script>
-<script src="scripts/firstdata.js"></script>
-<script src="./scripts/script-summay.js"></script>
-<script src="./scripts/template-summary.js"></script>
-<script src="./scripts/db.js"></script>
-
 </html>

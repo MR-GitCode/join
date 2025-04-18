@@ -25,8 +25,31 @@ function displayTasksUntilNextDeadline() {
     return upcomingTasks;
 }
 
-// Beispielhafte Anzeige der Aufgaben bis zur nächsten Deadline
-displayTasksUntilNextDeadline();
+
+
+function createGreeting() {
+    const now = new Date();
+    const hours = now.getHours();
+    let greeting;
+
+    if (hours >= 5 && hours < 12) {
+        greeting = "Guten Morgen";
+    } else if (hours >= 12 && hours < 18) {
+        greeting = "Guten Tag";
+    } else if (hours >= 18 && hours < 22) {
+        greeting = "Guten Abend";
+    } else {
+        greeting = "Gute Nacht";
+    }
+
+    return `
+        <div id="greeting-container" class="greeting-container">
+            <h2>${greeting}</h2>
+        </div>
+    `;
+}
+
+
 
 
 
