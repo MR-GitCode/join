@@ -3,6 +3,9 @@ import {loadData, getTasks} from './db.js';
 window.openOverlay = openOverlay,
 window.closeOverlay = closeOverlay,
 
+/**
+ * Load the tasks for the board.
+ */
 document.addEventListener("DOMContentLoaded", async () => {
     await loadData();
     updateTasks();
@@ -91,6 +94,9 @@ function checkContentOfColumns() {
     }
  }
 
+ /**
+  * Open the overlay of the task if you click on the taskcard.
+  */
 function addTaskEventListeners() {
     document.querySelectorAll(".card").forEach(task => {
         task.addEventListener("click", () => {
@@ -101,6 +107,27 @@ function addTaskEventListeners() {
     });
 }
 
-// document.getElementById('close-overlay-select-task').addEventListener("click", function() {
-//     console.log("Task closed");
-// } )
+/**
+ * Close the overlay of the task if you click on the cross.
+ */
+document.getElementById('close-overlay-select-task').addEventListener("click", function() {
+    console.log("Task closed");
+    closeOverlaySelectTask()
+} )
+
+/**
+ * Closes the overlay of the task when a click occurs outside the content area (".content-select-task").
+ */
+document.getElementById("overlay-select-task").addEventListener("click", function (event) {
+    let overlayContainer = document.querySelector(".content-select-task");
+    if (!overlayContainer.contains(event.target)) {
+        closeOverlaySelectTask()
+    }
+});
+
+/**
+* Closes the "Task" overlay by adding the 'hidden' class. 
+*/
+function closeOverlaySelectTask() {
+    document.getElementById('overlay-select-task').classList.add('hidden')
+}
