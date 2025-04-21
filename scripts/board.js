@@ -1,16 +1,13 @@
 import {loadData, getTasks} from './db.js';
 
-document.addEventListener("DOMContentLoaded", () => {
-    init();   
-});
-
 window.openOverlay = openOverlay,
 window.closeOverlay = closeOverlay,
 
-async function init() {
+document.addEventListener("DOMContentLoaded", async () => {
     await loadData();
     updateTasks();
-}
+});
+
 
 /**
  * Opens the "Add Task" overlay by removing the 'hidden' class.
