@@ -1,30 +1,38 @@
 /**
  * 
- * @param {number} taskID This is the ID of the task. 
+ * @param {Object} task This is the object of the task. 
  * @returns Return the template of the task.
  */
-function loadCard(taskID) {
-    return `<div id="${taskID.id}" class="card">
+function loadCard(task) {
+    return `<div id="${task.id}" class="card">
                 <div class="tpl-progress">
                     <div class="card-category">
-                        <p style="background-color: ${taskID.category.color}">${taskID.category.name}</p>
+                        <p style="background-color: ${task.category.color}">${task.category.name}</p>
                     </div>
                     <div class="card-text">
-                        <p class="card-title">${taskID.title}</p>
-                        <p class="card-description">${taskID.description}</p>
+                        <p class="card-title">${task.title}</p>
+                        <p class="card-description">${task.description}</p>
                     </div>
-                    <div class="card-progress">
-                        <div class="progress-bar"></div>
-                        <div class="card-subtasks">0/2 Subtasks</div>
-                    </div>
+                    <div id="progress-bar${task.id}" class="card-progress"></div>
                     <div class="card-contact">
-                        <div id="card${taskID.id}-contacts" class="card-badges"></div>
+                        <div id="card${task.id}-contacts" class="card-badges"></div>
                         <div>
-                            <img src="./assets/icons/add_task/Prio_${taskID.priority}.svg">
+                            <img src="./assets/icons/add_task/Prio_${task.priority}.svg">
                         </div>
                     </div>
                 </div>
             </div>`
+}
+
+/**
+ * 
+ * @param {object} task This is the task object containing all necessary information.
+ * @param {number} doneSubtaks The amount of the done subtasks
+ * @returns 
+ */
+function loadProgressBar(task, doneSubtaks) {
+    return `<div class="progress-bar"></div>
+            <div class="card-subtasks">${doneSubtaks}/${task.subtasks.length} Subtasks</div>`
 }
 
 /**

@@ -49,11 +49,12 @@ function updateTasks() {
     let user = getLoggedInUser();
     let tasksData = user.tasks  
     for (let taskIndex = 0; taskIndex < tasksData.length; taskIndex++) {
-        let taskID = tasksData[taskIndex];
+        let task = tasksData[taskIndex];
         let status = tasksData[taskIndex].status;
         let columnOfCard = document.getElementById(`${status}`);
-        columnOfCard.innerHTML += loadCard(taskID);
-        loadAssignedContacts(taskID)      
+        columnOfCard.innerHTML += loadCard(task);
+        loadAssignedContacts(task)             
+        loadSubtaskBar(task)     
     }
     console.log("Aktuelle Tasks:", tasksData);
     checkContentOfColumns();
@@ -61,12 +62,28 @@ function updateTasks() {
 } 
 
 /**
- * Load the bages of the assigned contacts.
- * @param {number} taskID This is the ID of the task.  
+ * Load the progress bar of the subtask an show the amount of the done subtasks.
+ * @param {object} task This is the task object containing all necessary information.
  */
-function loadAssignedContacts(taskID) {
-    let assignedContacts = taskID.assignedContacts;
-    let assignedContainer = document.getElementById(`card${taskID.id}-contacts`);
+function loadSubtaskBar(task) {
+    let subtaskContainer = document.getElementById(`progress-bar${task.id}`);
+    let doneSubtasks = 0;
+    if (task.subtasks.length > 0) {
+      for (let sub of task.subtasks) {
+        if (sub.status === "done") {
+            doneSubtasks++;}
+        }
+        subtaskContainer.innerHTML = loadProgressBar(task, doneSubtasks);  
+    }
+}
+
+/**
+ * Load the bages of the assigned contacts.
+ * @param {object} task This is the object of the task.   
+ */
+function loadAssignedContacts(task) {
+    let assignedContacts = task.assignedContacts;
+    let assignedContainer = document.getElementById(`card${task.id}-contacts`);
     assignedContainer.innerHTML = "";
     for (let assignedID = 0; assignedID < assignedContacts.length; assignedID++) {
         let assignedContact = assignedContacts[assignedID]
