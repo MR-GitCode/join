@@ -33,7 +33,7 @@ function loadCard(taskID) {
  * @returns Return the img of the bages of the user.
  */
 function loadBagesForCard(assignedContact) {
-    return `<img src="./assets/icons/profilebadge/${assignedContact}.svg">`
+    return `<img src="./assets/icons/profilebadge/${assignedContact.id}.svg">`
 }
 
 /**
@@ -127,16 +127,16 @@ function loadTaskOverlay(task) {
             </div>`
 }
 
-function loadTaskAssigned(contactID) {
+function loadTaskAssigned(contact) {
     return `<div class="contacts-select-task">
-                <img src="./assets/icons/profilebadge/${contactID}.svg">
-                <p>Vorname Name</p>
+                <img src="./assets/icons/profilebadge/${contact.id}.svg">
+                <p>${contact.name}</p>
             </div>`
 }
 
-function loadTaskSubtasks(params) {
+function loadTaskSubtasks(subtask) {
     return `<div class="subtask-select-task">
-                <img src="./assets/icons/board/checked_button.svg">
-                <p>Implement Recipe Recommendation</p>                        
+                <img src="./assets/icons/board/${subtask.status}_button.svg">
+                <p>${subtask.description}</p>                        
             </div>`
 }

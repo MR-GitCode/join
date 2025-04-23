@@ -107,19 +107,32 @@ function addTaskEventListeners() {
             let user = getLoggedInUser();           
             taskContainer.innerHTML = loadTaskOverlay(user.tasks[taskID]);
             addTaskAssigned(user.tasks[taskID])
+            addTaskSubtask(user.tasks[taskID])
             });
         });
         addCloseEventListener()
     };
 
 
-    //firebase struktur ändern
+/**
+ * Load the assigned contacts for the task.
+ * @param {object} task This a object of the task. 
+ */
 function addTaskAssigned(task) {
-    let assignedContainer = document.getElementById('assigned-select-task')
-    let assignedContacts = task.assignedContacts
+    let assignedContainer = document.getElementById('assigned-select-task');
+    let assignedContacts = task.assignedContacts;
     for (let indexAssigned = 0; indexAssigned < assignedContacts.length; indexAssigned++) {
-        let contactID = assignedContacts[indexAssigned]
-        assignedContainer.innerHTML += loadTaskAssigned(contactID)
+        let contact = assignedContacts[indexAssigned]
+        assignedContainer.innerHTML += loadTaskAssigned(contact)
+    }
+}
+
+function addTaskSubtask(task) {
+    let subtaskContainer = document.getElementById('subtasks-select-task')
+    let subtasks = task.subtasks;
+    for (let indexAssigned = 0; indexAssigned < subtasks.length; indexAssigned++) {
+        let subtask = subtasks[indexAssigned]
+        subtaskContainer.innerHTML += loadTaskSubtasks(subtask)
     }
 }
 
