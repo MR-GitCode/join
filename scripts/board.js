@@ -2,6 +2,7 @@ import {loadData, getLoggedInUser} from './db.js';
 
 window.openOverlay = openOverlay,
 window.closeOverlay = closeOverlay,
+window.closeOverlaySelectTask = closeOverlaySelectTask
 
 /**
  * Load the tasks for the board.
@@ -127,6 +128,10 @@ function addTaskAssigned(task) {
     }
 }
 
+/**
+ * Load the subtask for the selected task.
+ * @param {object} task  The task object containing all necessary task details.
+ */
 function addTaskSubtask(task) {
     let subtaskContainer = document.getElementById('subtasks-select-task')
     let subtasks = task.subtasks;

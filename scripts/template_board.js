@@ -6,8 +6,8 @@
 function loadCard(taskID) {
     return `<div id="${taskID.id}" class="card">
                 <div class="tpl-progress">
-                    <div class="card-category" style="background-color: ${taskID.category.color}">
-                        ${taskID.category.name}
+                    <div class="card-category">
+                        <p style="background-color: ${taskID.category.color}">${taskID.category.name}</p>
                     </div>
                     <div class="card-text">
                         <p class="card-title">${taskID.title}</p>
@@ -60,11 +60,18 @@ function loadNoDoneCard() {
             </div>`
 }
 
+/**
+ * 
+ * @param {object} task The task object containing all necessary task details.
+ * @returns Return the template of the overlay for the task which was clicked.
+ */
 function loadTaskOverlay(task) {
     return `<div class="content-select-task">
             <div>
-                <p class="category-select-task" style="background-color: ${task.category.color}">${task.category.name}</p>
-                <div id="close-overlay-select-task" >
+                <div class="category-select-task">
+                    <p style="background-color: ${task.category.color}">${task.category.name}</p>
+                </div>
+                <div id="close-overlay-select-task" onclick="closeOverlaySelectTask()">
                     <img src="./assets/icons/board/close.svg" alt="close">
                 </div>
             </div>
@@ -127,6 +134,11 @@ function loadTaskOverlay(task) {
             </div>`
 }
 
+/**
+ * 
+ * @param {object} contact The contact object containing all necessary contact details.
+ * @returns Return the template of the assigned contacts for the task.
+ */
 function loadTaskAssigned(contact) {
     return `<div class="contacts-select-task">
                 <img src="./assets/icons/profilebadge/${contact.id}.svg">
@@ -134,9 +146,14 @@ function loadTaskAssigned(contact) {
             </div>`
 }
 
+/**
+ * 
+ * @param {object} subtask The subtask object containing all necessary subtask details.
+ * @returns Return the template of the subtask for the task.
+ */
 function loadTaskSubtasks(subtask) {
     return `<div class="subtask-select-task">
                 <img src="./assets/icons/board/${subtask.status}_button.svg">
-                <p>${subtask.description}</p>                        
+                <p>${subtask.description}</p>                    
             </div>`
 }

@@ -40,14 +40,17 @@
 
 .card-category {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 113px;
-    height: 27px;
     color: white;
-    border-radius: 8px;
     font-size: 16px;
     font-weight: 400;
+}
+
+.card-category p {
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 8px;
+    height: 27px;
 }
 
 .card-text{
