@@ -1,4 +1,19 @@
-import { database, ref, set, get, update, remove, child, onValue } from "./db.js";
+// import { database, ref, set, get, update, remove, child, onValue } from "./db.js";
+import { loadData, getUsers} from "./db.js";
+
+window.fillForm = fillForm;
+
+document.getElementById('loginForm').addEventListener('submit', async function(submit) {
+    submit.preventDefault();
+    console.log('Login');
+    await loadData();
+    loginUser();
+});
+
+document.getElementById('guestBtn').addEventListener('click', function() {
+    console.log('GuestLogin');
+    loginAsGuest();
+});
 
 /**
  * This function checks the login data
@@ -7,13 +22,18 @@ import { database, ref, set, get, update, remove, child, onValue } from "./db.js
  * @param {string} password - The Variable for the Password.
  */
 async function loginUser() {
+    let users = getUsers();
     let email = document.getElementById('loginEmail');
-    let password = document.getElementById('loginPassword');
+    let password = document.getElementById('loginPassword'); 
+    
     user = users.find(u => u.email == email.value && u.password == password.value);
+    
     if (user) {
-        user.login = 1;
-        await saveData('users', user.id);
-        window.location = 'start.html'
+        // user.login = 1;
+        login = 1;
+        await saveData('login', login);
+        // await saveData('users', user.id); //login auf firebase speichern users.login = 1
+         window.location = 'summary.html'
     } else {
         location.reload();
     }
@@ -25,9 +45,9 @@ async function loginUser() {
  * @param {string} id - The Variable for the ID. 
  */
 async function loginAsGuest(id) {
-    users[id].login = 1;
-    await saveData('users', users[id]);
-    window.location = 'start.html'
+    // users[id].login = 1;
+    // await saveData('users', users[id]);
+    window.location = 'summary.html'
 };
 
 /**

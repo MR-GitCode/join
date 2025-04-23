@@ -1,4 +1,4 @@
-import {loadData, getTasks} from './db.js';
+import {loadData, getLoggedInUser} from './db.js';
 
 window.openOverlay = openOverlay,
 window.closeOverlay = closeOverlay,
@@ -45,15 +45,16 @@ document.getElementById("overlay-add-task").addEventListener("click", function (
  * Updates the display of tasks on the board.
  */
 function updateTasks() {
-    let tasks = getTasks();
-        for (let taskIndex = 0; taskIndex < tasks.length; taskIndex++) {
-        let taskID = tasks[taskIndex];
-        let status = tasks[taskIndex].status;
+    let user = getLoggedInUser();
+    let tasksData = user.tasks  
+    for (let taskIndex = 0; taskIndex < tasksData.length; taskIndex++) {
+        let taskID = tasksData[taskIndex];
+        let status = tasksData[taskIndex].status;
         let columnOfCard = document.getElementById(`${status}`);
         columnOfCard.innerHTML += loadCard(taskID);
         loadAssignedContacts(taskID)      
     }
-    console.log("Aktuelle Tasks:", tasks);
+    console.log("Aktuelle Tasks:", tasksData);
     checkContentOfColumns();
     addTaskEventListeners();
 } 
@@ -94,30 +95,46 @@ function checkContentOfColumns() {
     }
  }
 
- /**
+/**
   * Open the overlay of the task if you click on the taskcard.
   */
 function addTaskEventListeners() {
     document.querySelectorAll(".card").forEach(task => {
         task.addEventListener("click", () => {
             let taskID = task.id;
-            document.getElementById('overlay-select-task').classList.remove('hidden');
-            console.log("Task was clicked", taskID);
+            let taskContainer = document.getElementById('overlay-select-task')
+            taskContainer.classList.remove('hidden');
+            let user = getLoggedInUser();           
+            taskContainer.innerHTML = loadTaskOverlay(user.tasks[taskID]);
+            addTaskAssigned(user.tasks[taskID])
+            });
         });
-    });
+        addCloseEventListener()
+    };
+
+
+    //firebase struktur ändern
+function addTaskAssigned(task) {
+    let assignedContainer = document.getElementById('assigned-select-task')
+    let assignedContacts = task.assignedContacts
+    for (let indexAssigned = 0; indexAssigned < assignedContacts.length; indexAssigned++) {
+        let contactID = assignedContacts[indexAssigned]
+        assignedContainer.innerHTML += loadTaskAssigned(contactID)
+    }
 }
 
 /**
  * Close the overlay of the task if you click on the cross.
  */
-document.getElementById('close-overlay-select-task').addEventListener("click", function() {
-    console.log("Task closed");
-    closeOverlaySelectTask()
-} )
+function addCloseEventListener() {
+    document.getElementById('close-overlay-select-task').addEventListener("click", function() {
+        closeOverlaySelectTask()
+    } )
+}
 
 /**
- * Closes the overlay of the task when a click occurs outside the content area (".content-select-task").
- */
+  * Closes the overlay of the task when a click occurs outside the content area (".content-select-task").
+  */
 document.getElementById("overlay-select-task").addEventListener("click", function (event) {
     let overlayContainer = document.querySelector(".content-select-task");
     if (!overlayContainer.contains(event.target)) {
@@ -126,8 +143,8 @@ document.getElementById("overlay-select-task").addEventListener("click", functio
 });
 
 /**
-* Closes the "Task" overlay by adding the 'hidden' class. 
-*/
+ * Closes the "Task" overlay by adding the 'hidden' class. 
+ */
 function closeOverlaySelectTask() {
     document.getElementById('overlay-select-task').classList.add('hidden')
 }

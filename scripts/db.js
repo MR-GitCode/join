@@ -5,7 +5,7 @@
   */
 const BASE_URL = 'https://join-441-default-rtdb.europe-west1.firebasedatabase.app/join';
 
-let users = [];
+let users = {};
 let tasks = {};
 let loggedInUser = null;
 
@@ -21,7 +21,7 @@ export async function loadData() {
         let usersData = await fetch(`${BASE_URL}/users.json`);
         let usersJson = await usersData.json();
         users = usersJson ? Object.values(usersJson) : [];
-
+        
         let tasksData = await fetch(`${BASE_URL}/tasks.json`);
         let tasksJson = await tasksData.json();
         tasks = tasksJson ? Object.values(tasksJson) : [];     
@@ -29,7 +29,7 @@ export async function loadData() {
     } catch (error) {
         console.error('Fehler beim Laden der Daten:', error);
     }
-    loggedInUser = users.find(u => u.login == 1);
+    loggedInUser = users.find(u => u.login == 1);  
 };
 
 /**
@@ -88,6 +88,15 @@ export async function deleteData(path = '', id) {
 };
 
 export function getTasks() {
-    console.log(tasks);
+    console.log(tasks);    
     return tasks;
+}
+
+export function getUsers() {
+    return users;
+}
+
+export function getLoggedInUser() {
+    console.log('Logged in User', loggedInUser); 
+    return loggedInUser;
 }

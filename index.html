@@ -29,13 +29,13 @@
             </div>
             </div>
             
-            <form onclick="fillForm()" onsubmit="loginUser(); return false;">
-                <input type="email" id="loginEmail" required><br>
-                <input type="password" id="loginPassword" value="mypassword123" required><br>
+            <form id="loginForm">
+                <input type="email" id="loginEmail" autocomplete="current-password" required><br>
+                <input type="password" id="loginPassword" value="mypassword123" autocomplete="current-password" required><br>
                 <div></div>
                 <div class="login-buttons">
-                    <button class="buttons" id="loginBtn">Log in</button>
-                    <button class="guest" id="guestBtn">Guest Log in</button>             
+                    <button type="submit" class="buttons" id="loginBtn">Log in</button>
+                    <button type="button" class="guest" id="guestBtn">Guest Log in</button>             
                 </div>
             </form>
         </div>
