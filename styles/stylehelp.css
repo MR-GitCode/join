@@ -1,10 +1,6 @@
-header {
+.arrow{
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    height: 96px;
-    padding: 0 40px 0 100px;
-    background-color: #FFFFFF;
 }
 
 .join{
@@ -27,6 +23,20 @@ h2{
     gap: 16px;
 }
 
+h3{
+    font-size: 20px;
+    font-weight: bold;
+   margin-bottom: 20px;
+}
+
+p{
+    margin-bottom: 20px;
+}
+.nr{
+    margin-right: 35px;
+    font-size: 27px;
+    font-weight: bold;
+}
 .edit-right{
     margin-left: 96px;
     margin-top: 110px;
