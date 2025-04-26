@@ -18,18 +18,16 @@ function loadSubtaskIconsDefault() {
 
 /**
  * 
- * @param {image} badge This is the badge image of the user. 
- * @param {string} name This is the name of the user.
- * @param {number} userIndex This is the ID of the user.
+ * @param {object} contact This is the contact object containing all necessary information. 
  * @returns Returned the template of the menu for the "assigned to".
  */
-function loadAssignedMenu(badge, name, userIndex) {
+function loadAssignedMenu(contact) {
    return  `<div class="menu-option" >
                 <div class="assigned-username">
-                    <img src="${badge}">
-                    <p>${name}</p>
+                    <img src="${contact.badge}">
+                    <p>${contact.name}</p>
                 </div>
-                <img class="button-transition" id="user(${userIndex})" src="./assets/icons/add_task/default.svg">
+                <img class="button-transition" id="user(${contact.id})" src="./assets/icons/add_task/default.svg">
             </div>`
 }
 

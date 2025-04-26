@@ -1,4 +1,4 @@
-import {database, ref, get} from "./db_alt.js";
+import { loadData, saveData, getLoggedInUser} from "./db.js";
 
 let subtaskTemplateLoaded = false;
 let subtaskID = 0;
@@ -11,7 +11,6 @@ window.resetPriority = resetPriority;
 window.openAssignedMenu = openAssignedMenu;
 window.openCategoryMenu = openCategoryMenu;
 window.selectCategory = selectCategory;
-window.createTask = createTask;
 window.clearSubtaskInput = clearSubtaskInput;
 window.addSubtask = addSubtask;
 window.deleteSubtaskInput = deleteSubtaskInput;
@@ -19,7 +18,8 @@ window.editSubtask = editSubtask;
 window.displaySelectedContacts = displaySelectedContacts;
 window.clearTask =clearTask;
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", async function() {
+    await loadData();
     changeIconsSubtask();
 });
 
@@ -95,8 +95,10 @@ function openAssignedMenu() {
 function checkInputValue() {
     document.querySelectorAll(".error-message").forEach(error => error.remove());
     let requiredFields = document.querySelectorAll("input[required]");
+    let isValid = true;
     requiredFields.forEach(field => {
         if (field.value === "") {
+            isValid = false
             field.classList.add("error-border");
             let error = document.createElement("p");
             error.classList.add("error-message");
@@ -107,6 +109,7 @@ function checkInputValue() {
             field.classList.remove("error-border");
         }
     });
+    return isValid
 }
 
 /**
@@ -177,17 +180,13 @@ function editSubtask(subtaskID) {
  * This function load the menu under the "assigned to" input field.
  * @param {object} data This is a object of the firebase database. 
  */
-async function getContactsDatabank(data = database) {
+async function getContactsDatabank() {
+    let user = getLoggedInUser();
     let assignedMenu = document.getElementById('menu-drop-down');
     assignedMenu.innerHTML = "";
-    let contactsRef = ref(data,'join/users');
-    let userData = await get(contactsRef);
-    let usersList = Object.values(userData.val());
-    for (let userIndex = 0; userIndex < usersList.length; userIndex++) {
-        let user = usersList[userIndex];       
-        let badge = user.badge;
-        let name = user.name;
-        assignedMenu.innerHTML += loadAssignedMenu(badge, name, userIndex);
+    for (let contactsIndex = 0; contactsIndex < user.contacts.length; contactsIndex++) {
+        let contact = user.contacts[contactsIndex]
+        assignedMenu.innerHTML += loadAssignedMenu(contact);
     }
     checkSelectedUsers()
     selectContact()
@@ -308,18 +307,52 @@ function clearTask() {
     resetPriority() 
 }
 
-//add push to firebase
-function createTask() {
-    checkInputValue();
-    let task = {
-        title : document.getElementById('input-title').value,
-        description : document.getElementById('description').value,
-        date : document.getElementById('input-date').value,
-        piority : selectedPiority,
-        assignedContacts : Array.from(selectedUsers),
-        category : document.getElementById('category-input').value,
-        subtasks : selectedTasks,
+/**
+ * Eventlistener for the "create taks" button.
+ */
+document.getElementById('bt-create-task').addEventListener('click', function ()  {
+    if (checkInputValue() == true) {
+       createTask() 
+    };
+})
+
+/**
+ * Search the free id for the task.
+ * @param {object} tasksData Is the tasks object with all necessary informations.
+ * @returns Return the free task id.
+ */
+function getNextFreeId(tasksData) {
+    if (!tasksData) return 0;
+    let ids = Object.keys(tasksData).map(key => parseInt(key)).sort((a, b) => a - b);
+    for (let i = 0; i < ids.length; i++) {
+        if (ids[i] !== i) {
+            return i;
+        }
     }
-    console.log(task);
-    clearTask()
+    return ids.length;
+}
+
+/**
+ * Create a new task and send the information to save function.
+ * -Take the informations of the inputfield and the free id and create a object
+ * -clear the input fields
+ */
+function createTask() {
+    let user = getLoggedInUser();
+    let tasksData = user.tasks || {};
+    let nextTaskID = getNextFreeId(tasksData);
+    let task = {
+        id: nextTaskID,
+        title: document.getElementById('input-title').value,
+        description: document.getElementById('description').value,
+        date: document.getElementById('input-date').value,
+        piority: selectedPiority,
+        assignedContacts: Array.from(selectedUsers),
+        category: document.getElementById('category-input').value,
+        subtasks: selectedTasks,
+        status: 'todo',
+    };
+    console.log("new task:", task);
+    saveData(`users/${user.id}/tasks`, task);
+    clearTask();
 }

@@ -32,23 +32,23 @@ export async function loadData() {
     loggedInUser = users.find(u => u.login == 1);  
 };
 
-/**
- * This function saves the data in the database using the transmitData function.
- *
- * @param {string} type - The type of data to save. Use 'users' for users, 'tasks' for tasks and '' (standard value) for all datas.
- * @param {string} data - The data to save. Use the id-number for 1 entry or null (standard value) for all datas.
- * 
-
-/* type = 'users' || 'tasks' || '' (alle Daten) und data = null (alle Daten) oder id */
-export async function saveData(type = '', data = null) {
-    if (data) {
-        return await transmitData(type, data);
-        return await transmitData(`${type}/${data.id}`, data);
-    } else {
-        let userPromises = users.map(user => transmitData('users', user));
-        let taskPromises = tasks.map(task => transmitData('tasks', task));
-        return await Promise.all([...userPromises, ...taskPromises]);    }
-};
+// /**
+//  * This function saves the data in the database using the transmitData function.
+//  *
+//  * @param {string} type - The type of data to save. Use 'users' for users, 'tasks' for tasks and '' (standard value) for all datas.
+//  * @param {string} data - The data to save. Use the id-number for 1 entry or null (standard value) for all datas.
+//  * 
+// /* type = 'users' || 'tasks' || '' (alle Daten) und data = null (alle Daten) oder id */
+// export async function saveData(type = '', data = null) {
+//     console.log(type, data);
+//     if (data) {
+//         return await transmitData(type, data);
+//         return await transmitData(`${type}/${data.id}`, data);
+//     } else {
+//         let userPromises = users.map(user => transmitData('users', user));
+//         let taskPromises = tasks.map(task => transmitData('tasks', task));
+//         return await Promise.all([...userPromises, ...taskPromises]);    }
+// };
 
 /**
  * This function safes the data in the database.
@@ -64,8 +64,17 @@ async function transmitData(path = '', data = {}) {
         },
         body: JSON.stringify(data)
     });
+    await loadData();
     return await response.json();
 };
+
+//NEW saveData
+export async function saveData(path = '', data = null) {
+    console.log(path, data);
+    if (data) {
+        transmitData(path, data)
+    }
+}
 
 /**
  * This function deletes one Data.
