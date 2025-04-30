@@ -70,7 +70,7 @@ async function transmitData(path = '', data = {}) {
 
 //NEW saveData
 export async function saveData(path = '', data = null) {
-    console.log(path, data);
+    // console.log(path, data);
     if (data) {
         transmitData(path, data)
     }
@@ -96,15 +96,16 @@ export async function deleteData(path = '', id) {
     }
 };
 
+//löschen wenn es nicht mehr gebraucht wird
 export function getTasks() {
     console.log(tasks);    
     return tasks;
 }
 
-export function getUsers() {
-    return users;
-}
-
+/**
+ * 
+ * @returns Return the loggedInUser Object with all 
+ */
 export function getLoggedInUser() {
     console.log('Logged in User', loggedInUser); 
     return loggedInUser;

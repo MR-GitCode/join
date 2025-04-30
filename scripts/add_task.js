@@ -5,12 +5,15 @@ let subtaskID = 0;
 let selectedUsers = new Set(); //Set doesn't allow same elements.
 let selectedPiority = "";
 let selectedTasks = [];
+let isColorpickerChanged = false;
 
 window.selectPiority = selectPiority;
 window.resetPriority = resetPriority;
 window.openAssignedMenu = openAssignedMenu;
 window.openCategoryMenu = openCategoryMenu;
 window.selectCategory = selectCategory;
+window.colorChanged = colorChanged;
+window.colorPickerBlur = colorPickerBlur;
 window.clearSubtaskInput = clearSubtaskInput;
 window.addSubtask = addSubtask;
 window.deleteSubtaskInput = deleteSubtaskInput;
@@ -67,10 +70,30 @@ function openCategoryMenu() {
  * This function changes the category in the input field.
  * @param {string} category Is the select category.
  */
-function selectCategory(category) {
-    document.getElementById('category-input').value = category;
-    document.getElementById("categories").classList.remove("show");
-    document.getElementById("arrow-drop-down").src = "./assets/icons/add_task/arrow_drop_down_down.svg";
+function selectCategory(subtaskNumber) {
+    document.getElementById('category-colorpicker').classList.remove('hidden')
+    if (!isColorpickerChanged) {
+        let subtaskColor = document.getElementById(`category-cpicker-${subtaskNumber}`).value;
+        let subtaskText = document.getElementById(`category-text-${subtaskNumber}`).innerText;
+        document.getElementById('category-input').value = subtaskText;
+        document.getElementById('category-colorpicker').value = subtaskColor;
+        document.getElementById("categories").classList.remove("show");
+        document.getElementById("arrow-category").src = "./assets/icons/add_task/arrow_drop_down_down.svg";
+    }
+}
+
+/**
+ * This function is called when the color picker is changed.
+ */
+function colorChanged() {
+    isColorpickerChanged = true;
+}
+
+/**
+ * This function is called when the color picker loses focus (color selected).
+ */
+function colorPickerBlur() {
+    isColorpickerChanged = false;
 }
 
 /**
@@ -311,9 +334,10 @@ function clearTask() {
  * Eventlistener for the "create taks" button.
  */
 document.getElementById('bt-create-task').addEventListener('click', function ()  {
-    if (checkInputValue() == true) {
-       createTask() 
-    };
+    // if (checkInputValue() == true) {
+    //    createTask() 
+    // };
+    createTask() 
 })
 
 /**
@@ -348,11 +372,46 @@ function createTask() {
         date: document.getElementById('input-date').value,
         piority: selectedPiority,
         assignedContacts: Array.from(selectedUsers),
-        category: document.getElementById('category-input').value,
-        subtasks: selectedTasks,
+        category: getCategoryOfTask(),
+        subtasks: getSubtaskOfTask(),
         status: 'todo',
     };
+    console.log("subtasks", task.subtasks);
     console.log("new task:", task);
     saveData(`users/${user.id}/tasks`, task);
     clearTask();
+}
+
+/**
+ *  Retrieves the selected task category from the input fields.
+ * @returns Returns the category obeject with color and name of the category.
+ */
+function getCategoryOfTask() {
+    let categoryText = document.getElementById('category-input').value;
+    let categoryColor = document.getElementById('category-colorpicker').value
+    let category = {
+        color : categoryColor,
+        name : categoryText
+    };
+    return category
+}
+
+/**
+ * Retrieves all subtasks from the list and returns them as an array of objects.
+ * @returns Array of subtask objects with description and status.
+ */
+function getSubtaskOfTask() {
+    let liAmount = document.querySelectorAll("#list-subtasks li").length;
+    let subtasks = []; 
+    console.log(liAmount);
+    for (let subtaskID = 0; subtaskID < liAmount; subtaskID++) {
+        let subDescription = document.getElementById(`subtaskContent(${subtaskID})`).innerText;
+        let subStatus = "open";
+        let subtask = {
+            description : subDescription,
+            status : subStatus
+        }
+        subtasks.push(subtask);    
+    }
+    return subtasks;
 }

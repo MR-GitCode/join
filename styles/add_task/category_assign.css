@@ -55,11 +55,12 @@
     opacity: 1;
     max-height: 200px;
 }
-
+ 
 .menu-option{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 8px;
     height: 48px;
     padding: 0 16px;
     margin: 1px 0;
@@ -128,4 +129,65 @@ transform: translate3d(1px, -1px, 1px);
     height: 40px;
     border: 2px solid #FFFFFF;
     border-radius: 45px 
+}
+
+.category-menu {
+    justify-content: left;
+}
+
+.category-colorpicker {
+    -webkit-appearance: none;
+    border: none !important;
+    width: 15px !important;
+    height: 15px !important;
+    border-radius: 50% !important;
+    background: none;
+    overflow: hidden;
+    padding: 0 !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.category-colorpicker::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.category-colorpicker::-webkit-color-swatch {
+    border: none;
+    border-radius: 50%;
+}
+
+.category-colorpicker::-moz-color-swatch {
+    border: none;
+    border-radius: 50%;
+}
+
+.category-colorpicker:hover {
+    transform: scale(1.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#category-colorpicker {
+    position: absolute;
+    width: 24px;
+    left: 12px;
+    top: 24px;
+    transform: translateY(-50%);
+}
+
+.category-select {
+    box-sizing: border-box;
+    width: 448px !important;
+}
+
+.category-select:focus{
+    padding-left: 35px;
+}
+
+.category-select:not(:placeholder-shown){
+    padding-left: 35px;
+}
+
+.hidden {
+    display: none;
 }

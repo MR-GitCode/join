@@ -16,9 +16,7 @@ function loadCard(task) {
                     <div id="progress-bar${task.id}" class="card-progress"></div>
                     <div class="card-contact">
                         <div id="card${task.id}-contacts" class="card-badges"></div>
-                        <div>
-                            <img src="./assets/icons/add_task/Prio_${task.priority}.svg">
-                        </div>
+                        <div id="priority${task.id}"></div>
                     </div>
                 </div>
             </div>`
@@ -42,6 +40,10 @@ function loadProgressBar(task, doneSubtaks) {
  */
 function loadBagesForCard(assignedContact) {
     return `<img src="./assets/icons/profilebadge/${assignedContact.id}.svg">`
+}
+
+function loadPriorityImage(task) {
+    return `<img src="./assets/icons/add_task/Prio_${task.priority}.svg">`
 }
 
 /**

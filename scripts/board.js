@@ -54,7 +54,8 @@ function updateTasks() {
         let columnOfCard = document.getElementById(`${status}`);
         columnOfCard.innerHTML += loadCard(task);
         loadAssignedContacts(task)             
-        loadSubtaskBar(task)     
+        loadSubtaskBar(task)
+        loadPriority(task)     
     }
     console.log("Aktuelle Tasks:", tasksData);
     checkContentOfColumns();
@@ -90,6 +91,13 @@ function loadAssignedContacts(task) {
         assignedContainer.innerHTML += loadBagesForCard(assignedContact)
     }
 }
+
+function loadPriority(task) {
+    let priorityContainer = document.getElementById(`priority${task.id}`);
+    if (task.priority !== "") {
+        priorityContainer.innerHTML = loadPriorityImage(task)
+    }
+} 
 
 /**
  * Checks each column is empty. If a column is empty, it inserts a placeholder card.
