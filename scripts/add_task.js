@@ -323,10 +323,11 @@ document.addEventListener('click', function (event) {
  */
 function clearTask() {
     document.querySelector("form").reset();
+    document.getElementById('category-colorpicker').classList.add('hidden');
     selectedUsers.clear();
     selectedTasks = [];
     displaySelectedContacts();
-    resetPriority() 
+    resetPriority()
 }
 
 /**
