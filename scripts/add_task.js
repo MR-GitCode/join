@@ -371,7 +371,7 @@ function createTask() {
         description: document.getElementById('description').value,
         date: document.getElementById('input-date').value,
         piority: selectedPiority,
-        assignedContacts: Array.from(selectedUsers),
+        assignedContacts: getAssignedContacts(user),
         category: getCategoryOfTask(),
         subtasks: getSubtaskOfTask(),
         status: 'todo',
@@ -403,7 +403,6 @@ function getCategoryOfTask() {
 function getSubtaskOfTask() {
     let liAmount = document.querySelectorAll("#list-subtasks li").length;
     let subtasks = []; 
-    console.log(liAmount);
     for (let subtaskID = 0; subtaskID < liAmount; subtaskID++) {
         let subDescription = document.getElementById(`subtaskContent(${subtaskID})`).innerText;
         let subStatus = "open";
@@ -414,4 +413,19 @@ function getSubtaskOfTask() {
         subtasks.push(subtask);    
     }
     return subtasks;
+}
+
+function getAssignedContacts(user) {
+    let assignedContactsIDs = Array.from(selectedUsers);
+    let assignedContacts = [];    
+    for (let index = 0; index < assignedContactsIDs.length; index++) {
+        let contactID =  assignedContactsIDs[index];
+        let assignedContact = {
+            badge : user.contacts[contactID].badge,
+            name : user.contacts[contactID].name,
+            id : user.contacts[contactID].id
+        }
+        assignedContacts.push(assignedContact );
+    }
+    return assignedContacts;
 }
