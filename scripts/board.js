@@ -213,6 +213,8 @@ function closeOverlaySelectTask() {
  */
 function startDragging(taskID) {
     draggedTask = taskID;
+    let taskCard = document.getElementById(taskID);
+    taskCard.classList.add("card-rotation");
 }
 
 /**

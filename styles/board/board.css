@@ -191,3 +191,8 @@ body.no-scroll {
 .columns-content {
     flex: 1;
 }
+
+.card-rotation{
+    transform: rotate(5deg);
+    transition: transform 0.2s ease;
+}
