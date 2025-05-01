@@ -121,6 +121,7 @@
     display: flex;
     flex-direction: column;
     width: 250px;
+    height: 100vh;
 }
 
 .column-titles {
@@ -188,5 +189,5 @@ body.no-scroll {
   }
 
 .columns-content {
-    height: 100vh;
+    flex: 1;
 }
