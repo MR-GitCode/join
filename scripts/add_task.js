@@ -245,7 +245,6 @@ function toggleUserSelection(userIndex) {
         selectedUsers.add(userIndex);
         optionOfMenu.classList.add('bg-menu-option');
         userContainer.src = "./assets/icons/add_task/checked_white.svg";
-        console.log(selectedUsers);
     }
     displaySelectedContacts()
     checkSelectedUsers()
@@ -415,6 +414,11 @@ function getSubtaskOfTask() {
     return subtasks;
 }
 
+/**
+ * Retrieves the contacts assigned to the currently selected users.
+ * @param {object} user This is the object of the logged in user with all informations.
+ * @returns Returns the assigned contacts for the task.
+ */
 function getAssignedContacts(user) {
     let assignedContactsIDs = Array.from(selectedUsers);
     let assignedContacts = [];    

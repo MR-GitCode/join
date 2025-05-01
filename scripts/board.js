@@ -53,8 +53,8 @@ function updateTasks() {
         let status = tasksData[taskIndex].status;
         let columnOfCard = document.getElementById(`${status}`);
         columnOfCard.innerHTML += loadCard(task);
-        loadAssignedContacts(task)             
-        loadSubtaskBar(task)
+        loadAssignedContacts(task);           
+        loadSubtaskBar(task);
         loadPriority(task)     
     }
     console.log("Aktuelle Tasks:", tasksData);
@@ -68,13 +68,15 @@ function updateTasks() {
  */
 function loadSubtaskBar(task) {
     let subtaskContainer = document.getElementById(`progress-bar${task.id}`);
-    let doneSubtasks = 0;
-    if (task.subtasks.length > 0) {
-      for (let sub of task.subtasks) {
-        if (sub.status === "done") {
-            doneSubtasks++;}
-        }
+    if (Array.isArray(task.subtasks) && task.subtasks.length > 0) {
+        let doneSubtasks = 0;      
+        for (let sub of task.subtasks) {
+            if (sub.status === "done") {
+                doneSubtasks++;}
+            }
         subtaskContainer.innerHTML = loadProgressBar(task, doneSubtasks);  
+    } else {
+        subtaskContainer.innerHTML = "";
     }
 }
 
@@ -92,10 +94,16 @@ function loadAssignedContacts(task) {
     }
 }
 
+/**
+ * Loads and displays the priority icon for a given task.
+ * @param {object} task  The task object containing task details.
+ */
 function loadPriority(task) {
     let priorityContainer = document.getElementById(`priority${task.id}`);
-    if (task.priority !== "") {
-        priorityContainer.innerHTML = loadPriorityImage(task)
+    if (task.priority && task.priority !== "") {
+        priorityContainer.innerHTML = loadPriorityImage(task);
+    } else {
+        priorityContainer.innerHTML = "";
     }
 } 
 
