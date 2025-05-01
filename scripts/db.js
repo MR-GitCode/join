@@ -107,6 +107,6 @@ export function getTasks() {
  * @returns Return the loggedInUser Object with all 
  */
 export function getLoggedInUser() {
-    console.log('Logged in User', loggedInUser); 
+    // console.log('Logged in User', loggedInUser);
     return loggedInUser;
 }

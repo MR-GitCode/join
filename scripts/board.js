@@ -1,8 +1,12 @@
-import {loadData, getLoggedInUser} from './db.js';
+import {loadData, saveData, getLoggedInUser} from './db.js';
 
+window.draggedTask = null;
 window.openOverlay = openOverlay,
 window.closeOverlay = closeOverlay,
-window.closeOverlaySelectTask = closeOverlaySelectTask
+window.closeOverlaySelectTask = closeOverlaySelectTask,
+window.startDragging = startDragging,
+window.dragoverHandler = dragoverHandler,
+window.moveToColumn = moveToColumn
 
 /**
  * Load the tasks for the board.
@@ -47,7 +51,10 @@ document.getElementById("overlay-add-task").addEventListener("click", function (
  */
 function updateTasks() {
     let user = getLoggedInUser();
-    let tasksData = user.tasks  
+    let tasksData = user.tasks;
+    document.querySelectorAll('.columns-content').forEach(column => {
+        column.innerHTML = "";
+    });
     for (let taskIndex = 0; taskIndex < tasksData.length; taskIndex++) {
         let task = tasksData[taskIndex];
         let status = tasksData[taskIndex].status;
@@ -57,7 +64,6 @@ function updateTasks() {
         loadSubtaskBar(task);
         loadPriority(task)     
     }
-    console.log("Aktuelle Tasks:", tasksData);
     checkContentOfColumns();
     addTaskEventListeners();
 } 
@@ -199,3 +205,35 @@ document.getElementById("overlay-select-task").addEventListener("click", functio
 function closeOverlaySelectTask() {
     document.getElementById('overlay-select-task').classList.add('hidden')
 }
+
+/**
+ * Sets the ID of the task currently being dragged.
+ *
+ * @param {number|string} taskID - The ID of the task that is being dragged.
+ */
+function startDragging(taskID) {
+    draggedTask = taskID;
+}
+
+/**
+ * Enables a drop target by preventing the default behavior.
+ *
+ * @param {DragEvent} ev - The dragover event object.
+ */
+function dragoverHandler(ev) {
+    ev.preventDefault();
+  }
+
+/**
+ * Moves the dragged task to a new column (status).
+ * Updates the task's status in the user's data and re-renders the board.
+ *
+ * @param {string} column - The name of the target column.
+ */
+function moveToColumn(column) {
+    let user = getLoggedInUser();
+    let taskData = user.tasks[draggedTask];
+    taskData.status = `${column}`;
+    saveData(`users/${user.id}/tasks`, taskData);
+    updateTasks()
+  }

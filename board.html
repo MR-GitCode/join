@@ -99,7 +99,7 @@
                                     </svg>
                                 </div>
                             </div>
-                            <div  id="todo"></div>
+                            <div class="columns-content" id="todo" ondrop="moveToColumn('todo')" ondragover="dragoverHandler(event)"></div>
                         </div>
                         
                         <div class="columns">
@@ -113,7 +113,7 @@
                                     </svg>
                                 </div>  
                             </div>
-                            <div id="inprogress"></div>
+                            <div class="columns-content" id="inprogress" ondrop="moveToColumn('inprogress')" ondragover="dragoverHandler(event)"></div>
                         </div>
                         
                         <div class="columns">
@@ -127,14 +127,14 @@
                                     </svg>
                                 </div>  
                             </div>
-                            <div id="review"></div>
+                            <div class="columns-content" id="review" ondrop="moveToColumn('review')" ondragover="dragoverHandler(event)"></div>
                         </div>
                         
                         <div class="columns">
                             <div class="column-titles">
                                 <p>Done</p>
                             </div>
-                            <div id="done"></div>
+                            <div class="columns-content" id="done" ondrop="moveToColumn('done')" ondragover="dragoverHandler(event)"></div>
                         </div>
                     </div>
                 </div>

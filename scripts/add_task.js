@@ -334,10 +334,9 @@ function clearTask() {
  * Eventlistener for the "create taks" button.
  */
 document.getElementById('bt-create-task').addEventListener('click', function ()  {
-    // if (checkInputValue() == true) {
-    //    createTask() 
-    // };
-    createTask() 
+    if (checkInputValue() == true) {
+       createTask() 
+    };
 })
 
 /**

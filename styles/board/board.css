@@ -186,3 +186,7 @@
 body.no-scroll {
     overflow: hidden;
   }
+
+.columns-content {
+    height: 100vh;
+}
