@@ -1,17 +1,22 @@
 .summary-content {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-   min-height: 100vh; 
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
    flex-grow: 1;
 }
 
+.content-summary {
+    padding: 60px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    height: -webkit-fill-available;
+}
 
 .todo {
     display: flex;
     flex-direction: row;
     gap: 30px;
-    margin-left: 50px;
 }
 
 .summary-todo {
@@ -29,7 +34,6 @@
     border-radius: 30px;
     height: 168px;
     width: 520px;
-    margin-left: 50px;
     display: flex;
     align-items: center;
     padding: 20px;
@@ -40,15 +44,11 @@
     display: flex;
     justify-content: space-around;
     gap: 4px;
-    margin-top: 20px;
-     height: 168px;
-        width: 560px;
-        margin-left: 50px;
-        display: flex;
-        gap: 30px;
-    }
-
-
+    height: 168px;
+    width: 560px;
+    display: flex;
+    gap: 30px;
+}
 
 .count,
 .count1 {
@@ -125,11 +125,6 @@
     margin-left: 60px;
 }
 
-body {
-    background-color: #F6F7F8;
-    max-width: 1440px;
-}
-
 .summary-todo,
 .summary-task-status,
 .count,
@@ -164,28 +159,24 @@ body {
 }
 
 .summary-header{
-
     display: flex;
-    flex-direction: row;
-    margin-top: 150px;
-    margin-left:100px;
+    align-items: center;
     width: 625px;
     height: 73px;
+    padding-bottom: 50px;
 }
 .summary-header span{
-
     font-size: 27px;
-    margin-top: 20px;
 }
 .summary-header p{
-   border: 3px;
-    color: #29ABE2;
-    font-size: 59px;
+    width: 3px;
+    height: 59px;
+    background-color: #29ABE2;
     margin-right: 20px;
     margin-left: 20px;
 }
 .summary-header h1{
-    font-size: 50px;
+    font-size: 61px;
 }
 .info-date{
  margin-left: 30px;
@@ -211,23 +202,18 @@ body {
 }
 
 #greeting{
-    height: 56px;
     width: 338px;
     font-size: 47px;
-    margin-top: 500px;
- 
 }
 
-.split-view {
+.summary-board {
     display: flex;
-    gap:5px;
-    margin-top: 20px;
+    flex-direction: column;
 }
 
 .task,
 #task-container {
     flex: 1;
-    padding: 16px;
 }
    
 .task {
@@ -236,4 +222,12 @@ body {
 
 #task-container {
     flex: 0.6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.split-view{
+    display: flex;
+    max-width: 1440px;
 }

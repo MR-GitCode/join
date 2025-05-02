@@ -247,10 +247,27 @@ function moveToColumn(column) {
     updateTasks()
   }
 
-  function highlight(column) {
-//    let columnArea =  document.getElementById(column);
-//    columnArea.innerHTML += "<div id='drag-area' class='drag-area'></div>"
-  }
+//muss noch verändert werden
+function highlight(column) {
+   let columnArea =  document.getElementById(column);
+   if (!columnArea.querySelector("#drag-area")) {
+    columnArea.innerHTML += "<div id='drag-area' class='drag-area'></div>";
+    }
+}
+
+  //ggf. andere Darstellung
+// function highlight(column) {
+//     let columnTodo = document.getElementById('todo');
+//     let columnProgress = document.getElementById('inprogress');
+//     let columnReview = document.getElementById('review');
+//     if(column == 'todo') {
+//         columnProgress.innerHTML += `<div id='drag-${column}' class='drag-area'></div>`;
+//     }
+//     if(column == 'toprogress') {
+//         columnTodo.innerHTML += `<div id='drag-${column}' class='drag-area'></div>`;
+//         columnReview.innerHTML += `<div id='drag-${column}' class='drag-area'></div>`;
+//     }
+// }
 
   function removeHighlight(column) {
     // let columnArea =  document.getElementById('drag-area');

@@ -5,6 +5,13 @@
     overflow: hidden;
 }
 
+.display-position{
+    display: flex;
+    height: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
 .bg-color{
     background-color: #091931;
 }

@@ -83,10 +83,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     taskContainer.innerHTML = `
         <div class="summary-content"> 
-            <div class="summary-header">
-                <h1>Join 360 Key</h1><p>|</p>
-                <span>Metrics at a Glance</span>
-            </div>
 
             <div class="todo">
                 ${createSummaryTodo('./assets/icons/pencil.png', todoCount, 'To-Do')}

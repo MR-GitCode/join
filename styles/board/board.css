@@ -198,8 +198,8 @@ body.no-scroll {
 }
 
 .drag-area {
-    width: 244px;
-    height: 244px;
+    height: 180px;
     border-radius: 30px;
     border: 1px dashed #A8A8A8;
+    margin: 10px;
 }
