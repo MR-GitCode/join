@@ -3,16 +3,27 @@ import { loadData, getUsers} from "./db.js";
 
 window.fillForm = fillForm;
 
-document.getElementById('loginForm').addEventListener('submit', async function(submit) {
-    submit.preventDefault();
-    console.log('Login');
-    await loadData();
-    loginUser();
-});
+/**
+ * Eventlister for the login buttons.
+ */
+document.addEventListener("DOMContentLoaded", () => {
+    let loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', async function (submit) {
+            submit.preventDefault();
+            console.log('Login');
+            await loadData();
+            loginUser();
+        });
+    }
 
-document.getElementById('guestBtn').addEventListener('click', function() {
-    console.log('GuestLogin');
-    loginAsGuest();
+    let guestBtn = document.getElementById('guestBtn');
+    if (guestBtn) {
+        guestBtn.addEventListener('click', function () {
+            console.log('GuestLogin');
+            loginAsGuest();
+        });
+    }
 });
 
 /**

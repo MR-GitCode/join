@@ -192,7 +192,14 @@ body.no-scroll {
     flex: 1;
 }
 
-.card-rotation{
+.card-rotation {
     transform: rotate(5deg);
     transition: transform 0.2s ease;
+}
+
+.drag-area {
+    width: 244px;
+    height: 244px;
+    border-radius: 30px;
+    border: 1px dashed #A8A8A8;
 }

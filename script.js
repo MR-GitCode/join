@@ -1,4 +1,4 @@
-import { database, ref, set, get, update, remove, child, onValue } from "./scripts/db.js";
+import { loadData } from "./scripts/db.js";
 import { getAllDataRealtime } from "./scripts/login.js";
 
 /**

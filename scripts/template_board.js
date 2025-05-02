@@ -4,7 +4,7 @@
  * @returns Return the template of the task.
  */
 function loadCard(task) {
-    return `<div draggable="true" ondragstart="startDragging(${task.id})" id="${task.id}" class="card">
+    return `<div draggable="true" ondragstart="startDragging(${task.id})"  id="${task.id}" class="card">
                 <div class="tpl-progress">
                     <div class="card-category">
                         <p style="background-color: ${task.category.color}">${task.category.name}</p>

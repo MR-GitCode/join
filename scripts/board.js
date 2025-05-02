@@ -6,7 +6,10 @@ window.closeOverlay = closeOverlay,
 window.closeOverlaySelectTask = closeOverlaySelectTask,
 window.startDragging = startDragging,
 window.dragoverHandler = dragoverHandler,
-window.moveToColumn = moveToColumn
+window.moveToColumn = moveToColumn,
+window.highlight = highlight,
+window.removeHighlight = removeHighlight,
+// window.stopDragging = stopDragging,
 
 /**
  * Load the tasks for the board.
@@ -184,9 +187,12 @@ function addTaskSubtask(task) {
  * Close the overlay of the task if you click on the cross.
  */
 function addCloseEventListener() {
-    document.getElementById('close-overlay-select-task').addEventListener("click", function() {
+    let closeButton = document.getElementById('close-overlay-select-task');
+    if(closeButton) {
+        closeButton.addEventListener("click", function() {
         closeOverlaySelectTask()
     } )
+    }
 }
 
 /**
@@ -212,6 +218,7 @@ function closeOverlaySelectTask() {
  * @param {number|string} taskID - The ID of the task that is being dragged.
  */
 function startDragging(taskID) {
+    console.log("startDragging", taskID);
     draggedTask = taskID;
     let taskCard = document.getElementById(taskID);
     taskCard.classList.add("card-rotation");
@@ -239,3 +246,18 @@ function moveToColumn(column) {
     saveData(`users/${user.id}/tasks`, taskData);
     updateTasks()
   }
+
+  function highlight(column) {
+//    let columnArea =  document.getElementById(column);
+//    columnArea.innerHTML += "<div id='drag-area' class='drag-area'></div>"
+  }
+
+  function removeHighlight(column) {
+    // let columnArea =  document.getElementById('drag-area');
+    // columnArea.remove
+  }
+
+//   function stopDragging(taskID) {
+//     const taskCard = document.getElementById(taskID);
+//     taskCard.classList.remove("card-rotation");
+// }

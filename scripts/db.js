@@ -102,6 +102,11 @@ export function getTasks() {
     return tasks;
 }
 
+export function getUsers() {
+    console.log(users);    
+    return users;
+}
+
 /**
  * 
  * @returns Return the loggedInUser Object with all 
