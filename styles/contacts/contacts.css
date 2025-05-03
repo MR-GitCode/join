@@ -1,0 +1,113 @@
+.content-contacts{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    height: -webkit-fill-available;
+    flex: 1;
+}
+
+.split-screen{
+    display: flex;
+    height: 100%;
+}
+
+.info-contacts {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-size: 27px;
+    gap: 30px;
+}
+
+h1{
+    font-size: 61px;
+    font-weight: 700;
+}
+
+.divider {
+    width: 2px;
+    height: 59px;
+    background-color: #29ABE2;
+}
+
+.contact-selections {
+    background-color: #FFFFFF;
+    width: 352px;
+    padding: 22px 52px 0 52px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #A8A8A8 transparent;
+}
+
+.contact-selections::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .contact-selections::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .contact-selections::-webkit-scrollbar-thumb {
+    background-color: #A8A8A8;
+    border-radius: 3px;
+    border: 8px solid #a8a8a8;
+    background-clip: content-box;
+  }
+
+#bt-add-contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 56px;
+    background-color: #2A3647;
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+    border-radius: 10px;
+    gap: 16px;
+    cursor: pointer;
+}
+
+.letters {
+    display: flex;
+    align-items: center;
+    height: 58px;
+    padding-left: 36px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.contacts {
+    display: flex;
+    align-items: center;
+    height: 78px;
+    padding-left: 24px;
+    gap: 35px;
+}
+
+#contact-list hr {
+    margin: 8px 0;
+    border-top: 1px solid #D1D1D1;
+}
+
+.contact-names{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 20px;
+}
+
+.contact-names a {
+    font-size: 16px !important;
+    color: #007CEE;
+    text-decoration: none;
+}
+
+/* linear gradient für top fehlt */
+.right-screen {
+    padding: 60px 80px;
+    flex: 1 ;
+    background:
+        linear-gradient(270deg, rgba(245, 246, 247, 1) 99%, rgb(223, 224, 225) 100%) !important;
+        /* linear-gradient(0deg, rgba(245, 246, 247, 1) 99%, rgb(223, 224, 225) 100%) !important; */
+}
