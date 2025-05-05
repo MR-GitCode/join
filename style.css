@@ -93,7 +93,18 @@ header {
 
 .user-info {
     display: flex;
+    align-items: center;
     gap: 16px;
+}
+
+.user-info img{
+    width: 56px;
+    height: 56px;
+}
+
+.help {
+    width: 32px !important;
+    height: 32px !important;
 }
 
 .content {

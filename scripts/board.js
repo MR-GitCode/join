@@ -27,7 +27,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 function openOverlay() {
     let overlayContainer = document.getElementById("overlay-add-task")
     overlayContainer.classList.remove('hidden');
+    overlayContainer.classList.add('active');
     document.body.classList.add('no-scroll');
+    
 }
 
 /**
