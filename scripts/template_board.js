@@ -166,8 +166,12 @@ function loadTaskSubtasks(subtask) {
             </div>`
 }
 
-function loadEditTask() {
-    // console.log("Edit temp");
+/**
+ * 
+ * @returns Return the template of the edit task overlay.
+ */
+function loadEditTask(task) {
+    console.log(task);
     return `<div class="content-select-task content-task-edit">
                 <div>
                     <div class="close-task-edit" id="close-overlay-select-task" onclick="closeOverlaySelectTask()">
@@ -175,18 +179,18 @@ function loadEditTask() {
                     </div>
                 </div>
                 <div class="form-scrollbar">
-                    <form class="form-task-edit" action="">
+                    <form class="form-task-edit">
                         <div>
                             <label for="title">Title</label>
-                            <input id="input-title" type="text" name="title" placeholder="Enter a title" required>
+                            <input id="input-title" type="text" name="title" placeholder="${task.title}" required>
                         </div>
                         <div>
                             <label for="description">Description</label>
-                            <textarea name="description" id="description" placeholder="Enter a Description"></textarea>
+                            <textarea name="description" id="description" placeholder="${task.description}"></textarea>
                         </div>
                         <div>
                             <label for="date">Due date</label>
-                            <input id="input-date" type="date" lang="en" placeholder="dd/mm/yyyy"  required>
+                            <input id="input-date" type="date" lang="en" placeholder="${task.enddate}"  required>
                         </div>
                         <div>
                             <label for="priority">Priority</label>
@@ -208,15 +212,15 @@ function loadEditTask() {
                         <div>
                             <label for="assign">Assigned to</label>
                             <div class="bg-drop-down">
-                                <div onclick="openAssignedMenu()" class="input-menu">
+                                <div id="edit-assigned-menu" class="input-menu">
                                     <input type="text" placeholder="Select contacts to assign" id="input-assign">
                                     <img id="arrow-contacts" src="./assets/icons/add_task/arrow_drop_down_down.svg">
                                 </div>
-                                <div class="menu-drop-down" id="contacts">
+                                <div class="menu-drop-down" id="edit-contacts">
                                     <div id="menu-drop-down" class="scrollbar"></div>
                                 </div>
                             </div>
-                            <div id="selected-contacts"></div>
+                            <div id="edit-contacts"></div>
                         </div>
                         <div>
                             <label for="category">Category</label>

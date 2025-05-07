@@ -152,7 +152,7 @@ function addTaskEventListeners() {
             addTaskAssigned(user.tasks[taskID]);
             addTaskSubtask(user.tasks[taskID]);
             addCloseEventListener();
-            addEditTaskEventListener();
+            addEditTaskEventListener(taskID);
             });
         });
 }
@@ -209,8 +209,6 @@ document.getElementById("overlay-select-task").addEventListener("click", functio
  * Closes the "Task" overlay by adding the 'hidden' class. 
  */
 function closeOverlaySelectTask() {
-    console.log('close');
-    
     document.getElementById('overlay-select-task').classList.add('hidden')
 }
 
@@ -284,14 +282,45 @@ function highlight(column) {
 /**
  * Add a click event listener to the "edit" button.
  */
-function addEditTaskEventListener() {
+function addEditTaskEventListener(taskID) {
+    let user = getLoggedInUser();
+    let taskInfo = user.tasks[taskID]
     let editTask = document.getElementById('edit-task');
     if(editTask) {
         editTask.addEventListener("click", function(event) {
             event.stopPropagation();
             let taskOverlay = document.getElementById('overlay-select-task');
             taskOverlay.innerHTML = "";
-            taskOverlay.innerHTML = loadEditTask();
-    } )
+            taskOverlay.innerHTML = loadEditTask(taskInfo);
+            addAssignedEventListener(taskInfo);
+            editTaskAssigned(taskInfo);
+        } )
+    }
+}
+
+function addAssignedEventListener() {
+    document.getElementById("edit-assigned-menu").addEventListener("click", function () {
+        console.log('drop menu');
+        
+        // let contacts = document.getElementById("edit-contacts");
+        // let droptDownImg = document.getElementById("arrow-contacts");
+        // if (contacts.classList.contains("show")) {
+        //     contacts.classList.remove("show");
+        //     droptDownImg.src = "./assets/icons/add_task/arrow_drop_down_down.svg";
+        // } else {
+        //     contacts.classList.add("show");
+        //     droptDownImg.src = "./assets/icons/add_task/arrow_drop_down_up.svg";  
+        // }
+        // getContactsDatabank()
+    })
+};
+
+function editTaskAssigned (task) {
+    let assignedContacts = task.assignedContacts;
+    let assignedContainer = document.getElementById(`edit-contacts`);
+    assignedContainer.innerHTML = "";
+    for (let assignedID = 0; assignedID < assignedContacts.length; assignedID++) {
+        let assignedContact = assignedContacts[assignedID]
+        assignedContainer.innerHTML += loadBagesForCard(assignedContact)
     }
 }
