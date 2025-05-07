@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     updateTasks();
 });
 
-
 /**
  * Opens the "Add Task" overlay by removing the 'hidden' class.
  * Triggered when the "Add Task" button is clicked.
@@ -29,7 +28,6 @@ function openOverlay() {
     overlayContainer.classList.remove('hidden');
     overlayContainer.classList.add('active');
     document.body.classList.add('no-scroll');
-    
 }
 
 /**
@@ -151,13 +149,13 @@ function addTaskEventListeners() {
             taskContainer.classList.remove('hidden');
             let user = getLoggedInUser();           
             taskContainer.innerHTML = loadTaskOverlay(user.tasks[taskID]);
-            addTaskAssigned(user.tasks[taskID])
-            addTaskSubtask(user.tasks[taskID])
+            addTaskAssigned(user.tasks[taskID]);
+            addTaskSubtask(user.tasks[taskID]);
+            addCloseEventListener();
+            addEditTaskEventListener();
             });
         });
-        addCloseEventListener()
-    };
-
+}
 
 /**
  * Load the assigned contacts for the task.
@@ -211,6 +209,8 @@ document.getElementById("overlay-select-task").addEventListener("click", functio
  * Closes the "Task" overlay by adding the 'hidden' class. 
  */
 function closeOverlaySelectTask() {
+    console.log('close');
+    
     document.getElementById('overlay-select-task').classList.add('hidden')
 }
 
@@ -280,3 +280,18 @@ function highlight(column) {
 //     const taskCard = document.getElementById(taskID);
 //     taskCard.classList.remove("card-rotation");
 // }
+
+/**
+ * Add a click event listener to the "edit" button.
+ */
+function addEditTaskEventListener() {
+    let editTask = document.getElementById('edit-task');
+    if(editTask) {
+        editTask.addEventListener("click", function(event) {
+            event.stopPropagation();
+            let taskOverlay = document.getElementById('overlay-select-task');
+            taskOverlay.innerHTML = "";
+            taskOverlay.innerHTML = loadEditTask();
+    } )
+    }
+}
