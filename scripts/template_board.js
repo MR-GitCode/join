@@ -213,34 +213,14 @@ function loadEditTask(task) {
                             <label for="assign">Assigned to</label>
                             <div class="bg-drop-down">
                                 <div id="edit-assigned-menu" class="input-menu">
-                                    <input type="text" placeholder="Select contacts to assign" id="input-assign">
-                                    <img id="arrow-contacts" src="./assets/icons/add_task/arrow_drop_down_down.svg">
+                                    <input type="text" placeholder="Select contacts to assign" id="edit-input-assign">
+                                    <img id="edit-arrow-contacts" src="./assets/icons/add_task/arrow_drop_down_down.svg">
                                 </div>
                                 <div class="menu-drop-down" id="edit-contacts">
-                                    <div id="menu-drop-down" class="scrollbar"></div>
+                                    <div id="edit-drop-down" class="scrollbar"></div>
                                 </div>
                             </div>
-                            <div id="edit-contacts"></div>
-                        </div>
-                        <div>
-                            <label for="category">Category</label>
-                            <div class="bg-drop-down">
-                                <div onclick="openCategoryMenu()" class="input-menu">
-                                    <input type="color" class="category-colorpicker hidden" id="category-colorpicker" value="#1ed6c1">
-                                    <input class="category-select" id="category-input" placeholder="Select task category" required>                                            
-                                    <img id="arrow-category" src="./assets/icons/add_task/arrow_drop_down_down.svg">
-                                </div>
-                                <div class="menu-drop-down" id="categories">
-                                    <div class="menu-option category-menu" onclick="selectCategory(1)">
-                                        <input type="color" class="category-colorpicker" id="category-cpicker-1" value="#1ed6c1" onchange="colorChanged()" onblur="colorPickerBlur()">
-                                        <p id="category-text-1">Technical Task</p>
-                                    </div>
-                                    <div class="menu-option category-menu" onclick="selectCategory(2)">
-                                        <input type="color" class="category-colorpicker" id="category-cpicker-2" value="#0037ff" onchange="colorChanged()" onblur="colorPickerBlur()">
-                                        <p id="category-text-2">User Story</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <div id="edit-selected-contacts"></div>
                         </div>
                         <div>
                             <label for="subtask">Subtasks</label>
@@ -249,7 +229,7 @@ function loadEditTask(task) {
                                 <div id="subtask-icons">
                                     <img id="plus-subtask" onclick="addSubtask()" src="./assets/icons/add_task/plus.svg">
                                 </div>
-                                <ul id="list-subtasks"></ul>
+                                <ul id="edit-subtasks"></ul>
                             </div>
                         </div>      
                     </form>

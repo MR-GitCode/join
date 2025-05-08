@@ -109,7 +109,7 @@ function openAssignedMenu() {
         contacts.classList.add("show");
         droptDownImg.src = "./assets/icons/add_task/arrow_drop_down_up.svg";  
     }
-    getContactsDatabank()
+    getContactsDatabank('menu-drop-down')
 }
 
 /**
@@ -203,9 +203,9 @@ function editSubtask(subtaskID) {
  * This function load the menu under the "assigned to" input field.
  * @param {object} data This is a object of the firebase database. 
  */
-async function getContactsDatabank() {
+export async function getContactsDatabank(id) {
     let user = getLoggedInUser();
-    let assignedMenu = document.getElementById('menu-drop-down');
+    let assignedMenu = document.getElementById(id);
     assignedMenu.innerHTML = "";
     for (let contactsIndex = 0; contactsIndex < user.contacts.length; contactsIndex++) {
         let contact = user.contacts[contactsIndex]

@@ -1,4 +1,5 @@
 import {loadData, saveData, getLoggedInUser} from './db.js';
+import {getContactsDatabank} from './add_task.js';
 
 window.draggedTask = null;
 window.openOverlay = openOverlay,
@@ -298,26 +299,32 @@ function addEditTaskEventListener(taskID) {
     }
 }
 
+/**
+ * Adds an event listener to the "edit-assigned-menu" element an load contacts in the drop down menu.
+ */
 function addAssignedEventListener() {
     document.getElementById("edit-assigned-menu").addEventListener("click", function () {
-        console.log('drop menu');
-        
-        // let contacts = document.getElementById("edit-contacts");
-        // let droptDownImg = document.getElementById("arrow-contacts");
-        // if (contacts.classList.contains("show")) {
-        //     contacts.classList.remove("show");
-        //     droptDownImg.src = "./assets/icons/add_task/arrow_drop_down_down.svg";
-        // } else {
-        //     contacts.classList.add("show");
-        //     droptDownImg.src = "./assets/icons/add_task/arrow_drop_down_up.svg";  
-        // }
-        // getContactsDatabank()
+        let contacts = document.getElementById("edit-contacts");
+        let droptDownImg = document.getElementById("edit-arrow-contacts");
+        if (contacts.classList.contains("show")) {
+            contacts.classList.remove("show");
+            console.log('drop menu');
+            droptDownImg.src = "./assets/icons/add_task/arrow_drop_down_down.svg";
+        } else {
+            contacts.classList.add("show");
+            droptDownImg.src = "./assets/icons/add_task/arrow_drop_down_up.svg";  
+        }
+        getContactsDatabank('edit-drop-down')
     })
 };
 
+/**
+ * Displays the assigned contacts for a specific task.
+ * @param {object} task The task object containing assigned contact data.
+ */
 function editTaskAssigned (task) {
     let assignedContacts = task.assignedContacts;
-    let assignedContainer = document.getElementById(`edit-contacts`);
+    let assignedContainer = document.getElementById(`edit-selected-contacts`);
     assignedContainer.innerHTML = "";
     for (let assignedID = 0; assignedID < assignedContacts.length; assignedID++) {
         let assignedContact = assignedContacts[assignedID]
