@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
  * Triggered when the "Add Task" button is clicked.
  */
 function openOverlay() {
+    selectedUsers.clear();
     let overlayContainer = document.getElementById("overlay-add-task")
     overlayContainer.classList.remove('hidden');
     overlayContainer.innerHTML = loadOverlayAddTaskBoard();
@@ -297,6 +298,7 @@ function addEditTaskEventListener(taskID) {
             taskOverlay.innerHTML = loadEditTask(taskInfo);
             editTaskAssigned(taskInfo);
             addAssignedEventListener(taskInfo);
+            editPriority(taskInfo);
         } )
     }
 }
@@ -325,14 +327,20 @@ function addAssignedEventListener() {
  * @param {object} task The task object containing assigned contact data.
  */
 function editTaskAssigned (task) {
+    selectedUsers.clear();
     let assignedContacts = task.assignedContacts;
-    let assignedContainer = document.getElementById(`edit-selected-contacts`);
+    let assignedContainer = document.getElementById(`selected-contacts`);
     assignedContainer.innerHTML = "";
     for (let assignedID = 0; assignedID < assignedContacts.length; assignedID++) {
         let assignedContact = assignedContacts[assignedID];
         selectedUsers.add(assignedContact.id);
-        console.log(assignedContact);
-        console.log(selectedUsers);
         assignedContainer.innerHTML += loadBagesForCard(assignedContact)
     }
+}
+
+function editPriority(taskInfo) {
+    console.log(taskInfo);
+    let priorityName = taskInfo.priority;
+    document.getElementById(`bt-${priorityName}`).classList.add(`bt-${priorityName}`);
+    document.getElementById(`svg-${priorityName}`).src = `./assets/icons/add_task/Prio_${priorityName}_white.svg`;
 }

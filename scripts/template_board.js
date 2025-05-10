@@ -325,7 +325,7 @@ function loadEditTask(task) {
                                     <div id="edit-drop-down" class="scrollbar"></div>
                                 </div>
                             </div>
-                            <div id="edit-selected-contacts"></div>
+                            <div id="selected-contacts"></div>
                         </div>
                         <div>
                             <label for="subtask">Subtasks</label>

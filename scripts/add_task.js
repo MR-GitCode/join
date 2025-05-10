@@ -3,7 +3,7 @@ import { loadData, saveData, getLoggedInUser} from "./db.js";
 let subtaskTemplateLoaded = false;
 let subtaskID = 0;
 export let selectedUsers = new Set(); //Set doesn't allow same elements.
-let selectedPiority = "";
+let selectedPriority = "";
 let selectedTasks = [];
 let isColorpickerChanged = false;
 
@@ -31,14 +31,14 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 /**
  * This function is used to change the backgroundcolor of the piority buttons.
- * @param {string} piority
+ * @param {string} priority
  */
-function selectPiority(piority) {
+function selectPiority(priority) {
     resetPriority()
-    document.getElementById(`bt-${piority}`).classList.add(`bt-${piority}`);
-    document.getElementById(`svg-${piority}`).src = `./assets/icons/add_task/Prio_${piority}_white.svg`
-    selectedPiority = piority;
-    console.log(selectedPiority);  
+    document.getElementById(`bt-${priority}`).classList.add(`bt-${priority}`);
+    document.getElementById(`svg-${priority}`).src = `./assets/icons/add_task/Prio_${priority}_white.svg`
+    selectedPriority = priority;
+    console.log(selectedPriority);  
 } 
 
 /**
@@ -50,7 +50,7 @@ function resetPriority() {
         document.getElementById(`bt-${piorities[i]}`).classList.remove(`bt-${piorities[i]}`);
         document.getElementById(`svg-${piorities[i]}`).src = `./assets/icons/add_task/Prio_${piorities[i]}.svg`;
     }
-    selectedPiority = "";
+    selectedPriority = "";
 }
 
 /**
@@ -277,7 +277,8 @@ function checkSelectedUsers() {
             let optionOfMenu = document.querySelectorAll(".menu-option")[selectedUsersId];
             optionOfMenu.classList.add('bg-menu-option');
             userContainer.src = "./assets/icons/add_task/checked_white.svg";
-    }
+        }
+
 }
 
 /**
