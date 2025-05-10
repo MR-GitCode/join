@@ -204,7 +204,7 @@ function loadTaskOverlay(task) {
                     <div class="table-gap">
                         <p>${task.enddate}</p>
                         <div class="priority-gap">
-                            <p>Medium</p>
+                            <p class="capitalize">${task.priority}</p>
                             <img src="./assets/icons/add_task/Prio_${task.priority}.svg">
                         </div>
                     </div>
@@ -276,7 +276,6 @@ function loadTaskSubtasks(subtask) {
  * @returns Return the template of the edit task overlay.
  */
 function loadEditTask(task) {
-    console.log(task);
     return `<div class="content-select-task content-task-edit">
                 <div>
                     <div class="close-task-edit" id="close-overlay-select-task" onclick="closeOverlaySelectTask()">
@@ -325,7 +324,7 @@ function loadEditTask(task) {
                                     <div id="edit-drop-down" class="scrollbar"></div>
                                 </div>
                             </div>
-                            <div id="selected-contacts"></div>
+                            <div class="edit-selected-contacts" id="selected-contacts"></div>
                         </div>
                         <div>
                             <label for="subtask">Subtasks</label>
@@ -334,7 +333,7 @@ function loadEditTask(task) {
                                 <div id="subtask-icons">
                                     <img id="plus-subtask" onclick="addSubtask()" src="./assets/icons/add_task/plus.svg">
                                 </div>
-                                <ul id="edit-subtasks"></ul>
+                                <ul id="list-subtasks"></ul>
                             </div>
                         </div>      
                     </form>

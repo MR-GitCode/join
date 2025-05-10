@@ -3,7 +3,7 @@ import { loadData, saveData, getLoggedInUser} from "./db.js";
 let subtaskTemplateLoaded = false;
 let subtaskID = 0;
 export let selectedUsers = new Set(); //Set doesn't allow same elements.
-let selectedPriority = "";
+let selectedPiority = "";
 let selectedTasks = [];
 let isColorpickerChanged = false;
 
@@ -37,8 +37,7 @@ function selectPiority(priority) {
     resetPriority()
     document.getElementById(`bt-${priority}`).classList.add(`bt-${priority}`);
     document.getElementById(`svg-${priority}`).src = `./assets/icons/add_task/Prio_${priority}_white.svg`
-    selectedPriority = priority;
-    console.log(selectedPriority);  
+    selectedPriority = priority; 
 } 
 
 /**
@@ -190,7 +189,7 @@ function deleteSubtaskInput(subtaskID) {
  * This function edit the subtask and changed the icons.
  * @param {number} subtaskID This is the ID of the subtask.
  */
-function editSubtask(subtaskID) {
+export function editSubtask(subtaskID) {
     let subtask = document.getElementById(`subtask(${subtaskID})`);
     let subtaskIcons = document.getElementById(`icons-subtask(${subtaskID})`);
     let checkIcon = document.getElementById(`edit-subtask(${subtaskID})`);
@@ -216,7 +215,6 @@ export async function getContactsDatabank(id) {
         let contact = user.contacts[contactsIndex]
         assignedMenu.innerHTML += loadAssignedMenu(contact);
     }
-    
     selectContact()
     checkSelectedUsers()
 }
@@ -418,7 +416,7 @@ function getCategoryOfTask() {
  * Retrieves all subtasks from the list and returns them as an array of objects.
  * @returns Array of subtask objects with description and status.
  */
-function getSubtaskOfTask() {
+export function getSubtaskOfTask() {
     let liAmount = document.querySelectorAll("#list-subtasks li").length;
     let subtasks = []; 
     for (let subtaskID = 0; subtaskID < liAmount; subtaskID++) {
