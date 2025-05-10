@@ -2,7 +2,7 @@ import { loadData, saveData, getLoggedInUser} from "./db.js";
 
 let subtaskTemplateLoaded = false;
 let subtaskID = 0;
-let selectedUsers = new Set(); //Set doesn't allow same elements.
+export let selectedUsers = new Set(); //Set doesn't allow same elements.
 let selectedPiority = "";
 let selectedTasks = [];
 let isColorpickerChanged = false;
@@ -24,6 +24,9 @@ window.clearTask =clearTask;
 document.addEventListener("DOMContentLoaded", async function() {
     await loadData();
     changeIconsSubtask();
+    addCreateTaskEventListener();
+    addAssignedEventListener();
+    addCategoryEventListener()
 });
 
 /**
@@ -139,7 +142,9 @@ function checkInputValue() {
  * This function change the icon plus to close ande done.
  */
 function changeIconsSubtask() {
-    document.getElementById('subtask-input').addEventListener("input", function () {
+    let subtaskIcons = document.getElementById('subtask-input')
+    if (subtaskIcons) {
+        subtaskIcons.addEventListener("input", function () {
         const subtaskIcons = document.getElementById('subtask-icons'); 
         if (this.value !== "" && !subtaskTemplateLoaded) {
                 subtaskIcons.innerHTML = loadSubtaskIcons();
@@ -148,8 +153,8 @@ function changeIconsSubtask() {
             subtaskIcons.innerHTML = loadSubtaskIconsDefault();
             subtaskTemplateLoaded = false;          
         }
-    })
-}
+    })}
+    }
 
 /**
  * This function clears the subtask input field.
@@ -211,8 +216,9 @@ export async function getContactsDatabank(id) {
         let contact = user.contacts[contactsIndex]
         assignedMenu.innerHTML += loadAssignedMenu(contact);
     }
-    checkSelectedUsers()
+    
     selectContact()
+    checkSelectedUsers()
 }
 
 /**
@@ -277,24 +283,32 @@ function checkSelectedUsers() {
 /**
  * Event listener to close the dropdown menu of "assigned to".
  */
-document.addEventListener("click", function(event) {
+function addAssignedEventListener() {
     let menuContacts = document.getElementById('contacts');
     let inputField = document.getElementById('input-assign'); 
-    if (!menuContacts.contains(event.target) && event.target !== inputField) {
-        menuContacts.classList.remove('show');
+    if (menuContacts && inputField) {
+        document.addEventListener("click", function(event) {
+        if (!menuContacts.contains(event.target) && event.target !== inputField) {
+            menuContacts.classList.remove('show');
+        }})
     }
-})
+}
+
 
 /**
  * Event listener to close the dropdown menu of "category".
  */
-document.addEventListener("click", function(event) {
+function addCategoryEventListener() {
     let menuCategory = document.getElementById('categories');
     let inputField = document.getElementById("category-input"); 
-    if (!menuCategory.contains(event.target) && event.target !== inputField) {
-        menuCategory.classList.remove('show');
+    if (menuCategory && inputField) {
+        document.addEventListener("click", function(event) {
+        if (!menuCategory.contains(event.target) && event.target !== inputField) {
+            menuCategory.classList.remove('show');
+        }})
     }
-})
+}
+
 
 /**
  * Event listener to close the dropdown menu of "subtask".
@@ -333,11 +347,15 @@ function clearTask() {
 /**
  * Eventlistener for the "create taks" button.
  */
-document.getElementById('bt-create-task').addEventListener('click', function ()  {
-    if (checkInputValue() == true) {
-       createTask() 
-    };
-})
+function addCreateTaskEventListener() {
+   let createTaskButton = document.getElementById('bt-create-task');
+if (createTaskButton) {
+    createTaskButton.addEventListener('click', function () {
+        if (checkInputValue() === true) {
+            createTask();
+        }
+    })}; 
+}
 
 /**
  * Search the free id for the task.

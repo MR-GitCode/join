@@ -70,6 +70,111 @@ function loadNoDoneCard() {
             </div>`
 }
 
+function loadOverlayAddTaskBoard() {
+    return `<div class="content-add-task bg-overlay">
+                <div>
+                    <h1>Add Task</h1>
+                    <div id="close-overlay" onclick="closeOverlay()">
+                        <img src="./assets/icons/board/close.svg" alt="close">
+                    </div>
+                    <form class="form-add-task"  action="">
+                        <div class="left-form">
+                            <div>
+                                <label for="title">Title<p class="required-star">*</p></label>
+                                <input id="input-title" type="text" name="title" placeholder="Enter a title" required>
+                            </div>
+                            <div>
+                                <label for="description">Description</label>
+                                <textarea name="description" id="description" placeholder="Enter a Description"></textarea>
+                            </div>
+                            <div>
+                                <label for="date">Due date<p class="required-star">*</p></label>
+                                <input id="input-date" type="date" lang="en" placeholder="dd/mm/yyyy"  required>
+                            </div>                      
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <div class="right-form">
+                            <div>
+                                <label for="priority">Priority</label>
+                                <div class="piority">
+                                    <div id="bt-urgent" onclick="selectPiority('urgent')" class="bt-piority">
+                                        <p>Urgent</p>
+                                        <img id="svg-urgent" src="./assets/icons/add_task/Prio_urgent.svg">
+                                    </div>
+                                    <div id="bt-medium" onclick="selectPiority('medium')" class="bt-piority">
+                                        <p>Medium</p>
+                                        <img id="svg-medium" src="./assets/icons/add_task/Prio_medium.svg">
+                                    </div>
+                                    <div id="bt-low" onclick="selectPiority('low')" class="bt-piority">
+                                        <p>Low</p>
+                                        <img id="svg-low" src="./assets/icons/add_task/Prio_low.svg">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="assign">Assigned to</label>
+                                <div class="bg-drop-down">
+                                    <div onclick="openAssignedMenu()" class="input-menu">
+                                        <input type="text" placeholder="Select contacts to assign" id="input-assign">
+                                        <img id="arrow-contacts" src="./assets/icons/add_task/arrow_drop_down_down.svg">
+                                    </div>
+                                    <div class="menu-drop-down" id="contacts">
+                                        <div id="menu-drop-down" class="scrollbar"></div>
+                                    </div>
+                                </div>
+                                <div id="selected-contacts"></div>
+                            </div>
+
+                            <div>
+                                <label for="category">Category<p class="required-star">*</p></label>
+                                <div class="bg-drop-down">
+                                    <div onclick="openCategoryMenu()" class="input-menu">
+                                        <input id="category-input" placeholder="Select task category" required>
+                                        <img id="arrow-category" src="./assets/icons/add_task/arrow_drop_down_down.svg">
+                                    </div>
+                                    <div class="menu-drop-down" id="categories">
+                                        <div class="menu-option" onclick="selectCategory('Technical Task')">Technical Task</div>
+                                        <div class="menu-option" onclick="selectCategory('User Story')">User Story</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="subtask">Subtasks</label>
+                                <div class="subtask-input">
+                                    <input type="text" id="subtask-input" name="subtask" placeholder="Add new subtask">
+                                    <div id="subtask-icons">
+                                        <img id="plus-subtask" onclick="addSubtask()" src="./assets/icons/add_task/plus.svg">
+                                    </div>
+                                    <ul id="list-subtasks"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div> 
+
+                <div class="bt-container">
+                    <div class="required-info">
+                        <p class="required-star">*</p>
+                        This field is required
+                    </div>
+                    <div class="bt-add-task">
+                        <div onclick="clearTask()" id="bt-clear">
+                            <p>Clear</p>
+                            <img src="./assets/icons/close.svg">
+                        </div>
+                        <div onclick="createTask()" id="bt-create-task">
+                            <p>Create Task</p>
+                            <img src="./assets/icons/check.svg">
+                        </div>
+                    </div>
+                </div>
+            </div>`
+}
+
 /**
  * 
  * @param {object} task The task object containing all necessary task details.

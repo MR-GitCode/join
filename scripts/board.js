@@ -1,5 +1,5 @@
 import {loadData, saveData, getLoggedInUser} from './db.js';
-import {getContactsDatabank} from './add_task.js';
+import {selectedUsers, getContactsDatabank} from './add_task.js';
 
 window.draggedTask = null;
 window.openOverlay = openOverlay,
@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 function openOverlay() {
     let overlayContainer = document.getElementById("overlay-add-task")
     overlayContainer.classList.remove('hidden');
+    overlayContainer.innerHTML = loadOverlayAddTaskBoard();
     overlayContainer.classList.add('active');
     document.body.classList.add('no-scroll');
 }
@@ -38,6 +39,7 @@ function closeOverlay() {
     let overlayContainer = document.getElementById("overlay-add-task")
     overlayContainer.classList.add('hidden');
     document.body.classList.remove('no-scroll');
+    overlayContainer.innerHTML = "";
 }
 
 /**
@@ -293,8 +295,8 @@ function addEditTaskEventListener(taskID) {
             let taskOverlay = document.getElementById('overlay-select-task');
             taskOverlay.innerHTML = "";
             taskOverlay.innerHTML = loadEditTask(taskInfo);
-            addAssignedEventListener(taskInfo);
             editTaskAssigned(taskInfo);
+            addAssignedEventListener(taskInfo);
         } )
     }
 }
@@ -314,7 +316,7 @@ function addAssignedEventListener() {
             contacts.classList.add("show");
             droptDownImg.src = "./assets/icons/add_task/arrow_drop_down_up.svg";  
         }
-        getContactsDatabank('edit-drop-down')
+        getContactsDatabank('edit-drop-down');
     })
 };
 
@@ -327,7 +329,10 @@ function editTaskAssigned (task) {
     let assignedContainer = document.getElementById(`edit-selected-contacts`);
     assignedContainer.innerHTML = "";
     for (let assignedID = 0; assignedID < assignedContacts.length; assignedID++) {
-        let assignedContact = assignedContacts[assignedID]
+        let assignedContact = assignedContacts[assignedID];
+        selectedUsers.add(assignedContact.id);
+        console.log(assignedContact);
+        console.log(selectedUsers);
         assignedContainer.innerHTML += loadBagesForCard(assignedContact)
     }
 }
