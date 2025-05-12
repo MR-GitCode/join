@@ -4,6 +4,8 @@ import { loadData, getTasks } from './db.js';
 function navigateTo(page) {
     window.location.href = page;
 }
+window.navigateTo = navigateTo;
+
 
 /** Erstellt ein To-Do-Kachel-Element */
 function createSummaryTodo(icon, number, label, link = './board.html') {

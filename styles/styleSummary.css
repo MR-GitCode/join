@@ -229,3 +229,9 @@
     display: flex;
     max-width: 1440px;
 }
+
+.highlight-name {
+  color:rgba(41, 171, 226, 1);        
+  font-weight: bold;      /* Fett */
+  font-size: 64px;        /* Etwas größer */
+}

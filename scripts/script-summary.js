@@ -26,26 +26,29 @@ async function displayTasksUntilNextDeadline() {
 }
 
 
-function createGreeting(name) {
-    const now = new Date();
-    const hour = now.getHours();
-    let greeting;
-  
-    if (hour < 12) {
-      greeting = "good morning";
-    } else if (hour < 18) {
-      greeting = "Good day";
-    } else {
-      greeting = "good evening";
-    }
-  
-    return `${greeting}, ${name}!`;
+function createGreeting(firstName, lastName) {
+  const now = new Date();
+  const hour = now.getHours();
+  let greeting;
+
+  if (hour < 12) {
+    greeting = "Good morning";
+  } else if (hour < 18) {
+    greeting = "Good day";
+  } else {
+    greeting = "Good evening";
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const name = "Sarah"; // Oder dynamisch holen
-    document.getElementById("greeting").textContent = createGreeting(name);
-  });
+  return `${greeting}, <span class="highlight-name">${firstName} ${lastName}</span>!`;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const firstName = "Sarah";
+  const lastName = "Müller";
+  document.getElementById("greeting").innerHTML = createGreeting(firstName, lastName);
+});
+
+
 
 
 
