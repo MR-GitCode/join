@@ -1,12 +1,9 @@
-import {loadData, saveData, getLoggedInUser} from './db.js';
+import {loadData, saveData, getLoggedInUser} from '../db.js';
+import {selectedUsers, getContactsDatabank} from '../add_task.js';
+import {addTaskEventListeners} from './board_overlay_task.js';
 
-window.draggedTask = null;
 window.openOverlay = openOverlay,
 window.closeOverlay = closeOverlay,
-window.closeOverlaySelectTask = closeOverlaySelectTask,
-window.startDragging = startDragging,
-window.dragoverHandler = dragoverHandler,
-window.moveToColumn = moveToColumn
 
 /**
  * Load the tasks for the board.
@@ -16,14 +13,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     updateTasks();
 });
 
-
 /**
  * Opens the "Add Task" overlay by removing the 'hidden' class.
  * Triggered when the "Add Task" button is clicked.
  */
 function openOverlay() {
+    selectedUsers.clear();
     let overlayContainer = document.getElementById("overlay-add-task")
     overlayContainer.classList.remove('hidden');
+    overlayContainer.innerHTML = loadOverlayAddTaskBoard();
+    overlayContainer.classList.add('active');
     document.body.classList.add('no-scroll');
 }
 
@@ -34,6 +33,7 @@ function closeOverlay() {
     let overlayContainer = document.getElementById("overlay-add-task")
     overlayContainer.classList.add('hidden');
     document.body.classList.remove('no-scroll');
+    overlayContainer.innerHTML = "";
 }
 
 /**
@@ -49,7 +49,7 @@ document.getElementById("overlay-add-task").addEventListener("click", function (
 /**
  * Updates the display of tasks on the board.
  */
-function updateTasks() {
+export function updateTasks() {
     let user = getLoggedInUser();
     let tasksData = user.tasks;
     document.querySelectorAll('.columns-content').forEach(column => {
@@ -134,108 +134,3 @@ function checkContentOfColumns() {
         doneContainer.innerHTML = loadNoDoneCard()
     }
  }
-
-/**
-  * Open the overlay of the task if you click on the taskcard.
-  */
-function addTaskEventListeners() {
-    document.querySelectorAll(".card").forEach(task => {
-        task.addEventListener("click", () => {
-            let taskID = task.id;
-            let taskContainer = document.getElementById('overlay-select-task')
-            taskContainer.classList.remove('hidden');
-            let user = getLoggedInUser();           
-            taskContainer.innerHTML = loadTaskOverlay(user.tasks[taskID]);
-            addTaskAssigned(user.tasks[taskID])
-            addTaskSubtask(user.tasks[taskID])
-            });
-        });
-        addCloseEventListener()
-    };
-
-
-/**
- * Load the assigned contacts for the task.
- * @param {object} task This a object of the task. 
- */
-function addTaskAssigned(task) {
-    let assignedContainer = document.getElementById('assigned-select-task');
-    let assignedContacts = task.assignedContacts;
-    for (let indexAssigned = 0; indexAssigned < assignedContacts.length; indexAssigned++) {
-        let contact = assignedContacts[indexAssigned]
-        assignedContainer.innerHTML += loadTaskAssigned(contact)
-    }
-}
-
-/**
- * Load the subtask for the selected task.
- * @param {object} task  The task object containing all necessary task details.
- */
-function addTaskSubtask(task) {
-    let subtaskContainer = document.getElementById('subtasks-select-task')
-    let subtasks = task.subtasks;
-    for (let indexAssigned = 0; indexAssigned < subtasks.length; indexAssigned++) {
-        let subtask = subtasks[indexAssigned]
-        subtaskContainer.innerHTML += loadTaskSubtasks(subtask)
-    }
-}
-
-/**
- * Close the overlay of the task if you click on the cross.
- */
-function addCloseEventListener() {
-    document.getElementById('close-overlay-select-task').addEventListener("click", function() {
-        closeOverlaySelectTask()
-    } )
-}
-
-/**
-  * Closes the overlay of the task when a click occurs outside the content area (".content-select-task").
-  */
-document.getElementById("overlay-select-task").addEventListener("click", function (event) {
-    let overlayContainer = document.querySelector(".content-select-task");
-    if (!overlayContainer.contains(event.target)) {
-        closeOverlaySelectTask()
-    }
-});
-
-/**
- * Closes the "Task" overlay by adding the 'hidden' class. 
- */
-function closeOverlaySelectTask() {
-    document.getElementById('overlay-select-task').classList.add('hidden')
-}
-
-/**
- * Sets the ID of the task currently being dragged.
- *
- * @param {number|string} taskID - The ID of the task that is being dragged.
- */
-function startDragging(taskID) {
-    draggedTask = taskID;
-    let taskCard = document.getElementById(taskID);
-    taskCard.classList.add("card-rotation");
-}
-
-/**
- * Enables a drop target by preventing the default behavior.
- *
- * @param {DragEvent} ev - The dragover event object.
- */
-function dragoverHandler(ev) {
-    ev.preventDefault();
-  }
-
-/**
- * Moves the dragged task to a new column (status).
- * Updates the task's status in the user's data and re-renders the board.
- *
- * @param {string} column - The name of the target column.
- */
-function moveToColumn(column) {
-    let user = getLoggedInUser();
-    let taskData = user.tasks[draggedTask];
-    taskData.status = `${column}`;
-    saveData(`users/${user.id}/tasks`, taskData);
-    updateTasks()
-  }

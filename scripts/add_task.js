@@ -2,7 +2,7 @@ import { loadData, saveData, getLoggedInUser} from "./db.js";
 
 let subtaskTemplateLoaded = false;
 let subtaskID = 0;
-let selectedUsers = new Set(); //Set doesn't allow same elements.
+export let selectedUsers = new Set(); //Set doesn't allow same elements.
 let selectedPiority = "";
 let selectedTasks = [];
 let isColorpickerChanged = false;
@@ -24,18 +24,20 @@ window.clearTask =clearTask;
 document.addEventListener("DOMContentLoaded", async function() {
     await loadData();
     changeIconsSubtask();
+    addCreateTaskEventListener();
+    addAssignedEventListener();
+    addCategoryEventListener()
 });
 
 /**
  * This function is used to change the backgroundcolor of the piority buttons.
- * @param {string} piority
+ * @param {string} priority
  */
-function selectPiority(piority) {
+function selectPiority(priority) {
     resetPriority()
-    document.getElementById(`bt-${piority}`).classList.add(`bt-${piority}`);
-    document.getElementById(`svg-${piority}`).src = `./assets/icons/add_task/Prio_${piority}_white.svg`
-    selectedPiority = piority;
-    console.log(selectedPiority);  
+    document.getElementById(`bt-${priority}`).classList.add(`bt-${priority}`);
+    document.getElementById(`svg-${priority}`).src = `./assets/icons/add_task/Prio_${priority}_white.svg`
+    selectedPriority = priority; 
 } 
 
 /**
@@ -47,7 +49,7 @@ function resetPriority() {
         document.getElementById(`bt-${piorities[i]}`).classList.remove(`bt-${piorities[i]}`);
         document.getElementById(`svg-${piorities[i]}`).src = `./assets/icons/add_task/Prio_${piorities[i]}.svg`;
     }
-    selectedPiority = "";
+    selectedPriority = "";
 }
 
 /**
@@ -109,7 +111,7 @@ function openAssignedMenu() {
         contacts.classList.add("show");
         droptDownImg.src = "./assets/icons/add_task/arrow_drop_down_up.svg";  
     }
-    getContactsDatabank()
+    getContactsDatabank('menu-drop-down')
 }
 
 /**
@@ -139,7 +141,9 @@ function checkInputValue() {
  * This function change the icon plus to close ande done.
  */
 function changeIconsSubtask() {
-    document.getElementById('subtask-input').addEventListener("input", function () {
+    let subtaskIcons = document.getElementById('subtask-input')
+    if (subtaskIcons) {
+        subtaskIcons.addEventListener("input", function () {
         const subtaskIcons = document.getElementById('subtask-icons'); 
         if (this.value !== "" && !subtaskTemplateLoaded) {
                 subtaskIcons.innerHTML = loadSubtaskIcons();
@@ -148,8 +152,8 @@ function changeIconsSubtask() {
             subtaskIcons.innerHTML = loadSubtaskIconsDefault();
             subtaskTemplateLoaded = false;          
         }
-    })
-}
+    })}
+    }
 
 /**
  * This function clears the subtask input field.
@@ -185,7 +189,7 @@ function deleteSubtaskInput(subtaskID) {
  * This function edit the subtask and changed the icons.
  * @param {number} subtaskID This is the ID of the subtask.
  */
-function editSubtask(subtaskID) {
+export function editSubtask(subtaskID) {
     let subtask = document.getElementById(`subtask(${subtaskID})`);
     let subtaskIcons = document.getElementById(`icons-subtask(${subtaskID})`);
     let checkIcon = document.getElementById(`edit-subtask(${subtaskID})`);
@@ -203,16 +207,16 @@ function editSubtask(subtaskID) {
  * This function load the menu under the "assigned to" input field.
  * @param {object} data This is a object of the firebase database. 
  */
-async function getContactsDatabank() {
+export async function getContactsDatabank(id) {
     let user = getLoggedInUser();
-    let assignedMenu = document.getElementById('menu-drop-down');
+    let assignedMenu = document.getElementById(id);
     assignedMenu.innerHTML = "";
     for (let contactsIndex = 0; contactsIndex < user.contacts.length; contactsIndex++) {
         let contact = user.contacts[contactsIndex]
         assignedMenu.innerHTML += loadAssignedMenu(contact);
     }
-    checkSelectedUsers()
     selectContact()
+    checkSelectedUsers()
 }
 
 /**
@@ -271,30 +275,39 @@ function checkSelectedUsers() {
             let optionOfMenu = document.querySelectorAll(".menu-option")[selectedUsersId];
             optionOfMenu.classList.add('bg-menu-option');
             userContainer.src = "./assets/icons/add_task/checked_white.svg";
-    }
+        }
+
 }
 
 /**
  * Event listener to close the dropdown menu of "assigned to".
  */
-document.addEventListener("click", function(event) {
+function addAssignedEventListener() {
     let menuContacts = document.getElementById('contacts');
     let inputField = document.getElementById('input-assign'); 
-    if (!menuContacts.contains(event.target) && event.target !== inputField) {
-        menuContacts.classList.remove('show');
+    if (menuContacts && inputField) {
+        document.addEventListener("click", function(event) {
+        if (!menuContacts.contains(event.target) && event.target !== inputField) {
+            menuContacts.classList.remove('show');
+        }})
     }
-})
+}
+
 
 /**
  * Event listener to close the dropdown menu of "category".
  */
-document.addEventListener("click", function(event) {
+function addCategoryEventListener() {
     let menuCategory = document.getElementById('categories');
     let inputField = document.getElementById("category-input"); 
-    if (!menuCategory.contains(event.target) && event.target !== inputField) {
-        menuCategory.classList.remove('show');
+    if (menuCategory && inputField) {
+        document.addEventListener("click", function(event) {
+        if (!menuCategory.contains(event.target) && event.target !== inputField) {
+            menuCategory.classList.remove('show');
+        }})
     }
-})
+}
+
 
 /**
  * Event listener to close the dropdown menu of "subtask".
@@ -333,11 +346,15 @@ function clearTask() {
 /**
  * Eventlistener for the "create taks" button.
  */
-document.getElementById('bt-create-task').addEventListener('click', function ()  {
-    if (checkInputValue() == true) {
-       createTask() 
-    };
-})
+function addCreateTaskEventListener() {
+   let createTaskButton = document.getElementById('bt-create-task');
+if (createTaskButton) {
+    createTaskButton.addEventListener('click', function () {
+        if (checkInputValue() === true) {
+            createTask();
+        }
+    })}; 
+}
 
 /**
  * Search the free id for the task.
@@ -399,7 +416,7 @@ function getCategoryOfTask() {
  * Retrieves all subtasks from the list and returns them as an array of objects.
  * @returns Array of subtask objects with description and status.
  */
-function getSubtaskOfTask() {
+export function getSubtaskOfTask() {
     let liAmount = document.querySelectorAll("#list-subtasks li").length;
     let subtasks = []; 
     for (let subtaskID = 0; subtaskID < liAmount; subtaskID++) {

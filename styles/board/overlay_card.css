@@ -149,3 +149,7 @@
     fill: #29ABE2;
     cursor: pointer;
 }
+
+.capitalize{
+    text-transform: capitalize;
+}

@@ -5,6 +5,13 @@
     overflow: hidden;
 }
 
+.display-position{
+    display: flex;
+    height: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
 .bg-color{
     background-color: #091931;
 }
@@ -33,6 +40,7 @@ body {
     gap: 8px;
     text-decoration: none;
     color: #CDCDCD;
+    height: 46px;
 }
 
 .join-logo {
@@ -85,7 +93,18 @@ header {
 
 .user-info {
     display: flex;
+    align-items: center;
     gap: 16px;
+}
+
+.user-info img{
+    width: 56px;
+    height: 56px;
+}
+
+.help {
+    width: 32px !important;
+    height: 32px !important;
 }
 
 .content {
