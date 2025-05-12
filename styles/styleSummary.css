@@ -237,3 +237,27 @@ body {
 #task-container {
     flex: 0.6;
 }
+
+.todo{
+    background-color: white;
+    border-radius: 30px;
+    height: 168px;
+    width: 520px;
+    margin-left: 50px;
+    display: flex
+;
+    align-items: center;
+    padding: 20px;
+}
+
+.tasks{
+    background-color: white;
+    border-radius: 30px;
+    height: 168px;
+    width: 520px;
+    margin-left: 50px;
+    display: flex
+;
+    align-items: center;
+    padding: 20px;
+}
