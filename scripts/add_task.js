@@ -49,7 +49,7 @@ function resetPriority() {
         document.getElementById(`bt-${piorities[i]}`).classList.remove(`bt-${piorities[i]}`);
         document.getElementById(`svg-${piorities[i]}`).src = `./assets/icons/add_task/Prio_${piorities[i]}.svg`;
     }
-    selectedPriority = "";
+    selectedPiority = "";
 }
 
 /**
