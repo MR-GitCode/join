@@ -1,14 +1,14 @@
-.piority{
+.priority{
     display: flex;
     gap: 16px;
     height: 65px;
 }
 
-.piority img{
+.priority img{
     width: 20px;
 }
 
-.bt-piority{
+.bt-priority{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,7 +21,7 @@
     gap: 8px;
 }
 
-.bt-piority:hover{
+.bt-priority:hover{
     box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
 }
 

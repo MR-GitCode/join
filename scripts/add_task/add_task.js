@@ -3,11 +3,11 @@ import { loadData, saveData, getLoggedInUser} from "../db.js";
 let subtaskTemplateLoaded = false;
 let subtaskID = 0;
 export let selectedUsers = new Set(); //Set doesn't allow same elements.
-let selectedPiority = "";
+export let selectedPriority = "";
 let selectedTasks = [];
 let isColorpickerChanged = false;
 
-window.selectPiority = selectPiority;
+window.selectPriority = selectPriority;
 window.resetPriority = resetPriority;
 window.openAssignedMenu = openAssignedMenu;
 window.openCategoryMenu = openCategoryMenu;
@@ -30,10 +30,10 @@ document.addEventListener("DOMContentLoaded", async function() {
 });
 
 /**
- * This function is used to change the backgroundcolor of the piority buttons.
+ * This function is used to change the backgroundcolor of the priority buttons.
  * @param {string} priority
  */
-function selectPiority(priority) {
+function selectPriority(priority) {
     resetPriority()
     document.getElementById(`bt-${priority}`).classList.add(`bt-${priority}`);
     document.getElementById(`svg-${priority}`).src = `./assets/icons/add_task/Prio_${priority}_white.svg`
@@ -49,7 +49,7 @@ function resetPriority() {
         document.getElementById(`bt-${piorities[i]}`).classList.remove(`bt-${piorities[i]}`);
         document.getElementById(`svg-${piorities[i]}`).src = `./assets/icons/add_task/Prio_${piorities[i]}.svg`;
     }
-    selectedPiority = "";
+    selectedPriority = "";
 }
 
 /**
@@ -385,8 +385,8 @@ function createTask() {
         id: nextTaskID,
         title: document.getElementById('input-title').value,
         description: document.getElementById('description').value,
-        date: document.getElementById('input-date').value,
-        piority: selectedPiority,
+        enddate: document.getElementById('input-date').value,
+        priority: selectedPriority,
         assignedContacts: getAssignedContacts(user),
         category: getCategoryOfTask(),
         subtasks: getSubtaskOfTask(),
@@ -402,7 +402,7 @@ function createTask() {
  *  Retrieves the selected task category from the input fields.
  * @returns Returns the category obeject with color and name of the category.
  */
-function getCategoryOfTask() {
+export function getCategoryOfTask() {
     let categoryText = document.getElementById('category-input').value;
     let categoryColor = document.getElementById('category-colorpicker').value
     let category = {
@@ -436,9 +436,9 @@ export function getSubtaskOfTask() {
  * @param {object} user This is the object of the logged in user with all informations.
  * @returns Returns the assigned contacts for the task.
  */
-function getAssignedContacts(user) {
+export function getAssignedContacts(user) {
     let assignedContactsIDs = Array.from(selectedUsers);
-    let assignedContacts = [];    
+    let assignedContacts = []; 
     for (let index = 0; index < assignedContactsIDs.length; index++) {
         let contactID =  assignedContactsIDs[index];
         let assignedContact = {
@@ -446,7 +446,7 @@ function getAssignedContacts(user) {
             name : user.contacts[contactID].name,
             id : user.contacts[contactID].id
         }
-        assignedContacts.push(assignedContact );
+        assignedContacts.push(assignedContact);
     }
     return assignedContacts;
 }

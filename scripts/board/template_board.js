@@ -98,16 +98,16 @@ function loadOverlayAddTaskBoard() {
                         <div class="right-form">
                             <div>
                                 <label for="priority">Priority</label>
-                                <div class="piority">
-                                    <div id="bt-urgent" onclick="selectPiority('urgent')" class="bt-piority">
+                                <div class="priority">
+                                    <div id="bt-urgent" onclick="selectPriority('urgent')" class="bt-priority">
                                         <p>Urgent</p>
                                         <img id="svg-urgent" src="./assets/icons/add_task/Prio_urgent.svg">
                                     </div>
-                                    <div id="bt-medium" onclick="selectPiority('medium')" class="bt-piority">
+                                    <div id="bt-medium" onclick="selectPriority('medium')" class="bt-priority">
                                         <p>Medium</p>
                                         <img id="svg-medium" src="./assets/icons/add_task/Prio_medium.svg">
                                     </div>
-                                    <div id="bt-low" onclick="selectPiority('low')" class="bt-piority">
+                                    <div id="bt-low" onclick="selectPriority('low')" class="bt-priority">
                                         <p>Low</p>
                                         <img id="svg-low" src="./assets/icons/add_task/Prio_low.svg">
                                     </div>
@@ -286,28 +286,28 @@ function loadEditTask(task) {
                     <form class="form-task-edit">
                         <div>
                             <label for="title">Title</label>
-                            <input id="input-title" type="text" name="title" placeholder="${task.title}" required>
+                            <input id="input-title" type="text" name="title" placeholder="Enter a title" required>
                         </div>
                         <div>
                             <label for="description">Description</label>
-                            <textarea name="description" id="description" placeholder="${task.description}"></textarea>
+                            <textarea name="description" id="description" placeholder="Enter a Description"></textarea>
                         </div>
                         <div>
                             <label for="date">Due date</label>
-                            <input id="input-date" type="date" lang="en" placeholder="${task.enddate}"  required>
+                            <input id="input-date" type="date" lang="en" placeholder="dd/mm/yyyy" required>
                         </div>
                         <div>
                             <label for="priority">Priority</label>
-                            <div class="piority">
-                                <div id="bt-urgent" onclick="selectPiority('urgent')" class="bt-piority">
+                            <div class="priority">
+                                <div id="bt-urgent" onclick="selectPriority('urgent')" class="bt-priority">
                                     <p>Urgent</p>
                                     <img id="svg-urgent" src="./assets/icons/add_task/Prio_urgent.svg">
                                 </div>
-                                <div id="bt-medium" onclick="selectPiority('medium')" class="bt-piority">
+                                <div id="bt-medium" onclick="selectPriority('medium')" class="bt-priority">
                                     <p>Medium</p>
                                     <img id="svg-medium" src="./assets/icons/add_task/Prio_medium.svg">
                                 </div>
-                                <div id="bt-low" onclick="selectPiority('low')" class="bt-piority">
+                                <div id="bt-low" onclick="selectPriority('low')" class="bt-priority">
                                     <p>Low</p>
                                     <img id="svg-low" src="./assets/icons/add_task/Prio_low.svg">
                                 </div>
