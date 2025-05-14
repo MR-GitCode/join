@@ -1,5 +1,5 @@
 import {loadData, saveData, getLoggedInUser} from '../db.js';
-import {selectedUsers, getContactsDatabank} from '../add_task.js';
+import {selectedUsers, getContactsDatabank} from '../add_task/add_task.js';
 import {addTaskEventListeners} from './board_overlay_task.js';
 
 window.openOverlay = openOverlay,

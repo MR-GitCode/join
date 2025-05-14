@@ -2,26 +2,6 @@ import { loadData, getUsers } from "./db.js";
 
 window.fillForm = fillForm;
 
-<<<<<<< HEAD
-// Sobald das DOM vollständig geladen ist
-document.addEventListener("DOMContentLoaded", () => {
-    const loginForm = document.getElementById('loginForm');
-    const guestBtn = document.getElementById('guestBtn');
-
-    if (loginForm) {
-        loginForm.addEventListener('submit', async function (submit) {
-            submit.preventDefault();
-            console.log('Login');
-            await loadData();
-            loginUser();
-        });
-    }
-
-    if (guestBtn) {
-        guestBtn.addEventListener('click', async function () {
-            console.log('GuestLogin');
-            await loadData();
-=======
 /**
  * Eventlister for the login buttons.
  */
@@ -40,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (guestBtn) {
         guestBtn.addEventListener('click', function () {
             console.log('GuestLogin');
->>>>>>> 4b6421a135571e417e0f5d2aab59bc00d3dbf504
             loginAsGuest();
         });
     }

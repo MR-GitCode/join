@@ -1,5 +1,5 @@
 import { loadData } from "./scripts/db.js";
-import { getAllDataRealtime } from "./scripts/login.js";
+// import { getAllDataRealtime } from "./scripts/login.js";
 
 /**
  * This function initializes the page by calling other functions.

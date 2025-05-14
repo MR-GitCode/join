@@ -1,4 +1,4 @@
-import { loadData, saveData, getLoggedInUser} from "./db.js";
+import { loadData, saveData, getLoggedInUser} from "../db.js";
 
 let subtaskTemplateLoaded = false;
 let subtaskID = 0;
