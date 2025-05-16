@@ -331,7 +331,7 @@ function loadEditTask(task) {
                             <div class="subtask-input">
                                 <input type="text" id="subtask-input" name="subtask" placeholder="Add new subtask">
                                 <div id="subtask-icons">
-                                    <img id="plus-subtask" onclick="addSubtask()" src="./assets/icons/add_task/plus.svg">
+                                    <img id="plus-subtask" src="./assets/icons/add_task/plus.svg">
                                 </div>
                                 <ul id="list-subtasks"></ul>
                             </div>

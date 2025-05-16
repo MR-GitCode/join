@@ -21,6 +21,7 @@ export function addEditTaskEventListener(taskID) {
             editPriority(taskInfo);
             addTaskSubtask(taskInfo.subtasks, 'list-subtasks');
             addEditButtonEventListener(taskInfo);
+            addEditSubtask();
         } )
     }
     
@@ -93,7 +94,7 @@ function addEditButtonEventListener (taskInfo) {
             enddate: document.getElementById('input-date').value,
             priority: priorityOfEditTask(taskInfo),
             assignedContacts: getAssignedContacts(user),
-            subtasks: getSubtaskOfTaskEdit(),
+            subtasks: getSubtaskOfTaskEdit(taskInfo.subtasks),
         };
         console.log(task);
         
@@ -114,7 +115,43 @@ function priorityOfEditTask (task) {
     }
 }
 
-function getSubtaskOfTaskEdit() {
-    console.log("Subtask");
-    
+/**
+ * This function add a subtask.
+ */
+function addEditSubtask() {
+    document.getElementById('plus-subtask').addEventListener("click", function () {
+        let subtaskID = document.querySelectorAll("#list-subtasks li").length;
+        let subtaskInput = document.getElementById('subtask-input'); 
+        let subtaskContent = subtaskInput.value; 
+        let ulContainer = document.getElementById('list-subtasks');
+        ulContainer.innerHTML += loadAddSubtask(subtaskID, subtaskContent);
+        subtaskInput.value = "";
+    }) 
+}
+
+/**
+ * Retrieves all subtasks from the list and returns them as an array of objects.
+ * @returns Array of subtask objects with description and status.
+ */
+function getSubtaskOfTaskEdit(subtasksInfo) {
+    console.log("Subtask", subtasksInfo);
+    let liAmount = document.querySelectorAll("#list-subtasks li").length;
+    let subtasks = [];
+    let subStatus = "";
+    for (let subtaskID = 0; subtaskID < liAmount; subtaskID++) {
+        let subDescription = document.getElementById(`subtaskContent(${subtaskID})`).innerText;
+        if (subtasksInfo[subtaskID]) {
+            subStatus = subtasksInfo[subtaskID].status; 
+        } else {
+            subStatus = "open"; 
+        }
+        console.log("status", subStatus);
+        
+        let subtask = {
+            description : subDescription,
+            status : subStatus
+        }
+        subtasks.push(subtask);    
+    }
+    return subtasks;
 }
