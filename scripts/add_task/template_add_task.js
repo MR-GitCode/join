@@ -58,7 +58,7 @@ function loadAddSubtask(subtaskID, subtaskContent) {
 function changeSubtaskIcons(subtaskID) {
     return `<img class="button-transition" id="delete-subtask(${subtaskID})" onclick="deleteSubtaskInput(${subtaskID})" src="./assets/icons/add_task/delete.svg">
             <div class="subtask-divider"></div>
-            <img class="button-transition" id="done-subtask(${subtaskID})" onclick="sendSubtask(${subtaskID})" src="./assets/icons/add_task/done.svg">`
+            <img class="button-transition" id="done-subtask(${subtaskID})" src="./assets/icons/add_task/done.svg">`
 }
 
 /**

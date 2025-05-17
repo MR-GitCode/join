@@ -88,16 +88,14 @@ function addEditButtonEventListener (taskInfo) {
     let user = getLoggedInUser();
     document.getElementById('bt-edit').addEventListener("click", function () {
         let task = {
-            id: 6,
+            id: taskInfo.id,
             title: document.getElementById('input-title').value,
             description: document.getElementById('description').value,
             enddate: document.getElementById('input-date').value,
             priority: priorityOfEditTask(taskInfo),
             assignedContacts: getAssignedContacts(user),
             subtasks: getSubtaskOfTaskEdit(taskInfo.subtasks),
-        };
-        console.log(task);
-        
+        };      
         // saveData(`users/${user.id}/tasks`, task);
     })
 }
@@ -134,7 +132,6 @@ function addEditSubtask() {
  * @returns Array of subtask objects with description and status.
  */
 function getSubtaskOfTaskEdit(subtasksInfo) {
-    console.log("Subtask", subtasksInfo);
     let liAmount = document.querySelectorAll("#list-subtasks li").length;
     let subtasks = [];
     let subStatus = "";

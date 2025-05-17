@@ -168,12 +168,14 @@ function clearSubtaskInput() {
  */
 function addSubtask() {
     let subtaskInput = document.getElementById('subtask-input'); 
-    let subtaskContent = subtaskInput.value; 
-    let ulContainer = document.getElementById('list-subtasks');
-    ulContainer.innerHTML += loadAddSubtask(subtaskID, subtaskContent);
-    selectedTasks.push({id: subtaskID, content: subtaskContent});
-    subtaskInput.value = "";
-    subtaskID++;    
+    if (!subtaskInput.value == "") {
+        let subtaskContent = subtaskInput.value; 
+        let ulContainer = document.getElementById('list-subtasks');
+        ulContainer.innerHTML += loadAddSubtask(subtaskID, subtaskContent);
+        selectedTasks.push({id: subtaskID, content: subtaskContent});
+        subtaskInput.value = "";
+        subtaskID++;
+    }  
 }
 
 /**
@@ -191,15 +193,17 @@ function deleteSubtaskInput(subtaskID) {
  */
 export function editSubtask(subtaskID) {
     let subtask = document.getElementById(`subtask(${subtaskID})`);
-    let subtaskIcons = document.getElementById(`icons-subtask(${subtaskID})`);
-    let checkIcon = document.getElementById(`edit-subtask(${subtaskID})`);
-    subtask.classList.toggle('edit-subtask');
-    if (checkIcon !== null) {
-        subtaskIcons.innerHTML = changeSubtaskIcons(subtaskID);
-        subtaskIcons.classList.add('subtask-icon-flex');
-    } else {
-        subtaskIcons.innerHTML = defaultSubtaskIcons(subtaskID);
-        subtaskIcons.classList.remove('subtask-icon-flex');
+    if (subtask) {
+        let subtaskIcons = document.getElementById(`icons-subtask(${subtaskID})`);
+        let checkIcon = document.getElementById(`edit-subtask(${subtaskID})`);
+        subtask.classList.toggle('edit-subtask');
+        if (checkIcon !== null) {
+            subtaskIcons.innerHTML = changeSubtaskIcons(subtaskID);
+            subtaskIcons.classList.add('subtask-icon-flex');
+        } else {
+            subtaskIcons.innerHTML = defaultSubtaskIcons(subtaskID);
+            subtaskIcons.classList.remove('subtask-icon-flex');
+        }
     }
 }
 
@@ -276,7 +280,6 @@ function checkSelectedUsers() {
             optionOfMenu.classList.add('bg-menu-option');
             userContainer.src = "./assets/icons/add_task/checked_white.svg";
         }
-
 }
 
 /**

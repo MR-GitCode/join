@@ -73,6 +73,7 @@ function addCloseEventListener() {
   */
 document.getElementById("overlay-select-task").addEventListener("click", function (event) {
     let overlayContainer = document.querySelector(".content-select-task");
+    let overlaySubtask = document.querySelector(".button-transition");
     if (!overlayContainer.contains(event.target)) {
         closeOverlaySelectTask()
     }
