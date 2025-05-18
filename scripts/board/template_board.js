@@ -132,12 +132,19 @@ function loadOverlayAddTaskBoard() {
                                 <label for="category">Category<p class="required-star">*</p></label>
                                 <div class="bg-drop-down">
                                     <div onclick="openCategoryMenu()" class="input-menu">
-                                        <input id="category-input" placeholder="Select task category" required>
+                                        <input type="color" class="category-colorpicker hidden" id="category-colorpicker" value="#1ed6c1">
+                                        <input class="category-select" id="category-input" placeholder="Select task category" required>                                            
                                         <img id="arrow-category" src="./assets/icons/add_task/arrow_drop_down_down.svg">
                                     </div>
                                     <div class="menu-drop-down" id="categories">
-                                        <div class="menu-option" onclick="selectCategory('Technical Task')">Technical Task</div>
-                                        <div class="menu-option" onclick="selectCategory('User Story')">User Story</div>
+                                        <div class="menu-option category-menu" onclick="selectCategory(1)">
+                                            <input type="color" class="category-colorpicker" id="category-cpicker-1" value="#1ed6c1" onchange="colorChanged()" onblur="colorPickerBlur()">
+                                            <p id="category-text-1">Technical Task</p>
+                                        </div>
+                                        <div class="menu-option category-menu" onclick="selectCategory(2)">
+                                            <input type="color" class="category-colorpicker" id="category-cpicker-2" value="#0037ff" onchange="colorChanged()" onblur="colorPickerBlur()">
+                                            <p id="category-text-2">User Story</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

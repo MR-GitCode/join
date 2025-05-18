@@ -70,7 +70,7 @@ async function transmitData(path = '', data = {}) {
 
 //NEW saveData
 export async function saveData(path = '', data = null) {
-    // console.log(path, data);
+    console.log(path, data);
     if (data) {
         transmitData(path, data)
     }

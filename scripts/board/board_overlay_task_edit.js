@@ -96,7 +96,7 @@ function addEditButtonEventListener (taskInfo) {
             assignedContacts: getAssignedContacts(user),
             subtasks: getSubtaskOfTaskEdit(taskInfo.subtasks),
         };      
-        // saveData(`users/${user.id}/tasks`, task);
+        saveData(`users/${user.id}/tasks`, task);
     })
 }
 
@@ -119,12 +119,14 @@ function priorityOfEditTask (task) {
 function addEditSubtask() {
     document.getElementById('plus-subtask').addEventListener("click", function () {
         let subtaskID = document.querySelectorAll("#list-subtasks li").length;
-        let subtaskInput = document.getElementById('subtask-input'); 
-        let subtaskContent = subtaskInput.value; 
-        let ulContainer = document.getElementById('list-subtasks');
-        ulContainer.innerHTML += loadAddSubtask(subtaskID, subtaskContent);
-        subtaskInput.value = "";
-        addCloseEventListener()
+        let subtaskInput = document.getElementById('subtask-input');
+        if (!subtaskInput.value == "") {
+            let subtaskContent = subtaskInput.value; 
+            let ulContainer = document.getElementById('list-subtasks');
+            ulContainer.innerHTML += loadAddSubtask(subtaskID, subtaskContent);
+            subtaskInput.value = "";
+            addCloseEventListener()
+        }
     }) 
 }
 
