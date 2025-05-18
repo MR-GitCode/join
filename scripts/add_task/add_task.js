@@ -1,4 +1,5 @@
 import { loadData, saveData, getLoggedInUser} from "../db.js";
+import { addCloseEventListener } from "../board/board_overlay_task.js";
 
 let subtaskTemplateLoaded = false;
 let subtaskID = 0;
@@ -184,7 +185,7 @@ function addSubtask() {
  */
 function deleteSubtaskInput(subtaskID) {
     let subtask = document.getElementById(`subtask(${subtaskID})`);
-    subtask.remove()
+    subtask.remove();
 }
 
 /**

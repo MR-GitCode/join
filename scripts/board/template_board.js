@@ -278,7 +278,7 @@ function loadTaskSubtasks(subtask) {
 function loadEditTask(task) {
     return `<div class="content-select-task content-task-edit">
                 <div>
-                    <div class="close-task-edit" id="close-overlay-select-task" onclick="closeOverlaySelectTask()">
+                    <div class="close-task-edit" id="close-overlay-select-task">
                         <img src="./assets/icons/board/close.svg" alt="close">
                     </div>
                 </div>

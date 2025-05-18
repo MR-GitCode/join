@@ -1,8 +1,6 @@
 import {loadData, saveData, getLoggedInUser} from '../db.js';
 import {addEditTaskEventListener} from "./board_overlay_task_edit.js";
 
-window.closeOverlaySelectTask = closeOverlaySelectTask,
-
 document.addEventListener("DOMContentLoaded", async () => {});
 
 /**
@@ -57,27 +55,17 @@ export function addTaskSubtask(subtasks, subtaskContainerID, checkValue) {
 }
 
 /**
- * Close the overlay of the task if you click on the cross.
+ * Close the overlay of the task if you click on the cross or outside of the overlay.
  */
-function addCloseEventListener() {
-    let closeButton = document.getElementById('close-overlay-select-task');
-    if(closeButton) {
-        closeButton.addEventListener("click", function() {
-        closeOverlaySelectTask()
-    } )
-    }
+export function addCloseEventListener() {
+    document.getElementById("overlay-select-task").addEventListener("click", function (event) {
+        let overlayContainer = document.querySelector(".content-select-task");
+        let closeButton = document.getElementById('close-overlay-select-task');
+        if (closeButton.contains(event.target) || (!overlayContainer.contains(event.target) && !event.target.closest('.button-transition'))) {
+            closeOverlaySelectTask();
+        }
+    });
 }
-
-/**
-  * Closes the overlay of the task when a click occurs outside the content area (".content-select-task").
-  */
-document.getElementById("overlay-select-task").addEventListener("click", function (event) {
-    let overlayContainer = document.querySelector(".content-select-task");
-    let overlaySubtask = document.querySelector(".button-transition");
-    if (!overlayContainer.contains(event.target)) {
-        closeOverlaySelectTask()
-    }
-});
 
 /**
  * Closes the "Task" overlay by adding the 'hidden' class. 

@@ -1,6 +1,6 @@
 import {loadData, saveData, getLoggedInUser} from '../db.js';
 import {selectedUsers, getContactsDatabank, selectedPriority, getAssignedContacts, getSubtaskOfTask} from '../add_task/add_task.js';
-import { addTaskSubtask } from './board_overlay_task.js';
+import { addTaskSubtask, addCloseEventListener } from './board_overlay_task.js';
 
 /**
  * Add a click event listener to the "edit" button.
@@ -22,9 +22,9 @@ export function addEditTaskEventListener(taskID) {
             addTaskSubtask(taskInfo.subtasks, 'list-subtasks');
             addEditButtonEventListener(taskInfo);
             addEditSubtask();
+            addCloseEventListener()
         } )
     }
-    
 }
 
 /**
@@ -124,6 +124,7 @@ function addEditSubtask() {
         let ulContainer = document.getElementById('list-subtasks');
         ulContainer.innerHTML += loadAddSubtask(subtaskID, subtaskContent);
         subtaskInput.value = "";
+        addCloseEventListener()
     }) 
 }
 

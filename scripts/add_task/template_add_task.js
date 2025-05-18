@@ -67,7 +67,7 @@ function changeSubtaskIcons(subtaskID) {
  * @returns Returned the standard icons. 
  */
 function defaultSubtaskIcons(subtaskID) {
-    return `<img id="edit-subtask(${subtaskID})" src="./assets/icons/add_task/edit.svg">
+    return `<img class="button-transition" id="edit-subtask(${subtaskID})" src="./assets/icons/add_task/edit.svg">
             <div class="subtask-divider"></div>
-            <img id="delete-subtask(${subtaskID})" onclick="deleteSubtaskInput(${subtaskID})" src="./assets/icons/add_task/delete.svg">`
+            <img class="button-transition" id="delete-subtask(${subtaskID})" onclick="deleteSubtaskInput(${subtaskID})" src="./assets/icons/add_task/delete.svg">`
 }
