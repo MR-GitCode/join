@@ -1,5 +1,6 @@
 import {loadData, saveData, getLoggedInUser} from '../db.js';
 import {addEditTaskEventListener} from "./board_overlay_task_edit.js";
+import { updateTasks } from "./board.js";
 
 document.addEventListener("DOMContentLoaded", async () => {});
 
@@ -16,10 +17,37 @@ export function addTaskEventListeners() {
             taskContainer.innerHTML = loadTaskOverlay(user.tasks[taskID]);
             addTaskAssigned(user.tasks[taskID]);
             addTaskSubtask(user.tasks[taskID].subtasks, 'subtasks-select-task', 'show');
+            addSubtasksStatusEventListener(user, taskID);
             addCloseEventListener();
             addEditTaskEventListener(taskID);
             });
         });
+}
+
+/**
+ * Changed and saved the subtask status. 
+ * @param {object} user This is the object of the user.
+ * @param {number} taskID This is the index of the task. 
+ */
+function addSubtasksStatusEventListener(user, taskID) {
+    document.querySelectorAll('.subtask-status').forEach(subtaskImg => {
+        subtaskImg.addEventListener("click", () => {
+            let doneSrc = './assets/icons/board/done_button.svg'
+            let openSrc = './assets/icons/board/open_button.svg'
+            let subtaskStatus
+            let subtaskId
+            if (subtaskImg.src.endsWith('open_button.svg')) {
+                subtaskImg.src = doneSrc;
+                subtaskStatus = "done";
+                subtaskId = subtaskImg.id
+            } else {
+                subtaskImg.src = openSrc;
+                subtaskStatus = "open";
+                subtaskId = subtaskImg.id
+            }           
+            saveData(`users/${user.id}/tasks/${taskID}/subtasks/${subtaskId}/status`, subtaskStatus)
+        })
+    })
 }
 
 /**
@@ -44,7 +72,7 @@ export function addTaskSubtask(subtasks, subtaskContainerID, checkValue) {
     if (checkValue === 'show') { 
         for (let indexAssigned = 0; indexAssigned < subtasks.length; indexAssigned++) {
             let subtask = subtasks[indexAssigned];
-            subtaskContainer.innerHTML += loadTaskSubtasks(subtask);
+            subtaskContainer.innerHTML += loadTaskSubtasks(subtask, indexAssigned);
         }
     } else {
         for (let indexAssigned = 0; indexAssigned < subtasks.length; indexAssigned++) {
@@ -72,4 +100,5 @@ export function addCloseEventListener() {
  */
 function closeOverlaySelectTask() {
     document.getElementById('overlay-select-task').classList.add('hidden')
+    updateTasks();
 }

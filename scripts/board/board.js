@@ -24,7 +24,21 @@ function openOverlay() {
     overlayContainer.innerHTML = loadOverlayAddTaskBoard();
     overlayContainer.classList.add('active');
     document.body.classList.add('no-scroll');
+    addCloseEventListener();
     addCreateTaskEventListener();
+}
+
+/**
+ * Closes the overlay when a click occurs outside the content area (".content-add-task") or on the cross.
+ */
+function addCloseEventListener() {
+    document.getElementById("overlay-add-task").addEventListener("click", function (event) {
+        let overlayContainer = document.querySelector(".content-add-task");
+        let closeButton = document.getElementById('close-overlay');
+        if (closeButton.contains(event.target) || (!overlayContainer.contains(event.target) && !event.target.closest('.button-transition'))) {
+            closeOverlay();
+        }
+    });
 }
 
 /**
@@ -37,16 +51,6 @@ function closeOverlay() {
     overlayContainer.innerHTML = "";
     updateTasks();
 }
-
-/**
- * Closes the overlay when a click occurs outside the content area (".content-add-task").
- */
-document.getElementById("overlay-add-task").addEventListener("click", function (event) {
-    let overlayContainer = document.querySelector(".content-add-task");
-    if (!overlayContainer.contains(event.target)) {
-        closeOverlay();
-    }
-});
 
 /**
  * Updates the display of tasks on the board.

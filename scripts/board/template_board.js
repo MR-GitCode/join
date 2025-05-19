@@ -70,11 +70,15 @@ function loadNoDoneCard() {
             </div>`
 }
 
+/**
+ * 
+ * @returns Returns the template of the overlay for the add task.
+ */
 function loadOverlayAddTaskBoard() {
     return `<div class="content-add-task bg-overlay">
                 <div>
                     <h1>Add Task</h1>
-                    <div id="close-overlay" onclick="closeOverlay()">
+                    <div id="close-overlay">
                         <img src="./assets/icons/board/close.svg" alt="close">
                     </div>
                     <form class="form-add-task"  action="">
@@ -271,9 +275,9 @@ function loadTaskAssigned(contact) {
  * @param {object} subtask The subtask object containing all necessary subtask details.
  * @returns Return the template of the subtask for the task.
  */
-function loadTaskSubtasks(subtask) {
+function loadTaskSubtasks(subtask, id) {
     return `<div class="subtask-select-task">
-                <img src="./assets/icons/board/${subtask.status}_button.svg">
+                <img id="${id}" class="subtask-status" class src="./assets/icons/board/${subtask.status}_button.svg">
                 <p>${subtask.description}</p>                    
             </div>`
 }

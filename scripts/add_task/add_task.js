@@ -383,7 +383,6 @@ function getNextFreeId(tasksData) {
  * -clear the input fields
  */
 export function createTask() {
-    console.log(selectedUsers);
     let user = getLoggedInUser();
     let tasksData = user.tasks || {};
     let nextTaskID = getNextFreeId(tasksData);
@@ -400,7 +399,7 @@ export function createTask() {
     };
     console.log("subtasks", task.subtasks);
     console.log("new task:", task);
-    saveData(`users/${user.id}/tasks`, task);
+    saveData(`users/${user.id}/tasks//${task.id}`, task);
     clearTask();
 }
 
@@ -446,7 +445,6 @@ export function getSubtaskOfTask() {
  * @returns Returns the assigned contacts for the task.
  */
 export function getAssignedContacts(user) {
-    console.log(selectedUsers);
     let assignedContactsIDs = Array.from(selectedUsers);
     let assignedContacts = []; 
     for (let index = 0; index < assignedContactsIDs.length; index++) {
