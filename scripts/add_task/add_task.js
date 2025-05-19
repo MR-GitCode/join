@@ -312,7 +312,6 @@ function addCategoryEventListener() {
     }
 }
 
-
 /**
  * Event listener to close the dropdown menu of "subtask".
  */
@@ -331,7 +330,9 @@ document.addEventListener('click', function (event) {
     if (event.target.matches("input[required]")) {
         event.target.classList.remove("error-border");
         let errorMessage = event.target.parentNode.querySelector(".error-message");
-        errorMessage.remove();
+        if (errorMessage) {
+            errorMessage.remove();       
+        }
     }
 });
 
@@ -350,7 +351,7 @@ function clearTask() {
 /**
  * Eventlistener for the "create taks" button.
  */
-function addCreateTaskEventListener() {
+export function addCreateTaskEventListener() {
    let createTaskButton = document.getElementById('bt-create-task');
 if (createTaskButton) {
     createTaskButton.addEventListener('click', function () {
@@ -381,7 +382,8 @@ function getNextFreeId(tasksData) {
  * -Take the informations of the inputfield and the free id and create a object
  * -clear the input fields
  */
-function createTask() {
+export function createTask() {
+    console.log(selectedUsers);
     let user = getLoggedInUser();
     let tasksData = user.tasks || {};
     let nextTaskID = getNextFreeId(tasksData);
@@ -432,6 +434,9 @@ export function getSubtaskOfTask() {
         }
         subtasks.push(subtask);    
     }
+    if (subtasks.length === 0) {
+        subtasks = ""
+    }
     return subtasks;
 }
 
@@ -441,6 +446,7 @@ export function getSubtaskOfTask() {
  * @returns Returns the assigned contacts for the task.
  */
 export function getAssignedContacts(user) {
+    console.log(selectedUsers);
     let assignedContactsIDs = Array.from(selectedUsers);
     let assignedContacts = []; 
     for (let index = 0; index < assignedContactsIDs.length; index++) {
@@ -451,6 +457,9 @@ export function getAssignedContacts(user) {
             id : user.contacts[contactID].id
         }
         assignedContacts.push(assignedContact);
+    }
+    if (assignedContacts.length === 0) {
+        assignedContacts = ""
     }
     return assignedContacts;
 }

@@ -1,5 +1,5 @@
 import {loadData, saveData, getLoggedInUser} from '../db.js';
-import {selectedUsers, getContactsDatabank} from '../add_task/add_task.js';
+import {selectedUsers, addCreateTaskEventListener} from '../add_task/add_task.js';
 import {addTaskEventListeners} from './board_overlay_task.js';
 
 window.openOverlay = openOverlay,
@@ -24,6 +24,7 @@ function openOverlay() {
     overlayContainer.innerHTML = loadOverlayAddTaskBoard();
     overlayContainer.classList.add('active');
     document.body.classList.add('no-scroll');
+    addCreateTaskEventListener();
 }
 
 /**
@@ -34,6 +35,7 @@ function closeOverlay() {
     overlayContainer.classList.add('hidden');
     document.body.classList.remove('no-scroll');
     overlayContainer.innerHTML = "";
+    updateTasks();
 }
 
 /**

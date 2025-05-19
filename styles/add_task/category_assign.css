@@ -72,6 +72,22 @@
     cursor: pointer;
 }
 
+.menu-category{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    height: 48px;
+    padding: 0 16px;
+    margin: 1px 0;
+}
+
+.menu-category:hover{
+    background-color: rgb(238, 238, 238);
+    border-radius: 10px;
+    cursor: pointer; 
+}
+
 .bg-drop-down{
     background: white;
     border-radius: 10px;

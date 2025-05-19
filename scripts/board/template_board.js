@@ -79,7 +79,7 @@ function loadOverlayAddTaskBoard() {
                     </div>
                     <form class="form-add-task"  action="">
                         <div class="left-form">
-                            <div>
+                            <div class="bg-error-message">
                                 <label for="title">Title<p class="required-star">*</p></label>
                                 <input id="input-title" type="text" name="title" placeholder="Enter a title" required>
                             </div>
@@ -87,7 +87,7 @@ function loadOverlayAddTaskBoard() {
                                 <label for="description">Description</label>
                                 <textarea name="description" id="description" placeholder="Enter a Description"></textarea>
                             </div>
-                            <div>
+                            <div  class="bg-error-message">
                                 <label for="date">Due date<p class="required-star">*</p></label>
                                 <input id="input-date" type="date" lang="en" placeholder="dd/mm/yyyy"  required>
                             </div>                      
@@ -128,7 +128,7 @@ function loadOverlayAddTaskBoard() {
                                 <div id="selected-contacts"></div>
                             </div>
 
-                            <div>
+                            <div class="bg-error-message">
                                 <label for="category">Category<p class="required-star">*</p></label>
                                 <div class="bg-drop-down">
                                     <div onclick="openCategoryMenu()" class="input-menu">
@@ -137,11 +137,11 @@ function loadOverlayAddTaskBoard() {
                                         <img id="arrow-category" src="./assets/icons/add_task/arrow_drop_down_down.svg">
                                     </div>
                                     <div class="menu-drop-down" id="categories">
-                                        <div class="menu-option category-menu" onclick="selectCategory(1)">
+                                        <div class="menu-category category-menu" onclick="selectCategory(1)">
                                             <input type="color" class="category-colorpicker" id="category-cpicker-1" value="#1ed6c1" onchange="colorChanged()" onblur="colorPickerBlur()">
                                             <p id="category-text-1">Technical Task</p>
                                         </div>
-                                        <div class="menu-option category-menu" onclick="selectCategory(2)">
+                                        <div class="menu-category category-menu" onclick="selectCategory(2)">
                                             <input type="color" class="category-colorpicker" id="category-cpicker-2" value="#0037ff" onchange="colorChanged()" onblur="colorPickerBlur()">
                                             <p id="category-text-2">User Story</p>
                                         </div>
@@ -173,7 +173,7 @@ function loadOverlayAddTaskBoard() {
                             <p>Clear</p>
                             <img src="./assets/icons/close.svg">
                         </div>
-                        <div onclick="createTask()" id="bt-create-task">
+                        <div id="bt-create-task">
                             <p>Create Task</p>
                             <img src="./assets/icons/check.svg">
                         </div>

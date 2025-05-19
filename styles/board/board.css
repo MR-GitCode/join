@@ -203,3 +203,7 @@ body.no-scroll {
     border: 1px dashed #A8A8A8;
     margin: 10px;
 }
+
+.bg-error-message p {
+    background-color: white !important;
+}
