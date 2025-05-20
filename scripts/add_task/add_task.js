@@ -399,7 +399,7 @@ export function createTask() {
     };
     console.log("subtasks", task.subtasks);
     console.log("new task:", task);
-    saveData(`users/${user.id}/tasks//${task.id}`, task);
+    saveData(`users/${user.id}/tasks/${task.id}`, task);
     clearTask();
 }
 
