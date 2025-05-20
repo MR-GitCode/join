@@ -28,8 +28,10 @@ function loadCard(task) {
  * @param {number} doneSubtaks The amount of the done subtasks
  * @returns 
  */
-function loadProgressBar(task, doneSubtaks) {
-    return `<div class="progress-bar"></div>
+function loadProgressBar(task, doneSubtaks, percent) {
+    return `<div class="progress-bar">
+                <div style="width: ${percent}%" class="filling-progress-bar"></div>
+            </div>
             <div class="card-subtasks">${doneSubtaks}/${task.subtasks.length} Subtasks</div>`
 }
 

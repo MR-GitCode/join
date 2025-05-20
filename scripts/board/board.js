@@ -68,7 +68,7 @@ export function updateTasks() {
         columnOfCard.innerHTML += loadCard(task);
         loadAssignedContacts(task);           
         loadSubtaskBar(task);
-        loadPriority(task)     
+        loadPriority(task);    
     }
     checkContentOfColumns();
     addTaskEventListeners();
@@ -86,7 +86,8 @@ function loadSubtaskBar(task) {
             if (sub.status === "done") {
                 doneSubtasks++;}
             }
-        subtaskContainer.innerHTML = loadProgressBar(task, doneSubtasks);  
+        let percent = doneSubtasks/task.subtasks.length*100;
+        subtaskContainer.innerHTML = loadProgressBar(task, doneSubtasks, percent);  
     } else {
         subtaskContainer.innerHTML = "";
     }

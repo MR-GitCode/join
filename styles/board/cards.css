@@ -91,6 +91,12 @@
     background-color: #F4F4F4;
 }
 
+.filling-progress-bar{
+    background-color: #4589FF;
+    border-radius: 16px;
+    height: 8px;
+}
+
 .card-subtasks{
     font-size: 12px;
     font-weight: 400;
