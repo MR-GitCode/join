@@ -43,7 +43,7 @@ function moveToColumn(column) {
     let user = getLoggedInUser();
     let taskData = user.tasks[draggedTask];
     taskData.status = `${column}`;
-    saveData(`users/${user.id}/tasks`, taskData);
+    saveData(`users/${user.id}/tasks/${taskData.id}`, taskData);
     updateTasks()
   }
 
