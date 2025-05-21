@@ -2,38 +2,37 @@ import { loadData, getUsers } from "./db.js";
 
 window.fillForm = fillForm;
 
-/**
- * Eventlister for the login buttons.
- */
 document.addEventListener("DOMContentLoaded", () => {
-    let loginForm = document.getElementById('loginForm');
+    const loginForm = document.getElementById('loginForm');
+    const guestBtn = document.getElementById('guestBtn');
+
     if (loginForm) {
-        loginForm.addEventListener('submit', async function (submit) {
-            submit.preventDefault();
-            console.log('Login');
-            await loadData();
-            loginUser();
+        loginForm.addEventListener('submit', async function (event) {
+            event.preventDefault();
+            console.log('Login...');
+            await loadData();       // Nutzer laden
+            loginUser();            // Versuche regulären Login
         });
     }
 
-    let guestBtn = document.getElementById('guestBtn');
     if (guestBtn) {
-        guestBtn.addEventListener('click', function () {
-            console.log('GuestLogin');
+        guestBtn.addEventListener('click', async function () {
+            console.log('Gast-Login...');
+            await loadData();       // WICHTIG: Daten müssen geladen sein
             loginAsGuest();
         });
     }
 });
 
 /**
- * Prüft Login-Daten
+ * Führt einen regulären Login durch
  */
-async function loginUser() {
-    const users = getUsers();
-    const email = document.getElementById('loginEmail');
-    const password = document.getElementById('loginPassword');
+function loginUser() {
+    const users = getUsersSafe();
+    const email = document.getElementById('loginEmail')?.value;
+    const password = document.getElementById('loginPassword')?.value;
 
-    const user = users.find(u => u.email === email.value && u.password === password.value);
+    const user = users.find(u => u.email === email && u.password === password);
 
     if (user) {
         localStorage.setItem('loggedInUser', JSON.stringify(user));
@@ -44,27 +43,39 @@ async function loginUser() {
 }
 
 /**
- * Gast-Login: nimmt Dummy-Daten oder ersten User
+ * Führt einen Gast-Login durch
  */
 function loginAsGuest() {
-    const guestUser = {
-        id: 'guest',
-        name: 'Gast',
-        email: 'guest@join.de'
-    };
+    const users = getUsersSafe();
 
-    localStorage.setItem('loggedInUser', JSON.stringify(guestUser));
-    window.location.href = 'summary.html';
+    const guestUser = users.find(u => u.id === 0 || u.name.toLowerCase() === 'gast');
+
+    if (guestUser) {
+        localStorage.setItem('loggedInUser', JSON.stringify(guestUser));
+        window.location.href = 'summary.html';
+    } else {
+        alert("Gast-Benutzer konnte nicht gefunden werden!");
+        console.error("Verfügbare Benutzer:", users);
+    }
 }
 
 /**
- * Füllt das Login-Formular testweise mit Daten
+ * Füllt das Formular testweise mit einem Beispielbenutzer
  */
 function fillForm() {
-    const users = getUsers();
+    const users = getUsersSafe();
     if (users.length >= 2) {
         document.getElementById("loginEmail").value = users[1].email;
         document.getElementById("loginPassword").value = users[1].password;
     }
+}
+
+/**
+ * Liefert Benutzerliste als Array (sicher)
+ */
+function getUsersSafe() {
+    const rawUsers = getUsers();
+    if (!rawUsers) return [];
+    return Array.isArray(rawUsers) ? rawUsers : Object.values(rawUsers);
 }
 
