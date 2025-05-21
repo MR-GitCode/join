@@ -112,6 +112,8 @@ export function addCloseEventListener() {
 /**
  * Closes the "Task" overlay by adding the 'hidden' class. 
  */
-export function closeOverlaySelectTask() {
+export async function closeOverlaySelectTask() {
     document.getElementById('overlay-select-task').classList.add('hidden')
+    await loadData();
+    updateTasks ()
 }

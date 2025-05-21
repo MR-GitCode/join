@@ -11,6 +11,8 @@ window.closeOverlay = closeOverlay,
 document.addEventListener("DOMContentLoaded", async () => {
     await loadData();
     updateTasks();
+    addTaskEventListeners();
+    searchingTaskEventListener();
 });
 
 /**
@@ -45,11 +47,53 @@ function addCloseEventListener() {
  * Closes the "Add Task" overlay by adding the 'hidden' class.
  */
 function closeOverlay() {
-    let overlayContainer = document.getElementById("overlay-add-task")
+    let overlayContainer = document.getElementById("overlay-add-task");
     overlayContainer.classList.add('hidden');
     document.body.classList.remove('no-scroll');
     overlayContainer.innerHTML = "";
     updateTasks();
+}
+
+/**
+ * Adds an event listener to the task search input field and find the task matching with the input value.
+ */
+function searchingTaskEventListener() {
+    document.getElementById('input-find-task').addEventListener('keydown', (event) => {
+            let findTaskInput = event.target.value.toLowerCase();
+            let tasks = getLoggedInUser().tasks;
+            if (findTaskInput.length <2) {
+                document.querySelectorAll('.columns-content').forEach(column => {
+                    column.innerHTML = "";
+                });
+                return;
+            }
+            let findTask = tasks.filter(task =>
+                task.title.toLowerCase().includes(findTaskInput) || task.description.toLowerCase().includes(findTaskInput));
+            showFindTask(findTask);        
+        },
+    );
+}
+
+/**
+ * Displays the filtered tasks in their respective columns based on status.
+ * @param {object} findTask  Object of filtered task objects to display.
+ */
+function showFindTask(findTask) {
+    document.querySelectorAll('.columns-content').forEach(column => {
+        column.innerHTML = "";
+    });
+    for (let taskIndex = 0; taskIndex < findTask.length; taskIndex++) {
+        let task = findTask[taskIndex];
+        if (task) {
+            let status = findTask[taskIndex].status;
+            let columnOfCard = document.getElementById(`${status}`);
+            columnOfCard.innerHTML += loadCard(task);
+            loadAssignedContacts(task);           
+            loadSubtaskBar(task);
+            loadPriority(task); 
+        }
+    }
+    checkContentOfColumns();
 }
 
 /**
@@ -73,7 +117,6 @@ export function updateTasks() {
         }
     }
     checkContentOfColumns();
-    addTaskEventListeners();
 } 
 
 /**
