@@ -368,13 +368,11 @@ if (createTaskButton) {
  */
 function getNextFreeId(tasksData) {
     if (!tasksData) return 0;
-    let ids = Object.keys(tasksData).map(key => parseInt(key)).sort((a, b) => a - b);
-    for (let i = 0; i < ids.length; i++) {
-        if (ids[i] !== i) {
-            return i;
-        }
+    let i = 0;
+    while (tasksData[i] != null) {
+        i++;
     }
-    return ids.length;
+    return i;
 }
 
 /**
@@ -397,8 +395,8 @@ export function createTask() {
         subtasks: getSubtaskOfTask(),
         status: 'todo',
     };
-    console.log("subtasks", task.subtasks);
-    console.log("new task:", task);
+    // console.log("subtasks", task.subtasks);
+    // console.log("new task:", task);
     saveData(`users/${user.id}/tasks/${task.id}`, task);
     clearTask();
 }

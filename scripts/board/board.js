@@ -63,12 +63,14 @@ export function updateTasks() {
     });
     for (let taskIndex = 0; taskIndex < tasksData.length; taskIndex++) {
         let task = tasksData[taskIndex];
-        let status = tasksData[taskIndex].status;
-        let columnOfCard = document.getElementById(`${status}`);
-        columnOfCard.innerHTML += loadCard(task);
-        loadAssignedContacts(task);           
-        loadSubtaskBar(task);
-        loadPriority(task);    
+        if (task) {
+            let status = tasksData[taskIndex].status;
+            let columnOfCard = document.getElementById(`${status}`);
+            columnOfCard.innerHTML += loadCard(task);
+            loadAssignedContacts(task);           
+            loadSubtaskBar(task);
+            loadPriority(task); 
+        }
     }
     checkContentOfColumns();
     addTaskEventListeners();

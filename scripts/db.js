@@ -29,11 +29,11 @@ export async function loadData() {
     } catch (error) {
         console.error('Fehler beim Laden der Daten:', error);
     }
-    loggedInUser = users.find(u => u.login == 1);  
+    loggedInUser = users.find(u => u.login == 1);     
 };
 
 /**
- * This function safes the data in the database.
+ * This function saves the data in the database.
  * 
  * @param {string} path - The subpath to the database given from the saveData function.
  * @param {string} data - The data to save given from the saveData function.
@@ -52,7 +52,7 @@ async function transmitData(path = '', data = {}) {
 
 //NEW saveData
 export async function saveData(path = '', data = null) {
-    console.log(path, data);
+    // console.log(path, data);
     if (data) {
         transmitData(path, data)
     }
@@ -65,18 +65,13 @@ export async function saveData(path = '', data = null) {
  * @param {*} id - The id of the data to be deleted.
  */
 export async function deleteData(path = '', id) {
-    switch (id) {
-        case 8:
-            break;
-
-        default:
-            let response = await fetch(`${BASE_URL}/${path}/${id}.json`, {
-                method: 'DELETE',
-            });
-            return await response.json();
-            break;
-    }
+    let response = await fetch(`${BASE_URL}/${path}/${id}.json`, {
+        method: 'DELETE',
+    });
+    await loadData();
+    return await response.json();
 };
+
 
 //löschen wenn es nicht mehr gebraucht wird
 export function getTasks() {

@@ -1,4 +1,4 @@
-import {loadData, saveData, getLoggedInUser} from '../db.js';
+import {loadData, deleteData, saveData, getLoggedInUser} from '../db.js';
 import {addEditTaskEventListener} from "./board_overlay_task_edit.js";
 import { updateTasks } from "./board.js";
 
@@ -20,8 +20,22 @@ export function addTaskEventListeners() {
             addSubtasksStatusEventListener(user, taskID);
             addCloseEventListener();
             addEditTaskEventListener(taskID);
+            addDeliteTask(user, taskID);
             });
         });
+}
+
+/**
+ * Deletes the task and reloads the board.
+ * @param {object} user This is the object of user with all Informations.
+ * @param {number} taskID This is the ID of the task.
+ */
+async function addDeliteTask(user, taskID) {
+    document.getElementById('delete-task').addEventListener("click", async () => {
+        await deleteData(`users/${user.id}/tasks/`, taskID);
+        closeOverlaySelectTask();
+        updateTasks();       
+    })
 }
 
 /**
@@ -100,5 +114,4 @@ export function addCloseEventListener() {
  */
 export function closeOverlaySelectTask() {
     document.getElementById('overlay-select-task').classList.add('hidden')
-    updateTasks();
 }

@@ -84,6 +84,10 @@ function editPriority(taskInfo) {
     }
 }
 
+/**
+ * Add a event listener for the ok button and send editing informations to the database.
+ * @param {object} taskInfo This is the task object with all informations.
+ */
 function addEditButtonEventListener (taskInfo) {
     let user = getLoggedInUser();
     document.getElementById('bt-edit').addEventListener("click", function () {
@@ -147,9 +151,7 @@ function getSubtaskOfTaskEdit(subtasksInfo) {
             subStatus = subtasksInfo[subtaskID].status; 
         } else {
             subStatus = "open"; 
-        }
-        console.log("status", subStatus);
-        
+        }      
         let subtask = {
             description : subDescription,
             status : subStatus
