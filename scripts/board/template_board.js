@@ -45,7 +45,7 @@ function loadBagesForCard(assignedContact) {
 }
 
 function loadPriorityImage(task) {
-    return `<img src="./assets/icons/add_task/Prio_${task.priority}.svg">`
+    return `<img src="./assets/icons/add_task/Prio_${task.priority}.svg" onerror="this.style.display='none';">`
 }
 
 /**
@@ -218,7 +218,7 @@ function loadTaskOverlay(task) {
                         <p>${task.enddate}</p>
                         <div class="priority-gap">
                             <p class="capitalize">${task.priority}</p>
-                            <img src="./assets/icons/add_task/Prio_${task.priority}.svg">
+                            <img src="./assets/icons/add_task/Prio_${task.priority}.svg" onerror="this.style.display='none';">
                         </div>
                     </div>
                 </div>

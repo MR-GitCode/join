@@ -4,7 +4,7 @@ import { addCloseEventListener } from "../board/board_overlay_task.js";
 let subtaskTemplateLoaded = false;
 let subtaskID = 0;
 export let selectedUsers = new Set(); //Set doesn't allow same elements.
-export let selectedPriority = "";
+export let selectedPriority = "none";
 let selectedTasks = [];
 let isColorpickerChanged = false;
 
@@ -50,7 +50,7 @@ function resetPriority() {
         document.getElementById(`bt-${piorities[i]}`).classList.remove(`bt-${piorities[i]}`);
         document.getElementById(`svg-${piorities[i]}`).src = `./assets/icons/add_task/Prio_${piorities[i]}.svg`;
     }
-    selectedPriority = "";
+    selectedPriority = "none";
 }
 
 /**

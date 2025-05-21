@@ -78,7 +78,7 @@ function editTaskAssigned (task) {
  */
 function editPriority(taskInfo) {
     let priorityName = taskInfo.priority;  
-    if (priorityName) {
+    if (priorityName && priorityName !="none") {
         document.getElementById(`bt-${priorityName}`).classList.add(`bt-${priorityName}`);
         document.getElementById(`svg-${priorityName}`).src = `./assets/icons/add_task/Prio_${priorityName}_white.svg`;
     }
