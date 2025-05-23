@@ -1,5 +1,6 @@
 import {saveData, getLoggedInUser} from '../db.js';
 import {updateTasks} from '../board/board.js'
+import {addTaskEventListeners} from './board_overlay_task.js';
 
 window.draggedTask = null,
 
@@ -44,7 +45,8 @@ function moveToColumn(column) {
     let taskData = user.tasks[draggedTask];
     taskData.status = `${column}`;
     saveData(`users/${user.id}/tasks/${taskData.id}`, taskData);
-    updateTasks()
+    updateTasks();
+    addTaskEventListeners();
   }
 
 //muss noch verändert werden
