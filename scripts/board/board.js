@@ -58,13 +58,16 @@ function closeOverlay() {
  * Adds an event listener to the task search input field and find the task matching with the input value.
  */
 function searchingTaskEventListener() {
-    document.getElementById('input-find-task').addEventListener('keydown', (event) => {
+    document.getElementById('input-find-task').addEventListener('input', (event) => {
             let findTaskInput = event.target.value.toLowerCase();
             let tasks = getLoggedInUser().tasks;
             if (findTaskInput.length <2) {
                 document.querySelectorAll('.columns-content').forEach(column => {
                     column.innerHTML = "";
                 });
+                if (findTaskInput === "") {
+                    updateTasks()
+                }
                 return;
             }
             let findTask = tasks.filter(task =>
