@@ -89,12 +89,17 @@
     width: 128px;
     border-radius: 8px;
     background-color: #F4F4F4;
+    position: relative;
 }
 
 .filling-progress-bar{
     background-color: #4589FF;
     border-radius: 16px;
     height: 8px;
+}
+
+.info-text{
+    display: none;
 }
 
 .card-subtasks{

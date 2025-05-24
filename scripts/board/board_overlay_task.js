@@ -100,13 +100,17 @@ export function addTaskSubtask(subtasks, subtaskContainerID, checkValue) {
  * Close the overlay of the task if you click on the cross or outside of the overlay.
  */
 export function addCloseEventListener() {
-    document.getElementById("overlay-select-task").addEventListener("click", function (event) {
+    let overlayContainer = document.getElementById("overlay-select-task")
+    if (overlayContainer) {
+        overlayContainer.addEventListener("click", function (event) {
         let overlayContainer = document.querySelector(".content-select-task");
         let closeButton = document.getElementById('close-overlay-select-task');
         if (closeButton.contains(event.target) || (!overlayContainer.contains(event.target) && !event.target.closest('.button-transition'))) {
             closeOverlaySelectTask();
         }
     });
+    }
+
 }
 
 /**
