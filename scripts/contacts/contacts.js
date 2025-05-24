@@ -14,15 +14,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 function addContactList() {
     let contactList = [];
     let contacts = getLoggedInUser().contacts;
-    console.log(contacts);
     if (contacts) {
        for (let i = 0; i < contacts.length; i++) {
         contactList.push(contacts[i].name)
         } 
     }
-    contactList.sort();
+    contactList.sort()
     addLettersToList(contactList);
     addContacts(contacts);
+    addContactEventListener();
 }
 
 /**
@@ -31,18 +31,17 @@ function addContactList() {
  */
 function addLettersToList(contactList) {
     let contactListContainer = document.getElementById('contact-list');
-    let firstLetters = contactList.map(name => name[0].toLowerCase());
+    let firstLetters = contactList.map(name => name[0].toLowerCase());  
     let lettersForAlphabet = [...new Set(firstLetters)];
     for (let i = 0; i < lettersForAlphabet.length; i++) {
         let letter = lettersForAlphabet[i];
         contactListContainer.innerHTML += loadAlphabet(letter);
     }
-    console.log(contactList, firstLetters, lettersForAlphabet);  
 }
 
 /**
- * 
- * @param {object} contacts This is the object of all contacts 
+ * Inserts each contact into the corresponding alphabetic section.
+ * @param {object} contacts This is the object of all contacts.
  */
 function addContacts(contacts) {
     for (let i = 0; i < contacts.length; i++) {
@@ -50,6 +49,9 @@ function addContacts(contacts) {
         let firstLetterOfContact = contact[0].toLowerCase();
         let containerOfLetter = document.getElementById(`letter-${firstLetterOfContact}`); 
         containerOfLetter.innerHTML += loadRefOfContact(contacts[i]);
-        console.log(contact, firstLetterOfContact);
     }
+}
+
+function addContactEventListener() {
+    
 }
