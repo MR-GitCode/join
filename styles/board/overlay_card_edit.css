@@ -21,9 +21,9 @@
 
 .form-scrollbar::-webkit-scrollbar {
     width: 8px;
-  }
+}
   
-  .form-scrollbar::-webkit-scrollbar-track {
+.form-scrollbar::-webkit-scrollbar-track {
     background: transparent;
 }
   
@@ -39,7 +39,6 @@
     padding-bottom: 8px;
     color: #2A3647;
 }
-
 
 .form-task-edit input{
     border: 1px solid #D1D1D1;

@@ -107,15 +107,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* position: relative; */
 }
 
-.card-badges{
+.card-badges {
     display: flex;
-    /* position: absolute; */
-    gap: 0px;
+
 }
 
 .card-badges img {
-    width: 36px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-left: -10px;
+    z-index: 1;
+}
+
+.card-badges img:first-child {
+    margin-left: 0;
 }

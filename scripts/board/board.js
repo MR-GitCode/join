@@ -104,14 +104,13 @@ function showFindTask(findTask) {
  */
 export function updateTasks() {
     let user = getLoggedInUser();
-    let tasksData = user.tasks;
+    let tasksData = Object.values(user.tasks);
     document.querySelectorAll('.columns-content').forEach(column => {
         column.innerHTML = "";
     });
-    for (let taskIndex = 0; taskIndex < tasksData.length; taskIndex++) {
-        let task = tasksData[taskIndex];
+      for (let task of tasksData) {
         if (task) {
-            let status = tasksData[taskIndex].status;
+            let status = task.status;
             let columnOfCard = document.getElementById(`${status}`);
             columnOfCard.innerHTML += loadCard(task);
             loadAssignedContacts(task);           

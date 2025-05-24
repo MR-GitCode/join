@@ -115,13 +115,13 @@
     display: flex;
     justify-content: space-around;
     gap: 6px;
+    height: 100%
 }
 
 .columns {
     display: flex;
     flex-direction: column;
     width: 250px;
-    height: 100vh;
 }
 
 .column-titles {
@@ -133,6 +133,7 @@
     font-size: 20px;
     padding-bottom: 28px;
     padding: 0 13px;
+    height: 30px;
 }
 
 .column-titles svg{
@@ -197,11 +198,11 @@ body.no-scroll {
     transition: transform 0.2s ease;
 }
 
-.drag-area {
-    height: 180px;
-    border-radius: 30px;
+.highlight-column {
+    background-color: rgba(0, 0, 0, 0.05);
     border: 1px dashed #A8A8A8;
-    margin: 10px;
+    border-radius: 24px;
+    transition: background-color 0.3s ease;
 }
 
 .bg-error-message p {

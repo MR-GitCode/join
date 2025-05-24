@@ -2,7 +2,9 @@ import {loadData, deleteData, saveData, getLoggedInUser} from '../db.js';
 import {addEditTaskEventListener} from "./board_overlay_task_edit.js";
 import { updateTasks } from "./board.js";
 
-document.addEventListener("DOMContentLoaded", async () => {});
+document.addEventListener("DOMContentLoaded", async () => {
+    addCloseEventListener()
+});
 
 /**
   * Open the overlay of the task if you click on the taskcard.
@@ -18,7 +20,6 @@ export function addTaskEventListeners() {
             addTaskAssigned(user.tasks[taskID]);
             addTaskSubtask(user.tasks[taskID].subtasks, 'subtasks-select-task', 'show');
             addSubtasksStatusEventListener(user, taskID);
-            addCloseEventListener();
             addEditTaskEventListener(taskID);
             addDeliteTask(user, taskID);
             });
@@ -33,8 +34,7 @@ export function addTaskEventListeners() {
 async function addDeliteTask(user, taskID) {
     document.getElementById('delete-task').addEventListener("click", async () => {
         await deleteData(`users/${user.id}/tasks/`, taskID);
-        closeOverlaySelectTask();
-        updateTasks();       
+        closeOverlaySelectTask();   
     })
 }
 
@@ -115,6 +115,6 @@ export function addCloseEventListener() {
 export async function closeOverlaySelectTask() {
     document.getElementById('overlay-select-task').classList.add('hidden')
     await loadData();
-    updateTasks ();
+    updateTasks();
     addTaskEventListeners();
 }
