@@ -34,7 +34,7 @@ function createGreeting(firstName, lastName) {
   if (hour < 12) {
     greeting = "Good morning";
   } else if (hour < 18) {
-    greeting = "Good day";
+    greeting = "Good afternoon";
   } else {
     greeting = "Good evening";
   }
@@ -43,10 +43,16 @@ function createGreeting(firstName, lastName) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const firstName = "Sarah";
-  const lastName = "Müller";
-  document.getElementById("greeting").innerHTML = createGreeting(firstName, lastName);
+  const userData = localStorage.getItem("user");
+
+  if (userData) {
+    const { firstName, lastName } = JSON.parse(userData);
+    document.getElementById("greeting").innerHTML = createGreeting(firstName, lastName);
+  } else {
+    document.getElementById("greeting").textContent = "Welcome!";
+  }
 });
+
 
 
 
