@@ -55,6 +55,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+document.addEventListener("DOMContentLoaded", function () {
+  const profileImg = document.getElementById('profile-img');
+  const navbar = document.getElementById('navbar');
+
+  function toggleDropdown(e) {
+    e.stopPropagation();
+    navbar.classList.toggle('show');
+  }
+
+  function closeDropdown(e) {
+    if (!navbar.contains(e.target) && !profileImg.contains(e.target)) {
+      navbar.classList.remove('show');
+    }
+  }
+
+  profileImg.addEventListener('click', toggleDropdown);
+  document.addEventListener('click', closeDropdown);
+});
+
+
+
+
 
 
 

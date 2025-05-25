@@ -235,3 +235,65 @@
   font-weight: bold;      /* Fett */
   font-size: 64px;        /* Etwas größer */
 }
+
+
+
+
+    .user-info {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .user-info img {
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+    }
+
+    .dropdown-container {
+      position: relative;
+    }
+
+.navbar-dropdown {
+  position: absolute;
+  top: 100%; /* ← Statt bottom: 100% */
+  right: 0;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  min-width: 150px;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-10px); /* ← von oben nach unten */
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+}
+
+.navbar-dropdown.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+
+    .navbar-dropdown a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: black;
+      transition: background 0.2s;
+    }
+
+    .navbar-dropdown a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .right-side,
+header,
+.user-info {
+  overflow: visible !important;
+  position: relative !important;
+  z-index: auto !important;
+}
