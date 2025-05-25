@@ -297,3 +297,10 @@ header,
   position: relative !important;
   z-index: auto !important;
 }
+
+* {
+    scroll-behavior: smooth;
+    font-family: 'inter', sans-serif;
+    margin: 0;
+    overflow: visible;
+}
