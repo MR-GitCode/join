@@ -1,86 +1,86 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./styles/styleSummary.css">
-    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.svg">
-    <title>Join</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./styles/summary/styleSummary.css" />
+  <link rel="icon" type="image/x-icon" href="assets/icons/favicon.svg" />
+  <title>Join</title>
 </head>
 <body>
-    <section class="left-side">
-        <a href="./index.html"><img class="join-logo" src="./assets/icons/logo_white.svg" alt="Join"></a>
-        <nav>
-            <a class="bg-color" href="./summary.html">
-                <img src="./assets/icons/summary.svg">
-                <p>Summary</p>
-            </a>
-            <a href="./add_task.html">
-                <img src="./assets/icons/add_task.svg">
-                <p>Add Task</p>
-            </a>
-            <a href="./board.html">
-                <img src="./assets/icons/board.svg">
-                <p>Board</p>
-            </a>
-            <a href="./contacts.html">
-                <img src="./assets/icons/contacts.svg">
-                <p>Contacts</p>
-            </a>
-        </nav>
+  <section class="left-side">
+    <a href="./index.html"><img class="join-logo" src="./assets/icons/logo_white.svg" alt="Join" /></a>
+    <nav>
+      <a class="bg-color" href="./summary.html">
+        <img src="./assets/icons/summary.svg" />
+        <p>Summary</p>
+      </a>
+      <a href="./add_task.html">
+        <img src="./assets/icons/add_task.svg" />
+        <p>Add Task</p>
+      </a>
+      <a href="./board.html">
+        <img src="./assets/icons/board.svg" />
+        <p>Board</p>
+      </a>
+      <a href="./contacts.html">
+        <img src="./assets/icons/contacts.svg" />
+        <p>Contacts</p>
+      </a>
+    </nav>
+    <footer>
+      <a href="privacy.html"><p>Privacy Policy</p></a>
+      <a href="legal_notice.html"><p>Legal notice</p></a>
+    </footer>
+  </section>
 
-        <footer>
-            <a href="privacy.html">
-                <p>Privacy Policy</p>
-            </a>
-            <a href="legal_notice.html">
-                <p>Legal notice</p> 
-            </a>
-        </footer>
-    </section>
+  <section class="right-side">
+    <header>
+      <h3>Kanban Project Management Tool</h3>
+      <div class="user-info">
+        <a href="./help.html"><img class="help" src="./assets/icons/help.svg" alt="help" /></a>
+        <div class="dropdown-container">
+          <img id="profile-img" src="./assets/icons/profilebadge/sofia.svg" alt="Profilbild" />
+          <div id="navbar" class="navbar-dropdown">
+            <a href="./profile.html">Profil</a>
+            <a href="./settings.html">Einstellungen</a>
+            <a href="./logout.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </header>
 
-    <section class="right-side">
-        <header>
-            <h3>Kanban Project Management Tool</h3>
-            <div class="user-info">
-                  <a href="./help.html"><img class="help" src="./assets/icons/help.svg" alt="help"></a>
-     <div class="dropdown-container">
-        <img id="profile-img" src="./assets/icons/profilebadge/sofia.svg" alt="Profilbild">
-        <div id="navbar" class="navbar-dropdown">
-          <a href="./profile.html">Profil</a>
-          <a href="./settings.html">Einstellungen</a>
-          <a href="./logout.html">Logout</a>
+    <div class="content">
+      <div class="display-position">
+        <div class="content-summary">
+          <div class="summary-board">
+            <div class="summary-header">
+              <h1>Join 360</h1>
+              <p></p>
+              <span>Key Metrics at a Glance</span>
+            </div>
+            <div class="split-view">
+              <div class="task"></div>
+              <div id="task-container">
+                <div id="greeting"></div>
+                <div id="upcoming-tasks"></div> <!-- ✅ NEU für Deadline-Vorschau -->
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-        </header>
-    
-        <div class="content">
-            <div class="display-position">
-                <div class="content-summary">
-                    <div class="summary-board">
-                        <div class="summary-header">
-                            <h1>Join 360</h1>
-                            <p></p>
-                            <span>Key Metrics at a Glance</span>
-                        </div>
-                        <div class="split-view">
-                            <div class="task"></div>
-                            <div id="task-container"> 
-                                <div id="greeting"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  </section>
+
+</body>
+</html>
+
       
     <script type="module"  src="./scripts/db.js"></script>
     <script type="module" src="./script.js" defer></script>
-    <script type="module" src="./scripts/script-summary.js"></script>
-    <script type="module" src="./scripts/template-summary.js"></script>
+    <script type="module" src="./scripts/summary/script-summary.js"></script>
+    <script type="module" src="./scripts/summary/template-summary.js"></script>
  
     
 </body>

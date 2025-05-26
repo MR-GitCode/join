@@ -1,81 +1,97 @@
-import { loadData, getUsers } from "./db.js";
+import { loadData, getUsers, saveData } from './db.js';
 
-window.fillForm = fillForm;
+document.addEventListener('DOMContentLoaded', () => {
+  const loginForm = document.getElementById('loginForm');
+  if (!loginForm) return;
 
-document.addEventListener("DOMContentLoaded", () => {
-    const loginForm = document.getElementById('loginForm');
-    const guestBtn = document.getElementById('guestBtn');
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-    if (loginForm) {
-        loginForm.addEventListener('submit', async function (event) {
-            event.preventDefault();
-            console.log('Login...');
-            await loadData();       // Nutzer laden
-            loginUser();            // Versuche regulären Login
-        });
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value.trim();
+
+    await loadData();
+    const users = getUsers();
+
+    const foundUser = users.find(
+      (user) => user.email === email && user.password === password
+    );
+
+    if (foundUser) {
+      const updatedUsers = users.map((user) => ({
+        ...user,
+        login: user.email === foundUser.email ? 1 : 0,
+      }));
+
+      const userData = {};
+      updatedUsers.forEach((u) => {
+        userData[u.id] = { ...u };
+        delete userData[u.id].id;
+      });
+
+      await saveData('users', userData);
+
+      const [firstName, lastName] = foundUser.name.split(' ');
+      localStorage.setItem(
+        'user',
+        JSON.stringify({
+          id: foundUser.id,
+          firstName,
+          lastName,
+          badge: foundUser.badge,
+        })
+      );
+
+      window.location.href = './summary.html';
+    } else {
+      alert('Ungültige Anmeldedaten!');
     }
-
-    if (guestBtn) {
-        guestBtn.addEventListener('click', async function () {
-            console.log('Gast-Login...');
-            await loadData();       // WICHTIG: Daten müssen geladen sein
-            loginAsGuest();
-        });
-    }
+  });
 });
 
-/**
- * Führt einen regulären Login durch
- */
-function loginUser() {
-    const users = getUsersSafe();
-    const email = document.getElementById('loginEmail')?.value;
-    const password = document.getElementById('loginPassword')?.value;
+window.addEventListener('load', () => {
+  const logo = document.querySelector('.logo-fly');
+  const pageContent = document.getElementById('page-content');
 
-    const user = users.find(u => u.email === email && u.password === password);
+  logo.addEventListener('animationend', () => {
+    pageContent.classList.remove('page-content-hidden');
+  });
+});
 
-    if (user) {
-        localStorage.setItem('loggedInUser', JSON.stringify(user));
-        window.location.href = 'summary.html';
-    } else {
-        alert("Falsche Login-Daten!");
-    }
-}
+document.getElementById('guestBtn').addEventListener('click', async () => {
+  await loadData();
+  const users = getUsers();
 
-/**
- * Führt einen Gast-Login durch
- */
-function loginAsGuest() {
-    const users = getUsersSafe();
+  const guestUser = users.find((user) => user.name === 'Gast');
 
-    const guestUser = users.find(u => u.id === 0 || u.name.toLowerCase() === 'gast');
+  if (guestUser) {
+    const updatedUsers = users.map((user) => ({
+      ...user,
+      login: user.id === guestUser.id ? 1 : 0,
+    }));
 
-    if (guestUser) {
-        localStorage.setItem('loggedInUser', JSON.stringify(guestUser));
-        window.location.href = 'summary.html';
-    } else {
-        alert("Gast-Benutzer konnte nicht gefunden werden!");
-        console.error("Verfügbare Benutzer:", users);
-    }
-}
+    const userData = {};
+    updatedUsers.forEach((u) => {
+      userData[u.id] = { ...u };
+      delete userData[u.id].id;
+    });
 
-/**
- * Füllt das Formular testweise mit einem Beispielbenutzer
- */
-function fillForm() {
-    const users = getUsersSafe();
-    if (users.length >= 2) {
-        document.getElementById("loginEmail").value = users[1].email;
-        document.getElementById("loginPassword").value = users[1].password;
-    }
-}
+    await saveData('users', userData);
 
-/**
- * Liefert Benutzerliste als Array (sicher)
- */
-function getUsersSafe() {
-    const rawUsers = getUsers();
-    if (!rawUsers) return [];
-    return Array.isArray(rawUsers) ? rawUsers : Object.values(rawUsers);
-}
+    localStorage.setItem(
+      'user',
+      JSON.stringify({
+        id: guestUser.id,
+        firstName: 'Gast',
+        lastName: '',
+        badge: guestUser.badge,
+      })
+    );
+
+    window.location.href = './summary.html';
+  } else {
+    alert('Gastnutzer nicht gefunden!');
+  }
+});
+
 

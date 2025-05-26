@@ -1,11 +1,10 @@
-import { loadData, getTasks } from './db.js';
+import { loadData, getTasks } from '../db.js';
 
 /** Navigiert zur gewünschten Seite */
 function navigateTo(page) {
     window.location.href = page;
 }
 window.navigateTo = navigateTo;
-
 
 /** Erstellt ein To-Do-Kachel-Element */
 function createSummaryTodo(icon, number, label, link = './board.html') {
@@ -55,16 +54,13 @@ function createSummaryCount(number, label, link = './board.html') {
 }
 
 /** Gibt die Anzahl der Tasks mit bestimmtem Status zurück */
-function countTasksByStatus(status) {
-    const tasks = getTasks();
-    return tasks.filter(task => task.status === status).length;
+function countTasksByStatus(tasks, status) {
+    return tasks.filter(task => task.status.toLowerCase() === status.toLowerCase()).length;
 }
 
 /** Gibt die nächste anstehende Aufgabe mit Deadline zurück */
-function getNextDeadlineTask() {
+function getNextDeadlineTask(tasks) {
     const today = new Date();
-    const tasks = getTasks();
-
     const upcoming = tasks.filter(t => new Date(t.enddate) >= today);
     upcoming.sort((a, b) => new Date(a.enddate) - new Date(b.enddate));
     return upcoming[0];
@@ -73,15 +69,15 @@ function getNextDeadlineTask() {
 /** Lädt Daten und rendert die Task-Übersicht */
 document.addEventListener("DOMContentLoaded", async function () {
     await loadData();
-
+    const tasks = getTasks();
     const taskContainer = document.querySelector(".task");
 
-    const todoCount = countTasksByStatus('todo');
-    const doneCount = countTasksByStatus('done');
-    const inProgress = countTasksByStatus('inProgress');
-    const feedback = countTasksByStatus('feedback');
-    const total = getTasks().length;
-    const deadlineTask = getNextDeadlineTask();
+    const todoCount = countTasksByStatus(tasks, 'todo');
+    const doneCount = countTasksByStatus(tasks, 'done');
+    const inProgress = countTasksByStatus(tasks, 'inprogress'); // angepasst!
+    const feedback = countTasksByStatus(tasks, 'review'); // oder 'feedback'?
+    const total = tasks.length;
+    const deadlineTask = getNextDeadlineTask(tasks);
 
     taskContainer.innerHTML = `
         <div class="summary-content"> 
@@ -104,4 +100,3 @@ document.addEventListener("DOMContentLoaded", async function () {
         </div>
     `;
 });
-
