@@ -18,19 +18,38 @@ let loggedInUser = null;
  */
 export async function loadData() {
     try {
+        //load users
         let usersData = await fetch(`${BASE_URL}/users.json`);
         let usersJson = await usersData.json();
-        users = usersJson ? Object.values(usersJson) : [];
-        
+
+        users = [];
+        if (usersJson) {
+            for (let [id, user] of Object.entries(usersJson)) {
+                user.id = parseInt(id);
+                users.push(user);
+            }
+        }
+
+        // load tasks
         let tasksData = await fetch(`${BASE_URL}/tasks.json`);
         let tasksJson = await tasksData.json();
-        tasks = tasksJson ? Object.values(tasksJson) : [];     
-         
+
+        tasks = [];
+        if (tasksJson) {
+            for (let [id, task] of Object.entries(tasksJson)) {
+                task.id = parseInt(id);
+                tasks.push(task);
+            }
+        }
+
+        // find the user
+        loggedInUser = users.find(u => u.login === 1);
+
     } catch (error) {
         console.error('Fehler beim Laden der Daten:', error);
     }
-    loggedInUser = users.find(u => u.login == 1);     
-};
+}
+
 
 /**
  * This function saves the data in the database.
@@ -73,15 +92,9 @@ export async function deleteData(path = '', id) {
 };
 
 
-//löschen wenn es nicht mehr gebraucht wird
 export function getTasks() {
     console.log(tasks);    
     return tasks;
-}
-
-export function getUsers() {
-    console.log(users);    
-    return users;
 }
 
 /**
@@ -91,4 +104,8 @@ export function getUsers() {
 export function getLoggedInUser() {
     // console.log('Logged in User', loggedInUser);
     return loggedInUser;
+}
+
+export function getUsers() {
+  return users;
 }
