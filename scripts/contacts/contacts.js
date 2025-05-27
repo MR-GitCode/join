@@ -22,7 +22,7 @@ function addContactList() {
     contactList.sort()
     addLettersToList(contactList);
     addContacts(contacts);
-    addContactEventListener();
+    addContactEventListener(contacts);
 }
 
 /**
@@ -52,6 +52,23 @@ function addContacts(contacts) {
     }
 }
 
-function addContactEventListener() {
-    
+/**
+ * Add a event listener to the contacts in the contact list an load the informations of the contact.
+ * @param {object} contacts This is the object of all contacts.
+ */
+function addContactEventListener(contacts) {
+    document.querySelectorAll('.contacts').forEach((contact) => {
+        contact.addEventListener("click", (event) => {
+            let contactID = parseInt(event.currentTarget.id.replace('contact-', ''));
+            let infoContainer = document.getElementById('contact-data');
+            for (let i = 0; i < contacts.length; i++) {
+             if (contacts[i].id == contactID) {
+                infoContainer.innerHTML = loadContactInformations(contacts[i]);
+                console.log(contacts[i], contactID);
+                break;
+             }
+            }
+        });
+    });
 }
+
