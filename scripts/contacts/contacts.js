@@ -1,4 +1,4 @@
-import {loadData, getLoggedInUser } from '../db.js';
+import {loadData, getLoggedInUser, saveData, deleteData} from '../db.js';
 
 /**
  * Load data and initialize contact list once the DOM is fully loaded
@@ -16,7 +16,10 @@ function addContactList() {
     let contacts = getLoggedInUser().contacts;
     if (contacts) {
        for (let i = 0; i < contacts.length; i++) {
-        contactList.push(contacts[i].name)
+        if(contacts[i]){
+           contactList.push(contacts[i].name) 
+        }
+        
         } 
     }
     contactList.sort()
@@ -45,10 +48,12 @@ function addLettersToList(contactList) {
  */
 function addContacts(contacts) {
     for (let i = 0; i < contacts.length; i++) {
-        let contact = contacts[i].name;
-        let firstLetterOfContact = contact[0].toLowerCase();
-        let containerOfLetter = document.getElementById(`letter-${firstLetterOfContact}`); 
-        containerOfLetter.innerHTML += loadRefOfContact(contacts[i]);
+        if(contacts[i]){
+            let contact = contacts[i].name;
+            let firstLetterOfContact = contact[0].toLowerCase();
+            let containerOfLetter = document.getElementById(`letter-${firstLetterOfContact}`); 
+            containerOfLetter.innerHTML += loadRefOfContact(contacts[i]);
+        }
     }
 }
 
@@ -64,7 +69,7 @@ function addContactEventListener(contacts) {
             for (let i = 0; i < contacts.length; i++) {
              if (contacts[i].id == contactID) {
                 infoContainer.innerHTML = loadContactInformations(contacts[i]);
-                console.log(contacts[i], contactID);
+                addEventListenerDeleteContact(contactID);
                 break;
              }
             }
@@ -72,3 +77,13 @@ function addContactEventListener(contacts) {
     });
 }
 
+/**
+ * Deletes the contact of the user.
+ * @param {number} contactID This is the id of the contact. 
+ */
+function addEventListenerDeleteContact(contactID) {
+    let user = getLoggedInUser();
+    document.getElementById('delete-contact').addEventListener("click", async () => {
+        await deleteData(`users/${user.id}/contacts/`, contactID);
+    })
+}
