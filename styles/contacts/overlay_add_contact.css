@@ -1,0 +1,133 @@
+#overlay-contact{ 
+   position: absolute;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background: rgba(0, 0, 0, 0.3);
+   width: 100%;
+   height: 100%;
+   z-index: 1000;
+}
+
+#overlay_add_contact {
+    width: 1200px;
+    height: 590px;
+    border-radius: 30px;
+    background-color: #FFFFFF;
+}
+
+.overlay-contact{
+    display: flex;
+    position: relative;
+}
+
+.left-overlay-contact{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #2A3647;
+    height: 100%;
+    width: 467px;
+    color: #FFFFFF;
+}
+
+.left-overlay-contact img{
+    width: 55px;
+}
+
+.left-overlay-contact h2{
+    font-size: 61px;
+}
+
+.left-overlay-contact p {
+    font-size: 27px;
+    font-weight: 400;
+}
+
+.gap{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+#devider-contact{
+    width: 90px;
+    height: 3px;
+    background-color: #29ABE2;
+    border-radius: 5px;
+}
+
+.right-overlay-contact{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+}
+
+.badges-contact{
+    width: 120px;
+    height: 120px;
+}
+
+.right-overlay-contact form {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.right-overlay-contact input{
+    height: 50px;
+    width: 420px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.right-overlay-contact input::placeholder{
+    padding-left: 21px;
+    font-size: 20px;
+    color: #D1D1D1;
+}
+
+.bts-contact{
+    display: flex;
+    padding-top: 48px;
+    gap: 24px;
+    font-size: 20px;
+}
+
+#bt-cancel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #2A3647;
+    border-radius: 10px;
+    width: 126px;
+    height: 56px;
+    gap: 4px;
+    cursor: pointer;
+}
+
+#bt-create-contact{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #2A3647;
+    border-radius: 10px;
+    background-color: #2A3647;
+    width: 214px;
+    height: 56px;
+    color: #FFFFFF;
+    font-weight: 700;
+    gap: 4px;
+    cursor: pointer;
+}
+
+#close-overlay-contact{
+    position: absolute;
+    top: 32px;
+    right: 32px;
+    cursor: pointer;
+}

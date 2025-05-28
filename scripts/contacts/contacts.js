@@ -66,12 +66,12 @@ function addContactEventListener(contacts) {
         contact.addEventListener("click", (event) => {
             let contactID = parseInt(event.currentTarget.id.replace('contact-', ''));
             let infoContainer = document.getElementById('contact-data');
-            for (let i = 0; i < contacts.length; i++) {
-             if (contacts[i].id == contactID) {
-                infoContainer.innerHTML = loadContactInformations(contacts[i]);
-                addEventListenerDeleteContact(contactID);
-                break;
-             }
+            for (let i = 0; i < contacts.length; i++) {  
+                if (contacts[i] && contacts[i].id == contactID) {
+                    infoContainer.innerHTML = loadContactInformations(contacts[i]);
+                    addEventListenerDeleteContact(contactID);
+                    break;
+                }
             }
         });
     });
