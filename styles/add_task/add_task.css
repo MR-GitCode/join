@@ -127,6 +127,10 @@ h1{
     box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
 }
 
+#bt-clear:hover img{
+    content: url(/assets/icons/close_blue.svg);
+}
+
 #bt-create-task{
     display: flex;
     justify-content: center;

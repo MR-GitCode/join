@@ -64,6 +64,8 @@
     justify-content: center;
     align-items: center;
     gap: 48px;
+    padding-left: 3px;
+    position: relative;
 }
 
 .badges-contact{
@@ -83,19 +85,33 @@
     border: 1px solid #D1D1D1;
     border-radius: 10px;
     cursor: pointer;
+    font-size: 20px;
+    padding-left: 21px;
 }
 
 .right-overlay-contact input::placeholder{
-    padding-left: 21px;
     font-size: 20px;
     color: #D1D1D1;
 }
 
+.right-overlay-contact input:focus{
+    outline: 1px solid #29ABE2;
+    outline-offset: -2px;
+}
+
+.inputs-contact{
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
 .bts-contact{
     display: flex;
-    padding-top: 48px;
+    position: absolute;
     gap: 24px;
     font-size: 20px;
+    padding: 0 3px 5px 3px;
+    bottom: 80px
 }
 
 #bt-cancel {
@@ -110,11 +126,21 @@
     cursor: pointer;
 }
 
+#bt-cancel:hover{
+    border: 2px solid #29ABE2;
+    color: #29ABE2;
+    fill: #29ABE2;
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+}
+
+#bt-cancel:hover img{
+    content: url(/assets/icons/close_blue.svg);
+}
+
 #bt-create-contact{
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #2A3647;
     border-radius: 10px;
     background-color: #2A3647;
     width: 214px;
@@ -125,9 +151,20 @@
     cursor: pointer;
 }
 
+#bt-create-contact:hover{
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+}
+
 #close-overlay-contact{
     position: absolute;
     top: 32px;
     right: 32px;
     cursor: pointer;
 }
+
+#close-overlay-contact:hover{
+    background-color: #EEEEEE;
+    border-radius: 50px;
+}
+    
