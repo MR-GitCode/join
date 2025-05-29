@@ -1,7 +1,7 @@
 import { getLoggedInUser, saveData} from '../db.js';
 
 /**
- * Add a event listener to the "add new contact" button an load the template
+ * Add a event listener to the "add new contact" button and load the template
  */
 export function addEventListenerToNewContact() {
     let btAddContact = document.getElementById('bt-add-contact');
@@ -83,7 +83,32 @@ function getBadges(name) {
     let lastName = parts[1] || "";
     let badge = {
         initials : (firstName[0]?.toUpperCase()) + (lastName[0]?.toUpperCase() || ""),
-        color : 1, //Farb automatisch zuordnen
+        color : 1, //Farbe automatisch zuordnen
     }
     return badge
+}
+
+/**
+ * Add a event listener to the "edit" button and load the template. 
+ * @param {object} contact This is the object of the contact.
+ */
+export function addEventListenerEditContact(contact) {
+    document.getElementById('edit-contact').addEventListener("click", () => {
+        let overlayContact = document.getElementById('overlay-contact');
+        overlayContact.classList.remove('hidden');
+        let overlayContainer = document.getElementById('overlay-container');
+        overlayContainer.innerHTML = loadOverlayEditContact(contact);
+        editInputValue(contact);
+        addEventListenerCloseOverlay(overlayContact); 
+    })
+}
+
+/**
+ * Adds the text for the respective input field of the contact.
+ * @param {object} contact This is the object of the contact.
+ */
+function editInputValue(contact) {   
+    document.querySelector('#name-input input').value = contact.name;
+    document.querySelector('#email-input input').value = contact.email;
+    document.querySelector('#phone-input input').value = contact.phone;
 }

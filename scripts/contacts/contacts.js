@@ -1,5 +1,5 @@
 import {loadData, getLoggedInUser, saveData, deleteData} from '../db.js';
-import {addEventListenerToNewContact} from '../contacts/contacts_overlay.js'
+import {addEventListenerToNewContact, addEventListenerEditContact} from '../contacts/contacts_overlay.js'
 
 /**
  * Load data and initialize contact list once the DOM is fully loaded
@@ -73,6 +73,7 @@ function addContactEventListener(contacts) {
                 if (contacts[i] && contacts[i].id == contactID) {
                     infoContainer.innerHTML = loadContactInformations(contacts[i]);
                     addEventListenerDeleteContact(contactID, infoContainer);
+                    addEventListenerEditContact(contacts[i]);
                     break;
                 }
             }
