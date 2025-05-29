@@ -214,3 +214,7 @@ h1{
 .contact-informations a[href^="tel:"] {
     color: rgba(0, 0, 0, 1)
 }
+
+.hidden {
+    display: none !important;
+}

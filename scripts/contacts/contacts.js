@@ -6,6 +6,7 @@ import {loadData, getLoggedInUser, saveData, deleteData} from '../db.js';
 document.addEventListener("DOMContentLoaded", async () => {
     await loadData();
     addContactList();
+    addEventListenerToNewContact();
 });
 
 /**
@@ -86,4 +87,33 @@ function addEventListenerDeleteContact(contactID) {
     document.getElementById('delete-contact').addEventListener("click", async () => {
         await deleteData(`users/${user.id}/contacts/`, contactID);
     })
+}
+
+/**
+ * Add a event listener to the "add new contact" button an load the template
+ */
+function addEventListenerToNewContact() {
+    let btAddContact = document.getElementById('bt-add-contact');
+    btAddContact.addEventListener("click", () => {
+       let overlayContact = document.getElementById('overlay-contact');
+       overlayContact.classList.remove('hidden');
+       let overlayContainer = document.getElementById('overlay-container');
+       overlayContainer.innerHTML = loadOverlayAddContact();
+       closeOverlay(overlayContact);
+    })
+}
+
+/**
+ * Adds an event listener to the contact overlay that closes the overlay
+ * @param {HTMLElement} overlayContact The HTML element representing the contact overlay.
+ */
+function closeOverlay(overlayContact) {
+    overlayContact.addEventListener("click", function (event) {
+    let closeButton = document.getElementById('close-overlay-contact')
+    let overlayContainer = document.getElementById('overlay-container')
+        if (closeButton.contains(event.target) || (!overlayContainer.contains(event.target))) {
+            overlayContact.classList.add('hidden');
+            overlayContainer.innerHTML = "";
+        }
+    });
 }

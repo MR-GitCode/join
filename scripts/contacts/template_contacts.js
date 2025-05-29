@@ -70,3 +70,50 @@ function loadContactInformations(contact) {
                 <a href="tel:${contact.phone}">${contact.phone}</a>
             </div>`
 }
+
+/**
+ * 
+ * @returns Returns the template of ther overlay "add new contact"
+ */
+function loadOverlayAddContact() {
+    return `<div>
+                <div class="left-overlay-contact">
+                    <div class="gap">
+                        <img src="./assets/icons/logo_white.svg">
+                        <h2>Add contact</h2>
+                        <p>Tasks are better with a team!</p>
+                        <div id="devider-contact"></div>
+                    </div>    
+                </div>
+            </div>
+            <div class="right-overlay-contact">
+                <img class="badges-contact" src="./assets/icons/contacts/person_icon.svg">
+                <div class="inputs-contact">
+                    <form action="">
+                        <div id="name-input">
+                            <input type="text" placeholder="Name">
+                            <img src="./assets/icons/contacts/person.svg">
+                        </div>
+                        <div id="email-input">
+                            <input type="text" placeholder="Email">
+                            <img src="./assets/icons/contacts/mail.svg">
+                        </div>
+                        <div id="phone-input">
+                            <input type="tel" placeholder="Phone">
+                            <img src="./assets/icons/contacts/call.svg">
+                        </div>
+                    </form>
+                    <div class="bts-contact">
+                        <div id="bt-cancel">
+                            <p>Cancel</p>
+                            <img src="./assets/icons/close.svg">
+                        </div>
+                        <div id="bt-create-contact">
+                            <p>Create contact</p>
+                            <img src="./assets/icons/check.svg">
+                        </div>
+                    </div>
+                </div>
+                <img id="close-overlay-contact" src="./assets/icons/close.svg">
+            </div>`
+}

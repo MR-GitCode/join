@@ -9,7 +9,7 @@
    z-index: 1000;
 }
 
-#overlay_add_contact {
+#overlay-container {
     width: 1200px;
     height: 590px;
     border-radius: 30px;
@@ -103,6 +103,22 @@
     display: flex;
     flex-direction: column;
     gap: 48px;
+}
+
+#name-input,
+#email-input,
+#phone-input {
+    position: relative;  
+}
+
+#name-input img,
+#email-input img,
+#phone-input img{
+    position: absolute;
+    width: 24px;
+    right: 21px;
+    top: 25px;
+    transform: translateY(-50%);
 }
 
 .bts-contact{
