@@ -217,9 +217,10 @@ export async function getContactsDatabank(id) {
     let assignedMenu = document.getElementById(id);
     assignedMenu.innerHTML = "";
     for (let contactsIndex = 0; contactsIndex < user.contacts.length; contactsIndex++) {
+        if (user.contacts[contactsIndex]) {
         let contact = user.contacts[contactsIndex]
         assignedMenu.innerHTML += loadAssignedMenu(contact);
-    }
+    }}
     selectContact()
     checkSelectedUsers()
 }
