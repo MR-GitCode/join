@@ -268,7 +268,7 @@ function loadTaskOverlay(task) {
  */
 function loadTaskAssigned(contact) {
     return `<div class="contacts-select-task">
-                <img src="./assets/icons/profilebadge/${contact.id}.svg">
+                <div class="badges" style="background-color:${contact.badge.color}">${contact.badge.initials}</div>
                 <p>${contact.name}</p>
             </div>`
 }

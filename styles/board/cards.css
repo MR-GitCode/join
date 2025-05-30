@@ -119,18 +119,6 @@
 
 }
 
-.card-badges img {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    margin-left: -10px;
-    z-index: 1;
-}
-
-.card-badges img:first-child {
-    margin-left: 0;
-}
-
 .badges-cards {
     display: flex;
     justify-content: center;
@@ -141,4 +129,10 @@
     border-radius: 45px;
     color: #FFFFFF;
     font-size: 12px;
+        margin-left: -10px;
+    z-index: 1;
+}
+
+.badges-cards:first-child {
+    margin-left: 0;
 }
