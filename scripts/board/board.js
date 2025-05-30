@@ -1,4 +1,4 @@
-import {loadData, saveData, getLoggedInUser} from '../db.js';
+import {loadData, getLoggedInUser} from '../db.js';
 import {selectedUsers, addCreateTaskEventListener} from '../add_task/add_task.js';
 import {addTaskEventListeners} from './board_overlay_task.js';
 
@@ -149,7 +149,7 @@ function loadAssignedContacts(task) {
     let assignedContainer = document.getElementById(`card${task.id}-contacts`);
     assignedContainer.innerHTML = "";
     for (let assignedID = 0; assignedID < assignedContacts.length; assignedID++) {
-        let assignedContact = assignedContacts[assignedID]
+        let assignedContact = assignedContacts[assignedID]        
         assignedContainer.innerHTML += loadBagesForCard(assignedContact)
     }
 }

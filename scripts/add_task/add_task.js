@@ -267,7 +267,8 @@ async function displaySelectedContacts() {
     let selectedContainer = document.getElementById("selected-contacts");
     selectedContainer.innerHTML = "";
     for (let selectedUsersId of selectedUsers) {
-        selectedContainer.innerHTML += `<img src=./assets/icons/profilebadge/${selectedUsersId}.svg </img>`
+        let contact = getLoggedInUser().contacts[selectedUsersId]
+        selectedContainer.innerHTML += `<div class="badges" style="background-color:${contact.badge.color}">${contact.badge.initials}</div>`
     }
 }
 

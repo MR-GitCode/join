@@ -1,5 +1,12 @@
 import { getLoggedInUser, saveData} from '../db.js';
 
+let badgeColors = [
+    "#9326ff" , "#ff7b00" , "#6e52ff" , "#fd70ff" , "#ffbc2b",
+    "#1ed6c1" , "#462f8a" , "#ff4545" , "#FF5733", "#33B5FF",
+    "#8E44AD", "#2ECC71", "#F1C40F", "#E67E22", "#1ABC9C",
+    "#C0392B", "#3498DB", "#9B59B6"
+];
+
 /**
  * Add a event listener to the "add new contact" button and load the template
  */
@@ -48,7 +55,6 @@ function createContact() {
             name : document.querySelector('#name-input input').value,
             email : document.querySelector('#email-input input').value,
             phone : document.querySelector('#phone-input input').value,
-            login : 0,
             id : getNextFreeId(),
             badges : getBadges(document.querySelector('#name-input input').value),
         };
@@ -83,9 +89,18 @@ function getBadges(name) {
     let lastName = parts[1] || "";
     let badge = {
         initials : (firstName[0]?.toUpperCase()) + (lastName[0]?.toUpperCase() || ""),
-        color : 1, //Farbe automatisch zuordnen
+        color : chooseColor(),
     }
     return badge
+}
+
+function chooseColor() {
+    let contacts = getLoggedInUser().contacts;
+    console.log(contacts);
+    
+    let usedColors = contacts.map(c => c.badge?.color).filter(Boolean)
+    console.log(usedColors);
+    
 }
 
 /**

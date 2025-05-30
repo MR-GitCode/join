@@ -24,7 +24,7 @@ function loadSubtaskIconsDefault() {
 function loadAssignedMenu(contact) {
    return  `<div class="menu-option" >
                 <div class="assigned-username">
-                    <img src="${contact.badge}">
+                    <div class="badges" style="background-color:${contact.badge.color}">${contact.badge.initials}</div>
                     <p>${contact.name}</p>
                 </div>
                 <img class="button-transition" id="user(${contact.id})" src="./assets/icons/add_task/default.svg">

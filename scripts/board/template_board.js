@@ -42,7 +42,7 @@ function loadProgressBar(task, doneSubtaks, percent) {
  * @returns Return the img of the bages of the user.
  */
 function loadBagesForCard(assignedContact) {
-    return `<img src="./assets/icons/profilebadge/${assignedContact.id}.svg">`
+    return `<div class="badges-cards" style="background-color:${assignedContact.badge.color}">${assignedContact.badge.initials}</div>`
 }
 
 function loadPriorityImage(task) {
