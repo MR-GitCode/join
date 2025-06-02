@@ -1,0 +1,54 @@
+.right-side{
+    position: relative;
+}
+
+.content-help{
+    padding: 0 80px;
+    display: flex;
+}
+
+.help-informations{
+    padding-top: 110px;
+    overflow-y: auto;
+}
+
+.help-informations::-webkit-scrollbar{
+ display: none;
+}
+
+.help-informations a{
+    text-decoration: none;
+    color: #29ABE2;
+}
+
+.help-informations p{
+    padding-bottom: 16px;
+}
+
+h1{
+    font-size: 61px;
+    padding-bottom: 32px;
+}
+
+h2 {
+    font-size: 27px;
+    font-weight: 700;
+    padding-bottom: 16px;
+}
+
+h4{
+    font-size: 20px;
+}
+
+.arrow {
+    position: absolute;
+    right: 80px;
+    top: 225px;
+}
+
+.number{
+    font-size: 27px;
+    font-weight: 700;
+    padding-right: 35px;
+    vertical-align: top;
+}
