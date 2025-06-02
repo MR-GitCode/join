@@ -73,8 +73,11 @@ footer {
     gap: 16px;
     position: absolute;
     bottom: 64px;
-    left: 50%;
-    transform: translate(-50%);
+    width: 232px;
+}
+
+footer a{
+    padding-left: 25%;
 }
 
 .right-side {

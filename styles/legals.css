@@ -1,0 +1,44 @@
+.content-legals{
+    padding: 0 80px;
+    display: flex;
+}
+
+.legal-notice {
+    padding-top: 60px;
+    overflow-y: auto;
+}
+
+.legal-notice::-webkit-scrollbar {
+    display: none;
+}
+
+.legal-notice h1{
+    padding-bottom: 35px;
+}
+
+.legal-notice div{
+    padding-bottom: 35px;
+}
+
+.privacy-policy{
+    padding-top: 60px; 
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.content-legals a{
+    text-decoration: none;
+    color: #29ABE2;
+}
+
+h1 {
+    font-size: 61px;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 27px;
+    font-weight: 700;
+    padding-bottom: 10px;
+}
