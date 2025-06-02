@@ -18,7 +18,7 @@ function loadAlphabet(letter) {
  */
 function loadRefOfContact(contact) {
     return `<div class="contacts" id="contact-${contact.id}">
-                <img src="./assets/icons/profilebadge/${contact.id}.svg">
+                <div class="badges-contactlist" style="background-color:${contact.badge.color}">${contact.badge.initials}</div>
                 <div class="contact-names">
                     <p>${contact.name}</p>
                     <a href="">${contact.email}</a>
@@ -33,7 +33,7 @@ function loadRefOfContact(contact) {
  */
 function loadContactInformations(contact) {
     return `<div class="contact-data-name">
-                <img src="./assets/icons/profilebadge/${contact.id}.svg">
+                <div class="badges-contactinfo" style="background-color:${contact.badge.color}">${contact.badge.initials}</div>
                 <div>
                     <h2>${contact.name}</h2>
                     <div class="bts-select-task">
@@ -130,7 +130,7 @@ function loadOverlayEditContact(contact) {
                 </div>
             </div>
             <div class="right-overlay-contact">
-                <img class="badges-contact" src="./assets/icons/contacts/person_icon.svg">
+                <div class="badges-contactinfo" style="background-color:${contact.badge.color}">${contact.badge.initials}</div>
                 <div class="inputs-contact">
                     <form action="">
                         <div id="name-input">

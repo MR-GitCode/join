@@ -218,3 +218,29 @@ h1{
 .hidden {
     display: none !important;
 }
+
+.badges-contactlist{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    border: 2px solid #FFFFFF;
+    border-radius: 45px;
+    color: #FFFFFF;
+    font-size: 14px;
+}
+
+.badges-contactinfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 114px;
+    height: 114px;
+    border: 3px solid #FFFFFF;
+    border-radius: 70px;
+    color: #FFFFFF;
+    font-size: 47px;
+    font-weight: 500;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+}
