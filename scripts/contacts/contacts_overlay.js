@@ -1,4 +1,5 @@
-import { getLoggedInUser, saveData} from '../db.js';
+import { getLoggedInUser, deleteData, saveData} from '../db.js';
+import { addContactList } from '../contacts/contacts.js'
 
 let badgeColors = [
     "#9326ff" , "#ff7b00" , "#6e52ff" , "#fd70ff" , "#ffbc2b",
@@ -43,7 +44,9 @@ function addEventListenerCloseOverlay(overlayContact) {
 function closeOverlay() {
     let overlayContact = document.getElementById('overlay-contact');
     overlayContact.classList.add('hidden');
-    overlayContainer.innerHTML = "";
+    let infoContainer = document.getElementById('contact-data');
+    infoContainer.innerHTML = "";
+    addContactList();
 }
 
 /**
@@ -114,7 +117,9 @@ export function addEventListenerEditContact(contact) {
         let overlayContainer = document.getElementById('overlay-container');
         overlayContainer.innerHTML = loadOverlayEditContact(contact);
         editInputValue(contact);
+        
         addEventListenerCloseOverlay(overlayContact); 
+        addEventListenerDeleteContact(contact.id);
     })
 }
 
@@ -126,4 +131,17 @@ function editInputValue(contact) {
     document.querySelector('#name-input input').value = contact.name;
     document.querySelector('#email-input input').value = contact.email;
     document.querySelector('#phone-input input').value = contact.phone;
+
 }
+
+/**
+ * Deletes the contact.
+ * @param {number} contactID this is the id of the contact. 
+ */
+function addEventListenerDeleteContact(contactID) {
+    let user = getLoggedInUser();
+    document.getElementById('bt-cancel').addEventListener("click", async () => {
+        await deleteData(`users/${user.id}/contacts/`, contactID); 
+        closeOverlay();      
+        })
+    }

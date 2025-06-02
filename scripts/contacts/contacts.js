@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 /**
  * Loads the contact list of the currently logged-in user.
  */
-function addContactList() {
+export function addContactList() {
     let contactList = [];
     let contacts = getLoggedInUser().contacts;
     if (contacts) {
