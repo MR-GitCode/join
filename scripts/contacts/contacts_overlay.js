@@ -131,6 +131,7 @@ export function addEventListenerEditContact(contact) {
         editInputValue(contact);
         addEventListenerCloseOverlay(overlayContact); 
         addEventListenerDeleteContact(contact.id);
+        saveEdit(contact);
     })
 }
 
@@ -142,7 +143,6 @@ function editInputValue(contact) {
     document.querySelector('#name-input input').value = contact.name;
     document.querySelector('#email-input input').value = contact.email;
     document.querySelector('#phone-input input').value = contact.phone;
-
 }
 
 /**
@@ -156,3 +156,20 @@ function addEventListenerDeleteContact(contactID) {
         closeOverlay();      
         })
     }
+
+
+function saveEdit(contact) {
+    let user = getLoggedInUser();
+    document.getElementById('bt-create-contact').addEventListener("click", async () => {
+        let contactEdit = {
+            name : document.querySelector('#name-input input').value,
+            email : document.querySelector('#email-input input').value,
+            phone : document.querySelector('#phone-input input').value,
+            id : contact.id,
+            badge : contact.badge,
+        }
+        await saveData(`users/${user.id}/contacts/${contactEdit.id}/`, contactEdit);       
+        closeOverlay();
+    })
+    
+}

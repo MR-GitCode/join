@@ -70,7 +70,6 @@ nav a:hover {
 footer {
     display: flex;
     flex-direction: column;
-    gap: 16px;
     position: absolute;
     bottom: 64px;
     width: 232px;
@@ -78,6 +77,10 @@ footer {
 
 footer a{
     padding-left: 25%;
+}
+
+footer a:hover{
+    color: #29ABE2;
 }
 
 .right-side {

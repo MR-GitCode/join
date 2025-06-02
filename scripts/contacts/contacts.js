@@ -92,3 +92,18 @@ function addEventListenerDeleteContact(contactID, infoContainer) {
         infoContainer.innerHTML = "";
     })
 }
+
+function saveEdit(contact) {
+    document.getElementById('bt-create-contact').addEventListener("click", () => {
+        let contactEdit = {
+            name : document.querySelector('#name-input input').value,
+            email : document.querySelector('#name-input input').value,
+            phone : document.querySelector('#phone-input input').value,
+            id : contact.id,
+            badge : contact.badge,
+        }
+        console.log(contactEdit);
+        
+    })
+    
+}
