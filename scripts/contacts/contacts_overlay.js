@@ -45,7 +45,9 @@ function closeOverlay() {
     let overlayContact = document.getElementById('overlay-contact');
     overlayContact.classList.add('hidden');
     let infoContainer = document.getElementById('contact-data');
-    infoContainer.innerHTML = "";
+    if (!infoContainer === "") {
+        infoContainer.innerHTML = "";
+    }
     addContactList();
 }
 
@@ -53,17 +55,17 @@ function closeOverlay() {
  * Create a new contact.
  */
 function createContact() {
-    document.getElementById('bt-create-contact').addEventListener("click", () => {
+    let user = getLoggedInUser();
+    document.getElementById('bt-create-contact').addEventListener("click", async () => {
          let contact = {
             name : document.querySelector('#name-input input').value,
             email : document.querySelector('#email-input input').value,
             phone : document.querySelector('#phone-input input').value,
             id : getNextFreeId(),
-            badges : getBadges(document.querySelector('#name-input input').value),
+            badge : getBadges(document.querySelector('#name-input input').value),
         };
-        // saveData(`users/${id}/contacts/`, contact)
-        console.log(`users/${contact.id}/contacts/`, contact);
-        closeOverlay()
+        await saveData(`users/${user.id}/contacts/${contact.id}/`, contact);
+        closeOverlay();
     })    
 }
 
@@ -97,13 +99,23 @@ function getBadges(name) {
     return badge
 }
 
+/**
+ * Selects a badge color for a new contact that is not already used by the logged-in user's existing contacts.
+ * @returns Returns the color for the badge.
+ */
 function chooseColor() {
     let contacts = getLoggedInUser().contacts;
-    console.log(contacts);
-    
-    let usedColors = contacts.map(c => c.badge?.color).filter(Boolean)
-    console.log(usedColors);
-    
+    let colors = [];
+    for (let i = 0; i < contacts.length; i++) {
+        let badgeColor = contacts[i].badge.color;
+        colors.push(badgeColor);
+    }
+    let availableColor = badgeColors.find(color => !colors.includes(color));
+    if (!availableColor) {
+        let index = contacts.length % badgeColors.length;
+        availableColor = badgeColors[index];
+    }
+    return availableColor;
 }
 
 /**
@@ -117,7 +129,6 @@ export function addEventListenerEditContact(contact) {
         let overlayContainer = document.getElementById('overlay-container');
         overlayContainer.innerHTML = loadOverlayEditContact(contact);
         editInputValue(contact);
-        
         addEventListenerCloseOverlay(overlayContact); 
         addEventListenerDeleteContact(contact.id);
     })

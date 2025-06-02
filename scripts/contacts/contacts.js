@@ -21,7 +21,6 @@ export function addContactList() {
         if(contacts[i]){
            contactList.push(contacts[i].name) 
         }
-        
         } 
     }
     contactList.sort()

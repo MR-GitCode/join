@@ -44,12 +44,10 @@ export async function loadData() {
 
         // find the user
         loggedInUser = users.find(u => u.login === 1);
-
     } catch (error) {
         console.error('Fehler beim Laden der Daten:', error);
     }
 }
-
 
 /**
  * This function saves the data in the database.
@@ -64,7 +62,7 @@ async function transmitData(path = '', data = {}) {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(data)
-    });
+    });  
     await loadData();
     return await response.json();
 };
@@ -73,7 +71,7 @@ async function transmitData(path = '', data = {}) {
 export async function saveData(path = '', data = null) {
     // console.log(path, data);
     if (data) {
-        transmitData(path, data)
+       await transmitData(path, data)
     }
 }
 
@@ -92,10 +90,10 @@ export async function deleteData(path = '', id) {
 };
 
 
-export function getTasks() {
-    console.log(tasks);    
-    return tasks;
-}
+// export function getTasks() {
+//     console.log(tasks);    
+//     return tasks;
+// }
 
 /**
  * 
