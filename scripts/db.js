@@ -90,10 +90,10 @@ export async function deleteData(path = '', id) {
 };
 
 
-// export function getTasks() {
-//     console.log(tasks);    
-//     return tasks;
-// }
+export function getTasks() {
+    console.log(tasks);    
+    return tasks;
+}
 
 /**
  * 
