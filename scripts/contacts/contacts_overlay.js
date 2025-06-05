@@ -1,5 +1,5 @@
 import { getLoggedInUser, deleteData, saveData} from '../db.js';
-import { addContactList } from '../contacts/contacts.js'
+import { addContactList, addEventListenerDeleteContact } from '../contacts/contacts.js'
 
 let badgeColors = [
     "#9326ff" , "#ff7b00" , "#6e52ff" , "#fd70ff" , "#ffbc2b",
@@ -66,7 +66,23 @@ function createContact() {
         };
         await saveData(`users/${user.id}/contacts/${contact.id}/`, contact);
         closeOverlay();
+        showCreateContact(contact);
     })    
+}
+
+/**
+ * Show the informations of the contact.
+ * @param {object} contact Object with all informations about the contact. 
+ */
+function showCreateContact(contact) {
+    let contactInList = document.getElementById(`contact-${contact.id}`);
+    document.querySelectorAll('.contacts').forEach(c => c.classList.remove("contact-active"));
+    contactInList.classList.add("contact-active");
+    let infoContainer = document.getElementById('contact-data');
+    infoContainer.innerHTML = loadContactInformations(contact);
+    addEventListenerDeleteContact(contact.id, infoContainer);
+    addEventListenerEditContact(contact);
+    contactInList.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 /**
@@ -130,7 +146,7 @@ export function addEventListenerEditContact(contact) {
         overlayContainer.innerHTML = loadOverlayEditContact(contact);
         editInputValue(contact);
         addEventListenerCloseOverlay(overlayContact); 
-        addEventListenerDeleteContact(contact.id);
+        addEventListenerEditDeleteContact(contact.id);
         saveEdit(contact);
     })
 }
@@ -149,7 +165,7 @@ function editInputValue(contact) {
  * Deletes the contact.
  * @param {number} contactID this is the id of the contact. 
  */
-function addEventListenerDeleteContact(contactID) {
+function addEventListenerEditDeleteContact(contactID) {
     let user = getLoggedInUser();
     document.getElementById('bt-cancel').addEventListener("click", async () => {
         await deleteData(`users/${user.id}/contacts/`, contactID); 

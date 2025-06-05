@@ -109,15 +109,17 @@ h1{
     gap: 35px;
 }
 
-.contacts:hover{
+.contacts:hover:not(.contact-active){
     border-radius: 10px;
     background: linear-gradient(180deg, #F9F9F9 0%, #F0F0F0 100%);
     cursor: pointer;
 }
 
-.contacts:active {
+.contact-active {
+    border-radius: 10px;
     background: rgba(42, 54, 71, 1);
-    color: white
+    color: white;
+    cursor: pointer;
 }
 
 #contact-list hr {
