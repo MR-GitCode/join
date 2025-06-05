@@ -1,0 +1,32 @@
+@media (max-width: 1024px){
+    .contact-selections {
+        width:max-content;
+        padding: 12px 20px 0 20px;
+    }
+
+    .contacts {
+        gap: 18px;
+        padding-left: 12px;
+    }
+
+    .right-screen {
+        padding: 25px;
+    }
+
+    h1 {
+        font-size: 47px;
+    }
+
+    .info-contacts {
+        font-size: 20px;
+    }
+
+    .badges-contactinfo {
+        width: 100px;
+        height: 100px;
+    }
+
+    .contact-data-name h2 {
+        font-size: 36px;
+    }
+}

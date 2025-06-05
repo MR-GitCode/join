@@ -1,11 +1,17 @@
 import { getLoggedInUser, deleteData, saveData} from '../db.js';
 import { addContactList, addEventListenerDeleteContact } from '../contacts/contacts.js'
 
+// let badgeColors = [
+//     "#9326ff" , "#ff7b00" , "#6e52ff" , "#fd70ff" , "#ffbc2b",
+//     "#1ed6c1" , "#462f8a" , "#ff4545" , "#FF5733", "#33B5FF",
+//     "#8E44AD", "#2ECC71", "#F1C40F", "#E67E22", "#1ABC9C",
+//     "#C0392B", "#3498DB", "#9B59B6"
+// ];
+
 let badgeColors = [
-    "#9326ff" , "#ff7b00" , "#6e52ff" , "#fd70ff" , "#ffbc2b",
-    "#1ed6c1" , "#462f8a" , "#ff4545" , "#FF5733", "#33B5FF",
-    "#8E44AD", "#2ECC71", "#F1C40F", "#E67E22", "#1ABC9C",
-    "#C0392B", "#3498DB", "#9B59B6"
+    "#FF7A00" , "#9327FF" , "#FF745E", "#FFC701" , "#FFE62B" ,
+    "#FF5EB3" , "#00BEE8" , "#FFA35E", "#0038FF" , "#FF4646" ,
+    "#6E52FF" , "#1FD7C1" , "#FC71FF", "#C3FF2B" , "#FFBB2B" 
 ];
 
 /**

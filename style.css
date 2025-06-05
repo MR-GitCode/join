@@ -98,6 +98,11 @@ header {
     background-color: #FFFFFF;
 }
 
+#logo-black-header {
+    display: none;
+    width: 32px;
+}
+
 .user-info {
     display: flex;
     align-items: center;

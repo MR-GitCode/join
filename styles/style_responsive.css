@@ -1,0 +1,85 @@
+@media (max-width: 1024px){
+    header {
+        height: 80px;
+    }    
+    
+    .join-logo {
+        width: 80px;
+    }
+    
+    .left-side{
+        width: 160px
+    }
+
+    nav a,
+    footer a {
+        padding-left: 15%;
+    }
+}
+
+@media (max-width: 425px) {
+    body {
+        flex-direction: column-reverse;   
+    }
+
+    .left-side {
+        width: 100%;
+        height: 80px;
+        flex-direction: row;
+    }
+
+    .left-side a {
+        height: 80px;
+        justify-content: center;
+    }
+
+    nav {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        font-size: 14px;
+    }
+
+    nav a{
+        padding-left: 0;
+        display: flex;
+        flex-direction: column;
+        height: 80px;
+        width: 76px;
+        gap: 10px;
+    }
+
+    nav img {
+        width: 24px;
+
+    }
+
+    footer {
+        display: none;
+    }
+
+    .join-logo {
+        display: none;
+    }
+
+    #logo-black-header{
+        display: flex;
+    }
+
+    header {
+       padding: 0 16px; 
+    }
+
+    header h3 {
+        display: none;
+    }
+
+    .help {
+        display: none;
+    }
+
+    .user-info img {
+        width: 40px;
+        height: 40px;
+    }
+}

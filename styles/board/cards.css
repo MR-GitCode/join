@@ -83,7 +83,6 @@
     justify-content: space-between;
     align-items: center;
     width: 210px;
-    /* position: relative; */
 }
 
 .progress-bar {
@@ -102,7 +101,6 @@
 
 .card-progress:hover .info-text {
     display: flex;
-    
 }
 
 .info-text{
@@ -113,25 +111,11 @@
     font-size: 12px;
     color: #FFFFFF;
     background: rgba(0, 0, 0, 0.7);
-    /* background-color: #ffffff; */
     padding: 3px;
     border-radius: 4px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     z-index: 10;
 }
-
-/* .info-text {
-    display: none;
-    position: absolute;
-    top: -30px;
-    left: 0;
-    background-color: #f0f0f0;
-    padding: 4px 8px;
-    border-radius: 4px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    z-index: 10;
-    white-space: nowrap;
-} */
 
 .card-subtasks{
     font-size: 12px;
@@ -147,7 +131,6 @@
 
 .card-badges {
     display: flex;
-
 }
 
 .badges-cards {
