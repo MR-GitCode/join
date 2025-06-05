@@ -83,6 +83,23 @@ function showCreateContact(contact) {
     addEventListenerDeleteContact(contact.id, infoContainer);
     addEventListenerEditContact(contact);
     contactInList.scrollIntoView({ behavior: "smooth", block: "start" });
+    showCreateContactFeedback();
+}
+
+/**
+ * Show a box with a create contact feedback.
+ */
+function showCreateContactFeedback() {
+    let createdFeedback = document.getElementById("contact-created");
+    createdFeedback.classList.remove("show", "hide");
+    createdFeedback.classList.add("show");
+    setTimeout(() => {
+        createdFeedback.classList.add("show");
+        setTimeout(() => {
+            createdFeedback.classList.remove("show");
+            createdFeedback.classList.add("hide");
+        }, 2500);
+    }, 50);
 }
 
 /**
