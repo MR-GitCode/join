@@ -6,7 +6,6 @@
 
     .contacts {
         gap: 18px;
-        padding-left: 12px;
     }
 
     .right-screen {
@@ -28,5 +27,136 @@
 
     .contact-data-name h2 {
         font-size: 36px;
+    }
+}
+
+@media (max-width: 425px) {
+    .right-screen{
+        display: none;
+    }
+
+    .right-side {
+        position: relative;
+    }
+
+    .contact-selections {
+        width: 100%;
+        z-index: unset;
+        position: unset;
+        background: linear-gradient(to top, rgb(255, 255, 255) 99%, rgb(223, 224, 225) 100%);
+        display: flex;
+        justify-content: center;
+        padding: 12px 14px 0 14px;
+        overflow-y: hidden;
+    }
+
+    #bt-add-contact {
+        position: absolute;
+        right: 13px;
+        bottom: 32px;
+        border-radius: 46px;
+        width: 56px;
+        height: 56px;
+        box-shadow: 0px 4px 4px 0px #00000040;
+    }
+
+    #bt-add-contact p{
+        display: none;
+    }
+
+    #contact-list {
+        width: 352px;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #A8A8A8 transparent;
+        padding-right: 27px;
+    }
+
+    #contact-list::-webkit-scrollbar {
+        width: 8px;
+    }
+  
+    #contact-list::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    #contact-list::-webkit-scrollbar-thumb {
+        background-color: #A8A8A8;
+        border-radius: 3px;
+        border: 8px solid #a8a8a8;
+        background-clip: content-box;
+    }
+
+    #overlay-container {
+        width: 396px;
+        height: 760px;
+    }
+
+    .overlay-contact {
+        flex-direction: column;
+    }
+
+    .left-overlay-contact {
+        height: 350px;
+        width: 100%;
+        align-items: unset;
+        padding-left: 20px;
+    }
+
+    .left-overlay-contact img{
+        display: none;
+    }
+
+    .left-overlay-contact h2 {
+        font-size: 47px;
+    }
+
+    .left-overlay-contact p {
+        font-size: 20px;
+    }
+    
+    .right-overlay-contact {
+        position:unset;
+    }
+
+    #close-overlay-contact {
+        top: 24px;
+        right: 24px;
+    }
+
+    #close-overlay-contact:hover {
+        background-color: #29ABE2;
+    }
+
+    .badges-contact {
+        position: absolute;
+        top: 350px;
+        transform: translateY(-50%);
+    }
+
+    .right-overlay-contact{
+        padding-left: 0;
+        gap: 0;
+        margin-top: 92px;
+        align-items: unset;
+    }
+
+    .right-overlay-contact form {
+        gap: 15px;
+    }
+
+    .right-overlay-contact input{
+        width: 343px;
+        height: 41px;
+    }
+
+    #bt-cancel {
+        display: none;
+    }
+
+    .bts-contact{
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 60px;
     }
 }

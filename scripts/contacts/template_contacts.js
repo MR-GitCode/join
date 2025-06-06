@@ -114,7 +114,10 @@ function loadOverlayAddContact() {
                         </div>
                     </div>
                 </div>
-                <img id="close-overlay-contact" src="./assets/icons/close.svg">
+                <picture>
+                    <source srcset="../assets/icons/contacts/close_white.svg" media="(max-width: 425px)">
+                    <img id="close-overlay-contact" src="./assets/icons/close.svg" alt="Close Icon">
+                </picture>
             </div>`
 }
 
