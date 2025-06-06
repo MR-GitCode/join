@@ -1,69 +1,114 @@
-import { loadData, getTasks } from '../db.js';
+import { loadData, getTasks, getLoggedInUser } from '../db.js';
+import {
+  createSummaryTodo,
+  createSummaryTaskStatus,
+  createSummaryCount,
+  createDayGreeting,
+  navigateTo
+} from './template-summary.js';
 
-/** Gibt Begrüßung nach Tageszeit zurück */
-function createGreeting(firstName, lastName) {
-  const hour = new Date().getHours();
-  let greeting = "Good evening";
+document.addEventListener('DOMContentLoaded', loadSummary);
 
-  if (hour < 12) greeting = "Good morning";
-  else if (hour < 18) greeting = "Good afternoon";
+async function loadSummary() {
+  console.log("🚀 Lade Summary...");
+  await loadData(); // Daten aus Firebase laden!
+  console.log("✅ Daten geladen.");
 
-  return `${greeting}, <span class="highlight-name">${firstName} ${lastName}</span>!`;
-}
+  const tasks = getTasks(); // nur die Aufgaben des eingeloggten Nutzers
+  const user = getLoggedInUser();
 
-document.addEventListener("DOMContentLoaded", async () => {
-  // Begrüßung
-  const userData = localStorage.getItem("user");
-  if (userData) {
-    const { firstName, lastName } = JSON.parse(userData);
-    document.getElementById("greeting").innerHTML = createGreeting(firstName, lastName);
-  } else {
-    document.getElementById("greeting").textContent = "Welcome!";
+  console.log("👤 Eingeloggter Benutzer:", user);
+  console.log("📋 Gefilterte Tasks:", tasks);
+
+  if (!tasks || !user) {
+    console.warn("⚠️ Keine Tasks oder kein eingeloggter Benutzer gefunden.");
+    return;
   }
 
-  // Lade Tasks für Konsole
-  await loadData();
-  const tasks = getTasks();
-  const today = new Date();
+ 
 
-  const upcoming = tasks.filter(task => new Date(task.enddate) >= today)
-                        .sort((a, b) => new Date(a.enddate) - new Date(b.enddate));
+  // 👋 Begrüßung mit blauem Namen einfügen
+ const greetingText = getEnglishGreeting();
+  const greetingHtml = createDayGreeting(greetingText, user.name);
+  const greetingElement = document.querySelector('.greeting-container');
+   if (greetingElement) {
+     greetingElement.innerHTML = greetingHtml;
+    console.log("👋 Begrüßung angezeigt:", `${greetingText}, ${user.name}`);
+   } else {
+    console.warn("⚠️ Kein Element mit Klasse 'greeting-container' gefunden.");
+   }
 
-  console.log('Nächste Aufgaben mit Deadline:');
-  upcoming.forEach(task => {
-    console.log(`- ${task.title} (bis ${task.enddate}) [${task.status}]`);
-  });
-});
+  // 🖼️ Profilbadge im Header setzen
+  const profileBadgeImg = document.getElementById('profile-badge');
+  if (profileBadgeImg && user.badge) {
+    profileBadgeImg.src = user.badge;
+    console.log("🖼️ Profilbadge gesetzt:", user.badge);
+  } else if (!profileBadgeImg) {
+    console.warn("⚠️ Kein Profilbild mit ID 'profile-badge' gefunden.");
+  } else {
+    console.warn("⚠️ Kein Badge im User-Objekt gefunden.");
+  }
 
-/** Dropdown-Profilmenü */
-document.addEventListener("DOMContentLoaded", function () {
-  const profileImg = document.getElementById('profile-img');
-  const navbar = document.getElementById('navbar');
+  renderSummary(tasks);
+}
 
-  profileImg?.addEventListener('click', (e) => {
-    e.stopPropagation();
-    navbar.classList.toggle('show');
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!navbar.contains(e.target) && !profileImg.contains(e.target)) {
-      navbar.classList.remove('show');
-    }
-  });
-});
-
-
-
-
-
+function getEnglishGreeting() {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Good morning";
+  if (hour < 18) return "Good afternoon";
+  return "Good evening";
+}
 
 
+function renderSummary(tasks) {
+  const taskContent = document.querySelector('.task-content');
+  if (!taskContent) {
+    console.warn("⚠️ Kein Element mit Klasse 'task-content' gefunden.");
+    return;
+  }
 
+  const taskCounts = {
+    todo: 0,
+    done: 0,
+    inProgress: 0,
+    feedback: 0,
+    urgent: [],
+    total: tasks.length,
+  };
 
+  for (let task of tasks) {
+    if (task.status === 'todo') taskCounts.todo++;
+    if (task.status === 'done') taskCounts.done++;
+    if (task.status === 'inprogress') taskCounts.inProgress++;
+    if (task.status === 'review') taskCounts.feedback++;
+    if (task.priority === 'urgent') taskCounts.urgent.push(task);
+  }
 
+  console.log("📊 Task-Zusammenfassung:", taskCounts);
 
+  const nearestUrgent = taskCounts.urgent.sort((a, b) => new Date(a.enddate) - new Date(b.enddate))[0];
+  const deadline = nearestUrgent ? formatDate(nearestUrgent.enddate) : 'Keine';
 
+  taskContent.innerHTML = `
+    <div class="row">
+      ${createSummaryTodo('./assets/icons/pencil.png', taskCounts.todo, 'To-do')}
+      ${createSummaryTodo('./assets/icons/check.png', taskCounts.done, 'Done')}
+    </div>
+    <div class="row">
+      ${createSummaryTaskStatus(deadline, 'Upcoming Deadline')}
+    </div>
+    <div class="row">
+      ${createSummaryCount(taskCounts.total, 'Tasks in Board')}
+      ${createSummaryCount(taskCounts.inProgress, 'Tasks in Progress')}
+      ${createSummaryCount(taskCounts.feedback, 'Await Feedback')}
+    </div>
+  `;
+}
 
+function formatDate(dateStr) {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' });
+}
 
 
 
