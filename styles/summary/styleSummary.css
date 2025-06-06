@@ -1,264 +1,232 @@
-.summary-content {
-   display: flex;
-   flex-direction: column;
-   gap: 20px;
-   flex-grow: 1;
+/* Global */
+* {
+  scroll-behavior: smooth;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  overflow: visible;
 }
 
+/* Layout: Seitenstruktur */
 .content-summary {
-    padding: 60px 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content:space-between;
-    height: -webkit-fill-available;
-    flex: 1;
+  padding: 60px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: -webkit-fill-available;
+  flex: 1;
 }
 
-.todo {
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
+.summary-board {
+  display: flex;
+  flex-direction: column;
 }
 
-.summary-todo {
-    background-color: white;
-    border-radius: 30px;
-    width: 264px;
-    height: 168px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 18px;
+.summary-header {
+  display: flex;
+  align-items: center;
+  width: 625px;
+  height: 73px;
+  padding-bottom: 50px;
 }
 
-.summary-task-status {
-    background-color: white;
-    border-radius: 30px;
-    height: 168px;
-    width: 520px;
-    display: flex;
-    align-items: center;
-    padding: 20px;
-  
+.summary-header h1 {
+  font-size: 61px;
 }
 
-.summary-count {
-    display: flex;
-    justify-content: space-around;
-    gap: 4px;
-    height: 168px;
-    width: 560px;
-    display: flex;
-    gap: 30px;
+.summary-header p {
+  width: 3px;
+  height: 59px;
+  background-color: #29ABE2;
+  margin: 0 20px;
 }
 
-.count,
-.count1 {
-    width: 168px;
-    height: 168px;
-    background-color: white;
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.summary-header span {
+  font-size: 27px;
 }
 
-.number-container span{
-    font-size: 20px;
+/* Aufgaben-Container */
+.task-container-horizontal {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  width: 100%;
+  flex-wrap: nowrap; /* verhindert Umbruch */
 }
 
-.number-urgent-container span{
-    font-size: 20px;
+.task-content {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 500px; /* sorgt für stabile Breite */
 }
 
-.day {
-    margin-top: 20px;
-    margin-left: 50px;
+.row {
+  display: flex;
+  gap: 24px;
 }
 
-.day span {
-    font-size: 47px;
+/* Begrüßung */
+.greeting-container {
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+  background-color: #f5f5f5;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  height: fit-content;
+  margin-top: 180px;
 }
 
-.icon-summary {
-    width: 69px;
-    height: 69px;
+#greeting h2 {
+  font-size: 1.5rem;
+  margin: 0;
 }
 
-.number-container {
-    display: flex;
-    flex-direction: column;
-    align-items:  center;
-    gap: 13px;
-}
-
-.number-urgent-container {
-    display: flex;
-    align-items: center;  
-    flex-direction: column;
-    gap: 10px;            
-    height: auto;  
-    margin-left: 40px;
-}
-
-.number {
-    width: 31px;
-    height: 77px;
-    font-size: 64px;
-    display: flex;
-    justify-content: center;
-    align-items: center; /* ⬅️ Das hier! */
-}
-
-.number span {
-    font-size: 20px;
-  
-}
-
-.vector {
-    height: 120px;      
-    margin-top: 0;  
-    display: flex ;
-    justify-content: center;
-    margin-left: 60px;
-}
-
+/* Summary Cards */
 .summary-todo,
 .summary-task-status,
 .count,
 .count1 {
-    cursor: pointer; 
-    transition: background-color 0.3s ease;
+  background-color: white;
+  border-radius: 30px;
+  height: 168px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .summary-todo:hover,
 .summary-task-status:hover,
 .count:hover,
 .count1:hover {
-    background-color: #e0e0e0;
+  background-color: #e0e0e0;
 }
 
-.task-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+.summary-todo {
+  width: 264px;
 }
 
-.task-content {
-    display: flex;
-    gap: 20px;
+.summary-task-status {
+  width: 520px;
+  padding: 20px;
+  justify-content: flex-start;
 }
 
+.summary-count {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+}
+
+.count,
+.count1 {
+  width: 168px;
+  height: 168px;
+}
+
+/* Inhalte in den Cards */
+.icon-summary {
+  width: 69px;
+  height: 69px;
+margin-left: 60px;
+}
+
+.number-container,
+.number-urgent-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 13px;
+}
+
+.number-urgent-container {
+
+  gap: 10px;
+}
+
+.number {
+  width: 31px;
+  height: 77px;
+  font-size: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.number-container span,
+.number span,
+.number-urgent-container span {
+  font-size: 20px;
+}
+
+.vector {
+  height: 120px;
+  margin-left: 30px;
+  margin: 0;
+  display:block;
+}
+
+.info-date {
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.date {
+  font-size: 21px;
+  margin-bottom: 10px;
+}
+
+.info {
+  font-size: 16px;
+}
+
+/* Begrüßung oben rechts */
 .day {
-    text-align: right;
-    font-weight: bold;
-    padding-right: 20px;
+  text-align: right;
+  font-weight: bold;
+  padding-right: 20px;
+  margin-top: 20px;
 }
 
-.summary-header{
-    display: flex;
-    align-items: center;
-    width: 625px;
-    height: 73px;
-    padding-bottom: 50px;
-}
-.summary-header span{
-    font-size: 27px;
-}
-.summary-header p{
-    width: 3px;
-    height: 59px;
-    background-color: #29ABE2;
-    margin-right: 20px;
-    margin-left: 20px;
-}
-.summary-header h1{
-    font-size: 61px;
-}
-.info-date{
- margin-left: 30px;
- display: flex;
- flex-direction: column;
-
-  
-}
-.date{
-
-    font-size: 21px;
-    margin-bottom: 10px;
+.day span {
+  font-size: 47px;
 }
 
-.info{
-    font-size: 16px;
-}
-
-.task-status-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#greeting{
-    width: 338px;
-    font-size: 47px;
-}
-
-.summary-board {
-    display: flex;
-    flex-direction: column;
-}
-
-.task,
-#task-container {
-    flex: 1;
-}
-   
-.task {
-    flex: 1.4;
-}
-
-#task-container {
-    flex: 0.6;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.split-view{
-    display: flex;
-    max-width: 1440px;
-}
-
+/* Begrüßung mit Name */
 .highlight-name {
-  color:rgba(41, 171, 226, 1);        
-  font-weight: bold;      /* Fett */
-  font-size: 64px;        /* Etwas größer */
+  color: rgba(41, 171, 226, 1);
+  font-weight: bold;
+  font-size: 64px;
 }
 
+/* Navigation oben rechts */
+.user-info {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
 
+.user-info img {
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+}
 
-
-    .user-info {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .user-info img {
-      cursor: pointer;
-      width: 32px;
-      height: 32px;
-    }
-
-    .dropdown-container {
-      position: relative;
-    }
+.dropdown-container {
+  position: relative;
+}
 
 .navbar-dropdown {
   position: absolute;
-  top: 100%; /* ← Statt bottom: 100% */
+  top: 100%;
   right: 0;
   background-color: white;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -266,7 +234,7 @@
   min-width: 150px;
   z-index: 1000;
   opacity: 0;
-  transform: translateY(-10px); /* ← von oben nach unten */
+  transform: translateY(-10px);
   transition: opacity 0.2s ease, transform 0.2s ease;
   pointer-events: none;
 }
@@ -277,20 +245,20 @@
   pointer-events: auto;
 }
 
+.navbar-dropdown a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  transition: background 0.2s;
+}
 
-    .navbar-dropdown a {
-      display: block;
-      padding: 10px;
-      text-decoration: none;
-      color: black;
-      transition: background 0.2s;
-    }
+.navbar-dropdown a:hover {
+  background-color: #f0f0f0;
+}
 
-    .navbar-dropdown a:hover {
-      background-color: #f0f0f0;
-    }
-
-    .right-side,
+/* Sichtbarkeit erzwingen */
+.right-side,
 header,
 .user-info {
   overflow: visible !important;
@@ -298,9 +266,39 @@ header,
   z-index: auto !important;
 }
 
-* {
-    scroll-behavior: smooth;
-    font-family: 'inter', sans-serif;
-    margin: 0;
-    overflow: visible;
+.summary-task-status {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  padding: 20px;
+  width: 520px;
 }
+
+.vector-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.vector {
+  height: 120px;
+  display: block;
+}
+
+.split-view {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.task-content {
+  flex: 2;
+}
+
+.greeting-container {
+  flex: 1;
+}
+
