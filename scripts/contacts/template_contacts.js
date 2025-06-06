@@ -68,7 +68,16 @@ function loadContactInformations(contact) {
                 <a href="">${contact.email}</a>
                 <b>Phone</b>
                 <a href="tel:${contact.phone}">${contact.phone}</a>
-            </div>`
+            </div>
+            <a id="back-arrow">
+                <img src="./assets/icons/contacts/vector.svg" alt="Zurück">
+            </a>
+            <div id="editing-menu">
+                <div class="dots"></div>
+                <div class="dots"></div>
+                <div class="dots"></div>
+            </div>
+            `
 }
 
 /**

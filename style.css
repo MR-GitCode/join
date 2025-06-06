@@ -15,6 +15,11 @@
 
 .bg-color{
     background-color: #091931;
+    color: white !important;
+}
+
+.bg-color img{
+    filter: brightness(0) invert(1);
 }
 
 body {

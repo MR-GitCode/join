@@ -82,4 +82,10 @@
         width: 40px;
         height: 40px;
     }
+
+    .bg-color {
+        border-radius: 8px;
+        width: 76px;
+        height: 76px !important;
+    }
 }

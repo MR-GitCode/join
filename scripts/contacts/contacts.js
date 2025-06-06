@@ -76,12 +76,44 @@ function addContactEventListener(contacts) {
                     infoContainer.innerHTML = loadContactInformations(contacts[i]);
                     addEventListenerDeleteContact(contactID, infoContainer);
                     addEventListenerEditContact(contacts[i]);
+                    if (window.innerWidth <= 425) {
+                        document.querySelector('.contact-selections').style.display = 'none';
+                        document.querySelector('.right-screen').style.display = 'flex';
+                        editingMenuEventListen();
+                        backToContactList();
+                    }
                     break;
                 }
             }
         });
     });
 }
+
+/**
+ * Open the menu with edit and delete for the contact in small displays
+ */
+function editingMenuEventListen() {
+    let menu = document.querySelector('.bts-select-task');
+    let btMenu = document.getElementById('editing-menu');
+    btMenu.addEventListener("click", (event) => {
+        event.stopPropagation();
+        menu.classList.toggle('show');
+    });
+
+    document.addEventListener("click", (event) => {
+        if (!menu.contains(event.target) && !btMenu.contains(event.target)) {
+            menu.classList.remove('show');
+        }
+    });
+}
+
+function backToContactList() {
+    document.getElementById('back-arrow').addEventListener("click" , () => {
+        document.querySelector('.contact-selections').style.display = 'flex';
+        document.querySelector('.right-screen').style.display = 'none';
+        addContactList()
+    })
+};
 
 /**
  * Deletes the contact of the user.
