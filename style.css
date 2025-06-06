@@ -70,11 +70,17 @@ nav a:hover {
 footer {
     display: flex;
     flex-direction: column;
-    gap: 16px;
     position: absolute;
     bottom: 64px;
-    left: 50%;
-    transform: translate(-50%);
+    width: 232px;
+}
+
+footer a{
+    padding-left: 25%;
+}
+
+footer a:hover{
+    color: #29ABE2;
 }
 
 .right-side {
@@ -90,6 +96,11 @@ header {
     height: 96px;
     padding: 0 40px 0 100px;
     background-color: #FFFFFF;
+}
+
+#logo-black-header {
+    display: none;
+    width: 32px;
 }
 
 .user-info {

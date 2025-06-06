@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 /**
  * Loads the contact list of the currently logged-in user.
  */
-function addContactList() {
+export function addContactList() {
     let contactList = [];
     let contacts = getLoggedInUser().contacts;
     if (contacts) {
@@ -21,7 +21,6 @@ function addContactList() {
         if(contacts[i]){
            contactList.push(contacts[i].name) 
         }
-        
         } 
     }
     contactList.sort()
@@ -66,7 +65,10 @@ function addContacts(contacts) {
  */
 function addContactEventListener(contacts) {
     document.querySelectorAll('.contacts').forEach((contact) => {
+        contact.classList.remove("contacts-active");
         contact.addEventListener("click", (event) => {
+            document.querySelectorAll('.contacts').forEach(c => c.classList.remove("contact-active"));
+            contact.classList.add("contact-active");
             let contactID = parseInt(event.currentTarget.id.replace('contact-', ''));
             let infoContainer = document.getElementById('contact-data');
             for (let i = 0; i < contacts.length; i++) {  
@@ -85,7 +87,7 @@ function addContactEventListener(contacts) {
  * Deletes the contact of the user.
  * @param {number} contactID This is the id of the contact. 
  */
-function addEventListenerDeleteContact(contactID, infoContainer) {
+export function addEventListenerDeleteContact(contactID, infoContainer) {
     let user = getLoggedInUser();
     document.getElementById('delete-contact').addEventListener("click", async () => {
         await deleteData(`users/${user.id}/contacts/`, contactID);

@@ -31,7 +31,27 @@ export async function loadData() {
             tasks.push(task);
           }
         }
+<<<<<<< HEAD
       }
+=======
+
+        // load tasks
+        let tasksData = await fetch(`${BASE_URL}/tasks.json`);
+        let tasksJson = await tasksData.json();
+
+        tasks = [];
+        if (tasksJson) {
+            for (let [id, task] of Object.entries(tasksJson)) {
+                task.id = parseInt(id);
+                tasks.push(task);
+            }
+        }
+
+        // find the user
+        loggedInUser = users.find(u => u.login === 1);
+    } catch (error) {
+        console.error('Fehler beim Laden der Daten:', error);
+>>>>>>> 2525f66c4b781e589dcf4c4fe17549542a91b54a
     }
 
     /* Eingeloggten User bestimmen */
@@ -45,6 +65,7 @@ export async function loadData() {
   }
 }
 
+<<<<<<< HEAD
 /* ---------- Daten speichern / löschen ---------- */
 async function transmitData(path = '', data = {}) {
   const res = await fetch(`${BASE_URL}/${path}.json`, {
@@ -55,9 +76,35 @@ async function transmitData(path = '', data = {}) {
   await loadData();
   return res.json();
 }
+=======
+/**
+ * This function saves the data in the database.
+ * 
+ * @param {string} path - The subpath to the database given from the saveData function.
+ * @param {string} data - The data to save given from the saveData function.
+ */
+async function transmitData(path = '', data = {}) {
+    let response = await fetch(`${BASE_URL}/${path}.json`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    });  
+    await loadData();
+    return await response.json();
+};
+>>>>>>> 2525f66c4b781e589dcf4c4fe17549542a91b54a
 
 export async function saveData(path = '', data = null) {
+<<<<<<< HEAD
   if (data) await transmitData(path, data);
+=======
+    // console.log(path, data);
+    if (data) {
+       await transmitData(path, data)
+    }
+>>>>>>> 2525f66c4b781e589dcf4c4fe17549542a91b54a
 }
 
 export async function deleteData(path = '', id) {

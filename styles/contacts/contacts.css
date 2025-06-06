@@ -109,15 +109,17 @@ h1{
     gap: 35px;
 }
 
-.contacts:hover{
+.contacts:hover:not(.contact-active){
     border-radius: 10px;
     background: linear-gradient(180deg, #F9F9F9 0%, #F0F0F0 100%);
     cursor: pointer;
 }
 
-.contacts:active {
+.contact-active {
+    border-radius: 10px;
     background: rgba(42, 54, 71, 1);
-    color: white
+    color: white;
+    cursor: pointer;
 }
 
 #contact-list hr {
@@ -142,13 +144,13 @@ h1{
     padding: 60px 80px;
     flex: 1 ;
     background: linear-gradient(to top, rgba(245, 246, 247, 1) 99%, rgb(223, 224, 225) 100%);
+    position: relative;
 }
 
 #contact-data{
     display: flex;
     flex-direction: column;
     padding-top: 32px;
-    width: 460pc;
     gap: 21px; 
 }
 
@@ -217,4 +219,84 @@ h1{
 
 .hidden {
     display: none !important;
+}
+
+.badges-contactlist{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    border: 2px solid #FFFFFF;
+    border-radius: 45px;
+    color: #FFFFFF;
+    font-size: 14px;
+}
+
+.badges-contactinfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 114px;
+    height: 114px;
+    border: 3px solid #FFFFFF;
+    border-radius: 70px;
+    color: #FFFFFF;
+    font-size: 47px;
+    font-weight: 500;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes slideInFromRight {
+  0% {
+    right: -400px;
+    opacity: 0;
+  }
+  100% {
+    right: 60%;
+    transform: translateX(50%);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToRight {
+  0% {
+    right: 50%;
+    transform: translateX(50%);
+    opacity: 1;
+  }
+  100% {
+    right: -400px;
+    opacity: 0;
+  }
+}
+
+.contact-created {
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    font-size: 20px;
+    font-weight: 400;
+    width: 326px;
+    height: 74px;
+    color: #FFFFFF;
+    border-radius: 20px;
+    background-color: #2A3647;
+    box-shadow: 0px 0px 4px 0px #00000026;
+    bottom: 5%;
+    right: -400px;
+    opacity: 0;
+    z-index: 100;
+    transition: none;
+    pointer-events: none; 
+}
+
+.contact-created.show {
+    display: flex;
+    animation: slideInFromRight 0.5s ease-out forwards;
+    animation-delay: 0.8s;
+}
+
+.contact-created.hide {
+    animation: slideOutToRight 0.5s ease-in forwards;
 }

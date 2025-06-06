@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="assets/icons/favicon.svg">
     <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="../styles/fonts.css">
-    <link rel="stylesheet" href="./styles/contacts/contacts.css">
-    <link rel="stylesheet" href="./styles/contacts/overlay_add_contact.css">
+    <link rel="stylesheet" href="./styles/fonts.css">
+    <link rel="stylesheet" href="./styles/legals.css">
     <link rel="stylesheet" href="./styles/style_responsive.css">
-    <link rel="stylesheet" href="./styles/contacts/contacts_responsive.css">
-    <title>Contacts</title>
+    <title>Privacy Policy</title>
 </head>
 <body>
     <section class="left-side">
@@ -29,14 +27,14 @@
                 <img src="./assets/icons/board.svg">
                 <p>Board</p>
             </a>
-            <a class="bg-color" href="./contacts.html">
+            <a href="./contacts.html">
                 <img src="./assets/icons/contacts.svg">
                 <p>Contacts</p>
             </a>
         </nav>
 
         <footer>
-            <a href="./privacy-policy.html">
+            <a class="bg-color" href="./privacy-policy.html">
                 <p>Privacy Policy</p>
             </a>
             <a href="./legal-notice.html">
@@ -57,41 +55,23 @@
 
         <div class="content">
             <div class="display-position margin">
-                <div class="content-contacts">
-                    <div class="split-screen">
-                        <div class="contact-selections">
-                            <div id="bt-add-contact">
-                                <p>Add new contact</p>
-                                <img src="./assets/icons/contacts/person_add.svg">
-                            </div>
-
-                            <div id="contact-list"></div>
+                <div class="content-legals">
+                    <div class="privacy-policy">
+                        <h1>Privacy Policy</h1>
+                        <div>
+                            <h2>Subtitle</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, facilis dolorem. Illum accusantium, repellat reprehenderit molestias sed sapiente distinctio nisi ipsam iusto minus debitis eligendi expedita deserunt recusandae nihil inventore.</p>
                         </div>
-                        <div class="right-screen">
-                            <div class="info-contacts">
-                                <h1>Contacts</h1>
-                                <div class="divider"></div>
-                                <p>Better with a team</p>
-                            </div>
-                            <div id="contact-data"></div>
-                            
+                        <div>
+                            <h2>Subtitle</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, facilis dolorem. Illum accusantium, repellat reprehenderit molestias sed sapiente distinctio nisi ipsam iusto minus debitis eligendi expedita deserunt recusandae nihil inventore.</p>
                         </div>
-                        <div class="contact-created" id="contact-created">Contact succesfully created</div> 
                     </div>
                 </div>
-            </div>
-                   
+            </div>          
         </div>
     </section>    
-    
-    <section id="overlay-contact" class="hidden">
-        <div class="overlay-contact" id="overlay-container"></div>
-    </section>
-
 </body>
 <script type="module" src="./scripts/db.js"></script>
 <script type="module" src="./script.js"></script>
-<script src="./scripts/contacts/template_contacts.js"></script>
-<script type="module" src="./scripts/contacts/contacts_overlay.js"></script>
-<script type="module" src="./scripts/contacts/contacts.js"></script>
 </html>

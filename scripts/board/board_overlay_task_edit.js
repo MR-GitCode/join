@@ -158,5 +158,8 @@ function getSubtaskOfTaskEdit(subtasksInfo) {
         }
         subtasks.push(subtask);    
     }
+    if (subtasks.length === 0) {
+        subtasks = ""
+    }
     return subtasks;
 }
