@@ -35,12 +35,9 @@ h1{
 }
 
 .contact-selections {
+    padding-top: 22px;
     background-color: #FFFFFF;
-    width: 352px;
-    padding: 22px 52px 0 52px;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: #A8A8A8 transparent;
+    padding-right: 12px;
     position: relative;
     z-index: 1;
 }
@@ -57,20 +54,30 @@ h1{
     z-index: -1;
 }
 
-.contact-selections::-webkit-scrollbar {
+.scrollbar {
+    width: 352px;
+    padding: 0 48px 0 52px;
+    height: 100%;
+    overflow-y: auto !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: #A8A8A8 transparent !important;
+}
+
+.scrollbar::-webkit-scrollbar {
     width: 8px;
   }
   
-.contact-selections::-webkit-scrollbar-track {
+.scrollbar::-webkit-scrollbar-track {
     background: transparent;
 }
   
-.contact-selections::-webkit-scrollbar-thumb {
+.scrollbar::-webkit-scrollbar-thumb {
     background-color: #A8A8A8;
     border-radius: 3px;
     border: 8px solid #a8a8a8;
     background-clip: content-box;
 }
+
 
 #bt-add-contact {
     display: flex;
@@ -84,6 +91,10 @@ h1{
     border-radius: 10px;
     gap: 16px;
     cursor: pointer;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+
 }
 
 #bt-add-contact:hover{
@@ -253,16 +264,16 @@ h1{
     opacity: 0;
   }
   100% {
-    right: 60%;
-    transform: translateX(50%);
+    right: 10%;
+    transform: translateX(10%);
     opacity: 1;
   }
 }
 
 @keyframes slideOutToRight {
   0% {
-    right: 50%;
-    transform: translateX(50%);
+    right: 10%;
+    transform: translateX(10%);
     opacity: 1;
   }
   100% {

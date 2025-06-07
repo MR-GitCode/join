@@ -60,12 +60,13 @@
                 <div class="content-contacts">
                     <div class="split-screen">
                         <div class="contact-selections">
-                            <div id="bt-add-contact">
-                                <p>Add new contact</p>
-                                <img src="./assets/icons/contacts/person_add.svg">
+                            <div class="scrollbar">
+                                <div id="bt-add-contact">
+                                    <p>Add new contact</p>
+                                    <img src="./assets/icons/contacts/person_add.svg">
+                                </div>
+                                <div id="contact-list"></div>
                             </div>
-
-                            <div id="contact-list"></div>
                         </div>
                         <div class="right-screen">
                             <div class="info-contacts">
@@ -74,7 +75,14 @@
                                 <p>Better with a team</p>
                             </div>
                             <div id="contact-data"></div>
-                            
+                            <a id="back-arrow">
+                                <img src="./assets/icons/contacts/vector.svg" alt="Zurück">
+                            </a>
+                            <div id="editing-menu">
+                                <div class="dots"></div>
+                                <div class="dots"></div>
+                                <div class="dots"></div>
+                            </div>
                         </div>
                         <div class="contact-created" id="contact-created">Contact succesfully created</div> 
                     </div>

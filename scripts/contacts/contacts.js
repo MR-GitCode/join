@@ -125,5 +125,6 @@ export function addEventListenerDeleteContact(contactID, infoContainer) {
         await deleteData(`users/${user.id}/contacts/`, contactID);
         addContactList();
         infoContainer.innerHTML = "";
+        document.getElementById('bt-add-contact').scrollIntoView({ behavior: "smooth", block: "start" });
     })
 }

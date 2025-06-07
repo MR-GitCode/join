@@ -1,13 +1,6 @@
 import { getLoggedInUser, deleteData, saveData} from '../db.js';
 import { addContactList, addEventListenerDeleteContact } from '../contacts/contacts.js'
 
-// let badgeColors = [
-//     "#9326ff" , "#ff7b00" , "#6e52ff" , "#fd70ff" , "#ffbc2b",
-//     "#1ed6c1" , "#462f8a" , "#ff4545" , "#FF5733", "#33B5FF",
-//     "#8E44AD", "#2ECC71", "#F1C40F", "#E67E22", "#1ABC9C",
-//     "#C0392B", "#3498DB", "#9B59B6"
-// ];
-
 let badgeColors = [
     "#FF7A00" , "#9327FF" , "#FF745E", "#FFC701" , "#FFE62B" ,
     "#FF5EB3" , "#00BEE8" , "#FFA35E", "#0038FF" , "#FF4646" ,
@@ -25,7 +18,7 @@ export function addEventListenerToNewContact() {
        let overlayContainer = document.getElementById('overlay-container');
        overlayContainer.innerHTML = loadOverlayAddContact();
        addEventListenerCloseOverlay(overlayContact);
-       createContact();
+       checkContactValues();
     })
 }
 
@@ -58,22 +51,41 @@ function closeOverlay() {
 }
 
 /**
+ * Checked the input values of the form.
+ */
+function checkContactValues() {
+    const nameInput = document.querySelector('#name-input input');
+    const emailInput = document.querySelector('#email-input input');
+    const phoneInput = document.querySelector('#phone-input input');
+    const createBt = document.getElementById('bt-create-contact');
+    function validateInputs() {
+        createBt.disabled = !(nameInput.value.trim() && emailInput.value.trim() && phoneInput.value.trim());
+    }
+    nameInput.addEventListener('input', validateInputs);
+    emailInput.addEventListener('input', validateInputs);
+    phoneInput.addEventListener('input', validateInputs);
+    validateInputs();
+    createContact(createBt, nameInput, emailInput, phoneInput)
+}
+
+/**
  * Create a new contact.
  */
-function createContact() {
+function createContact(createBt, nameInput, emailInput, phoneInput) {
     let user = getLoggedInUser();
-    document.getElementById('bt-create-contact').addEventListener("click", async () => {
-         let contact = {
-            name : document.querySelector('#name-input input').value,
-            email : document.querySelector('#email-input input').value,
-            phone : document.querySelector('#phone-input input').value,
-            id : getNextFreeId(),
-            badge : getBadges(document.querySelector('#name-input input').value),
+    createBt.addEventListener("click", async () => {
+        if (createBt.disabled) return;
+        let contact = {
+            name: nameInput.value,
+            email: emailInput.value,
+            phone: phoneInput.value,
+            id: getNextFreeId(),
+            badge: getBadges(nameInput.value),
         };
         await saveData(`users/${user.id}/contacts/${contact.id}/`, contact);
         closeOverlay();
         showCreateContact(contact);
-    })    
+    });
 }
 
 /**
@@ -192,9 +204,9 @@ function addEventListenerEditDeleteContact(contactID) {
     let user = getLoggedInUser();
     document.getElementById('bt-cancel').addEventListener("click", async () => {
         await deleteData(`users/${user.id}/contacts/`, contactID); 
-        closeOverlay();      
-        })
-    }
+        closeOverlay(); 
+    }) 
+}
 
 
 function saveEdit(contact) {

@@ -68,16 +68,7 @@ function loadContactInformations(contact) {
                 <a href="">${contact.email}</a>
                 <b>Phone</b>
                 <a href="tel:${contact.phone}">${contact.phone}</a>
-            </div>
-            <a id="back-arrow">
-                <img src="./assets/icons/contacts/vector.svg" alt="Zurück">
-            </a>
-            <div id="editing-menu">
-                <div class="dots"></div>
-                <div class="dots"></div>
-                <div class="dots"></div>
-            </div>
-            `
+            </div>`
 }
 
 /**
@@ -117,10 +108,10 @@ function loadOverlayAddContact() {
                             <p>Cancel</p>
                             <img src="./assets/icons/close.svg">
                         </div>
-                        <div id="bt-create-contact">
+                        <button id="bt-create-contact" type="button" disabled>
                             <p>Create contact</p>
                             <img src="./assets/icons/check.svg">
-                        </div>
+                        </button>
                     </div>
                 </div>
                 <picture>
@@ -142,7 +133,7 @@ function loadOverlayEditContact(contact) {
                 </div>
             </div>
             <div class="right-overlay-contact">
-                <div class="badges-contactinfo" style="background-color:${contact.badge.color}">${contact.badge.initials}</div>
+                <div class="badges-edit-contactinfo" style="background-color:${contact.badge.color}">${contact.badge.initials}</div>
                 <div class="inputs-contact">
                     <form action="">
                         <div id="name-input">
@@ -159,16 +150,19 @@ function loadOverlayEditContact(contact) {
                         </div>
                     </form>
                     <div class="bts-contact">
-                        <div id="bt-cancel">
+                        <div id="bt-cancel" class="bt-edit-cancel">
                             <p>Delete</p>
                             <img src="./assets/icons/close.svg">
                         </div>
-                        <div id="bt-create-contact">
+                        <div id="bt-create-contact" class="bt-edit-contact">
                             <p>Save</p>
                             <img src="./assets/icons/check.svg">
                         </div>
                     </div>
                 </div>
-                <img id="close-overlay-contact" src="./assets/icons/close.svg">
+                <picture>
+                    <source srcset="../assets/icons/contacts/close_white.svg" media="(max-width: 425px)">
+                    <img id="close-overlay-contact" src="./assets/icons/close.svg" alt="Close Icon">
+                </picture>
             </div>`
 }

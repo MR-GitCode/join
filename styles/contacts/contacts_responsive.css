@@ -55,6 +55,7 @@
         position: absolute;
         right: 16px;
         bottom: 25px;
+        top: unset;
         border-radius: 46px;
         width: 56px;
         height: 56px;
@@ -65,27 +66,19 @@
         display: none;
     }
 
+    .scrollbar {
+        padding: 0px;
+        width: 400px;
+    }
+
     #contact-list {
-        width: 352px;
-        overflow-y: auto;
-        scrollbar-width: thin;
-        scrollbar-color: #A8A8A8 transparent;
-        padding-right: 27px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    #contact-list::-webkit-scrollbar {
-        width: 8px;
-    }
-  
-    #contact-list::-webkit-scrollbar-track {
-        background: transparent;
-    }
-
-    #contact-list::-webkit-scrollbar-thumb {
-        background-color: #A8A8A8;
-        border-radius: 3px;
-        border: 8px solid #a8a8a8;
-        background-clip: content-box;
+    .letters {
+        width: 316px;
     }
 
     #overlay-container {
@@ -133,6 +126,38 @@
         position: absolute;
         top: 350px;
         transform: translateY(-50%);
+    }
+
+    .badges-edit-contactinfo{
+        position: absolute;
+        top: 350px;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 114px;
+        height: 114px;
+        border: 3px solid #FFFFFF;
+        border-radius: 70px;
+        color: #FFFFFF;
+        font-size: 47px;
+        font-weight: 500;
+        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .bt-edit-cancel{
+        display: flex !important;
+        width: 82px !important;
+        height: 49px !important;
+    }
+
+    .bt-edit-cancel img{
+       display: none; 
+    }
+
+    .bt-edit-contact{
+        width: 99px !important;
+        height: 51px !important;
     }
 
     .right-overlay-contact{
