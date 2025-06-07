@@ -397,10 +397,11 @@ export function createTask() {
         subtasks: getSubtaskOfTask(),
         status: 'todo',
     };
-    // console.log("subtasks", task.subtasks);
-    // console.log("new task:", task);
     saveData(`users/${user.id}/tasks/${task.id}`, task);
     clearTask();
+    if (window.innerWidth === 425) {
+        window.location.href = 'board.html';       
+    }
 }
 
 /**

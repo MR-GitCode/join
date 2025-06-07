@@ -5,12 +5,36 @@
 }
 
 @media (max-width: 1420px){
-    .form-add-task input {
-        width: 376px
+    #subtask-input,
+    #input-assign,
+    #input-title {
+        width: 376px !important;
+        height: 36px !important;
+    }
+
+    input[type="date"] {
+        width: 396px !important;
+        height: 40px !important;
+    }
+    
+    .input-menu {
+        width: 396px !important;
+        height: 40px !important;
+    }
+
+    .category-select {
+        width: 396px !important;
+        height: 40px !important;
     }
 
     #description {
-       width: 362px
+       width: 362px;
+       height: 88px;
+    }
+
+    .input-menu img,
+    #subtask-icons {
+        top: 20px
     }
 }
 
@@ -75,7 +99,10 @@
     }
 
     .priority {
-       height: 48px; 
+       width: 396px;
+       height: 48px;
+       gap: 0;
+       justify-content: space-between;
     }
 
     .bt-priority {

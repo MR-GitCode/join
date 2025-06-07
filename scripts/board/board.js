@@ -20,6 +20,9 @@ document.addEventListener("DOMContentLoaded", async () => {
  * Triggered when the "Add Task" button is clicked.
  */
 function openOverlay() {
+    if (window.innerWidth === 425) {
+        window.location.href = 'add-task.html';       
+    } else {
     selectedUsers.clear();
     let overlayContainer = document.getElementById("overlay-add-task")
     overlayContainer.classList.remove('hidden');
@@ -28,6 +31,7 @@ function openOverlay() {
     document.body.classList.add('no-scroll');
     addCloseEventListener();
     addCreateTaskEventListener();
+    }
 }
 
 /**
