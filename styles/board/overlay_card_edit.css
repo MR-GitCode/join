@@ -16,7 +16,6 @@
     scrollbar-color: #A8A8A8 transparent;
     position: relative;
     z-index: 1;
-    padding-right: 10px;
 }
 
 .form-scrollbar::-webkit-scrollbar {
