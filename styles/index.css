@@ -129,6 +129,24 @@ button {
   }
 }
 
+.legals-login {
+  position: absolute;
+  display: flex;
+  gap: 18px;
+  font-size: 16px;
+  font-weight: 400;
+  
+  left: 50%;
+  bottom: 10%;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
 
+.legals-login a {
+    text-decoration: none;
+    color: #CDCDCD;
+}
 
-
+.legals-login a:hover {
+  color: #29ABE2;
+}

@@ -3,6 +3,7 @@
  */
 let contentRef;
 let loggedInUser;
+
 /**
  * This variabel is set for aktive user data
  * 
@@ -10,6 +11,7 @@ let loggedInUser;
  */
 let user;
 let users;
+
 /**
  * This function initializes the page by calling other functions.
  */
@@ -37,6 +39,7 @@ function init(version) {
 function toggleDNone(id) {
     document.getElementById(id).classList.toggle('d_none')
 };
+
 /**
  * This function stops the function from propagating to parent elements.
  * 

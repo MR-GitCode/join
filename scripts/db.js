@@ -1,4 +1,4 @@
-const BASE_URL = 'https://join-441-f6d95-default-rtdb.europe-west1.firebasedatabase.app/';
+const BASE_URL = 'https://join-441-f6d95-default-rtdb.europe-west1.firebasedatabase.app';
 
 let users = [];
 let tasks = [];

@@ -56,6 +56,16 @@
 
     footer {
         display: none;
+        bottom: 0;
+        right: 0;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    footer a {
+        padding-left: 0 ;
+        width: 100% !important;
+        justify-content: center;
     }
 
     .join-logo {

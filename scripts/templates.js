@@ -8,5 +8,15 @@ function getLoadingSpinnerTemplate() {
             <!---Fallback--->
             Ihr Browser kann leider kein svg darstellen!
         </object>`;
-
 };
+
+/**
+ * Returns the navbar if a user doesn't login.
+ * @returns 
+ */
+function changeNavbar() {
+    return `<a href="./index.html">
+                <img src="./assets/icons/log_in.svg">
+                <p>Log In</p>
+            </a>`
+}

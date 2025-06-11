@@ -1,5 +1,9 @@
-import { loadData } from "./scripts/db.js";
-// import { getAllDataRealtime } from "./scripts/login.js";
+import { loadData, getLoggedInUser } from "./scripts/db.js";
+
+window.onload = () => {
+    init();
+    initLegals();
+};
 
 /**
  * This function initializes the page by calling other functions.
@@ -66,6 +70,21 @@ function loadingSpinner() {
     contentRef.innerHTML += getLoadingSpinnerTemplate();
 };
 
-window.onload = () => {
-    init();
-};
+/**
+ * Checks if a user is logged in and loads the navbar
+ */
+async function initLegals() {
+    await loadData();
+    let user = getLoggedInUser();
+    let navbar = document.getElementById('navbar');
+    let legalsFooter = document.getElementById('footer')
+    if (navbar && legalsFooter) {
+        if (!user) {   
+            navbar.innerHTML = changeNavbar();
+            navbar.setAttribute('style', 'justify-content: unset; padding-left: 5px;')
+        if (window.innerWidth <= 425) {
+                legalsFooter.setAttribute('style', 'display: flex;'); 
+            }
+        } 
+    }
+}
