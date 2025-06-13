@@ -150,3 +150,10 @@
 .badges-cards:first-child {
     margin-left: 0;
 }
+
+.touch-drag-ghost {
+    position: fixed;
+    pointer-events: none;
+    opacity: 0.8;
+    z-index: 1000;
+}

@@ -1,11 +1,11 @@
-import {loadData, getLoggedInUser, saveData, deleteData} from '../db.js';
+import {loadData, getLoggedInUser, deleteData} from '../db.js';
 import {addEventListenerToNewContact, addEventListenerEditContact} from '../contacts/contacts_overlay.js'
 
 /**
  * Load data and initialize contact list once the DOM is fully loaded
  */
 document.addEventListener("DOMContentLoaded", async () => {
-    await loadData();
+    await loadData(); 
     addContactList();
     addEventListenerToNewContact();
 });
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
  */
 export function addContactList() {
     let contactList = [];
-    let contacts = getLoggedInUser().contacts;
+    let contacts = getLoggedInUser().contacts;   
     if (contacts) {
        for (let i = 0; i < contacts.length; i++) {
         if(contacts[i]){

@@ -1,6 +1,7 @@
 import {loadData, deleteData, saveData, getLoggedInUser} from '../db.js';
 import {addEditTaskEventListener} from "./board_overlay_task_edit.js";
 import { updateTasks } from "./board.js";
+import { touchDragDrop } from './board_drag_drop.js';
 
 document.addEventListener("DOMContentLoaded", async () => {
     addCloseEventListener()
@@ -9,11 +10,28 @@ document.addEventListener("DOMContentLoaded", async () => {
 /**
   * Open the overlay of the task if you click on the taskcard.
   */
+// export function addTaskEventListeners() {
+//     document.querySelectorAll(".card").forEach(task => {
+//         task.addEventListener("click", () => {
+//             let taskID = task.id;
+//             let taskContainer = document.getElementById('overlay-select-task')
+//             taskContainer.classList.remove('hidden');
+//             let user = getLoggedInUser();           
+//             taskContainer.innerHTML = loadTaskOverlay(user.tasks[taskID]);
+//             addTaskAssigned(user.tasks[taskID]);
+//             addTaskSubtask(user.tasks[taskID].subtasks, 'subtasks-select-task', 'show');
+//             addSubtasksStatusEventListener(user, taskID);
+//             addEditTaskEventListener(taskID);
+//             addDeliteTask(user, taskID);
+//             });
+//         });
+// }
+
 export function addTaskEventListeners() {
     document.querySelectorAll(".card").forEach(task => {
         task.addEventListener("click", () => {
             let taskID = task.id;
-            let taskContainer = document.getElementById('overlay-select-task')
+            let taskContainer = document.getElementById('overlay-select-task');
             taskContainer.classList.remove('hidden');
             let user = getLoggedInUser();           
             taskContainer.innerHTML = loadTaskOverlay(user.tasks[taskID]);
@@ -22,8 +40,10 @@ export function addTaskEventListeners() {
             addSubtasksStatusEventListener(user, taskID);
             addEditTaskEventListener(taskID);
             addDeliteTask(user, taskID);
-            });
+            
         });
+        touchDragDrop(task);       
+    });
 }
 
 /**
