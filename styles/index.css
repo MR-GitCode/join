@@ -192,7 +192,7 @@ button {
     }
 
     .underline {
-      width: 40px;
+      width: 150px;
       height: 3px;
       background-color: #0ea5e9;
       margin: 0 auto 30px auto;
@@ -220,7 +220,10 @@ button {
     }
 
     .checkbox-container input {
-      margin-right: 10px;
+      margin-right: 5px;
+    width: 24px;
+    height: 24px;
+    margin-left: 150px;
     }
 
     .checkbox-container a {
