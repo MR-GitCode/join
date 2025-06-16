@@ -150,3 +150,104 @@ button {
 .legals-login a:hover {
   color: #29ABE2;
 }
+
+
+/*ovelay*/
+
+ /* Overlay style */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.4);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .signup-container {
+      background: white;
+      border-radius: 16px;
+      padding: 40px 30px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      position: relative;
+      font-family: 'Inter', sans-serif;
+      width: 598px;
+      height: 630px;
+    }
+
+    .signup-container h1 {
+      text-align: center;
+      font-size: 61px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      
+    }
+
+    .underline {
+      width: 40px;
+      height: 3px;
+      background-color: #0ea5e9;
+      margin: 0 auto 30px auto;
+      border-radius: 2px;
+    }
+
+    .signup-container input {
+      width: 422px;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 14px;
+      height: 48px;
+      display: flex;
+      justify-content: center;
+      margin-left: 70px;
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      margin: 15px 0;
+      font-size: 14px;
+    }
+
+    .checkbox-container input {
+      margin-right: 10px;
+    }
+
+    .checkbox-container a {
+      color: #0ea5e9;
+      text-decoration: none;
+    }
+
+    .signup-button {
+      width: 126px;
+      height: 55px;
+      background-color: #1e293b;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 10px;
+      margin-left: 230px;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 20px;
+      color: #999;
+      cursor: pointer;
+    }

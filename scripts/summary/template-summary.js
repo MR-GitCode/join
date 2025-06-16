@@ -1,9 +1,9 @@
-// Navigationsfunktion (wenn du sie nicht schon in einem anderen Modul hast)
+
 export function navigateTo(page) {
   window.location.href = page;
 }
 
-// 🟢 Begrüßung (dynamisch mit Name in Blau)
+// 🟢 greatings
 export function createDayGreeting(greetingText, userName) {
   return `
     <div id="greeting">
@@ -26,7 +26,7 @@ export function createSummaryTodo(icon, number, label, link = './board.html') {
  ` ;
 }
 
-// 🟢 Task mit Deadline
+// 🟢 Tasks with Deadline
 export function createSummaryTaskStatus(date, info, link = './board.html') {
   return `
     <div class="summary-task-status" onclick="navigateTo('${link}')">
@@ -50,7 +50,7 @@ export function createSummaryTaskStatus(date, info, link = './board.html') {
 }
 
 
-// 🟢 Zähler
+
 export function createSummaryCount(number, label, link = './board.html') {
   return `
     <div class="count" onclick="navigateTo('${link}')">
@@ -62,23 +62,21 @@ export function createSummaryCount(number, label, link = './board.html') {
  ` ;
 }
 
-// 🟢 Hauptcontainer (kombiniert alle Templates)
-
 export function createTaskContainer(tasks, user) {
-  // Zähle die Task-Status aus:
+
   const todoCount = tasks.filter(t => t.status === 'todo').length;
   const doneCount = tasks.filter(t => t.status === 'done').length;
   const inProgressCount = tasks.filter(t => t.status === 'inprogress').length;
   const feedbackCount = tasks.filter(t => t.status === 'review').length;
   const boardCount = tasks.length;
 
-  // Finde früheste Deadline (für Upcoming Deadline)
+  // find Deadline (for Upcoming Deadline)
   const upcoming = tasks
     .map(t => new Date(t.enddate))
     .sort((a, b) => a - b)[0];
   const deadline = upcoming ? upcoming.toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' }) : '—';
 
-  // Begrüßung mit Namen
+  //greatings with name
   const greeting = createDayGreeting(user?.name || 'Gast');
 
   return `

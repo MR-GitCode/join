@@ -12,50 +12,61 @@
 </head>
 
 <body>
- <img src="./assets/icons/logo_black.svg" class="logo-fly" alt="Logo" />
+  <img src="./assets/icons/logo_black.svg" class="logo-fly" alt="Logo" />
 
   <div id="page-content" class="page-content-hidden">
     <div class="index-header">
-      
-       
       <div class="bt-sing-up">
         <p>Not a Join user?</p>
-        <button class="buttons">Sign up</button>
+        <button class="buttons" id="openSignUpBtn">Sign up</button>
       </div>
     </div>
-    
+
     <div class="log-in-container">
-        <div class="log-in-card">
-            <div>
-                <div class="login">
-                <h1>Log in</h1>
-            </div>
-            </div>
-            
-            <form id="loginForm">
-                <input type="email" id="loginEmail" autocomplete="current-password" required><br>
-                <input type="password" id="loginPassword" value="mypassword123" autocomplete="current-password" required><br>
-                <div></div>
-                <div class="login-buttons">
-                    <button type="submit" class="buttons" id="loginBtn">Log in</button>
-                    <button type="button" class="guest" id="guestBtn">Guest Log in</button>             
-                </div>
-            </form>
-     
+      <div class="log-in-card">
+        <div>
+          <div class="login">
+            <h1>Log in</h1>
+          </div>
+        </div>
+
+        <form id="loginForm">
+          <input type="email" id="loginEmail" autocomplete="current-password" required><br>
+          <input type="password" id="loginPassword" autocomplete="current-password" required><br>
+          <div></div>
+          <div class="login-buttons">
+            <button type="submit" class="buttons" id="loginBtn">Log in</button>
+            <button type="button" class="guest" id="guestBtn">Guest Log in</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 
-  <section id="startpage-logo-container" class="d_none">
-    <section id="startpage-logo-container" class="d_none"></section>
-  </section>
+  <!-- Sign-up Modal -->
+  <div class="modal-overlay" id="signupModal">
+    <div class="signup-container">
+      <div class="close-modal" onclick="closeModal()">×</div>
+      <h1>Sign up</h1>
+      <div class="underline"></div>
+      <form>
+        <input type="text" placeholder="Name" required>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <input type="password" placeholder="Confirm Password" required>
+        <div class="checkbox-container">
+          <input type="checkbox" required>
+          <label>Ich akzeptiere die <a href="#">Privacy policy</a></label>
+        </div>
+        <button type="submit" class="signup-button">Sign up</button>
+      </form>
+    </div>
+  </div>
 
   <section class="legals-login">
-      <a id="login-privacy-policy" href="./privacy-policy.html">Privacy Policy</a>
-      <a id="login-legal-notice" href="./legal-notice.html">Legal notice</a>
+    <a id="login-privacy-policy" href="./privacy-policy.html">Privacy Policy</a>
+    <a id="login-legal-notice" href="./legal-notice.html">Legal notice</a>
   </section>
-</body>
-
 <script src="./scripts/global_vars.js"></script>
 <script src="./scripts/firstdata.js"></script>
 <script type="module" src="./scripts/db.js"></script>

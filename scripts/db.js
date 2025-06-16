@@ -5,7 +5,7 @@ let tasks = [];
 let loggedInUser = null;
 
 /**
- * Lädt Benutzer und deren Tasks aus der Firebase-Datenbank.
+ * load user and Tasks 
  */
 export async function loadData() {
   try {
@@ -19,8 +19,6 @@ export async function loadData() {
       for (const [uid, user] of Object.entries(usersJson)) {
         user.id = Number(uid);
         users.push(user);
-
-        // Tasks des Users einsammeln
         if (user.tasks) {
           for (const [tid, task] of Object.entries(user.tasks)) {
             task.id = Number(tid);
@@ -31,19 +29,19 @@ export async function loadData() {
       }
     }
 
-    // 🔐 Eingeloggten User bestimmen
+  
     loggedInUser = users.find(u => u.login === 1);
 
-    // 🐞 Debug-Ausgaben
+    // 🐞 Debug
     console.log('👥 Users geladen:', users.length);
     console.log('📝 Tasks geladen:', tasks.length);
   } catch (error) {
-    console.error('❌ Fehler beim Laden der Daten:', error);
+    console.error('❌ error to load', error);
   }
 }
 
 /**
- * Sendet Daten (PUT) an Firebase.
+ * send data (PUT) on Firebase.
  */
 async function transmitData(path = '', data = {}) {
   const res = await fetch(`${BASE_URL}/${path}.json`, {
@@ -56,14 +54,14 @@ async function transmitData(path = '', data = {}) {
 }
 
 /**
- * Speichert Daten unter dem gegebenen Pfad.
+ * save data 
  */
 export async function saveData(path = '', data = null) {
   if (data) await transmitData(path, data);
 }
 
 /**
- * Löscht Daten unter dem gegebenen Pfad + ID.
+ * delete data 
  */
 export async function deleteData(path = '', id) {
   const res = await fetch(`${BASE_URL}/${path}/${id}.json`, {

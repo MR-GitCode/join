@@ -11,10 +11,10 @@ document.addEventListener('DOMContentLoaded', loadSummary);
 
 async function loadSummary() {
   console.log("🚀 Lade Summary...");
-  await loadData(); // Daten aus Firebase laden!
+  await loadData(); //load data
   console.log("✅ Daten geladen.");
 
-  const tasks = getTasks(); // nur die Aufgaben des eingeloggten Nutzers
+  const tasks = getTasks(); 
   const user = getLoggedInUser();
 
   console.log("👤 Eingeloggter Benutzer:", user);
@@ -27,7 +27,7 @@ async function loadSummary() {
 
  
 
-  // 👋 Begrüßung mit blauem Namen einfügen
+  // 👋 greating
  const greetingText = getEnglishGreeting();
   const greetingHtml = createDayGreeting(greetingText, user.name);
   const greetingElement = document.querySelector('.greeting-container');
@@ -38,7 +38,6 @@ async function loadSummary() {
     console.warn("⚠️ Kein Element mit Klasse 'greeting-container' gefunden.");
    }
 
-  // 🖼️ Profilbadge im Header setzen
   const profileBadgeImg = document.getElementById('profile-badge');
   if (profileBadgeImg && user.badge) {
     profileBadgeImg.src = user.badge;

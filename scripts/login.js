@@ -96,3 +96,23 @@ document.addEventListener('DOMContentLoaded', () => {
     pageContent?.classList.remove('page-content-hidden');
   });
 });
+
+//overlay
+
+ const modal = document.getElementById('signupModal');
+    const openBtn = document.getElementById('openSignUpBtn');
+
+    openBtn.addEventListener('click', () => {
+      modal.classList.add('active');
+    });
+
+    function closeModal() {
+      modal.classList.remove('active');
+    }
+
+    // Optional: Close modal by clicking outside the container
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
