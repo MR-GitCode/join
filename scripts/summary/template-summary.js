@@ -3,33 +3,32 @@ export function navigateTo(page) {
   window.location.href = page;
 }
 
-// 🟢 greatings
+// 🟢 Greetings
 export function createDayGreeting(greetingText, userName) {
   return `
     <div id="greeting">
       <h2>${greetingText}, <span class="highlight-name">${userName}</span>!</h2>
     </div>
- ` ;
+  `;
 }
 
-
-// 🟢 Summary-ToDo-Box
+// 🟢 Summary To-Do Box
 export function createSummaryTodo(icon, number, label, link = './board.html') {
   return `
-    <div class="summary-todo" onclick="navigateTo('${link}')">
+    <div class="summary-todo" data-link="${link}">
       <img class="icon-summary" src="${icon}" alt="${label}">
       <div class="number-container">
         <div class="number">${number}</div>
         <span>${label}</span>
       </div>
     </div>
- ` ;
+  `;
 }
 
-// 🟢 Tasks with Deadline
+// 🟢 Task mit Deadline
 export function createSummaryTaskStatus(date, info, link = './board.html') {
   return `
-    <div class="summary-task-status" onclick="navigateTo('${link}')">
+    <div class="summary-task-status" data-link="${link}">
       <img class="icon-summary" src="./assets/icons/urgent-icon.png" alt="urgent">
       
       <div class="number-urgent-container">
@@ -49,17 +48,16 @@ export function createSummaryTaskStatus(date, info, link = './board.html') {
   `;
 }
 
-
-
+// 🟢 Count Box
 export function createSummaryCount(number, label, link = './board.html') {
   return `
-    <div class="count" onclick="navigateTo('${link}')">
+    <div class="count" data-link="${link}">
       <div class="number-container">
         <div class="number">${number}</div>
         <span>${label}</span>
       </div>
     </div>
- ` ;
+  `;
 }
 
 export function createTaskContainer(tasks, user) {

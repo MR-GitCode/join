@@ -15,7 +15,8 @@ let join = {"users": [
     phone: "+49 2222222222",
     password: "mypassword123",
     login: 0,
-    badge: "./assets/icons/profilebadge/anja.svg",
+    badge:  "./assets/icons/profilebadge/anja.svg"
+
   },
   {
     id: 2,
