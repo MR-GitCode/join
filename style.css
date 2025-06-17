@@ -2,9 +2,9 @@
     scroll-behavior: smooth;
     font-family: 'inter', sans-serif;
     margin: 0;
-    /* overflow: visible; */
-    overflow: hidden;
 }
+
+
 
 .display-position{
     display: flex;
@@ -25,6 +25,7 @@
 body {
     display: flex;
     height: 100vh;
+    overflow: hidden;
 }
 
 .d_none {
@@ -92,6 +93,7 @@ footer a:hover{
     display: flex;
     flex-direction: column;
     flex: 1;
+    overflow: hidden;
 }
 
 header {
@@ -129,6 +131,12 @@ header {
     width: 100%;
     background-color: #f5f6f7;
     background: linear-gradient(0deg, rgba(245, 246, 247, 1) 99%, rgb(223, 224, 225) 100%);
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.content::-webkit-scrollbar {
+    display: none;
 }
 
 #startpage-logo-container {

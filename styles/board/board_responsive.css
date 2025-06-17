@@ -4,11 +4,7 @@
     }
 }
 
-@media (max-width: 1200px){
-    *{
-        overflow: unset;
-    }
-    
+@media (max-width: 1200px){    
     .header-board h1 {
         font-size: 47px;
         padding-right: 15px;
@@ -21,6 +17,7 @@
 
     .content-board {
         padding: 30px 16px;
+        overflow-y: auto;
     }
 
     .board {
@@ -77,7 +74,7 @@
 
 @media (max-width: 425px) {
     .content {
-        max-height: 600px !important;
+        max-height: 100% !important;
         position: relative;
     }
 
