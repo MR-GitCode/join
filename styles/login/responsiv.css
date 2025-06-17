@@ -1,0 +1,115 @@
+@media (max-width: 1024px) {
+  .log-in-card {
+    width: 80%;
+    height: auto;
+    padding: 20px;
+  }
+
+  form input {
+    width: 100%;
+  }
+
+  .login {
+    width: 100%;
+  }
+
+  .login-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  button,
+  .guest {
+    width: 100%;
+  }
+
+  .index-header {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    right: 20px;
+    left: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .log-in-card {
+    width: 90%;
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .login {
+    font-size: 24px;
+  }
+
+  .logo-fly {
+    width: 60px;
+    top: 40px;
+    left: 40px;
+    transform: none;
+  }
+
+  .legals-login {
+    flex-direction: column;
+    gap: 8px;
+    font-size: 14px;
+    bottom: 5%;
+  }
+
+  .bt-sing-up {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+  }
+
+  button,
+  .guest {
+    font-size: 18px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  form input {
+    height: 40px;
+  }
+
+  button,
+  .guest {
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .login {
+    width: 100%;
+    font-size: 22px;
+    padding-bottom: 8px;
+  }
+
+  .log-in-container {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 800px) {
+  .bt-sign-up {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .index-header {
+    display: none; /* oben ausblenden auf kleinen Screens */
+  }
+
+  .log-in-container {
+    flex-direction: column;
+  }
+
+  .bt-sign-up-mobile {
+    display: flex !important;
+  }
+}

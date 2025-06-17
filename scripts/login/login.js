@@ -1,4 +1,4 @@
-import { loadData, getUsers, saveData } from './db.js';
+import { loadData, getUsers, saveData } from '../db.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const loginForm = document.getElementById('loginForm');
