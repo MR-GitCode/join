@@ -11,10 +11,10 @@ document.addEventListener('DOMContentLoaded', loadSummary);
 
 async function loadSummary() {
   console.log("🚀 Lade Summary...");
-  await loadData(); //load data
+  await loadData(); // Lade Daten
   console.log("✅ Daten geladen.");
 
-  const tasks = getTasks(); 
+  const tasks = getTasks();
   const user = getLoggedInUser();
 
   console.log("👤 Eingeloggter Benutzer:", user);
@@ -25,29 +25,40 @@ async function loadSummary() {
     return;
   }
 
- 
-
-  // 👋 greating
- const greetingText = getEnglishGreeting();
+  // 👋 Begrüßung anzeigen
+  const greetingText = getEnglishGreeting();
   const greetingHtml = createDayGreeting(greetingText, user.name);
   const greetingElement = document.querySelector('.greeting-container');
-   if (greetingElement) {
-     greetingElement.innerHTML = greetingHtml;
+  if (greetingElement) {
+    greetingElement.innerHTML = greetingHtml;
     console.log("👋 Begrüßung angezeigt:", `${greetingText}, ${user.name}`);
-   } else {
-    console.warn("⚠️ Kein Element mit Klasse 'greeting-container' gefunden.");
-   }
-
-  const profileBadgeImg = document.getElementById('profile-badge');
-  if (profileBadgeImg && user.badge) {
-    profileBadgeImg.src = user.badge;
-    console.log("🖼️ Profilbadge gesetzt:", user.badge);
-  } else if (!profileBadgeImg) {
-    console.warn("⚠️ Kein Profilbild mit ID 'profile-badge' gefunden.");
   } else {
-    console.warn("⚠️ Kein Badge im User-Objekt gefunden.");
+    console.warn("⚠️ Kein Element mit Klasse 'greeting-container' gefunden.");
   }
 
+  // 🖼️ Profilbadge automatisch setzen (inkl. Gast-Login)
+  const profileBadgeImg = document.getElementById('profile-badge');
+
+  if (!profileBadgeImg) {
+    console.warn("⚠️ Kein Profilbild mit ID 'profile-badge' gefunden.");
+  } else if (user) {
+    let badgePath;
+
+    if (!user.id || user.name?.toLowerCase() === 'gast' || user.guest === true) {
+      // Fallback für Gast oder fehlende ID
+      badgePath = './assets/icons/profilebadge/guest.svg';
+    } else {
+      // Pfad mit user.id
+      badgePath = `./assets/icons/profilebadge/${user.id}.svg`;
+    }
+
+    profileBadgeImg.src = badgePath;
+    console.log("🖼️ Profilbadge gesetzt:", badgePath);
+  } else {
+    console.warn("⚠️ Kein gültiger Benutzer vorhanden.");
+  }
+
+  
   renderSummary(tasks);
 }
 
@@ -57,7 +68,6 @@ function getEnglishGreeting() {
   if (hour < 18) return "Good afternoon";
   return "Good evening";
 }
-
 
 function renderSummary(tasks) {
   const taskContent = document.querySelector('.task-content');
