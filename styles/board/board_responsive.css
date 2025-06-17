@@ -4,7 +4,7 @@
     }
 }
 
-@media (max-width: 1200px){    
+@media (max-width: 1300px){      
     .header-board h1 {
         font-size: 47px;
         padding-right: 15px;
@@ -17,7 +17,6 @@
 
     .content-board {
         padding: 30px 16px;
-        overflow-y: auto;
     }
 
     .board {
@@ -41,6 +40,10 @@
         display: flex;
         width: 100vh;
         margin-bottom: 20px;
+    }
+
+    .columns-scrollbar {
+        overflow-x: auto;
     }
 
     .columns {
@@ -72,7 +75,24 @@
     }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 1160px) {
+    .header-board {
+        justify-content: flex-start;
+    } 
+
+    .header-board h1{
+        padding-right: 2%;
+    }
+}
+
+@media (max-width: 1160px) {
+    .header-board {
+        justify-content: flex-start;
+        display: contents;
+    } 
+}
+
+@media (max-width: 520px) {
     .content {
         max-height: 100% !important;
         position: relative;

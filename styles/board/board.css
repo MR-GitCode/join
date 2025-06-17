@@ -115,7 +115,12 @@
     display: flex;
     justify-content: space-around;
     gap: 6px;
-    height: 100%
+    height: 100%;
+    scrollbar-width: none;
+}
+
+.board::-webkit-scrollbar {
+    display: none;
 }
 
 .columns {
@@ -188,7 +193,7 @@
 
 body.no-scroll {
     overflow: hidden;
-  }
+}
 
 .columns-content {
     flex: 1;
@@ -208,4 +213,12 @@ body.no-scroll {
 
 .bg-error-message p {
     background-color: white !important;
+}
+
+.columns-scrollbar {
+    overflow-y: auto;
+}
+
+.columns-scrollbar::-webkit-scrollbar {
+    display: none;
 }

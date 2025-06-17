@@ -17,7 +17,7 @@
     }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 768px) {
     body {
         flex-direction: column-reverse;   
     }
