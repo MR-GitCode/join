@@ -30,6 +30,7 @@
     height: 100%;
     width: 467px;
     color: #FFFFFF;
+    border-radius: 30px 0 0 30px;
 }
 
 .left-overlay-contact img{
@@ -189,5 +190,37 @@
 #close-overlay-contact:hover{
     background-color: #EEEEEE;
     border-radius: 50px;
+}
+
+.badges-edit-contactinfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+    border: 3px solid #FFFFFF;
+    border-radius: 70px;
+    color: #FFFFFF;
+    font-size: 47px;
+    font-weight: 500;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.bt-edit-contact {
+    font-size: 21px !important;
+    width: 111px !important;
+    height: 57px !important;
+}
+
+.bt-edit-cancel {
+    width: 111px !important;
+}
+
+.bt-edit-cancel img{
+    display: none;
+}
+
+.bt-add-contact{
+    font-size: 21px !important;
 }
     

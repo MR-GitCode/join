@@ -108,14 +108,14 @@ function loadOverlayAddContact() {
                             <p>Cancel</p>
                             <img src="./assets/icons/close.svg">
                         </div>
-                        <button id="bt-create-contact" type="button" disabled>
+                        <button id="bt-create-contact" class="bt-add-contact" type="button" disabled>
                             <p>Create contact</p>
                             <img src="./assets/icons/check.svg">
                         </button>
                     </div>
                 </div>
                 <picture>
-                    <source srcset="../assets/icons/contacts/close_white.svg" media="(max-width: 425px)">
+                    <source srcset="../assets/icons/contacts/close_white.svg" media="(max-width: 960px)">
                     <img id="close-overlay-contact" src="./assets/icons/close.svg" alt="Close Icon">
                 </picture>
             </div>`

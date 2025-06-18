@@ -158,8 +158,10 @@ function chooseColor() {
     let contacts = getLoggedInUser().contacts;
     let colors = [];
     for (let i = 0; i < contacts.length; i++) {
-        let badgeColor = contacts[i].badge.color;
-        colors.push(badgeColor);
+        let badgeColor = contacts[i]?.badge.color;
+        if (badgeColor) {
+            colors.push(badgeColor);
+        }
     }
     let availableColor = badgeColors.find(color => !colors.includes(color));
     if (!availableColor) {
