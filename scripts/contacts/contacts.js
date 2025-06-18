@@ -76,7 +76,7 @@ function addContactEventListener(contacts) {
                     infoContainer.innerHTML = loadContactInformations(contacts[i]);
                     addEventListenerDeleteContact(contactID, infoContainer);
                     addEventListenerEditContact(contacts[i]);
-                    if (window.innerWidth <= 425) {
+                    if (window.innerWidth <= 640) {
                         document.querySelector('.contact-selections').style.display = 'none';
                         document.querySelector('.right-screen').style.display = 'flex';
                         editingMenuEventListen();

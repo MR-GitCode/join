@@ -359,6 +359,9 @@ if (createTaskButton) {
     createTaskButton.addEventListener('click', function () {
         if (checkInputValue() === true) {
             createTask();
+            if (window.innerWidth <= 768) {
+                window.location.href = 'board.html';       
+            }
         }
     })}; 
 }

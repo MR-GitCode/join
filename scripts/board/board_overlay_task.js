@@ -7,26 +7,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     addCloseEventListener()
 });
 
-/**
-  * Open the overlay of the task if you click on the taskcard.
-  */
-// export function addTaskEventListeners() {
-//     document.querySelectorAll(".card").forEach(task => {
-//         task.addEventListener("click", () => {
-//             let taskID = task.id;
-//             let taskContainer = document.getElementById('overlay-select-task')
-//             taskContainer.classList.remove('hidden');
-//             let user = getLoggedInUser();           
-//             taskContainer.innerHTML = loadTaskOverlay(user.tasks[taskID]);
-//             addTaskAssigned(user.tasks[taskID]);
-//             addTaskSubtask(user.tasks[taskID].subtasks, 'subtasks-select-task', 'show');
-//             addSubtasksStatusEventListener(user, taskID);
-//             addEditTaskEventListener(taskID);
-//             addDeliteTask(user, taskID);
-//             });
-//         });
-// }
-
 export function addTaskEventListeners() {
     document.querySelectorAll(".card").forEach(task => {
         task.addEventListener("click", () => {

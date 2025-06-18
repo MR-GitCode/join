@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
  * Triggered when the "Add Task" button is clicked.
  */
 function openOverlay() {
-    if (window.innerWidth === 425) {
+    if (window.innerWidth <= 768) {
         window.location.href = 'add-task.html';       
     } else {
     selectedUsers.clear();
