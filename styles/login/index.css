@@ -168,7 +168,7 @@ button {
     transform: translate(-50%, -50%);
   }
   100% {
-    top: 80px;
+    top: 67px;;
     left: 77px;
     transform: translate(0, 0);
   }
