@@ -1,5 +1,4 @@
 import { loadData, saveData, getLoggedInUser} from "../db.js";
-import { addCloseEventListener } from "../board/board_overlay_task.js";
 
 let subtaskTemplateLoaded = false;
 let subtaskID = 0;
@@ -298,7 +297,6 @@ function addAssignedEventListener() {
         }})
     }
 }
-
 
 /**
  * Event listener to close the dropdown menu of "category".

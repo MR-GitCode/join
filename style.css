@@ -4,8 +4,6 @@
     margin: 0;
 }
 
-
-
 .display-position{
     display: flex;
     height: 100%;
@@ -173,18 +171,4 @@ header {
         left: 0;
         transform: translate(0, 0) scale(0.5);
     }
-}
-
-input[type="email"] {
-    background-image: url('./assets/icons/email_input.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100%;
-}
-
-input[type="password"] {
-    background-image: url('./assets/icons/password_input.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100%;
 }

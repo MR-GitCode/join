@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const guestBtn = document.getElementById('guestBtn');
   const logo = document.querySelector('.logo-fly');
   const pageContent = document.getElementById('page-content');
+  visiblePassword()
 
   // USER LOGIN
   if (loginForm) {
@@ -99,20 +100,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //overlay
 
- const modal = document.getElementById('signupModal');
-    const openBtn = document.getElementById('openSignUpBtn');
+const modal = document.getElementById('signupModal');
+const openBtn = document.getElementById('openSignUpBtn');
 
-    openBtn.addEventListener('click', () => {
-      modal.classList.add('active');
-    });
+openBtn.addEventListener('click', () => {
+  modal.classList.add('active');
+});
 
-    function closeModal() {
-      modal.classList.remove('active');
+function closeModal() {
+  modal.classList.remove('active');
+}
+
+// Optional: Close modal by clicking outside the container
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    closeModal();
     }
+});
 
-    // Optional: Close modal by clicking outside the container
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        closeModal();
-      }
-    });
+function visiblePassword() {
+  let input = document.getElementById("loginPassword");
+  let icon = document.getElementById('lockedIcon')
+  input.addEventListener('focus', () => {
+    icon.src = "./assets/icons/visibility_off.svg"
+  })
+  input.addEventListener('input', () => {
+    icon.src = "./assets/icons/visibility_off.svg"
+  })
+  icon.addEventListener('click', () => {
+    if (input.type === "password") {
+      input.type = "text";
+      icon.src = "./assets/icons/visibility.svg"
+    } else {
+      input.type = "password";
+      icon.src = "./assets/icons/visibility_off.svg"
+  }})
+}

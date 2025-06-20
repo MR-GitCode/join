@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./styles/login/index.css">
-     <link rel="stylesheet" href="./styles/login/responsiv.css">
+    <link rel="stylesheet" href="./styles/login/index_responsiv.css">
     <link rel="stylesheet" href="./styles/fonts.css">
     <link rel="icon" type="image/x-icon" href="./assets/icons/favicon.svg">
     <title>Join</title>
@@ -28,13 +28,19 @@
         <div>
           <div class="login">
             <h1>Log in</h1>
+            <div class="divider"></div>
           </div>
         </div>
 
         <form id="loginForm">
-          <input type="email" id="loginEmail" autocomplete="current-password" required><br>
-          <input type="password" id="loginPassword" autocomplete="current-password" required><br>
-          <div></div>
+          <div class="index-input">
+            <input type="email" id="loginEmail" autocomplete="current-password" placeholder="Email" required>
+            <img src="./assets/icons/mail.svg">
+          </div>
+          <div class="index-input">
+            <input type="password" id="loginPassword" autocomplete="current-password" placeholder="Password" required>
+            <img id="lockedIcon" src="./assets/icons/lock.svg">           
+          </div>
           <div class="login-buttons">
             <button type="submit" class="buttons" id="loginBtn">Log in</button>
             <button type="button" class="guest" id="guestBtn">Guest Log in</button>
@@ -68,6 +74,7 @@
     <a id="login-privacy-policy" href="./privacy-policy.html">Privacy Policy</a>
     <a id="login-legal-notice" href="./legal-notice.html">Legal notice</a>
   </section>
+</body>
 <script src="./scripts/global_vars.js"></script>
 <script src="./scripts/firstdata.js"></script>
 <script type="module" src="./scripts/db.js"></script>
