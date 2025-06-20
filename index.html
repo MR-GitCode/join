@@ -57,10 +57,23 @@
       <h1>Sign up</h1>
       <div class="underline"></div>
       <form>
-        <input type="text" placeholder="Name" required>
-       <input type="email" placeholder="Email" autocomplete="username" required>
-        <input type="password" placeholder="Password" autocomplete="new-password" required>
-        <input type="password" placeholder="Confirm Password" autocomplete="new-password" required>
+        <div class="index-input">
+          <input type="text" placeholder="Name" required>
+          <img src="./assets/icons/contacts/person.svg">
+        </div>
+        <div class="index-input">
+          <input type="email" placeholder="Email" autocomplete="username" required>
+          <img src="./assets/icons/mail.svg">
+        </div>
+        <div class="index-input">
+          <input type="password" placeholder="Password" autocomplete="new-password" required>
+          <img id="lockedIcon" src="./assets/icons/lock.svg"> 
+        </div>
+        <div class="index-input">
+          <input type="password" placeholder="Confirm Password" autocomplete="new-password" required>
+          <img id="lockedIcon" src="./assets/icons/lock.svg"> 
+        </div>
+              
         <div class="checkbox-container">
           <input type="checkbox" required>
           <label>Ich akzeptiere die <a href="#">Privacy policy</a></label>

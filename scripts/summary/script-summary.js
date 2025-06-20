@@ -100,8 +100,8 @@ function renderSummary(tasks) {
 
   taskContent.innerHTML = `
     <div class="row">
-      ${createSummaryTodo('./assets/icons/pencil.png', taskCounts.todo, 'To-do')}
-      ${createSummaryTodo('./assets/icons/check.png', taskCounts.done, 'Done')}
+      ${createSummaryTodo('./assets/icons/summary/pencil.svg', taskCounts.todo, 'To-do')}
+      ${createSummaryTodo('./assets/icons/summary/check.svg', taskCounts.done, 'Done')}
     </div>
     <div class="row">
       ${createSummaryTaskStatus(deadline, 'Upcoming Deadline')}

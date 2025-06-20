@@ -1,0 +1,132 @@
+@media (max-width: 900px) {
+    .content-summary{
+        padding: 48px 32px;
+    }
+}
+
+@media (max-width: 1220px) {
+    .greeting-container {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .content-summary{
+        padding: 30px 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    .task-content {
+        min-width: unset;
+        align-items: center;
+    }
+    
+    .content-summary{
+        padding: 48px 16px;
+    }
+
+    .summary-todo {
+        width: 186px;
+        height: 110px;
+    }
+
+    .summary-todo img,
+    .icon-summary{
+        width: 40px;
+        height: 40px;
+    }
+
+    .number {
+        font-size: 47px;
+        height: unset;
+    }
+
+    .number-container,
+    .number-urgent-container {
+        gap: 0;
+    }
+
+    .number-container span,
+    .summary-task-status span {
+        font-size: 14px;
+    }
+
+    .summary-task-status {
+        width: 396px;
+        height: 110px;
+        padding: 0px;
+    }
+
+    .date {
+        font-size: 16px !important;
+    }
+
+    .info-date {
+        margin-left: 0px;
+    }
+
+    .vector {
+        height: 68px;
+    }
+
+    .count {
+        width: 116px;
+        height: 116px;
+    }
+
+    .summary-header {
+        flex-direction: column;
+        align-items: flex-start;
+        position: relative;
+        padding-bottom: 40px;
+        width: unset;
+    }
+
+    .summary-header p{
+        position: absolute;
+        height: 3px;
+        width: 90px;
+        border-radius: 30px;
+        bottom: 0;
+        left: 0;
+        margin: 0
+    }
+
+    .summary-board {
+        gap: 40px;
+    }
+}
+
+@media (max-width: 420px) {
+    .row {
+        gap: 10px;
+    }
+
+    .content-summary {
+        padding: 48px 5px;
+    }
+
+    .summary-task-status {
+        width: 310px;
+    }
+
+    .summary-todo {
+        width: 150px;
+    }
+
+    .count {
+        width: 97px;
+    }
+
+    .summary-todo:hover,
+    .summary-task-status:hover,
+    .count:hover,
+    .count1:hover {
+        transform: scale(1.02);
+    }
+
+    .number-container{
+        text-align: center;
+    }
+}
