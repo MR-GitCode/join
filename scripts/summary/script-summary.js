@@ -1,67 +1,65 @@
 import { loadData, getTasks, getLoggedInUser } from '../db.js';
-import {
-  createSummaryTodo,
-  createSummaryTaskStatus,
-  createSummaryCount,
-  createDayGreeting,
-  navigateTo
-} from './template-summary.js';
+import { createDayGreeting , createSummaryOfTasks} from './template-summary.js';
 
 document.addEventListener('DOMContentLoaded', loadSummary);
 
+/**
+ * Loads the summary. 
+ * @returns 
+ */
 async function loadSummary() {
-  console.log("🚀 Lade Summary...");
-  await loadData(); // Lade Daten
-  console.log("✅ Daten geladen.");
-
+  await loadData();
   const tasks = getTasks();
   const user = getLoggedInUser();
-
-  console.log("👤 Eingeloggter Benutzer:", user);
-  console.log("📋 Gefilterte Tasks:", tasks);
-
   if (!tasks || !user) {
-    console.warn("⚠️ Keine Tasks oder kein eingeloggter Benutzer gefunden.");
+    console.warn("No tasks or logged in user found.");
     return;
   }
+  showGreeting(user)
+  loadHeaderBadges(user)
+  renderSummary(tasks);
+}
 
-  // 👋 Begrüßung anzeigen
+/**
+ * Loads and sets the profile badge the given user in the header.
+ * @param {*} user Object with the user informations. 
+ */
+function loadHeaderBadges(user) {
+  const profileBadgeImg = document.getElementById('profile-badge');
+  if (!profileBadgeImg) {
+    console.warn("No profile picture with ID 'profile-badge' found.");
+  } else if (user) {
+    let badgePath;
+    if (!user.id || user.name?.toLowerCase() === 'gast' || user.guest === true) {
+      badgePath = './assets/icons/profilebadge/guest.svg';
+    } else {
+      badgePath = `./assets/icons/profilebadge/${user.id}.svg`;
+    }
+    profileBadgeImg.src = badgePath;
+  } else {
+    console.warn("No valid user exists.");
+  }
+}
+
+/**
+ * Displays a personalized greeting message with current time of day and the user name in the `.greeting-container` element.
+ * @param {object} user Object with the user informations. 
+ */
+function showGreeting(user) {
   const greetingText = getEnglishGreeting();
   const greetingHtml = createDayGreeting(greetingText, user.name);
   const greetingElement = document.querySelector('.greeting-container');
   if (greetingElement) {
     greetingElement.innerHTML = greetingHtml;
-    console.log("👋 Begrüßung angezeigt:", `${greetingText}, ${user.name}`);
   } else {
-    console.warn("⚠️ Kein Element mit Klasse 'greeting-container' gefunden.");
+    console.warn("No element with class 'greeting-container' found.");
   }
-
-  // 🖼️ Profilbadge automatisch setzen (inkl. Gast-Login)
-  const profileBadgeImg = document.getElementById('profile-badge');
-
-  if (!profileBadgeImg) {
-    console.warn("⚠️ Kein Profilbild mit ID 'profile-badge' gefunden.");
-  } else if (user) {
-    let badgePath;
-
-    if (!user.id || user.name?.toLowerCase() === 'gast' || user.guest === true) {
-      // Fallback für Gast oder fehlende ID
-      badgePath = './assets/icons/profilebadge/guest.svg';
-    } else {
-      // Pfad mit user.id
-      badgePath = `./assets/icons/profilebadge/${user.id}.svg`;
-    }
-
-    profileBadgeImg.src = badgePath;
-    console.log("🖼️ Profilbadge gesetzt:", badgePath);
-  } else {
-    console.warn("⚠️ Kein gültiger Benutzer vorhanden.");
-  }
-
-  
-  renderSummary(tasks);
 }
 
+/**
+ * 
+ * @returns Returns the greeting message
+ */
 function getEnglishGreeting() {
   const hour = new Date().getHours();
   if (hour < 12) return "Good morning";
@@ -69,13 +67,17 @@ function getEnglishGreeting() {
   return "Good evening";
 }
 
+/**
+ * Renders a summary of the provided tasks inside the `.task-content` container.
+ * @param {object} tasks Object with the informations of all tasks.
+ * @returns 
+ */
 function renderSummary(tasks) {
   const taskContent = document.querySelector('.task-content');
   if (!taskContent) {
-    console.warn("⚠️ Kein Element mit Klasse 'task-content' gefunden.");
+    console.warn("No element with class 'task-content' found.");
     return;
   }
-
   const taskCounts = {
     todo: 0,
     done: 0,
@@ -84,7 +86,6 @@ function renderSummary(tasks) {
     urgent: [],
     total: tasks.length,
   };
-
   for (let task of tasks) {
     if (task.status === 'todo') taskCounts.todo++;
     if (task.status === 'done') taskCounts.done++;
@@ -92,32 +93,17 @@ function renderSummary(tasks) {
     if (task.status === 'review') taskCounts.feedback++;
     if (task.priority === 'urgent') taskCounts.urgent.push(task);
   }
-
-  console.log("📊 Task-Zusammenfassung:", taskCounts);
-
   const nearestUrgent = taskCounts.urgent.sort((a, b) => new Date(a.enddate) - new Date(b.enddate))[0];
-  const deadline = nearestUrgent ? formatDate(nearestUrgent.enddate) : 'Keine';
-
-  taskContent.innerHTML = `
-    <div class="row">
-      ${createSummaryTodo('./assets/icons/summary/pencil.svg', taskCounts.todo, 'To-do')}
-      ${createSummaryTodo('./assets/icons/summary/check.svg', taskCounts.done, 'Done')}
-    </div>
-    <div class="row">
-      ${createSummaryTaskStatus(deadline, 'Upcoming Deadline')}
-    </div>
-    <div class="row">
-      ${createSummaryCount(taskCounts.total, 'Tasks in Board')}
-      ${createSummaryCount(taskCounts.inProgress, 'Tasks in Progress')}
-      ${createSummaryCount(taskCounts.feedback, 'Await Feedback')}
-    </div>
-  `;
+  const deadline = nearestUrgent ? formatDate(nearestUrgent.enddate) : 'No deadlines';
+  taskContent.innerHTML = createSummaryOfTasks(taskCounts, deadline) 
 }
 
+/**
+ * Formats a date string into a German date format.
+ * @param {string} dateStr Date of the upcoming deadline
+ * @returns 
+ */
 function formatDate(dateStr) {
   const date = new Date(dateStr);
   return date.toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' });
 }
-
-
-

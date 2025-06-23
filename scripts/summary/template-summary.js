@@ -1,9 +1,17 @@
-
+/**
+ * 
+ * @param {} page 
+ */
 export function navigateTo(page) {
-  window.location.href = page;
+  window.location.href = page; 
 }
 
-// 🟢 Greetings
+/**
+ * Returns the template of the greeting message.
+ * @param {string} greetingText This is text with the greeting.
+ * @param {string} userName This is name of the user.
+ * @returns 
+ */
 export function createDayGreeting(greetingText, userName) {
   return `
     <div id="greeting">
@@ -12,7 +20,14 @@ export function createDayGreeting(greetingText, userName) {
   `;
 }
 
-// 🟢 Summary To-Do Box
+/**
+ * Returns the template with the summary information of todo and done task.
+ * @param {string} icon Path of the icon source. 
+ * @param {number} number Amount of the todo or done task.
+ * @param {string} label This is the label "todo" and "done"
+ * @param {string} link Path with the link to the board.
+ * @returns 
+ */
 export function createSummaryTodo(icon, number, label, link = './board.html') {
   return `
     <div class="summary-todo" data-link="${link}">
@@ -25,7 +40,13 @@ export function createSummaryTodo(icon, number, label, link = './board.html') {
   `;
 }
 
-// 🟢 Task mit Deadline
+/**
+ * Returns the template with the upcoming deadline of the task.
+ * @param {string} date The date of the deadline.
+ * @param {string} info The information text.
+ * @param {string} link Path with the link to the board.
+ * @returns 
+ */
 export function createSummaryTaskStatus(date, info, link = './board.html') {
   return `
     <div class="summary-task-status" data-link="${link}">
@@ -48,7 +69,13 @@ export function createSummaryTaskStatus(date, info, link = './board.html') {
   `;
 }
 
-// 🟢 Count Box
+/**
+ * Returns the template with the amount of the task  "in total", "in progress", "await feedback"
+ * @param {number} number The amount of the task
+ * @param {string} label The label of the category
+ * @param {string} link Path with the link to the board.
+ * @returns 
+ */
 export function createSummaryCount(number, label, link = './board.html') {
   return `
     <div class="count" data-link="${link}">
@@ -60,48 +87,24 @@ export function createSummaryCount(number, label, link = './board.html') {
   `;
 }
 
-export function createTaskContainer(tasks, user) {
-
-  const todoCount = tasks.filter(t => t.status === 'todo').length;
-  const doneCount = tasks.filter(t => t.status === 'done').length;
-  const inProgressCount = tasks.filter(t => t.status === 'inprogress').length;
-  const feedbackCount = tasks.filter(t => t.status === 'review').length;
-  const boardCount = tasks.length;
-
-  // find Deadline (for Upcoming Deadline)
-  const upcoming = tasks
-    .map(t => new Date(t.enddate))
-    .sort((a, b) => a - b)[0];
-  const deadline = upcoming ? upcoming.toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' }) : '—';
-
-  //greatings with name
-  const greeting = createDayGreeting(user?.name || 'Gast');
-
-  return `
-    <div class="task-container-horizontal">
-      <div class="task-content">
-        <div class="row">
-          ${createSummaryTodo('./assets/icons/pencil.png', todoCount, 'To-Do')}
-          ${createSummaryTodo('./assets/icons/check.png', doneCount, 'Done')}
-        </div>
-
-        <div class="row">
-          ${createSummaryTaskStatus(deadline, 'Upcoming Deadline')}
-        </div>
-
-        <div class="row">
-          ${createSummaryCount(boardCount, 'Tasks in Board')}
-          ${createSummaryCount(inProgressCount, 'Tasks in Progress')}
-          ${createSummaryCount(feedbackCount, 'Await Feedback')}
-        </div>
-      </div>
-      <div class="greeting-container">
-        ${greeting}
-      </div>
-    </div>
- ` ;
+/**
+ * Returns the template of the amount summary of the tasks 
+ * @param {*} taskCounts 
+ * @param {*} deadline 
+ * @returns 
+ */
+export function createSummaryOfTasks(taskCounts, deadline) {
+  return `<div class="row">
+            ${createSummaryTodo('./assets/icons/summary/pencil.svg', taskCounts.todo, 'To-do')}
+            ${createSummaryTodo('./assets/icons/summary/check.svg', taskCounts.done, 'Done')}
+          </div>
+          <div class="row">
+            ${createSummaryTaskStatus(deadline, 'Upcoming Deadline')}
+          </div>
+          <div class="row">
+            ${createSummaryCount(taskCounts.total, 'Tasks in Board')}
+            ${createSummaryCount(taskCounts.inProgress, 'Tasks in Progress')}
+            ${createSummaryCount(taskCounts.feedback, 'Await Feedback')}
+          </div>
+        `;  
 }
-
-
-
-

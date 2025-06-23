@@ -11,10 +11,8 @@ export async function loadData() {
   try {
     const usersRes = await fetch(`${BASE_URL}/users.json`);
     const usersJson = await usersRes.json();
-
     users = [];
     tasks = [];
-
     if (usersJson) {
       for (const [uid, user] of Object.entries(usersJson)) {
         user.id = Number(uid);
@@ -28,15 +26,9 @@ export async function loadData() {
         }
       }
     }
-
-  
     loggedInUser = users.find(u => u.login === 1);
-
-    // 🐞 Debug
-    console.log('👥 Users geladen:', users.length);
-    console.log('📝 Tasks geladen:', tasks.length);
   } catch (error) {
-    console.error('❌ error to load', error);
+    console.error('error to load', error);
   }
 }
 
@@ -82,6 +74,10 @@ export function getTasks() {
   );
 }
 
+/**
+ * 
+ * @returns Return informations of the user
+ */
 export function getLoggedInUser() {
   return loggedInUser;
 }
