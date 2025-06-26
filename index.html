@@ -16,14 +16,14 @@
   <img src="./assets/icons/logo_black.svg" class="logo-fly" alt="Logo" />
 
   <div id="page-content" class="page-content-hidden">
-    <div class="index-header">
+    <div id="index-header" class="index-header">
       <div class="bt-sing-up">
         <p>Not a Join user?</p>
         <button class="buttons" id="openSignUpBtn">Sign up</button>
       </div>
     </div>
 
-    <div class="log-in-container">
+    <div id="auth-container" class="auth-container">
       <div class="log-in-card">
         <div>
           <div class="login">
@@ -35,11 +35,11 @@
         <form id="loginForm">
           <div class="index-input">
             <input type="email" id="loginEmail" autocomplete="current-password" placeholder="Email" required>
-            <img src="./assets/icons/mail.svg">
+            <img src="./assets/icons/login_signUp/mail.svg">
           </div>
           <div class="index-input">
             <input type="password" id="loginPassword" autocomplete="current-password" placeholder="Password" required>
-            <img id="lockedIcon" src="./assets/icons/lock.svg">           
+            <img id="lockedIcon" src="./assets/icons/login_signUp/lock.svg">           
           </div>
           <div class="login-buttons">
             <button type="submit" class="buttons" id="loginBtn">Log in</button>
@@ -47,39 +47,6 @@
           </div>
         </form>
       </div>
-    </div>
-  </div>
-
-  <!-- Sign-up Modal -->
-  <div class="modal-overlay" id="signupModal">
-    <div class="signup-container">
-      <div class="close-modal" onclick="closeModal()">×</div>
-      <h1>Sign up</h1>
-      <div class="underline"></div>
-      <form>
-        <div class="index-input">
-          <input type="text" placeholder="Name" required>
-          <img src="./assets/icons/contacts/person.svg">
-        </div>
-        <div class="index-input">
-          <input type="email" placeholder="Email" autocomplete="username" required>
-          <img src="./assets/icons/mail.svg">
-        </div>
-        <div class="index-input">
-          <input type="password" placeholder="Password" autocomplete="new-password" required>
-          <img id="lockedIcon" src="./assets/icons/lock.svg"> 
-        </div>
-        <div class="index-input">
-          <input type="password" placeholder="Confirm Password" autocomplete="new-password" required>
-          <img id="lockedIcon" src="./assets/icons/lock.svg"> 
-        </div>
-              
-        <div class="checkbox-container">
-          <input type="checkbox" required>
-          <label>Ich akzeptiere die <a href="#">Privacy policy</a></label>
-        </div>
-        <button type="submit" class="signup-button">Sign up</button>
-      </form>
     </div>
   </div>
 
@@ -91,7 +58,7 @@
 <script src="./scripts/global_vars.js"></script>
 <script src="./scripts/firstdata.js"></script>
 <script type="module" src="./scripts/db.js"></script>
-<script type="module" src="./scripts/login/templates.js"></script>
+<script src="./scripts/login/templates_login.js"></script>
 <script type="module" src="./scripts/login/login.js"></script>
 <script type="module" src="script.js"></script>
 </html>

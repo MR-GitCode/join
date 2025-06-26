@@ -58,7 +58,7 @@ export function createSummaryTaskStatus(date, info, link = './board.html') {
       </div>
 
       <div class="vector-container">
-        <img class="vector" src="./assets/icons/Vector 5.png" alt="Trennlinie">
+        <img class="vector" src="./assets/icons/summary/vector.png" alt="Trennlinie">
       </div>
 
       <div class="info-date">
