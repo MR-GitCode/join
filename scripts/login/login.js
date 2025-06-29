@@ -1,4 +1,5 @@
 import { loadData, getUsers, saveData } from '../db.js';
+import { getBadges } from '../contacts/contacts_overlay.js';
 
 /**
  * Initializes the login page after the DOM has fully loaded.
@@ -11,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const loginForm = document.getElementById('loginForm');
   const guestBtn = document.getElementById('guestBtn');
   visiblePasswordLogin();
-  userLogin(loginForm);
+  userLogin(loginForm); 
   guestLogin(guestBtn);
   animateLogo();
   signUp();
@@ -70,6 +71,8 @@ function guestLogin(guestBtn) {
     guestBtn.addEventListener('click', async () => {
       await loadData();
       const users = getUsers();
+      console.log(users);
+      
       const guestUser = users.find((user) => user.id === 0);
       if (guestUser) {
         const userData = {};
@@ -101,6 +104,9 @@ function signUp() {
     document.getElementById('index-header').classList.add('hidden');
     login(authContainer);
     visiblePasswordSignUp();
+    setTimeout(() => {
+      registrationSignUp();
+    }, 50);
   })
 };
 
@@ -148,4 +154,60 @@ function passwordVisibility(inputId, iconId) {
       input.type = "password";
       icon.src = "./assets/icons/login_signUp/visibility_off.svg"
   }})
+}
+
+function registrationSignUp() {
+    let nameInput = document.getElementById('signName');
+    let emailInput = document.getElementById('signEmail');
+    let passwordInput = document.getElementById('signPassword');
+    let passwordConfirmInput = document.getElementById('signConfirmPassword');
+    let confirmPrivacyPolicy = document.getElementById('confirm-policy');
+    let signUpBt = document.getElementById('bt-signup');
+    validateInputs();
+    nameInput.addEventListener('input', validateInputs);
+    emailInput.addEventListener('input', validateInputs);
+    passwordInput.addEventListener('input', validateInputs);
+    passwordConfirmInput.addEventListener('input', validateInputs);
+    confirmPrivacyPolicy.addEventListener('change', validateInputs);
+    signUpBt.addEventListener('click', () => {
+      if (!signUpBt.disabled) {
+        sendSignUP(nameInput, emailInput, passwordInput);
+      }
+    });
+}
+
+function validateInputs() {
+  let name = document.getElementById('signName').value.trim();
+  let email = document.getElementById('signEmail').value.trim();
+  let password = document.getElementById('signPassword').value;
+  let confirmPassword = document.getElementById('signConfirmPassword').value;
+  let checkboxChecked = document.getElementById('confirm-policy').checked;
+  let signUpBt = document.getElementById('bt-signup');
+  let allFieldsFilled = name && email && password && confirmPassword;
+  let passwordsMatch = password === confirmPassword;
+  if (signUpBt) {
+    signUpBt.disabled = !(allFieldsFilled && passwordsMatch && checkboxChecked);
+  }
+}
+
+function sendSignUP(nameInput, emailInput, passwordInput) {
+  let usersAmount = getUsers().length;
+  let newUserID = usersAmount+1;
+  let newUser = {
+    badge : getBadges(nameInput.value),
+    contacts : "",
+    email : emailInput.value,
+    login : 0,
+    name : nameInput.value,
+    password : passwordInput.value,
+    phone : "",
+    task : "",
+  }
+
+  console.log(newUser);
+  console.log(`users/${newUserID}/`, newUser);
+  
+  // await saveData(`users/${newUserID}/`, newUser);
+
+  // console.log(nameInput, emailInput, passwordInput);
 }

@@ -32,27 +32,27 @@ function loadSignUp() {
                 <div class="underline"></div>
                 <form id="signUpForm">
                     <div class="index-input">
-                        <input type="text" placeholder="Name" id="signName" required>
+                        <input type="text" placeholder="Name" id="signName">
                         <img src="./assets/icons/contacts/person.svg">
                     </div>
                     <div class="index-input">
-                        <input type="email" placeholder="Email" id="signEmail" required>
+                        <input type="email" placeholder="Email" id="signEmail">
                         <img src="./assets/icons/login_signUp/mail.svg">
                     </div>
                     <div class="index-input">
-                        <input type="password" placeholder="Password" id="signPassword" required>
+                        <input type="password" placeholder="Password" id="signPassword" autocomplete="off">
                         <img id="lockedIcon1" src="./assets/icons/login_signUp/lock.svg"> 
                     </div>
                     <div class="index-input">
-                        <input type="password" placeholder="Confirm Password" id="signConfirmPassword" required>
+                        <input type="password" placeholder="Confirm Password" id="signConfirmPassword" autocomplete="off">
                         <img id="lockedIcon2" src="./assets/icons/login_signUp/lock.svg"> 
                     </div>
                     <div class="checkbox-container">
-                        <input type="checkbox" required>
+                        <input id="confirm-policy" type="checkbox">
                         <label>I accept the <a href="./privacy-policy.html">Privacy policy</a></label>
                     </div>
-                    <button type="submit" class="signup-button">Sign up</button>
                 </form>
+                <button id="bt-signup" type="button" class="signup-button" disabled>Sign up</button>
             </div>`
 }
 

@@ -4,11 +4,13 @@ import {addEventListenerToNewContact, addEventListenerEditContact} from '../cont
 /**
  * Load data and initialize contact list once the DOM is fully loaded
  */
-document.addEventListener("DOMContentLoaded", async () => {
-    await loadData(); 
-    addContactList();
-    addEventListenerToNewContact();
-});
+if (window.location.pathname.endsWith('contacts.html')) {
+    document.addEventListener("DOMContentLoaded", async () => {
+        await loadData(); 
+        addContactList();
+        addEventListenerToNewContact();
+    })
+};
 
 /**
  * Loads the contact list of the currently logged-in user.
@@ -35,12 +37,14 @@ export function addContactList() {
  */
 function addLettersToList(contactList) {
     let contactListContainer = document.getElementById('contact-list');
-    contactListContainer.innerHTML = "";
-    let firstLetters = contactList.map(name => name[0].toLowerCase());  
-    let lettersForAlphabet = [...new Set(firstLetters)];
-    for (let i = 0; i < lettersForAlphabet.length; i++) {
-        let letter = lettersForAlphabet[i];
-        contactListContainer.innerHTML += loadAlphabet(letter);
+    if (contactListContainer) {
+        contactListContainer.innerHTML = "";
+        let firstLetters = contactList.map(name => name[0].toLowerCase());  
+        let lettersForAlphabet = [...new Set(firstLetters)];
+        for (let i = 0; i < lettersForAlphabet.length; i++) {
+            let letter = lettersForAlphabet[i];
+            contactListContainer.innerHTML += loadAlphabet(letter);
+        }
     }
 }
 

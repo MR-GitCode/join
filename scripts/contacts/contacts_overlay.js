@@ -139,7 +139,7 @@ function getNextFreeId() {
  * @param {string} name The name of the new contact 
  * @returns Returns the object of the badges.
  */
-function getBadges(name) {
+export function getBadges(name) {
     let parts = name.trim().split(" ");
     let firstName = parts[0] || "";
     let lastName = parts[1] || "";
