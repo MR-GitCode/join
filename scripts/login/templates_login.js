@@ -21,6 +21,10 @@ function changeNavbar() {
             </a>`
 }
 
+/**
+ * Returns the "sign up" template.
+ * @returns 
+ */
 function loadSignUp() {
     return `<div class="signup-container">
                 <img id="returnToLogin" src="./assets/icons/login_signUp/arrow-left-line.svg">
@@ -37,11 +41,11 @@ function loadSignUp() {
                     </div>
                     <div class="index-input">
                         <input type="password" placeholder="Password" id="signPassword" required>
-                        <img id="lockedIcon" src="./assets/icons/login_signUp/lock.svg"> 
+                        <img id="lockedIcon1" src="./assets/icons/login_signUp/lock.svg"> 
                     </div>
                     <div class="index-input">
                         <input type="password" placeholder="Confirm Password" id="signConfirmPassword" required>
-                        <img id="lockedIcon" src="./assets/icons/login_signUp/lock.svg"> 
+                        <img id="lockedIcon2" src="./assets/icons/login_signUp/lock.svg"> 
                     </div>
                     <div class="checkbox-container">
                         <input type="checkbox" required>
@@ -52,6 +56,10 @@ function loadSignUp() {
             </div>`
 }
 
+/**
+ * Returns the "login" template.
+ * @returns 
+ */
 function loadLogin() {
     return `<div class="log-in-card">
                 <div>

@@ -10,7 +10,7 @@ import { loadData, getUsers, saveData } from '../db.js';
 document.addEventListener('DOMContentLoaded', () => {
   const loginForm = document.getElementById('loginForm');
   const guestBtn = document.getElementById('guestBtn');
-  visiblePassword();
+  visiblePasswordLogin();
   userLogin(loginForm);
   guestLogin(guestBtn);
   animateLogo();
@@ -100,6 +100,7 @@ function signUp() {
     authContainer.innerHTML = loadSignUp();
     document.getElementById('index-header').classList.add('hidden');
     login(authContainer);
+    visiblePasswordSignUp();
   })
 };
 
@@ -110,10 +111,29 @@ function login(authContainer) {
   })
 }
 
+/**
+ * Enables toggling password visibility for the login form.
+ */
+function visiblePasswordLogin() {
+  passwordVisibility("loginPassword", "lockedIcon");
+}
 
-function visiblePassword() {
-  let input = document.getElementById("loginPassword");
-  let icon = document.getElementById('lockedIcon')
+/**
+ * Enables toggling password visibility for the sign-up form.
+ */
+function visiblePasswordSignUp() {
+  passwordVisibility("signPassword", "lockedIcon1");
+  passwordVisibility("signConfirmPassword", "lockedIcon2");
+}
+
+/**
+ * Attaches event listeners to an input and icon to toggle password visibility
+ * @param {string} inputId The ID of the input element
+ * @param {string} iconId The ID of the icon element used to toggle visibility.
+ */
+function passwordVisibility(inputId, iconId) {
+  let input = document.getElementById(inputId);
+  let icon = document.getElementById(iconId);
   input.addEventListener('focus', () => {
     icon.src = "./assets/icons/login_signUp/visibility_off.svg"
   })
