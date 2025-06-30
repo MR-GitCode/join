@@ -26,7 +26,8 @@ export async function loadData() {
         }
       }
     }
-    loggedInUser = users.find(u => u.login === 1);
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    loggedInUser = storedUser ? users.find(u => u.id === storedUser.id) : null;
   } catch (error) {
     console.error('error to load', error);
   }
