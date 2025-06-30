@@ -73,6 +73,23 @@ form input:focus {
   outline: 2px solid #29ABE2;
 }
 
+.input-alert {
+  border: none;
+  outline: 1px solid #FF001F !important;
+}
+
+#password-alert{
+  display: flex;
+  font-size: 12px;
+  font-weight: 400;
+  color: #FF8190;
+  padding-top: 8px;
+}
+
+.hide-alert{
+  display: none !important;
+}
+
 .index-input{
   position: relative;
   width: 422px;

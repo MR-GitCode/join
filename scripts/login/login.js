@@ -184,9 +184,31 @@ function validateInputs() {
   let checkboxChecked = document.getElementById('confirm-policy').checked;
   let signUpBt = document.getElementById('bt-signup');
   let allFieldsFilled = name && email && password && confirmPassword;
-  let passwordsMatch = password === confirmPassword;
+  let passwordsMatch = matchOfPasswords(password, confirmPassword);
+  console.log(passwordsMatch);
+  
   if (signUpBt) {
     signUpBt.disabled = !(allFieldsFilled && passwordsMatch && checkboxChecked);
+  }
+}
+
+function matchOfPasswords(password, confirmPassword) {
+  let confirmPasswordInput = document.getElementById('signConfirmPassword');
+  let passwordAlert = document.getElementById('password-alert');
+  if (password && confirmPassword) {
+    if (password === confirmPassword) {
+      confirmPasswordInput.classList.remove('input-alert');
+      passwordAlert.classList.add("hide-alert");
+      return true;
+    } else {
+      confirmPasswordInput.classList.add('input-alert');
+      passwordAlert.classList.remove("hide-alert");
+      return false;
+    }
+  } else {
+    confirmPasswordInput.classList.remove('input-alert');
+    passwordAlert.classList.add("hide-alert");
+    return false;
   }
 }
 

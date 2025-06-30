@@ -45,7 +45,8 @@ function loadSignUp() {
                     </div>
                     <div class="index-input">
                         <input type="password" placeholder="Confirm Password" id="signConfirmPassword" autocomplete="off">
-                        <img id="lockedIcon2" src="./assets/icons/login_signUp/lock.svg"> 
+                        <img id="lockedIcon2" src="./assets/icons/login_signUp/lock.svg">
+                        <div id="password-alert" class="hide-alert">Your passwords don't match. Please try again.</div> 
                     </div>
                     <div class="checkbox-container">
                         <input id="confirm-policy" type="checkbox">
