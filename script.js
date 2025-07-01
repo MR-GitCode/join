@@ -3,6 +3,7 @@ import { loadData, getLoggedInUser } from "./scripts/db.js";
 window.onload = () => {
     init();
     initLegals();
+    loadHeaderBadges();
 };
 
 /**
@@ -32,6 +33,7 @@ function init(version) {
 function toggleDNone(id) {
     document.getElementById(id).classList.toggle('d_none')
 };
+
 /**
  * This function stops the function from propagating to parent elements.
  * 
@@ -87,4 +89,11 @@ async function initLegals() {
             }
         } 
     }
+}
+
+async function loadHeaderBadges() {
+    await loadData();
+    let user = getLoggedInUser();
+    let userBadgeContainer = document.getElementById('profile-badge');
+    userBadgeContainer.innerHTML = loadUserBadge(user);
 }

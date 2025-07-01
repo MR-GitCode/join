@@ -16,29 +16,7 @@ async function loadSummary() {
     return;
   }
   showGreeting(user)
-  loadHeaderBadges(user)
   renderSummary(tasks);
-}
-
-/**
- * Loads and sets the profile badge the given user in the header.
- * @param {*} user Object with the user informations. 
- */
-function loadHeaderBadges(user) {
-  const profileBadgeImg = document.getElementById('profile-badge');
-  if (!profileBadgeImg) {
-    console.warn("No profile picture with ID 'profile-badge' found.");
-  } else if (user) {
-    let badgePath;
-    if (!user.id || user.name?.toLowerCase() === 'gast' || user.guest === true) {
-      badgePath = './assets/icons/profilebadge/guest.svg';
-    } else {
-      badgePath = `./assets/icons/profilebadge/${user.id}.svg`;
-    }
-    profileBadgeImg.src = badgePath;
-  } else {
-    console.warn("No valid user exists.");
-  }
 }
 
 /**
