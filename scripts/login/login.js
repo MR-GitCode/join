@@ -36,6 +36,7 @@ function animateLogo() {
  */
 function userLogin(loginForm) {
   if (loginForm) {
+    removeIncorrectLoginAlert();
     loginForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const email = document.getElementById('loginEmail').value.trim();
@@ -49,10 +50,46 @@ function userLogin(loginForm) {
         localStorage.setItem('user', JSON.stringify({id: foundUser.id}));
         window.location.href = './summary.html';
       } else {
-        alert('Invalid login details!');
+        incorrectLoginAlert()
       }
     });
   }
+}
+
+/**
+ * Displays a visual alert when login data  are incorrect.
+ */
+function incorrectLoginAlert() {
+  let inputs = document.getElementById('loginForm').querySelectorAll('input');
+  let loginAlert = document.getElementById('password-alert');
+  inputs.forEach( input => {
+    input.classList.add("input-alert")})
+  loginAlert.classList.remove("hide-alert");
+}
+
+/**
+ * Sets up input listeners to remove incorrect login alerts on user interaction.
+ * Once the user starts typing again, visual warnings are cleared.
+ */
+function removeIncorrectLoginAlert() {
+  let inputs = document.getElementById('loginForm').querySelectorAll('input');
+  let loginAlert = document.getElementById('password-alert');
+  inputs.forEach(input => {
+    input.addEventListener('input', () => {
+      removeAlerts(inputs, loginAlert);
+    });
+  });
+};
+
+/**
+ * Clears all input field warning styles and hides the login alert message.
+ * @param {NodeListOf<HTMLInputElement>} inputs  A list of input fields to clear warnings from.
+ * @param {HTMLElement} loginAlert The element displaying the login error message.
+ */
+function removeAlerts(inputs, loginAlert) {
+  inputs.forEach(input => {
+    input.classList.remove('input-alert')});
+  loginAlert.classList.add('hide-alert');
 }
 
 /**
