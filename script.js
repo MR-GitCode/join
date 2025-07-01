@@ -91,9 +91,34 @@ async function initLegals() {
     }
 }
 
+/**
+ * Loads and displays the user's profile badge in the header.
+ */
 async function loadHeaderBadges() {
     await loadData();
     let user = getLoggedInUser();
     let userBadgeContainer = document.getElementById('profile-badge');
     userBadgeContainer.innerHTML = loadUserBadge(user);
+    openLogOutMenu();
+}
+
+/**
+ *  Initializes the menu behavior.
+ */
+function openLogOutMenu() {
+    let logOutMenu = document.getElementById('log-out-menu');
+    document.getElementById('profile-badge').addEventListener("click", () => {
+        logOutMenu.classList.toggle("active");
+    });
+    logout()
+}
+
+/**
+ * Sets up the logout process.
+ */
+function logout() {
+    let logOut = document.getElementById('log-out');
+    logOut.addEventListener("click", () => {
+        localStorage.removeItem('user');
+    });
 }

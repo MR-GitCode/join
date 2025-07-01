@@ -111,6 +111,9 @@ function editingMenuEventListen() {
     });
 }
 
+/**
+ * Handles the navigation back to the contact list view.
+ */
 function backToContactList() {
     document.getElementById('back-arrow').addEventListener("click" , () => {
         document.querySelector('.contact-selections').style.display = 'flex';
