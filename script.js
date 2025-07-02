@@ -108,6 +108,7 @@ async function loadHeaderBadges() {
 function openLogOutMenu() {
     let logOutMenu = document.getElementById('log-out-menu');
     document.getElementById('profile-badge').addEventListener("click", () => {
+        logOutMenu.innerHTML = loadMenu();
         logOutMenu.classList.toggle("active");
     });
     logout()

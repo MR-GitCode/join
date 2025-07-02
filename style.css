@@ -149,7 +149,8 @@ header {
 }
 
 #log-out-menu.active {
-  display: flex;
+    display: flex;
+    z-index: 1000;
 }
 
 #log-out-menu a{
