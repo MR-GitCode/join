@@ -16,7 +16,7 @@ async function loadSummary() {
     return;
   }
   showGreeting(user)
-  renderSummary(tasks);
+  renderSummary(user.tasks);
 }
 
 /**
@@ -50,7 +50,7 @@ function getEnglishGreeting() {
  * @param {object} tasks Object with the informations of all tasks.
  * @returns 
  */
-function renderSummary(tasks) {
+function renderSummary(tasks) { 
   const taskContent = document.querySelector('.task-content');
   if (!taskContent) {
     console.warn("No element with class 'task-content' found.");

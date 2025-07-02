@@ -47,13 +47,13 @@ export function createSummaryTodo(icon, number, label, link = './board.html') {
  * @param {string} link Path with the link to the board.
  * @returns 
  */
-export function createSummaryTaskStatus(date, info, link = './board.html') {
+export function createSummaryTaskStatus(number ,date, info, link = './board.html') {
   return `
     <div class="summary-task-status" data-link="${link}">
       <img class="icon-summary" src="./assets/icons/urgent-icon.png" alt="urgent">
       
       <div class="number-urgent-container">
-        <div class="number">1</div>
+        <div class="number">${number}</div>
         <span>Urgent</span>
       </div>
 
@@ -99,7 +99,7 @@ export function createSummaryOfTasks(taskCounts, deadline) {
             ${createSummaryTodo('./assets/icons/summary/check.svg', taskCounts.done, 'Done')}
           </div>
           <div class="row">
-            ${createSummaryTaskStatus(deadline, 'Upcoming Deadline')}
+            ${createSummaryTaskStatus(taskCounts.urgent.length , deadline, 'Upcoming Deadline')}
           </div>
           <div class="row">
             ${createSummaryCount(taskCounts.total, 'Tasks in Board')}
