@@ -71,3 +71,12 @@ function defaultSubtaskIcons(subtaskID) {
             <div class="subtask-divider"></div>
             <img class="button-transition" id="delete-subtask(${subtaskID})" onclick="deleteSubtaskInput(${subtaskID})" src="./assets/icons/add_task/delete.svg">`
 }
+
+function loadCreateTaskFeedback() {
+    return `<div class="overlay-create-feedback">
+                <div id="task-created">
+                    <div>Task added to board</div>
+                    <img src="./assets/icons/board.svg">        
+                </div>
+            </div>`
+}

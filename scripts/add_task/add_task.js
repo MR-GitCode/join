@@ -1,4 +1,5 @@
 import { loadData, saveData, getLoggedInUser} from "../db.js";
+import { updateTasks, closeOverlay } from "../board/board.js"; 
 
 let subtaskTemplateLoaded = false;
 let subtaskID = 0;
@@ -357,11 +358,14 @@ function clearTask() {
 export function addCreateTaskEventListener() {
    let createTaskButton = document.getElementById('bt-create-task');
 if (createTaskButton) {
-    createTaskButton.addEventListener('click', function () {
+    createTaskButton.addEventListener('click', async function () {
         if (checkInputValue() === true) {
-            createTask();
-            if (window.innerWidth <= 768) {
-                window.location.href = 'board.html';       
+            await createTask();
+            if (window.location.pathname.includes('board.html')) {
+                await loadData();
+                closeOverlay();
+            } else {
+                window.location.href = 'board.html'; 
             }
         }
     })}; 
@@ -386,7 +390,7 @@ function getNextFreeId(tasksData) {
  * -Take the informations of the inputfield and the free id and create a object
  * -clear the input fields
  */
-export function createTask() {
+export async function createTask() {
     let user = getLoggedInUser();
     let tasksData = user.tasks || {};
     let nextTaskID = getNextFreeId(tasksData);
@@ -401,11 +405,31 @@ export function createTask() {
         subtasks: getSubtaskOfTask(),
         status: 'todo',
     };
-    saveData(`users/${user.id}/tasks/${task.id}`, task);
+    await saveData(`users/${user.id}/tasks/${task.id}`, task);
     clearTask();
-    if (window.innerWidth === 425) {
-        window.location.href = 'board.html';       
-    }
+    createTaskFeedback();
+}
+
+/**
+ * Adds feedback after creating a task
+ */
+function createTaskFeedback() {
+    let container = document.createElement('div');
+    container.innerHTML += loadCreateTaskFeedback();
+    let overlay = container.querySelector('.overlay-create-feedback');
+    document.body.appendChild(overlay);
+    let feedback = document.getElementById('task-created');
+    overlay.style.display = 'flex';
+    feedback.classList.remove('move-in', 'move-out');
+    feedback.classList.add('move-in');
+    setTimeout(() => {
+        feedback.classList.remove('move-in');
+        feedback.classList.add('move-out');
+    }, 1000);
+    setTimeout(() => {
+        overlay.style.display = 'none';
+        feedback.classList.remove('move-out');
+    }, 1500); 
 }
 
 /**

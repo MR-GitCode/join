@@ -119,7 +119,9 @@ function openLogOutMenu() {
  */
 function logout() {
     let logOut = document.getElementById('log-out');
-    logOut.addEventListener("click", () => {
-        localStorage.removeItem('user');
-    });
+    if (logOut) {
+        logOut.addEventListener("click", () => {
+            localStorage.removeItem('user');
+        });  
+    }
 }

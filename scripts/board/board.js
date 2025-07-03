@@ -37,7 +37,7 @@ function openOverlay() {
 /**
  * Closes the overlay when a click occurs outside the content area (".content-add-task") or on the cross.
  */
-function addCloseEventListener() {
+export function addCloseEventListener() {
     document.getElementById("overlay-add-task").addEventListener("click", function (event) {
         let overlayContainer = document.querySelector(".content-add-task");
         let closeButton = document.getElementById('close-overlay');
@@ -50,7 +50,7 @@ function addCloseEventListener() {
 /**
  * Closes the "Add Task" overlay by adding the 'hidden' class.
  */
-function closeOverlay() {
+export function closeOverlay() {
     let overlayContainer = document.getElementById("overlay-add-task");
     overlayContainer.classList.add('hidden');
     document.body.classList.remove('no-scroll');

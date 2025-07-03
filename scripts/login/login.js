@@ -198,6 +198,7 @@ function registrationSignUp() {
     signUpBt.addEventListener('click', () => {
       if (!signUpBt.disabled) {
         sendSignUP(nameInput, emailInput, passwordInput);
+        window.location.href = './index.html';
       }
     });
 }
@@ -274,8 +275,7 @@ function showSignedSuccessfully() {
   let overlay = document.querySelector('.overlay-signed-feedback');
   let feedback = document.getElementById('signed-successfull');
   overlay.style.display = 'flex';
-    feedback.classList.remove('move-in', 'move-out');
-  void feedback.offsetWidth;
+  feedback.classList.remove('move-in', 'move-out');
   feedback.classList.add('move-in');
   setTimeout(() => {
     feedback.classList.remove('move-in');
