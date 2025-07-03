@@ -108,12 +108,14 @@ async function loadHeaderBadges() {
  *  Initializes the menu behavior.
  */
 function openLogOutMenu() {
+    let profileBadge = document.getElementById('profile-badge')
     let logOutMenu = document.getElementById('log-out-menu');
-    document.getElementById('profile-badge').addEventListener("click", () => {
+    profileBadge.addEventListener("click", () => {
         logOutMenu.innerHTML = loadMenu();
         logOutMenu.classList.toggle("active");
     });
-    logout()
+    closeLogOutMenu(logOutMenu, profileBadge);
+    logout();
 }
 
 /**
@@ -126,4 +128,17 @@ function logout() {
             localStorage.removeItem('user');
         });  
     }
+}
+
+/**
+ * Closes the logout menu when clicking outside of the menu
+ * @param {HTMLElement} logOutMenu The logout menu element to be closed.
+ * @param {HTMLElement} profileBadge The profile badge element used to toggle the menu.
+ */
+function closeLogOutMenu (logOutMenu, profileBadge) {
+    document.addEventListener("click" , function (event) {
+        if (!logOutMenu.contains(event.target) && !profileBadge.contains(event.target)) {
+            logOutMenu.classList.remove("active");
+        }
+    })
 }

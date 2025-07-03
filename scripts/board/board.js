@@ -1,26 +1,28 @@
 import {loadData, getLoggedInUser} from '../db.js';
-import {selectedUsers, addCreateTaskEventListener} from '../add_task/add_task.js';
+import {selectedUsers, addCreateTaskEventListener, addAssignedEventListener, addCategoryEventListener } from '../add_task/add_task.js';
 import {addTaskEventListeners} from './board_overlay_task.js';
 
-window.openOverlay = openOverlay,
-window.closeOverlay = closeOverlay,
+window.openOverlay = openOverlay;
+window.closeOverlay = closeOverlay;
 
 /**
  * Load the tasks for the board.
  */
-document.addEventListener("DOMContentLoaded", async () => {
-    await loadData();
-    updateTasks();
-    addTaskEventListeners();
-    searchingTaskEventListener();
-});
+if (window.location.pathname.endsWith('board.html')) {
+    document.addEventListener("DOMContentLoaded", async () => {
+        await loadData();
+        updateTasks();
+        addTaskEventListeners();
+        searchingTaskEventListener();
+    });
+}
 
 /**
  * Opens the "Add Task" overlay by removing the 'hidden' class.
  * Triggered when the "Add Task" button is clicked.
  */
 function openOverlay() {
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 1000) {
         window.location.href = 'add-task.html';       
     } else {
     selectedUsers.clear();
@@ -31,6 +33,8 @@ function openOverlay() {
     document.body.classList.add('no-scroll');
     addCloseEventListener();
     addCreateTaskEventListener();
+    addAssignedEventListener();
+    addCategoryEventListener();
     }
 }
 

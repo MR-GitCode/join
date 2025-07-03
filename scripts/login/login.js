@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const guestBtn = document.getElementById('guestBtn');
   visiblePasswordLogin();
   userLogin(loginForm); 
-  guestLogin(guestBtn);
+  guestLogin(guestBtn); 
   animateLogo();
   signUp();
 });

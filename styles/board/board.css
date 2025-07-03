@@ -222,3 +222,15 @@ body.no-scroll {
 .columns-scrollbar::-webkit-scrollbar {
     display: none;
 }
+
+.scrollbar-add-task {
+    height: 100%;
+    overflow-y: auto;
+    margin-bottom: 60px;
+    scrollbar-width: thin;
+    scrollbar-color: #A8A8A8 transparent;
+}
+
+.scrollbar-add-task {
+    padding-right: 5px;
+}

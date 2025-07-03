@@ -20,7 +20,7 @@ window.addSubtask = addSubtask;
 window.deleteSubtaskInput = deleteSubtaskInput;
 window.editSubtask = editSubtask;
 window.displaySelectedContacts = displaySelectedContacts;
-window.clearTask =clearTask;
+window.clearTask = clearTask;
 
 /**
  * Initializes application logic after the DOM is fully loaded.
@@ -288,10 +288,11 @@ function checkSelectedUsers() {
         }
 }
 
+
 /**
  * Event listener to close the dropdown menu of "assigned to".
  */
-function addAssignedEventListener() {
+export function addAssignedEventListener() {
     let menuContacts = document.getElementById('contacts');
     let inputField = document.getElementById('input-assign'); 
     if (menuContacts && inputField) {
@@ -305,7 +306,7 @@ function addAssignedEventListener() {
 /**
  * Event listener to close the dropdown menu of "category".
  */
-function addCategoryEventListener() {
+export function addCategoryEventListener() {
     let menuCategory = document.getElementById('categories');
     let inputField = document.getElementById("category-input"); 
     if (menuCategory && inputField) {

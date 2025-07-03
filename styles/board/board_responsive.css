@@ -30,6 +30,7 @@
     
     .header-board {
         padding-bottom: 30px;
+        max-width: 900px;
     }
 
     .board {

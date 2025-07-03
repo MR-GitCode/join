@@ -79,12 +79,12 @@ function loadNoDoneCard() {
  */
 function loadOverlayAddTaskBoard() {
     return `<div class="content-add-task bg-overlay">
-                <div>
+                <div class="scrollbar-add-task">
                     <h1>Add Task</h1>
                     <div id="close-overlay">
                         <img src="./assets/icons/board/close.svg" alt="close">
                     </div>
-                    <form class="form-add-task"  action="">
+                    <form class="form-add-task">
                         <div class="left-form">
                             <div class="bg-error-message">
                                 <label for="title">Title<p class="required-star">*</p></label>

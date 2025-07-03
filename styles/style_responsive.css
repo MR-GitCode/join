@@ -16,6 +16,10 @@
     footer a {
         padding-left: 15%;
     }
+
+    #log-out-menu {
+        top: 80px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -87,6 +91,10 @@
 
     .help {
         display: none;
+    }
+
+    #help {
+        display: flex !important;
     }
 
     .user-info img {

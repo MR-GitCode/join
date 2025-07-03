@@ -174,7 +174,7 @@ button {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  animation: flyToCorner 2s ease-out forwards;
+  animation: flyToCorner 0.8s ease-out forwards;
   z-index: 1001;
 }
 
@@ -184,6 +184,7 @@ button {
 
 @keyframes flyToCorner {
   0% {
+    width: 274px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -339,6 +340,7 @@ button {
 
 @keyframes slideUp {
   from {
+    transform: scale();
     bottom: -100px;
     opacity: 0;
     transform: translateX(-50%);

@@ -1,4 +1,3 @@
-/* Layout: Seitenstruktur */
 .content-summary {
   padding: 60px 80px;
   display: flex;
@@ -36,14 +35,13 @@
   font-size: 27px;
 }
 
-/* Aufgaben-Container */
 .task-container-horizontal {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 40px;
   width: 100%;
-  flex-wrap: nowrap; /* verhindert Umbruch */
+  flex-wrap: nowrap;
 }
 
 .task-content {
@@ -51,7 +49,7 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  min-width: 500px; /* sorgt für stabile Breite */
+  min-width: 500px; 
 }
 
 .row {
@@ -59,7 +57,6 @@
   gap: 24px;
 }
 
-/* Begrüßung */
 .greeting-container {
   flex: 1;
   min-width: 250px;
@@ -77,7 +74,6 @@
   margin: 0;
 }
 
-/* Summary Cards */
 .summary-todo,
 .summary-task-status,
 .count,
@@ -125,7 +121,6 @@
   height: 168px;
 }
 
-/* Inhalte in den Cards */
 .icon-summary {
   width: 69px;
   height: 69px;
@@ -182,7 +177,6 @@
   font-size: 16px;
 }
 
-/* Begrüßung oben rechts */
 .day {
   text-align: right;
   font-weight: bold;
@@ -194,25 +188,10 @@
   font-size: 47px;
 }
 
-/* Begrüßung mit Name */
 .highlight-name {
   color: rgba(41, 171, 226, 1);
   font-weight: bold;
   font-size: 64px;
-}
-
-/* Navigation oben rechts */
-.user-info {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.user-info img {
-  cursor: pointer;
-  width: 32px;
-  height: 32px;
 }
 
 .dropdown-container {
@@ -250,14 +229,6 @@
 
 .navbar-dropdown a:hover {
   background-color: #f0f0f0;
-}
-
-/* Sichtbarkeit erzwingen */
-.right-side,
-header,
-.user-info {
-  position: relative !important;
-  z-index: auto !important;
 }
 
 .summary-task-status {

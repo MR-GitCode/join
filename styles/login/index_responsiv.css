@@ -51,6 +51,21 @@
   button {
     font-size: 18px;
   }
+
+  @keyframes flyToCorner {
+  0% {
+    width: 100px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    width: 64px;
+    top: 37px;;
+    left: 38px;
+    transform: translate(0, 0);
+  }
+}
 }
 
 @media (max-width: 480px) {
