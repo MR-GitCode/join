@@ -303,3 +303,66 @@ button {
     background-color: #29ABE2;
     box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
 }
+
+.overlay-signed-feedback{
+  position: absolute;
+  background: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: none;
+}
+
+.overlay-signed-feedback.show {
+  display: flex;
+}
+
+#signed-successfull{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 74px;
+  width: 312px;
+  border-radius: 20px;
+  background-color: #2A3647;
+  font-size: 20px;
+  color: #FFFFFF;
+  box-shadow: 0px 0px 4px 0px #0000001A;
+  opacity: 0;
+  left: 50%;
+}
+
+#signed-successfull.move-in {
+  animation: slideUp 0.3s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from {
+    bottom: -100px;
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+  to {
+    bottom: 50%;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+#signed-successfull.move-out {
+  animation: slideDown 0.3s ease-in forwards;
+}
+
+@keyframes slideDown {
+  from {
+    bottom: 50%;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  to {
+    bottom: -100px;
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+}

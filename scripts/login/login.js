@@ -1,4 +1,4 @@
-import { loadData, getUsers} from '../db.js';
+import { loadData, getUsers, saveData} from '../db.js';
 import { getBadges } from '../contacts/contacts_overlay.js';
 
 /**
@@ -245,25 +245,44 @@ function matchOfPasswords(password, confirmPassword) {
   }
 }
 
-function sendSignUP(nameInput, emailInput, passwordInput) {
+/**
+ * Registers a new user and saves their data.
+ * @param {HTMLInputElement} nameInput The input field containing the user's name.
+ * @param {HTMLInputElement} emailInput The input field containing the user's email.
+ * @param {HTMLInputElement} passwordInput The input field containing the user's password.
+
+ */
+async function sendSignUP(nameInput, emailInput, passwordInput) {
   let usersAmount = getUsers().length;
-  let newUserID = usersAmount+1;
   let newUser = {
     badge : getBadges(nameInput.value),
     contacts : "",
     email : emailInput.value,
-    login : 0,
     name : nameInput.value,
     password : passwordInput.value,
     phone : "",
     task : "",
   }
-
-  console.log(newUser);
-  console.log(`users/${newUserID}/`, newUser);
-  
-  // await saveData(`users/${newUserID}/`, newUser);
-
-  // console.log(nameInput, emailInput, passwordInput);
+  await saveData(`users/${usersAmount}/`, newUser);
+  showSignedSuccessfully();
 }
 
+/**
+ * Displays a success feedback animation after sign-up.
+ */
+function showSignedSuccessfully() {
+  let overlay = document.querySelector('.overlay-signed-feedback');
+  let feedback = document.getElementById('signed-successfull');
+  overlay.style.display = 'flex';
+    feedback.classList.remove('move-in', 'move-out');
+  void feedback.offsetWidth;
+  feedback.classList.add('move-in');
+  setTimeout(() => {
+    feedback.classList.remove('move-in');
+    feedback.classList.add('move-out');
+  }, 1000);
+  setTimeout(() => {
+    overlay.style.display = 'none';
+    feedback.classList.remove('move-out');
+  }, 1500);
+}

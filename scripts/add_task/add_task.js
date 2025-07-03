@@ -21,6 +21,9 @@ window.editSubtask = editSubtask;
 window.displaySelectedContacts = displaySelectedContacts;
 window.clearTask =clearTask;
 
+/**
+ * Initializes application logic after the DOM is fully loaded.
+ */
 document.addEventListener("DOMContentLoaded", async function() {
     await loadData();
     changeIconsSubtask();

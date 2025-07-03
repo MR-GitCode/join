@@ -54,6 +54,9 @@ function loadSignUp() {
                     </div>
                 </form>
                 <button id="bt-signup" type="button" class="signup-button" disabled>Sign up</button>
+            </div>
+            <div class="overlay-signed-feedback">
+                <div id="signed-successfull">You Signed Up successfully</div>
             </div>`
 }
 

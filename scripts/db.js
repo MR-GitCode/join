@@ -5,7 +5,7 @@ let tasks = [];
 let loggedInUser = null;
 
 /**
- * load user and Tasks 
+ * Loads user and task data from the database.
  */
 export async function loadData() {
   try {
@@ -34,7 +34,10 @@ export async function loadData() {
 }
 
 /**
- * send data (PUT) on Firebase.
+ * Sends (overwrites) data to a specific path in the backend and reloads all user/task data.
+ * @param {string} path The relative path (excluding `.json`) to send the data to.
+ * @param {object} data The JavaScript object to be transmitted to the database.
+ * @returns 
  */
 async function transmitData(path = '', data = {}) {
   const res = await fetch(`${BASE_URL}/${path}.json`, {
@@ -47,14 +50,21 @@ async function transmitData(path = '', data = {}) {
 }
 
 /**
- * save data 
+ * Saves data to a specific path in the backend.
+ * @param {string} path The relative path (excluding `.json`) to send the data to.
+ * @param {object} data The JavaScript object to be transmitted to the database.
  */
 export async function saveData(path = '', data = null) {
+  console.log(path, data);
+  
   if (data) await transmitData(path, data);
 }
 
 /**
- * delete data 
+ * Deletes a specific data entry from the backend by ID.
+ * @param {*} path The backend resource path
+ * @param {*} id The ID of the data entry to be deleted.
+ * @returns 
  */
 export async function deleteData(path = '', id) {
   const res = await fetch(`${BASE_URL}/${path}/${id}.json`, {
@@ -64,7 +74,10 @@ export async function deleteData(path = '', id) {
   return res.json();
 }
 
-/* ---------- Getter ---------- */
+/**
+ * Retrieves all tasks relevant to the currently logged-in user.
+ * @returns 
+ */
 export function getTasks() {
   if (!loggedInUser) return [];
   return tasks.filter(
@@ -83,6 +96,10 @@ export function getLoggedInUser() {
   return loggedInUser;
 }
 
+/**
+ * 
+ * @returns Return informations of the users
+ */
 export function getUsers() {
   return users;
 }
