@@ -1,29 +1,20 @@
 const BASE_URL = 'https://join-441-f6d95-default-rtdb.europe-west1.firebasedatabase.app';
 
 let users = [];
-let tasks = [];
 let loggedInUser = null;
 
 /**
- * Loads user and task data from the database.
+ * Loads user from the database.
  */
 export async function loadData() {
   try {
     const usersRes = await fetch(`${BASE_URL}/users.json`);
     const usersJson = await usersRes.json();
     users = [];
-    tasks = [];
     if (usersJson) {
       for (const [uid, user] of Object.entries(usersJson)) {
         user.id = Number(uid);
         users.push(user);
-        if (user.tasks) {
-          for (const [tid, task] of Object.entries(user.tasks)) {
-            task.id = Number(tid);
-            if (typeof task.userId === 'undefined') task.userId = user.id;
-            tasks.push(task);
-          }
-        }
       }
     }
     const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -55,8 +46,6 @@ async function transmitData(path = '', data = {}) {
  * @param {object} data The JavaScript object to be transmitted to the database.
  */
 export async function saveData(path = '', data = null) {
-  console.log(path, data);
-  
   if (data) await transmitData(path, data);
 }
 
@@ -72,20 +61,6 @@ export async function deleteData(path = '', id) {
   });
   await loadData();
   return res.json();
-}
-
-/**
- * Retrieves all tasks relevant to the currently logged-in user.
- * @returns 
- */
-export function getTasks() {
-  if (!loggedInUser) return [];
-  return tasks.filter(
-    t =>
-      Number(t.userId) === loggedInUser.id ||
-      Number(t.userId) === 0 ||
-      typeof t.userId === 'undefined'
-  );
 }
 
 /**

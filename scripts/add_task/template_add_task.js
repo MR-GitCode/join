@@ -72,6 +72,10 @@ function defaultSubtaskIcons(subtaskID) {
             <img class="button-transition" id="delete-subtask(${subtaskID})" onclick="deleteSubtaskInput(${subtaskID})" src="./assets/icons/add_task/delete.svg">`
 }
 
+/**
+ * 
+ * @returns Returns the template of the feedback.
+ */
 function loadCreateTaskFeedback() {
     return `<div class="overlay-create-feedback">
                 <div id="task-created">

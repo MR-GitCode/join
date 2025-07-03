@@ -1,5 +1,5 @@
 import { loadData, saveData, getLoggedInUser} from "../db.js";
-import { updateTasks, closeOverlay } from "../board/board.js"; 
+import { closeOverlay } from "../board/board.js"; 
 
 let subtaskTemplateLoaded = false;
 let subtaskID = 0;
@@ -364,9 +364,7 @@ if (createTaskButton) {
             if (window.location.pathname.includes('board.html')) {
                 await loadData();
                 closeOverlay();
-            } else {
-                window.location.href = 'board.html'; 
-            }
+            } 
         }
     })}; 
 }

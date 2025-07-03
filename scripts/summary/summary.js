@@ -1,4 +1,4 @@
-import { loadData, getTasks, getLoggedInUser } from '../db.js';
+import { loadData, getLoggedInUser } from '../db.js';
 import { createDayGreeting , createSummaryOfTasks} from './template-summary.js';
 
 document.addEventListener('DOMContentLoaded', loadSummary);
@@ -9,12 +9,7 @@ document.addEventListener('DOMContentLoaded', loadSummary);
  */
 async function loadSummary() {
   await loadData();
-  const tasks = getTasks();
   const user = getLoggedInUser();
-  if (!tasks || !user) {
-    console.warn("No tasks or logged in user found.");
-    return;
-  }
   showGreeting(user)
   renderSummary(user.tasks);
 }
@@ -65,11 +60,13 @@ function renderSummary(tasks) {
     total: tasks.length,
   };
   for (let task of tasks) {
-    if (task.status === 'todo') taskCounts.todo++;
-    if (task.status === 'done') taskCounts.done++;
-    if (task.status === 'inprogress') taskCounts.inProgress++;
-    if (task.status === 'review') taskCounts.feedback++;
-    if (task.priority === 'urgent') taskCounts.urgent.push(task);
+    if (task) {
+      if (task.status === 'todo') taskCounts.todo++;
+      if (task.status === 'done') taskCounts.done++;
+      if (task.status === 'inprogress') taskCounts.inProgress++;
+      if (task.status === 'review') taskCounts.feedback++;
+      if (task.priority === 'urgent') taskCounts.urgent.push(task);
+    }
   }
   const nearestUrgent = taskCounts.urgent.sort((a, b) => new Date(a.enddate) - new Date(b.enddate))[0];
   const deadline = nearestUrgent ? formatDate(nearestUrgent.enddate) : 'No deadlines';

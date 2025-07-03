@@ -19,7 +19,7 @@ export function addTaskEventListeners() {
             addTaskSubtask(user.tasks[taskID].subtasks, 'subtasks-select-task', 'show');
             addSubtasksStatusEventListener(user, taskID);
             addEditTaskEventListener(taskID);
-            addDeliteTask(user, taskID);
+            addDeleteTask(user, taskID);
             
         });
         touchDragDrop(task);       
@@ -31,7 +31,7 @@ export function addTaskEventListeners() {
  * @param {object} user This is the object of user with all Informations.
  * @param {number} taskID This is the ID of the task.
  */
-async function addDeliteTask(user, taskID) {
+async function addDeleteTask(user, taskID) {
     document.getElementById('delete-task').addEventListener("click", async () => {
         await deleteData(`users/${user.id}/tasks/`, taskID);
         closeOverlaySelectTask();   

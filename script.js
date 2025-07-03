@@ -98,8 +98,10 @@ async function loadHeaderBadges() {
     await loadData();
     let user = getLoggedInUser();
     let userBadgeContainer = document.getElementById('profile-badge');
-    userBadgeContainer.innerHTML = loadUserBadge(user);
-    openLogOutMenu();
+    if (userBadgeContainer) {
+        userBadgeContainer.innerHTML = loadUserBadge(user);
+        openLogOutMenu(); 
+    }
 }
 
 /**
