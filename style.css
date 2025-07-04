@@ -55,8 +55,8 @@ body {
     width: 100px;
 }
 
-nav {
-    display: flex;
+#navbar {
+    display: none;
     width: 100%;
     flex-direction: column;
     gap: 15px;

@@ -11,17 +11,6 @@ function getLoadingSpinnerTemplate() {
 };
 
 /**
- * Returns the navbar if a user doesn't login.
- * @returns 
- */
-function changeNavbar() {
-    return `<a href="./index.html">
-                <img src="./assets/icons/log_in.svg">
-                <p>Log In</p>
-            </a>`
-}
-
-/**
  * Returns the "sign up" template.
  * @returns 
  */

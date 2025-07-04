@@ -17,3 +17,14 @@ function loadMenu() {
             <a href="./privacy-policy.html">Privacy Policy</a>
             <a id="log-out" href="./index.html">Log out</a>`
 }
+
+/**
+ * Returns the navbar if a user doesn't login.
+ * @returns 
+ */
+function changeNavbar() {
+    return `<a href="./index.html">
+                <img src="./assets/icons/log_in.svg">
+                <p>Log In</p>
+            </a>`
+}

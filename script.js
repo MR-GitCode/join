@@ -77,7 +77,7 @@ function loadingSpinner() {
  */
 async function initLegals() {
     await loadData();
-    let user = getLoggedInUser();
+    let user = getLoggedInUser();   
     let navbar = document.getElementById('navbar');
     let legalsFooter = document.getElementById('footer')
     if (navbar && legalsFooter) {
@@ -87,7 +87,8 @@ async function initLegals() {
         if (window.innerWidth <= 425) {
                 legalsFooter.setAttribute('style', 'display: flex;'); 
             }
-        } 
+        }
+        navbar.style.display = 'flex'; 
     }
 }
 
