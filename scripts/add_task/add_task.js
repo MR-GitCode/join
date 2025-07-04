@@ -220,9 +220,10 @@ export async function getContactsDatabank(id) {
     assignedMenu.innerHTML = "";
     for (let contactsIndex = 0; contactsIndex < user.contacts.length; contactsIndex++) {
         if (user.contacts[contactsIndex]) {
-        let contact = user.contacts[contactsIndex]
-        assignedMenu.innerHTML += loadAssignedMenu(contact);
-    }}
+            let contact = user.contacts[contactsIndex]
+            assignedMenu.innerHTML += loadAssignedMenu(contact);
+        }
+    }
     selectContact()
     checkSelectedUsers()
 }
@@ -231,9 +232,10 @@ export async function getContactsDatabank(id) {
  * This function sets an event listener on all selected contacts in the dropdown menu.
  */
 function selectContact() {
-    document.querySelectorAll(".menu-option").forEach((option, userIndex) => {
+    document.querySelectorAll(".menu-option").forEach((option) => {
         option.addEventListener("click", function () {
-            toggleUserSelection(userIndex);
+            const userId = parseInt(option.querySelector("img").dataset.id);
+            toggleUserSelection(userId);
         });
     });
 }
@@ -246,20 +248,22 @@ function selectContact() {
  * - Adds or removes the user from the `selectedUsers` set.
  * @param {number} userIndex The ID of the contact in the menu.
  */
-function toggleUserSelection(userIndex) {
-    let userContainer = document.getElementById(`user(${userIndex})`);
-    let optionOfMenu = document.querySelectorAll(".menu-option")[userIndex];
-    if (selectedUsers.has(userIndex)) {
-        selectedUsers.delete(userIndex);
+function toggleUserSelection(userId) {
+    let userContainer = document.querySelector(`img[data-id="${userId}"]`);
+    let optionOfMenu = userContainer?.closest('.menu-option');
+    if (!userContainer || !optionOfMenu) return;
+
+    if (selectedUsers.has(userId)) {
+        selectedUsers.delete(userId);
         optionOfMenu.classList.remove('bg-menu-option');
         userContainer.src = "./assets/icons/add_task/default.svg";
     } else {
-        selectedUsers.add(userIndex);
+        selectedUsers.add(userId);
         optionOfMenu.classList.add('bg-menu-option');
         userContainer.src = "./assets/icons/add_task/checked_white.svg";
     }
-    displaySelectedContacts()
-    checkSelectedUsers()
+    displaySelectedContacts();
+    checkSelectedUsers();
 }
 
 /**
@@ -268,9 +272,10 @@ function toggleUserSelection(userIndex) {
 async function displaySelectedContacts() {
     let selectedContainer = document.getElementById("selected-contacts");
     selectedContainer.innerHTML = "";
-    for (let selectedUsersId of selectedUsers) {
-        let contact = getLoggedInUser().contacts[selectedUsersId]
-        selectedContainer.innerHTML += `<div class="badges" style="background-color:${contact.badge.color}">${contact.badge.initials}</div>`
+    for (let userId of selectedUsers) {
+        let contact = getLoggedInUser().contacts[userId];
+        if (!contact || !contact.badge) continue;
+        selectedContainer.innerHTML += `<div class="badges" style="background-color:${contact.badge.color}">${contact.badge.initials}</div>`;
     }
 }
 
@@ -279,14 +284,15 @@ async function displaySelectedContacts() {
  * If the user is in the set. it updates the background and image
  */
 function checkSelectedUsers() {
-    for (let selectedUsersId of selectedUsers) {
-        let userContainer = document.getElementById(`user(${selectedUsersId})`);
-        let optionOfMenu = document.querySelectorAll(".menu-option")[selectedUsersId];
+    for (let userId of selectedUsers) {
+        let userContainer = document.querySelector(`img[data-id="${userId}"]`);
+        let optionOfMenu = userContainer?.closest('.menu-option');
+        if (!userContainer || !optionOfMenu) continue;
+
         optionOfMenu.classList.add('bg-menu-option');
         userContainer.src = "./assets/icons/add_task/checked_white.svg";
     }
 }
-
 
 /**
  * Event listener to close the dropdown menu of "assigned to".

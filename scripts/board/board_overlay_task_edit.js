@@ -90,7 +90,7 @@ function editPriority(taskInfo) {
  */
 function addEditButtonEventListener (taskInfo) {
     let user = getLoggedInUser();
-    document.getElementById('bt-edit').addEventListener("click", function () {
+    document.getElementById('bt-edit').addEventListener("click", async function () {
         let task = {
             id: taskInfo.id,
             title: document.getElementById('input-title').value,
@@ -102,7 +102,7 @@ function addEditButtonEventListener (taskInfo) {
             status: taskInfo.status,
             category: taskInfo.category,
         };    
-        saveData(`users/${user.id}/tasks/${task.id}`, task);
+        await saveData(`users/${user.id}/tasks/${task.id}`, task);
         closeOverlaySelectTask();
     })
 }

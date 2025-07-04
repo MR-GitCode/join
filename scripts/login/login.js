@@ -201,7 +201,6 @@ function registrationSignUp() {
     signUpBt.addEventListener('click', () => {
       if (!signUpBt.disabled) {
         sendSignUP(nameInput, emailInput, passwordInput);
-        window.location.href = './index.html';
       }
     });
 }
@@ -254,7 +253,6 @@ function matchOfPasswords(password, confirmPassword) {
  * @param {HTMLInputElement} nameInput The input field containing the user's name.
  * @param {HTMLInputElement} emailInput The input field containing the user's email.
  * @param {HTMLInputElement} passwordInput The input field containing the user's password.
-
  */
 async function sendSignUP(nameInput, emailInput, passwordInput) {
   let usersAmount = getUsers().length;
@@ -287,5 +285,6 @@ function showSignedSuccessfully() {
   setTimeout(() => {
     overlay.style.display = 'none';
     feedback.classList.remove('move-out');
-  }, 1500);
+    window.location.href = './index.html';
+  }, 1500);     
 }

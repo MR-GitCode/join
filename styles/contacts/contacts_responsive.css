@@ -334,7 +334,7 @@
     }
 
     #back-arrow {
-        display: block;
+        display: flex;
     }   	   
 
     #editing-menu {

@@ -17,6 +17,15 @@
 .help-informations a{
     text-decoration: none;
     color: #29ABE2;
+    display: flex;
+    justify-content: center;
+    justify-content: center;
+}
+
+.help-informations a:hover{
+    transform: scale(1.1);
+    background-color: #EEEEEE;
+    border-radius: 50%;
 }
 
 .help-informations p{

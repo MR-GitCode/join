@@ -313,12 +313,20 @@ h1{
 
 #back-arrow {
     display: none;
+    justify-content: center;
+    align-items: center;
     width: 32px;
     height: 32px;
     position: absolute;
     top: 25px;
     right: 16px;
     cursor: pointer;
+}
+
+#back-arrow:hover{
+    transform: scale(1.1);
+    background-color: #EEEEEE;
+    border-radius: 50%;
 }
 
 #editing-menu {
