@@ -12,14 +12,13 @@
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #A8A8A8 transparent;
+    position: relative;
 }
 
 .help-informations a{
     text-decoration: none;
     color: #29ABE2;
-    display: flex;
-    justify-content: center;
-    justify-content: center;
+
 }
 
 .help-informations a:hover{
@@ -51,6 +50,9 @@ h4{
     position: absolute;
     right: 80px;
     top: 225px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .number{

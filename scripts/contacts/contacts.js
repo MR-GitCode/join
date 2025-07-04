@@ -77,9 +77,7 @@ function addContactEventListener(contacts) {
             let infoContainer = document.getElementById('contact-data');
             for (let i = 0; i < contacts.length; i++) {  
                 if (contacts[i] && contacts[i].id == contactID) {
-                    infoContainer.innerHTML = loadContactInformations(contacts[i]);
-                    addEventListenerDeleteContact(contactID, infoContainer);
-                    addEventListenerEditContact(contacts[i]);
+                    renderContactInformations(contacts[i]);
                     if (window.innerWidth <= 640) {
                         document.querySelector('.contact-selections').style.display = 'none';
                         document.querySelector('.right-screen').style.display = 'flex';
@@ -91,6 +89,13 @@ function addContactEventListener(contacts) {
             }
         });
     });
+}
+
+export function renderContactInformations(contacts) {
+    let infoContainer = document.getElementById('contact-data');
+    infoContainer.innerHTML = loadContactInformations(contacts);
+    addEventListenerDeleteContact(contacts.id, infoContainer);
+    addEventListenerEditContact(contacts);
 }
 
 /**
@@ -129,8 +134,8 @@ export function addEventListenerDeleteContact(contactID, infoContainer) {
     let user = getLoggedInUser();
     document.getElementById('delete-contact').addEventListener("click", async () => {
         await deleteData(`users/${user.id}/contacts/`, contactID);
-        addContactList();
         infoContainer.innerHTML = "";
+        addContactList();
         document.getElementById('bt-add-contact').scrollIntoView({ behavior: "smooth", block: "start" });
     })
 }

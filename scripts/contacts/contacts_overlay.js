@@ -1,5 +1,5 @@
 import { getLoggedInUser, deleteData, saveData} from '../db.js';
-import { addContactList, addEventListenerDeleteContact } from '../contacts/contacts.js'
+import { addContactList, addEventListenerDeleteContact, renderContactInformations} from '../contacts/contacts.js'
 
 let badgeColors = [
     "#FF7A00" , "#9327FF" , "#FF745E", "#FFC701" , "#FFE62B" ,
@@ -222,7 +222,10 @@ function saveEdit(contact) {
             id : contact.id,
             badge : contact.badge,
         }
-        await saveData(`users/${user.id}/contacts/${contactEdit.id}/`, contactEdit);       
+        console.log(contactEdit);
+        
+        renderContactInformations(contactEdit); 
+        await saveData(`users/${user.id}/contacts/${contactEdit.id}/`, contactEdit);
         closeOverlay();
     })  
 }
