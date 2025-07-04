@@ -122,4 +122,28 @@
     #bt-add-task p {
         display: none;
     }
+
+    .content-select-task {
+        padding: 20px 20px 30px 20px !important;
+        width: clamp(250px, 85vw, 400px);
+        gap: 16px;
+    }
+
+    .content-select-task p {
+        font-size: 16px;
+    }
+
+    .select-tk-title {
+        font-size: 36px !important;
+    }
+
+    #close-overlay-select-task {
+        top: 20px;
+        right: 20px;
+    }
+
+    .bts-select-task {
+        bottom: 20px;
+        right: 20px;
+    }
 }
