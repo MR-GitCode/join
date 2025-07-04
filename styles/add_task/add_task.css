@@ -6,13 +6,6 @@
     height: -webkit-fill-available;
 }
 
-.display-position{
-    display: flex;
-    height: 100%;
-    max-width: 1440px;
-    margin: 0 auto;
-}
-
 h1{
     font-size: 61px;
     padding-bottom: 60px;
