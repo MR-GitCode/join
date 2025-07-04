@@ -247,7 +247,7 @@
 
     #overlay-container {
         width: 396px;
-        height: 85%;
+        height: 760px;
     }
 
     .badges-edit-contactinfo{
@@ -405,5 +405,24 @@
 
     .right-overlay-contact input {
         width: clamp(250px, 80vw, 343px);
+    }
+}
+
+@media (max-height: 700px) {
+    #overlay-container {
+        height: 600px !important;
+    }
+
+    .left-overlay-contact {
+        height: 250px;
+    }
+
+    .badges-contact,
+    .badges-edit-contactinfo {
+        top: 250px;
+    }
+    
+    .right-overlay-contact {
+        margin-top: 70px;
     }
 }
