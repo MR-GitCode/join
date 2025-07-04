@@ -95,7 +95,7 @@ function loadOverlayAddContact() {
                             <img src="./assets/icons/contacts/person.svg">
                         </div>
                         <div id="email-input">
-                            <input type="text" placeholder="Email">
+                            <input type="email" placeholder="Email" required>
                             <img src="./assets/icons/contacts/mail.svg">
                         </div>
                         <div id="phone-input">

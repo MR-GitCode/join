@@ -20,9 +20,9 @@ export function addEditTaskEventListener(taskID) {
             addAssignedEventListener(taskInfo);
             editPriority(taskInfo);
             addTaskSubtask(taskInfo.subtasks, 'list-subtasks');
-            addEditButtonEventListener(taskInfo);
             addEditSubtask();
             addCloseEventListener();
+            addEditButtonEventListener(taskInfo);
         } )
     }
 }
