@@ -25,16 +25,16 @@ function openOverlay() {
     if (window.innerWidth <= 1000) {
         window.location.href = 'add-task.html';       
     } else {
-    selectedUsers.clear();
-    let overlayContainer = document.getElementById("overlay-add-task")
-    overlayContainer.classList.remove('hidden');
-    overlayContainer.innerHTML = loadOverlayAddTaskBoard();
-    overlayContainer.classList.add('active');
-    document.body.classList.add('no-scroll');
-    addCloseEventListener();
-    addCreateTaskEventListener();
-    addAssignedEventListener();
-    addCategoryEventListener();
+        selectedUsers.clear();
+        let overlayContainer = document.getElementById("overlay-add-task")
+        overlayContainer.classList.remove('hidden');
+        overlayContainer.innerHTML = loadOverlayAddTaskBoard();
+        overlayContainer.classList.add('active');
+        document.body.classList.add('no-scroll');
+        addCloseEventListener();
+        addCreateTaskEventListener();
+        addAssignedEventListener();
+        addCategoryEventListener();
     }
 }
 
@@ -63,7 +63,7 @@ export function closeOverlay() {
 }
 
 /**
- * Adds an event listener to the task search input field and find the task matching with the input value.
+ * Adds an event listener to the task search input field.
  */
 function searchingTaskEventListener() {
     document.getElementById('input-find-task').addEventListener('input', (event) => {
@@ -75,14 +75,22 @@ function searchingTaskEventListener() {
                 });
                 if (findTaskInput === "") {
                     updateTasks()
-                }
-                return;
+                } return;
             }
-            let findTask = tasks.filter(task =>
-                task.title.toLowerCase().includes(findTaskInput) || task.description.toLowerCase().includes(findTaskInput));
-            showFindTask(findTask);        
+            findTasks(tasks)
         },
     );
+}
+
+/**
+ * Find the task matching with the input value
+ * @param {object} tasks Object with the informations of the user tasks.
+ */
+function findTasks(tasks) {
+    let findTask = tasks.filter(task =>
+        task.title.toLowerCase().includes(findTaskInput) || task.description.toLowerCase().includes(findTaskInput)
+    );
+    showFindTask(findTask);   
 }
 
 /**
@@ -116,7 +124,7 @@ export function updateTasks() {
     document.querySelectorAll('.columns-content').forEach(column => {
         column.innerHTML = "";
     });
-      for (let task of tasksData) {
+    for (let task of tasksData) {
         if (task) {
             let status = task.status;
             let columnOfCard = document.getElementById(`${status}`);
@@ -185,14 +193,11 @@ function checkContentOfColumns() {
     let doneContainer = document.getElementById('done');
     if (todoContainer.innerHTML === "" ) {
         todoContainer.innerHTML = loadNoTodoCard()   
-    } 
-    if (inprogressContainer.innerHTML === "" ) {
+    } if (inprogressContainer.innerHTML === "" ) {
         inprogressContainer.innerHTML = loadNoTodoCard()
-    }
-    if (reviewContainer.innerHTML === "" ) {
+    } if (reviewContainer.innerHTML === "" ) {
         reviewContainer.innerHTML = loadNoTodoCard()
-    }
-    if (doneContainer.innerHTML === "" ) {
+    } if (doneContainer.innerHTML === "" ) {
         doneContainer.innerHTML = loadNoDoneCard()
     }
  }

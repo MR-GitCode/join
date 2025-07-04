@@ -113,9 +113,9 @@ function openLogOutMenu() {
     profileBadge.addEventListener("click", () => {
         logOutMenu.innerHTML = loadMenu();
         logOutMenu.classList.toggle("active");
+        logout();
     });
     closeLogOutMenu(logOutMenu, profileBadge);
-    logout();
 }
 
 /**

@@ -121,7 +121,11 @@ function loadOverlayAddContact() {
             </div>`
 }
 
-
+/**
+ * Generates the HTML markup for the "Edit Contact" overlay.
+ * @param {object} contact The contact data to prefill the overlay.
+ * @returns 
+ */
 function loadOverlayEditContact(contact) {
     return `<div>
                 <div class="left-overlay-contact">

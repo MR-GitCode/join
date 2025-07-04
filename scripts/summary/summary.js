@@ -51,6 +51,17 @@ function renderSummary(tasks) {
     console.warn("No element with class 'task-content' found.");
     return;
   }
+  let taskCounts = countTasks(tasks);
+  let deadline = getNearestUrgentDeadline(taskCounts.urgent);
+  taskContent.innerHTML = createSummaryOfTasks(taskCounts, deadline);
+}
+
+/**
+ * Counts the number of tasks in each status category and collects urgent tasks.
+ * @param {object} tasks Object with the informations of all tasks.
+ * @returns 
+ */
+function countTasks (tasks) {
   const taskCounts = {
     todo: 0,
     done: 0,
@@ -60,17 +71,25 @@ function renderSummary(tasks) {
     total: tasks.length,
   };
   for (let task of tasks) {
-    if (task) {
-      if (task.status === 'todo') taskCounts.todo++;
-      if (task.status === 'done') taskCounts.done++;
-      if (task.status === 'inprogress') taskCounts.inProgress++;
-      if (task.status === 'review') taskCounts.feedback++;
-      if (task.priority === 'urgent') taskCounts.urgent.push(task);
-    }
+    if (!task) continue;
+    if (task.status === 'todo') taskCounts.todo++;
+    if (task.status === 'done') taskCounts.done++;
+    if (task.status === 'inprogress') taskCounts.inProgress++;
+    if (task.status === 'review') taskCounts.feedback++;
+    if (task.priority === 'urgent') taskCounts.urgent.push(task);
   }
-  const nearestUrgent = taskCounts.urgent.sort((a, b) => new Date(a.enddate) - new Date(b.enddate))[0];
-  const deadline = nearestUrgent ? formatDate(nearestUrgent.enddate) : 'No deadlines';
-  taskContent.innerHTML = createSummaryOfTasks(taskCounts, deadline) 
+  return taskCounts;
+}
+
+/**
+ * Finds the nearest deadline among a list of urgent tasks.
+ * @param {object} urgentTasks An array of urgent task objects that contain an `enddate` field.
+ * @returns 
+ */
+function getNearestUrgentDeadline(urgentTasks) {
+  if (!urgentTasks || urgentTasks.length === 0) return 'No deadlines';
+    let nearest = urgentTasks.sort((a, b) => new Date(a.enddate) - new Date(b.enddate))[0];
+  return formatDate(nearest.enddate);
 }
 
 /**

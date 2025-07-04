@@ -1,4 +1,4 @@
-import {loadData, saveData, getLoggedInUser} from '../db.js';
+import {saveData, getLoggedInUser} from '../db.js';
 import {selectedUsers, getContactsDatabank, selectedPriority, getAssignedContacts, getSubtaskOfTask} from '../add_task/add_task.js';
 import { addTaskSubtask, addCloseEventListener, closeOverlaySelectTask} from './board_overlay_task.js';
 

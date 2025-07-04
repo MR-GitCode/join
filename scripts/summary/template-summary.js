@@ -1,12 +1,4 @@
 /**
- * 
- * @param {} page 
- */
-export function navigateTo(page) {
-  window.location.href = page; 
-}
-
-/**
  * Returns the template of the greeting message.
  * @param {string} greetingText This is text with the greeting.
  * @param {string} userName This is name of the user.
@@ -17,7 +9,7 @@ export function createDayGreeting(greetingText, userName) {
     <div id="greeting">
       <h2>${greetingText}, <span class="highlight-name">${userName}</span>!</h2>
     </div>
-  `;
+  `
 }
 
 /**
@@ -28,16 +20,17 @@ export function createDayGreeting(greetingText, userName) {
  * @param {string} link Path with the link to the board.
  * @returns 
  */
-export function createSummaryTodo(icon, number, label, link = './board.html') {
-  return `
-    <div class="summary-todo" data-link="${link}">
-      <img class="icon-summary" src="${icon}" alt="${label}">
-      <div class="number-container">
-        <div class="number">${number}</div>
-        <span>${label}</span>
-      </div>
-    </div>
-  `;
+export function createSummaryTodo(icon, number, label) {
+  return `<a href="./board.html">
+            <div class="summary-todo">
+              <img class="icon-summary" src="${icon}" alt="${label}">
+              <div class="number-container">
+                <div class="number">${number}</div>
+                <span>${label}</span>
+              </div>
+            </div>
+          </a>
+        `
 }
 
 /**
@@ -47,26 +40,26 @@ export function createSummaryTodo(icon, number, label, link = './board.html') {
  * @param {string} link Path with the link to the board.
  * @returns 
  */
-export function createSummaryTaskStatus(number ,date, info, link = './board.html') {
-  return `
-    <div class="summary-task-status" data-link="${link}">
-      <img class="icon-summary" src="./assets/icons/urgent-icon.png" alt="urgent">
-      
-      <div class="number-urgent-container">
-        <div class="number">${number}</div>
-        <span>Urgent</span>
-      </div>
+export function createSummaryTaskStatus(number ,date, info) {
+  return `<a href="./board.html">
+            <div class="summary-task-status">
+              <img class="icon-summary" src="./assets/icons/urgent-icon.png" alt="urgent">
+              
+              <div class="number-urgent-container">
+                <div class="number">${number}</div>
+                <span>Urgent</span>
+              </div>
 
-      <div class="vector-container">
-        <img class="vector" src="./assets/icons/summary/vector.png" alt="Trennlinie">
-      </div>
+              <div class="vector-container">
+                <img class="vector" src="./assets/icons/summary/vector.png" alt="Trennlinie">
+              </div>
 
-      <div class="info-date">
-        <span class="date">${date}</span>
-        <span class="info">${info}</span>
-      </div>
-    </div>
-  `;
+              <div class="info-date">
+                <span class="date">${date}</span>
+                <span class="info">${info}</span>
+              </div>
+            </div>
+          </a>`
 }
 
 /**
@@ -76,15 +69,15 @@ export function createSummaryTaskStatus(number ,date, info, link = './board.html
  * @param {string} link Path with the link to the board.
  * @returns 
  */
-export function createSummaryCount(number, label, link = './board.html') {
-  return `
-    <div class="count" data-link="${link}">
-      <div class="number-container">
-        <div class="number">${number}</div>
-        <span>${label}</span>
-      </div>
-    </div>
-  `;
+export function createSummaryCount(number, label) {
+  return `<a href="./board.html">
+            <div class="count">
+              <div class="number-container">
+                <div class="number">${number}</div>
+                <span>${label}</span>
+              </div>
+            </div>
+          </a>`
 }
 
 /**
@@ -106,5 +99,5 @@ export function createSummaryOfTasks(taskCounts, deadline) {
             ${createSummaryCount(taskCounts.inProgress, 'Tasks in Progress')}
             ${createSummaryCount(taskCounts.feedback, 'Await Feedback')}
           </div>
-        `;  
+        `  
 }

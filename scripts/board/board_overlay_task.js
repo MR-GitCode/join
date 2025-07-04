@@ -3,10 +3,17 @@ import {addEditTaskEventListener} from "./board_overlay_task_edit.js";
 import { updateTasks } from "./board.js";
 import { touchDragDrop } from './board_drag_drop.js';
 
+/**
+ * Initializes logic after the DOM is fully loaded.
+ * Currently calls `addCloseEventListener()` to handle closing overlays
+ */
 document.addEventListener("DOMContentLoaded", async () => {
     addCloseEventListener()
 });
 
+/**
+ * Adds event listeners to all task cards.
+ */
 export function addTaskEventListeners() {
     document.querySelectorAll(".card").forEach(task => {
         task.addEventListener("click", () => {
@@ -103,14 +110,13 @@ export function addCloseEventListener() {
     let overlayContainer = document.getElementById("overlay-select-task")
     if (overlayContainer) {
         overlayContainer.addEventListener("click", function (event) {
-        let overlayContainer = document.querySelector(".content-select-task");
-        let closeButton = document.getElementById('close-overlay-select-task');
-        if (closeButton.contains(event.target) || (!overlayContainer.contains(event.target) && !event.target.closest('.button-transition'))) {
-            closeOverlaySelectTask();
-        }
-    });
+            let overlayContainer = document.querySelector(".content-select-task");
+            let closeButton = document.getElementById('close-overlay-select-task');
+            if (closeButton.contains(event.target) || (!overlayContainer.contains(event.target) && !event.target.closest('.button-transition'))) {
+                closeOverlaySelectTask();
+            }
+        });
     }
-
 }
 
 /**

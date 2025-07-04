@@ -103,7 +103,6 @@ function editingMenuEventListen() {
         event.stopPropagation();
         menu.classList.toggle('show');
     });
-
     document.addEventListener("click", (event) => {
         if (!menu.contains(event.target) && !btMenu.contains(event.target)) {
             menu.classList.remove('show');

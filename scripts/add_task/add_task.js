@@ -133,8 +133,7 @@ function checkInputValue() {
             error.classList.add("error-message");
             error.innerText = "This field is required";
             field.parentNode.appendChild(error);
-        }
-        else {
+        } else {
             field.classList.remove("error-border");
         }
     });
@@ -157,7 +156,7 @@ function changeIconsSubtask() {
             subtaskTemplateLoaded = false;          
         }
     })}
-    }
+}
 
 /**
  * This function clears the subtask input field.
@@ -280,12 +279,12 @@ async function displaySelectedContacts() {
  * If the user is in the set. it updates the background and image
  */
 function checkSelectedUsers() {
-        for (let selectedUsersId of selectedUsers) {
-            let userContainer = document.getElementById(`user(${selectedUsersId})`);
-            let optionOfMenu = document.querySelectorAll(".menu-option")[selectedUsersId];
-            optionOfMenu.classList.add('bg-menu-option');
-            userContainer.src = "./assets/icons/add_task/checked_white.svg";
-        }
+    for (let selectedUsersId of selectedUsers) {
+        let userContainer = document.getElementById(`user(${selectedUsersId})`);
+        let optionOfMenu = document.querySelectorAll(".menu-option")[selectedUsersId];
+        optionOfMenu.classList.add('bg-menu-option');
+        userContainer.src = "./assets/icons/add_task/checked_white.svg";
+    }
 }
 
 
@@ -357,17 +356,18 @@ function clearTask() {
  * Eventlistener for the "create taks" button.
  */
 export function addCreateTaskEventListener() {
-   let createTaskButton = document.getElementById('bt-create-task');
-if (createTaskButton) {
-    createTaskButton.addEventListener('click', async function () {
-        if (checkInputValue() === true) {
-            await createTask();
-            if (window.location.pathname.includes('board.html')) {
-                await loadData();
-                closeOverlay();
-            } 
-        }
-    })}; 
+    let createTaskButton = document.getElementById('bt-create-task');
+    if (createTaskButton) {
+        createTaskButton.addEventListener('click', async function () {
+            if (checkInputValue() === true) {
+                await createTask();
+                if (window.location.pathname.includes('board.html')) {
+                    await loadData();
+                    closeOverlay();
+                } 
+            }
+        })
+    }; 
 }
 
 /**

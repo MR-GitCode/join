@@ -52,6 +52,15 @@
     font-size: 18px;
   }
 
+  .signup-container{
+    width: 415px;
+    height: 595px;
+  }
+
+  #returnToLogin {
+    left: 23px;
+  }
+
   @keyframes flyToCorner {
   0% {
     width: 100px;
@@ -86,7 +95,8 @@
   }
 
   button,
-  .guest {
+  .guest,
+  .signup-button {
     height: 51px;
     width: 180px;
     font-size: 16px;
@@ -101,10 +111,22 @@
   #openSignUpBtn{
     width: 104px;
   }
+
+  
+  .login h1,
+  .signup-container h1 {
+    font-size: 47px;
+  }
+
+  #returnToLogin {
+    left: 20px;
+    top: 45px;
+  }
 }
 
 @media (max-width: 424px) {
-  .log-in-card {
+  .log-in-card,
+  .signup-container {
     width: clamp(300px, 95vw, 425px);
   }
 

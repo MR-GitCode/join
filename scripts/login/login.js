@@ -88,7 +88,8 @@ function removeIncorrectLoginAlert() {
  */
 function removeAlerts(inputs, loginAlert) {
   inputs.forEach(input => {
-    input.classList.remove('input-alert')});
+    input.classList.remove('input-alert')
+  });
   loginAlert.classList.add('hide-alert');
 }
 
@@ -102,7 +103,6 @@ function guestLogin(guestBtn) {
       await loadData();
       const users = getUsers();
       const guestUser = users.find((user) => user.id === 0);
-
       if (guestUser) {
         localStorage.setItem('user', JSON.stringify({id: guestUser.id}));
         window.location.href = './summary.html';
@@ -137,6 +137,9 @@ function login(authContainer) {
   document.getElementById('returnToLogin').addEventListener("click", () => {
     authContainer.innerHTML = loadLogin();
     document.getElementById('index-header').classList.remove('hidden');
+    visiblePasswordLogin();
+    userLogin(loginForm); 
+    guestLogin(guestBtn); 
   })
 }
 

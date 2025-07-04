@@ -11,7 +11,6 @@ window.moveToColumn = moveToColumn,
 window.highlight = highlight,
 window.removeHighlight = removeHighlight,
 window.touchDragDrop = touchDragDrop,
-
 document.addEventListener("DOMContentLoaded", () => {});
 
 /**

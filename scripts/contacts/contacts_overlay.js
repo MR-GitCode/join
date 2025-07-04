@@ -167,8 +167,7 @@ function chooseColor() {
     if (!availableColor) {
         let index = contacts.length % badgeColors.length;
         availableColor = badgeColors[index];
-    }
-    return availableColor;
+    } return availableColor;
 }
 
 /**
@@ -210,7 +209,9 @@ function addEventListenerEditDeleteContact(contactID) {
     }) 
 }
 
-
+/**
+ * Saves the edited contact information for the user.
+ */
 function saveEdit(contact) {
     let user = getLoggedInUser();
     document.getElementById('bt-create-contact').addEventListener("click", async () => {
@@ -223,6 +224,5 @@ function saveEdit(contact) {
         }
         await saveData(`users/${user.id}/contacts/${contactEdit.id}/`, contactEdit);       
         closeOverlay();
-    })
-    
+    })  
 }
