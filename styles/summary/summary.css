@@ -1,7 +1,6 @@
 .content-summary {
   padding: 60px 80px;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   height: -webkit-fill-available;
   flex: 1;
@@ -69,9 +68,7 @@
   background-color: #f5f5f5;
   padding: 24px;
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
   height: fit-content;
-  margin-top: 180px;
 }
 
 #greeting h2 {
@@ -261,7 +258,7 @@
   display: flex;
   justify-content: space-between;
   gap: 32px;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .greeting-container {

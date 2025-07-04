@@ -24,9 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 function animateLogo() {
   const logo = document.querySelector('.logo-fly');
-  const pageContent = document.getElementById('page-content');
+  const indexHeader= document.getElementById('index-header');
+  const authContainer= document.getElementById('auth-container');
   logo?.addEventListener('animationend', () => {
-    pageContent?.classList.remove('page-content-hidden');
+    indexHeader?.classList.remove('page-content-hidden');
+    authContainer?.classList.remove('page-content-hidden');
   });
 }
 
