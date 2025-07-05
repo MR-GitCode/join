@@ -70,13 +70,13 @@ async function initLegals() {
     await loadData();
     let user = getLoggedInUser();   
     let navbar = document.getElementById('navbar');
-    let legalsFooter = document.getElementById('footer')
+    let legalsFooter = document.getElementById('footer');
     if (navbar && legalsFooter) {
         if (!user) {   
             navbar.innerHTML = changeNavbar();
-            navbar.setAttribute('style', 'justify-content: unset; padding-left: 5px;')
-        if (window.innerWidth <= 425) {
-                legalsFooter.setAttribute('style', 'display: flex;'); 
+            navbar.setAttribute('style', 'justify-content: unset; display: flex;')
+        if (window.innerWidth <= 768) {
+                legalsFooter.setAttribute('style', 'display: contents !important');
             }
         }
         navbar.style.display = 'flex'; 

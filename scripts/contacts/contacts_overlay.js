@@ -119,7 +119,6 @@ function amountDigits(inputValue) {
 function createContact(createBt, nameInput, emailInput, phoneInput) {
     let user = getLoggedInUser();   
     createBt.addEventListener("click", async () => {
-            console.log("createContact");
         if (createBt.disabled) return;
         let contact = {
             name: nameInput.value,
@@ -147,21 +146,27 @@ function showCreateContact(contact) {
     addEventListenerDeleteContact(contact.id, infoContainer);
     addEventListenerEditContact(contact);
     contactInList.scrollIntoView({ behavior: "smooth", block: "start" });
-    showCreateContactFeedback();
+    showCreateContactFeedback("create");
 }
 
 /**
- * Show a box with a create contact feedback.
+ * Show a box with a create feedback.
  */
-function showCreateContactFeedback() {
-    let createdFeedback = document.getElementById("contact-created");
-    createdFeedback.classList.remove("show", "hide");
-    createdFeedback.classList.add("show");
+function showCreateContactFeedback(feedbackTyp) {
+    let feedback = document.getElementById("contact-feedback");
+    if (feedbackTyp === "create") {
+    console.log(feedbackTyp);
+        feedback.innerText = "Contact succesfully created";
+    } else {
+        feedback.innerText = "Contact successfully edited.";
+    }
+    feedback.classList.remove("show", "hide");
+    feedback.classList.add("show");
     setTimeout(() => {
-        createdFeedback.classList.add("show");
+        feedback.classList.add("show");
         setTimeout(() => {
-            createdFeedback.classList.remove("show");
-            createdFeedback.classList.add("hide");
+            feedback.classList.remove("show");
+            feedback.classList.add("hide");
         }, 2500);
     }, 50);
 }
@@ -307,5 +312,6 @@ function saveEdit(contact) {
         renderContactInformations(contactEdit); 
         await saveData(`users/${user.id}/contacts/${contactEdit.id}/`, contactEdit);
         closeOverlay();
+        showCreateContactFeedback("edit");
     })  
 }

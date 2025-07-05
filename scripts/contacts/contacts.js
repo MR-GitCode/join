@@ -74,7 +74,6 @@ function addContactEventListener(contacts) {
             document.querySelectorAll('.contacts').forEach(c => c.classList.remove("contact-active"));
             contact.classList.add("contact-active");
             let contactID = parseInt(event.currentTarget.id.replace('contact-', ''));
-            let infoContainer = document.getElementById('contact-data');
             for (let i = 0; i < contacts.length; i++) {  
                 if (contacts[i] && contacts[i].id == contactID) {
                     renderContactInformations(contacts[i]);
@@ -90,7 +89,10 @@ function addContactEventListener(contacts) {
         });
     });
 }
-
+/**
+ * Renders the detailed contact information for a given contact.
+ * @param {object} contacts The contact object containing user information.
+ */
 export function renderContactInformations(contacts) {
     let infoContainer = document.getElementById('contact-data');
     infoContainer.innerHTML = loadContactInformations(contacts);
