@@ -90,9 +90,10 @@ async function loadHeaderBadges() {
     await loadData();
     let user = localStorage.getItem('user')
     if (user) {
+        let loggedInUser = getLoggedInUser()
         let userBadgeContainer = document.getElementById('profile-badge');
         if (userBadgeContainer) {
-            userBadgeContainer.innerHTML = loadUserBadge(user);
+            userBadgeContainer.innerHTML = loadUserBadge(loggedInUser);
             openLogOutMenu(); 
         } 
     }

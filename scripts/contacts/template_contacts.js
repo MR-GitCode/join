@@ -89,17 +89,17 @@ function loadOverlayAddContact() {
             <div class="right-overlay-contact">
                 <img class="badges-contact" src="./assets/icons/contacts/person_icon.svg">
                 <div class="inputs-contact">
-                    <form action="">
+                    <form id="createContactForm">
                         <div id="name-input">
-                            <input type="text" placeholder="Name">
+                            <input type="text" placeholder="Name" required>
                             <img src="./assets/icons/contacts/person.svg">
                         </div>
                         <div id="email-input">
-                            <input type="email" placeholder="Email" required>
+                            <input type="email" placeholder="Email">
                             <img src="./assets/icons/contacts/mail.svg">
                         </div>
                         <div id="phone-input">
-                            <input type="tel" placeholder="Phone">
+                            <input type="tel" pattern="^\\+?(?=(?:.*\\d){2,})[0-9\\s\\-]{2,20}$" placeholder="Phone">
                             <img src="./assets/icons/contacts/call.svg">
                         </div>
                     </form>
@@ -108,7 +108,7 @@ function loadOverlayAddContact() {
                             <p>Cancel</p>
                             <img src="./assets/icons/close.svg">
                         </div>
-                        <button id="bt-create-contact" class="bt-add-contact" type="button" disabled>
+                        <button id="bt-create-contact" form="createContactForm" class="bt-add-contact" type="button" disabled>
                             <p>Create contact</p>
                             <img src="./assets/icons/check.svg">
                         </button>

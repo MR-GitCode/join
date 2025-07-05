@@ -59,21 +59,67 @@ function checkContactValues() {
     const phoneInput = document.querySelector('#phone-input input');
     const createBt = document.getElementById('bt-create-contact');
     function validateInputs() {
-        createBt.disabled = !(nameInput.value.trim() && emailInput.value.trim() && phoneInput.value.trim());
+        const nameValid = nameInput.value.trim().length > 0;
+        const emailIsValid = !emailInput.value.trim() || emailInput.checkValidity();
+        const phoneIsValid = !phoneInput.value.trim() || (phoneInput.checkValidity() && amountDigits(phoneInput.value));
+        createBt.disabled = !(nameValid && emailIsValid && phoneIsValid);
     }
     nameInput.addEventListener('input', validateInputs);
     emailInput.addEventListener('input', validateInputs);
     phoneInput.addEventListener('input', validateInputs);
+    showValidation(emailInput);
+    showValidation(phoneInput);
     validateInputs();
     createContact(createBt, nameInput, emailInput, phoneInput)
+}
+
+/**
+ * Adds validation to input elements.
+ * @param {HTMLInputElement} input The input element to validate.
+ */
+function showValidation(input) {
+    input.addEventListener('input', () => {
+        if (input.value) {
+            if (input.type === 'tel') {
+                let digitsValidity = amountDigits(input.value);
+                if (!input.checkValidity() && !digitsValidity) {
+                    input.setCustomValidity(
+                        'Bitte geben Sie eine Telefonnummer ein (2-20 Zeichen/Ziffern, +, Leerzeichen)'
+                    );
+                } else {
+                    input.setCustomValidity('');
+                }
+                input.reportValidity();
+            } else if (input.type === 'email') {
+                input.setCustomValidity('');
+                input.reportValidity();
+            }
+        } else {
+            input.setCustomValidity('');
+            input.reportValidity();
+        }
+    });
+    input.addEventListener('blur', () => {
+        if (input.value) input.reportValidity();
+    });
+}
+
+/**
+ * Checks if the input string contains at least two digits.
+ * @param {string} inputValue The string to check.
+ * @returns {boolean} True if the string contains 2 or more digits, otherwise false.
+ */
+function amountDigits(inputValue) {
+    return (inputValue.match(/\d/g) || []).length >= 2;
 }
 
 /**
  * Create a new contact.
  */
 function createContact(createBt, nameInput, emailInput, phoneInput) {
-    let user = getLoggedInUser();
+    let user = getLoggedInUser();   
     createBt.addEventListener("click", async () => {
+            console.log("createContact");
         if (createBt.disabled) return;
         let contact = {
             name: nameInput.value,
@@ -255,8 +301,6 @@ function saveEdit(contact) {
             id : contact.id,
             badge : contact.badge,
         }
-        console.log(contactEdit);
-        
         renderContactInformations(contactEdit); 
         await saveData(`users/${user.id}/contacts/${contactEdit.id}/`, contactEdit);
         closeOverlay();
