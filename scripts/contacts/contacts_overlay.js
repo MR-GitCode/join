@@ -283,8 +283,11 @@ function editInputValue(contact) {
 function addEventListenerEditDeleteContact(contactID) {
     let user = getLoggedInUser();
     document.getElementById('bt-cancel').addEventListener("click", async () => {
-        await deleteData(`users/${user.id}/contacts/`, contactID); 
-        closeOverlay(); 
+        await deleteData(`users/${user.id}/contacts/`, contactID);
+        let infoContainer = document.getElementById('contact-data');
+        infoContainer.innerHTML = "";
+        closeOverlay();
+        document.getElementById('contact-list').scrollIntoView({ behavior: "smooth", block: "start" });
     }) 
 }
 
