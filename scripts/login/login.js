@@ -193,17 +193,16 @@ function registrationSignUp() {
     let passwordInput = document.getElementById('signPassword');
     let passwordConfirmInput = document.getElementById('signConfirmPassword');
     let confirmPrivacyPolicy = document.getElementById('confirm-policy');
-    let signUpBt = document.getElementById('bt-signup');
+    let signUpForm = document.getElementById('signUpForm');
     validateInputs();
     nameInput.addEventListener('input', validateInputs);
     emailInput.addEventListener('input', validateInputs);
     passwordInput.addEventListener('input', validateInputs);
     passwordConfirmInput.addEventListener('input', validateInputs);
     confirmPrivacyPolicy.addEventListener('change', validateInputs);
-    signUpBt.addEventListener('click', () => {
-      if (!signUpBt.disabled) {
+    signUpForm.addEventListener('submit', (event) => {
+        event.preventDefault();
         sendSignUP(nameInput, emailInput, passwordInput);
-      }
     });
 }
 

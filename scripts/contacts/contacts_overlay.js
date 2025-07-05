@@ -1,4 +1,4 @@
-import { getLoggedInUser, deleteData, saveData} from '../db.js';
+import { getLoggedInUser, getUsers, deleteData, saveData} from '../db.js';
 import { addContactList, addEventListenerDeleteContact, renderContactInformations} from '../contacts/contacts.js'
 
 let badgeColors = [
@@ -155,6 +155,19 @@ export function getBadges(name) {
  * @returns Returns the color for the badge.
  */
 function chooseColor() {
+    let user = localStorage.getItem('user')
+    if (user) {
+       return colorOfContact()
+    } else {
+       return colorOfUser()
+    }
+}
+
+/**
+ * Determines an available badge color for a new contact of the currently logged-in user.
+ * @returns A string representing the selected badge color.
+ */
+function colorOfContact() {
     let contacts = getLoggedInUser().contacts;
     let colors = [];
     for (let i = 0; i < contacts.length; i++) {
@@ -168,6 +181,26 @@ function chooseColor() {
         let index = contacts.length % badgeColors.length;
         availableColor = badgeColors[index];
     } return availableColor;
+}
+
+/**
+ * Determines an available badge color for a new user.
+ * @returns A string representing the selected badge color.
+ */
+function colorOfUser() {
+    let users = getUsers()
+    let colors = [];
+    for (let i = 0; i < users.length; i++) {
+        let badgeColor = users[i]?.badge.color;
+        if (badgeColor) {
+            colors.push(badgeColor);
+        }
+    }
+    let availableColor = badgeColors.find(color => !colors.includes(color));
+    if (!availableColor) {
+        let index = users.length % badgeColors.length;
+        availableColor = badgeColors[index];
+    } return availableColor; 
 }
 
 /**

@@ -21,7 +21,7 @@ function loadRefOfContact(contact) {
                 <div class="badges-contactlist" style="background-color:${contact.badge.color}">${contact.badge.initials}</div>
                 <div class="contact-names">
                     <p>${contact.name}</p>
-                    <a href="">${contact.email}</a>
+                    <a href="mailto:${contact.email}">${contact.email}</a>
                 </div>
             </div>`
 }
@@ -65,7 +65,7 @@ function loadContactInformations(contact) {
             <h3>Contact Information</h3>
             <div class="contact-informations">
                 <b>Email</b>
-                <a href="">${contact.email}</a>
+                <a href="mailto:${contact.email}">${contact.email}</a>
                 <b>Phone</b>
                 <a href="tel:${contact.phone}">${contact.phone}</a>
             </div>`

@@ -35,15 +35,6 @@ function toggleDNone(id) {
 };
 
 /**
- * This function stops the function from propagating to parent elements.
- * 
- * @param {string} event - The event itself to stop from propagation.
- */
-function noBubbling(event) {
-    event.stopPropagation()
-};
-
-/**
  * This function defines the content reference and sets the inner HTML to an empty string.
  * 
  * @param {string} elementID - The ID of the element that should be referenced.
@@ -97,11 +88,13 @@ async function initLegals() {
  */
 async function loadHeaderBadges() {
     await loadData();
-    let user = getLoggedInUser();
-    let userBadgeContainer = document.getElementById('profile-badge');
-    if (userBadgeContainer) {
-        userBadgeContainer.innerHTML = loadUserBadge(user);
-        openLogOutMenu(); 
+    let user = localStorage.getItem('user')
+    if (user) {
+        let userBadgeContainer = document.getElementById('profile-badge');
+        if (userBadgeContainer) {
+            userBadgeContainer.innerHTML = loadUserBadge(user);
+            openLogOutMenu(); 
+        } 
     }
 }
 

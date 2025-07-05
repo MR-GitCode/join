@@ -21,19 +21,19 @@ function loadSignUp() {
                 <div class="underline"></div>
                 <form id="signUpForm">
                     <div class="index-input">
-                        <input type="text" placeholder="Name" id="signName">
+                        <input type="text" placeholder="Name" id="signName" required>
                         <img src="./assets/icons/contacts/person.svg">
                     </div>
                     <div class="index-input">
-                        <input type="email" placeholder="Email" id="signEmail">
+                        <input type="email" placeholder="Email" id="signEmail" required>
                         <img src="./assets/icons/login_signUp/mail.svg">
                     </div>
                     <div class="index-input">
-                        <input type="password" placeholder="Password" id="signPassword" autocomplete="off">
+                        <input type="password" placeholder="Password" id="signPassword" autocomplete="off" required>
                         <img id="lockedIcon1" src="./assets/icons/login_signUp/lock.svg"> 
                     </div>
                     <div class="index-input">
-                        <input type="password" placeholder="Confirm Password" id="signConfirmPassword" autocomplete="off">
+                        <input type="password" placeholder="Confirm Password" id="signConfirmPassword" autocomplete="off" required>
                         <img id="lockedIcon2" src="./assets/icons/login_signUp/lock.svg">
                         <div id="password-alert" class="hide-alert">Your passwords don't match. Please try again.</div> 
                     </div>
@@ -41,8 +41,8 @@ function loadSignUp() {
                         <input id="confirm-policy" type="checkbox">
                         <label>I accept the <a href="./privacy-policy.html">Privacy policy</a></label>
                     </div>
+                    <button id="bt-signup" type="submit" class="signup-button" disabled>Sign up</button>
                 </form>
-                <button id="bt-signup" type="button" class="signup-button" disabled>Sign up</button>
             </div>
             <div class="overlay-signed-feedback">
                 <div id="signed-successfull">You Signed Up successfully</div>
