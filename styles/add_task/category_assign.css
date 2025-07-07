@@ -138,6 +138,12 @@ transform: translate3d(1px, -1px, 1px);
     padding: 5px;
 }
 
+.more-badge{
+    color: #2a3647;
+    font-weight: 700;
+    border-color: #2a3647;
+}
+
 #selected-contacts{
     display: flex;
     max-width: 440px;

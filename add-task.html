@@ -91,9 +91,9 @@
                                             <p>Urgent</p>
                                             <img id="svg-urgent" src="./assets/icons/add_task/Prio_urgent.svg">
                                         </div>
-                                        <div id="bt-medium" onclick="selectPriority('medium')" class="bt-priority">
+                                        <div id="bt-medium" onclick="selectPriority('medium')" class="bt-priority bt-medium">
                                             <p>Medium</p>
-                                            <img id="svg-medium" src="./assets/icons/add_task/Prio_medium.svg">
+                                            <img id="svg-medium" src="./assets/icons/add_task/Prio_medium_white.svg">
                                         </div>
                                         <div id="bt-low" onclick="selectPriority('low')" class="bt-priority">
                                             <p>Low</p>
@@ -144,7 +144,9 @@
                                         <div id="subtask-icons">
                                             <img id="plus-subtask" onclick="addSubtask()" src="./assets/icons/add_task/plus.svg">
                                         </div>
-                                        <ul id="list-subtasks"></ul>
+                                        <div class="subtask-scrollbar">
+                                            <ul id="list-subtasks"></ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

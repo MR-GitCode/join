@@ -2,6 +2,7 @@
     padding: 60px 80px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     height: -webkit-fill-available;
     gap: 40px;
 }

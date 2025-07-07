@@ -19,6 +19,7 @@ window.clearSubtaskInput = clearSubtaskInput;
 window.addSubtask = addSubtask;
 window.deleteSubtaskInput = deleteSubtaskInput;
 window.editSubtask = editSubtask;
+window.editIconSubtask = editIconSubtask;
 window.displaySelectedContacts = displaySelectedContacts;
 window.clearTask = clearTask;
 
@@ -27,11 +28,21 @@ window.clearTask = clearTask;
  */
 document.addEventListener("DOMContentLoaded", async function() {
     await loadData();
+    setMinDateToday();
     changeIconsSubtask();
     addCreateTaskEventListener();
     addAssignedEventListener();
     addCategoryEventListener()
 });
+
+/**
+ * Sets the minimum selectable date of the date input field to today's date.
+ */
+function setMinDateToday() {
+    let dateInput = document.getElementById("input-date");
+    let today = new Date().toISOString().split('T')[0];
+    dateInput.min = today;
+}
 
 /**
  * This function is used to change the backgroundcolor of the priority buttons.
@@ -211,6 +222,62 @@ export function editSubtask(subtaskID) {
 }
 
 /**
+ * Event listener to close the dropdown menu of "subtask".
+ */
+document.addEventListener("click", function (event) {
+    document.querySelectorAll("#list-subtasks .list-subtask").forEach((li) => {
+        if (!li.contains(event.target)) {
+            li.classList.remove("edit-subtask");
+            li.setAttribute('contenteditable', 'false');
+            li.blur();
+            let iconDiv = li.querySelector(".edit-bts-subtask");
+            if (iconDiv) {
+                // iconDiv.innerHTML = defaultSubtaskIcons(subtaskID);
+                iconDiv.classList.remove("subtask-icon-flex");
+            }
+            
+            
+            // subtaskIcons.innerHTML = changeSubtaskIcons(subtaskID);
+            // subtaskIcons.classList.add('subtask-icon-flex');
+        }
+    });
+});
+
+
+// export function editSubtask(subtaskID) {
+//     let subtask = document.getElementById(`subtask(${subtaskID})`);
+//     let subtaskIcons = document.getElementById(`icons-subtask(${subtaskID})`);
+//     if (!subtask) return;
+//     let isEditing = subtask.getAttribute('contenteditable') === 'true';
+//     if (isEditing) {
+
+//         subtask.setAttribute('contenteditable', 'false');
+//         subtask.classList.remove('edit-subtask');
+//         subtask.blur();
+//         if (subtaskIcons) {
+//             subtaskIcons.innerHTML = defaultSubtaskIcons(subtaskID);
+//             subtaskIcons.classList.remove('subtask-icon-flex');
+//         }
+//     } else {
+//         subtask.setAttribute('contenteditable', 'true');
+//         subtask.classList.add('edit-subtask');
+//         subtask.focus();
+//         if (subtaskIcons) {
+//             subtaskIcons.innerHTML = changeSubtaskIcons(subtaskID);
+//             subtaskIcons.classList.add('subtask-icon-flex');
+//         }
+//     }
+
+// }
+
+function editIconSubtask(subtaskID) {
+    // let checkIcon = document.getElementById(`edit-subtask(${subtaskID})`);
+    let subtask = document.getElementById(`subtask(${subtaskID})`);
+    subtask.classList.add('edit-subtask');
+
+}
+
+/**
  * This function load the menu under the "assigned to" input field.
  * @param {object} data This is a object of the firebase database. 
  */
@@ -272,10 +339,18 @@ function toggleUserSelection(userId) {
 async function displaySelectedContacts() {
     let selectedContainer = document.getElementById("selected-contacts");
     selectedContainer.innerHTML = "";
-    for (let userId of selectedUsers) {
+    let maxVisible = 5;
+    let selectedArray = Array.from(selectedUsers); // Set → Array
+    let totalUsers = selectedArray.length;
+    for (let i = 0; i < Math.min(totalUsers, maxVisible); i++) {
+        let userId = selectedArray[i];
         let contact = getLoggedInUser().contacts[userId];
         if (!contact || !contact.badge) continue;
         selectedContainer.innerHTML += `<div class="badges" style="background-color:${contact.badge.color}">${contact.badge.initials}</div>`;
+    }
+    if (totalUsers > maxVisible) {
+        let amount = totalUsers - maxVisible;
+        selectedContainer.innerHTML += `<div class="badges more-badge">+${amount}</div>`;
     }
 }
 
@@ -323,17 +398,6 @@ export function addCategoryEventListener() {
 }
 
 /**
- * Event listener to close the dropdown menu of "subtask".
- */
-document.addEventListener("click", function (event) {
-    document.querySelectorAll("#list-subtasks .list-subtask").forEach((li) => {
-        if (!li.contains(event.target)) {
-            li.classList.remove("edit-subtask", "subtask-icon-flex");
-        }
-    });
-});
-
-/**
  * Event listener that removes the error message and border from required input fields.
  */
 document.addEventListener('click', function (event) {
@@ -370,7 +434,9 @@ export function addCreateTaskEventListener() {
                 if (window.location.pathname.includes('board.html')) {
                     await loadData();
                     closeOverlay();
-                } 
+                } else {
+                    window.location.href = 'board.html'
+                }
             }
         })
     }; 
