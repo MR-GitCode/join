@@ -102,6 +102,7 @@ header {
     padding: 0 40px 0 100px;
     background-color: #FFFFFF;
     max-width: 1440px;
+    position: relative;
 }
 
 #logo-black-header {

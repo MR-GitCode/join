@@ -70,7 +70,7 @@ function checkContactValues() {
     showValidation(emailInput);
     showValidation(phoneInput);
     validateInputs();
-    createContact(createBt, nameInput, emailInput, phoneInput)
+    saveContact(createBt, nameInput, emailInput, phoneInput)
 }
 
 /**
@@ -116,7 +116,7 @@ function amountDigits(inputValue) {
 /**
  * Create a new contact.
  */
-function createContact(createBt, nameInput, emailInput, phoneInput) {
+function saveContact(createBt, nameInput, emailInput, phoneInput) {
     let user = getLoggedInUser();   
     createBt.addEventListener("click", async () => {
         if (createBt.disabled) return;
@@ -155,7 +155,6 @@ function showCreateContact(contact) {
 function showCreateContactFeedback(feedbackTyp) {
     let feedback = document.getElementById("contact-feedback");
     if (feedbackTyp === "create") {
-    console.log(feedbackTyp);
         feedback.innerText = "Contact succesfully created";
     } else {
         feedback.innerText = "Contact successfully edited.";
@@ -267,6 +266,7 @@ export function addEventListenerEditContact(contact) {
         editInputValue(contact);
         addEventListenerCloseOverlay(overlayContact); 
         addEventListenerEditDeleteContact(contact.id);
+        checkContactValues();
         saveEdit(contact);
     })
 }
@@ -302,6 +302,7 @@ function addEventListenerEditDeleteContact(contactID) {
 function saveEdit(contact) {
     let user = getLoggedInUser();
     document.getElementById('bt-create-contact').addEventListener("click", async () => {
+        if (saveBt.disabled) return;
         let contactEdit = {
             name : document.querySelector('#name-input input').value,
             email : document.querySelector('#email-input input').value,

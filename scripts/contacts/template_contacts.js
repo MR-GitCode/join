@@ -139,17 +139,17 @@ function loadOverlayEditContact(contact) {
             <div class="right-overlay-contact">
                 <div class="badges-edit-contactinfo" style="background-color:${contact.badge.color}">${contact.badge.initials}</div>
                 <div class="inputs-contact">
-                    <form action="">
+                    <form id="createContactForm">
                         <div id="name-input">
                             <input type="text" placeholder="Name">
                             <img src="./assets/icons/contacts/person.svg">
                         </div>
                         <div id="email-input">
-                            <input type="text" placeholder="Email">
+                            <input type="email" placeholder="Email">
                             <img src="./assets/icons/contacts/mail.svg">
                         </div>
                         <div id="phone-input">
-                            <input type="tel" placeholder="Phone">
+                            <input type="tel" pattern="^\\+?(?=(?:.*\\d){2,})[0-9\\s\\-]{2,20}$" placeholder="Phone">
                             <img src="./assets/icons/contacts/call.svg">
                         </div>
                     </form>
@@ -158,10 +158,10 @@ function loadOverlayEditContact(contact) {
                             <p>Delete</p>
                             <img src="./assets/icons/close.svg">
                         </div>
-                        <div id="bt-create-contact" class="bt-edit-contact">
+                        <button id="bt-create-contact" form="createContactForm" class="bt-edit-contact" type="button" disabled>
                             <p>Save</p>
                             <img src="./assets/icons/check.svg">
-                        </div>
+                        </button>
                     </div>
                 </div>
                 <picture>

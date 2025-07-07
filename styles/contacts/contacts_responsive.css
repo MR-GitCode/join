@@ -178,6 +178,23 @@
     .bts-contact {
         bottom: 20px;
     }
+
+    .badges-edit-contactinfo{
+        position: absolute;
+        top: 350px;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 114px;
+        height: 114px;
+        border: 3px solid #FFFFFF;
+        border-radius: 70px;
+        color: #FFFFFF;
+        font-size: 47px;
+        font-weight: 500;
+        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    }
 }
 
 @media (max-width: 768px) {
@@ -250,22 +267,7 @@
         height: 760px;
     }
 
-    .badges-edit-contactinfo{
-        position: absolute;
-        top: 350px;
-        transform: translateY(-50%);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 114px;
-        height: 114px;
-        border: 3px solid #FFFFFF;
-        border-radius: 70px;
-        color: #FFFFFF;
-        font-size: 47px;
-        font-weight: 500;
-        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
-    }
+
 
     .bt-edit-cancel{
         display: flex !important;
