@@ -234,47 +234,16 @@ document.addEventListener("click", function (event) {
             if (iconDiv) {
                 // iconDiv.innerHTML = defaultSubtaskIcons(subtaskID);
                 iconDiv.classList.remove("subtask-icon-flex");
-            }
-            
-            
+            } 
             // subtaskIcons.innerHTML = changeSubtaskIcons(subtaskID);
             // subtaskIcons.classList.add('subtask-icon-flex');
         }
     });
 });
 
-
-// export function editSubtask(subtaskID) {
-//     let subtask = document.getElementById(`subtask(${subtaskID})`);
-//     let subtaskIcons = document.getElementById(`icons-subtask(${subtaskID})`);
-//     if (!subtask) return;
-//     let isEditing = subtask.getAttribute('contenteditable') === 'true';
-//     if (isEditing) {
-
-//         subtask.setAttribute('contenteditable', 'false');
-//         subtask.classList.remove('edit-subtask');
-//         subtask.blur();
-//         if (subtaskIcons) {
-//             subtaskIcons.innerHTML = defaultSubtaskIcons(subtaskID);
-//             subtaskIcons.classList.remove('subtask-icon-flex');
-//         }
-//     } else {
-//         subtask.setAttribute('contenteditable', 'true');
-//         subtask.classList.add('edit-subtask');
-//         subtask.focus();
-//         if (subtaskIcons) {
-//             subtaskIcons.innerHTML = changeSubtaskIcons(subtaskID);
-//             subtaskIcons.classList.add('subtask-icon-flex');
-//         }
-//     }
-
-// }
-
 function editIconSubtask(subtaskID) {
-    // let checkIcon = document.getElementById(`edit-subtask(${subtaskID})`);
     let subtask = document.getElementById(`subtask(${subtaskID})`);
     subtask.classList.add('edit-subtask');
-
 }
 
 /**
