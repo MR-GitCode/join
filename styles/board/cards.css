@@ -143,8 +143,15 @@
     border-radius: 45px;
     color: #FFFFFF;
     font-size: 12px;
-        margin-left: -10px;
+    margin-left: -10px;
     z-index: 1;
+}
+
+.more-badge{
+    color: #2a3647;
+    font-weight: 700;
+    border: 2px solid #2a3647;
+    background-color: white;
 }
 
 .badges-cards:first-child {

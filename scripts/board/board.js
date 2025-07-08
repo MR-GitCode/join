@@ -164,9 +164,15 @@ function loadAssignedContacts(task) {
     let assignedContacts = task.assignedContacts;
     let assignedContainer = document.getElementById(`card${task.id}-contacts`);
     assignedContainer.innerHTML = "";
-    for (let assignedID = 0; assignedID < assignedContacts.length; assignedID++) {
+    let maxVisible = 8;
+    let totalUsers = assignedContacts.length;
+    for (let assignedID = 0; assignedID < Math.min(totalUsers, maxVisible); assignedID++) {
         let assignedContact = assignedContacts[assignedID]        
         assignedContainer.innerHTML += loadBagesForCard(assignedContact)
+    }
+    if (totalUsers > maxVisible) {
+        let amount = totalUsers - maxVisible;
+        assignedContainer.innerHTML += `<div class="badges-cards more-badge">+${amount}</div>`;
     }
 }
 

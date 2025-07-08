@@ -309,7 +309,7 @@ async function displaySelectedContacts() {
     let selectedContainer = document.getElementById("selected-contacts");
     selectedContainer.innerHTML = "";
     let maxVisible = 5;
-    let selectedArray = Array.from(selectedUsers); // Set → Array
+    let selectedArray = Array.from(selectedUsers); // Set to Array
     let totalUsers = selectedArray.length;
     for (let i = 0; i < Math.min(totalUsers, maxVisible); i++) {
         let userId = selectedArray[i];
