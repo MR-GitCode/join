@@ -124,7 +124,7 @@
     }
 
     .content-select-task {
-        padding: 20px 20px 30px 20px !important;
+        padding: 20px 10px 30px 10px !important;
         width: clamp(250px, 85vw, 400px);
         gap: 16px;
     }
@@ -145,5 +145,85 @@
     .bts-select-task {
         bottom: 20px;
         right: 20px;
+    }
+
+    .form-task-edit input {
+        width: 376px !important;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .form-task-edit input[type=text]{
+        width: 356px !important;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .form-task-edit textarea {
+        width: 342px !important;
+        font-size: 16px !important;
+    }
+
+    form {
+        padding-right: 5px;
+        font-size: 16px;
+    }
+
+    .priority {
+       width: 396px;
+       height: 48px;
+       gap: 1px;
+    }
+
+    .bt-priority {
+        width: 100px;
+        height: 41px;
+    }
+}
+
+@media (max-width: 460px) {
+    .content-task-edit {
+        padding: 20px 5px 70px 5px !important;
+        width: clamp(250px, 95vw, 400px)  !important;
+        gap: 16px;
+        
+    }
+
+    .content-task-edit .form-scrollbar{
+        align-items: center !important;
+        margin: 0 auto;
+    }
+
+    .form-task-edit{
+        gap: 10px;  
+    }
+
+    .form-task-edit input {
+        width: 310px !important;
+    }
+
+    .form-task-edit input[type=text]{
+        width: 290px !important;
+    }
+
+    .form-task-edit textarea {
+        width: 276px !important;
+    }
+
+    .form-scrollbar {
+        width: 325px;
+        scrollbar-width: none !important;
+    }
+
+    .priority {
+       width: 310px;
+    }
+
+    ul {
+        width: 310px;
+    }
+
+    .list-subtask {
+        padding: 0 !important;
     }
 }

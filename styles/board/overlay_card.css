@@ -69,7 +69,7 @@
 #assigned-select-task {
     display: flex;
     flex-direction: column;
-    height: 170px;
+    max-height: 170px;
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #A8A8A8 transparent;
