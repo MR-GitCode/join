@@ -68,7 +68,7 @@ export function closeOverlay() {
 function searchingTaskEventListener() {
     document.getElementById('input-find-task').addEventListener('input', (event) => {
             let findTaskInput = event.target.value.toLowerCase();
-            let tasks = getLoggedInUser().tasks;
+            let tasks = getLoggedInUser().tasks;            
             if (findTaskInput.length <2) {
                 document.querySelectorAll('.columns-content').forEach(column => {
                     column.innerHTML = "";
@@ -77,7 +77,7 @@ function searchingTaskEventListener() {
                     updateTasks()
                 } return;
             }
-            findTasks(tasks)
+            findTasks(tasks, findTaskInput)
         },
     );
 }
@@ -86,7 +86,7 @@ function searchingTaskEventListener() {
  * Find the task matching with the input value
  * @param {object} tasks Object with the informations of the user tasks.
  */
-function findTasks(tasks) {
+function findTasks(tasks, findTaskInput) {
     let findTask = tasks.filter(task =>
         task.title.toLowerCase().includes(findTaskInput) || task.description.toLowerCase().includes(findTaskInput)
     );

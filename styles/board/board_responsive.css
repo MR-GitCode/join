@@ -169,6 +169,10 @@
         font-size: 16px;
     }
 
+    .select-tk-title{
+        font-size: 28px !important;
+    }
+
     .priority {
        width: 396px;
        height: 48px;
@@ -216,7 +220,7 @@
     }
 
     .priority {
-       width: 310px;
+        width: 310px;
     }
 
     ul {
@@ -225,5 +229,37 @@
 
     .list-subtask {
         padding: 0 !important;
+    }
+}
+
+@media (max-height: 700px) {
+    .content-select-task {
+        height: 600px !important;
+        gap: 8px;
+    }
+    
+    .table-gap {
+        gap: 8px;
+    }
+
+    .content-task-edit{
+        height: 565px !important;
+        gap: 8px; 
+    }
+
+    #description {
+        height: auto;
+    }
+
+    .form-scrollbar {
+        scrollbar-width: thin !important;
+    }
+
+    #close-overlay-select-task{
+        right: 2px;
+    }
+
+    .content-task-edit .form-scrollbar {
+        margin: 0px 22px 0px 12px !important;
     }
 }
