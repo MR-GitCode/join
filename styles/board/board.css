@@ -1,3 +1,7 @@
+.content{
+    overflow-y: hidden;
+}
+
 .content-board{
     padding: 60px 80px;
     display: flex;
@@ -109,7 +113,6 @@
     justify-content: space-around;
     gap: 6px;
     height: 100%;
-    scrollbar-width: none;
 }
 
 .board::-webkit-scrollbar {
@@ -190,6 +193,11 @@ body.no-scroll {
 
 .columns-content {
     flex: 1;
+        overflow-y: auto;
+    max-height: calc(100vh - 320px);
+    scrollbar-width: thin;
+    scrollbar-color: #A8A8A8 transparent;
+    padding-right: 3px;
 }
 
 .card-rotation {
@@ -206,14 +214,6 @@ body.no-scroll {
 
 .bg-error-message p {
     background-color: white !important;
-}
-
-.columns-scrollbar {
-    overflow-y: auto;
-}
-
-.columns-scrollbar::-webkit-scrollbar {
-    display: none;
 }
 
 .scrollbar-add-task {
