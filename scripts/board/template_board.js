@@ -200,7 +200,7 @@ function loadTaskOverlay(task) {
                     <div class="category-select-task">
                         <p style="background-color: ${task.category.color}">${task.category.name}</p>
                     </div>
-                    <div id="close-overlay-select-task" >
+                    <div id="close-overlay-select-task">
                         <img src="./assets/icons/board/close.svg" alt="close">
                     </div>
                 </div>

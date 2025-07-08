@@ -193,7 +193,7 @@ body.no-scroll {
 
 .columns-content {
     flex: 1;
-        overflow-y: auto;
+    overflow-y: auto;
     max-height: calc(100vh - 320px);
     scrollbar-width: thin;
     scrollbar-color: #A8A8A8 transparent;

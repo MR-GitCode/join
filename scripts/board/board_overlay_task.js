@@ -18,19 +18,26 @@ export function addTaskEventListeners() {
     document.querySelectorAll(".card").forEach(task => {
         task.addEventListener("click", () => {
             let taskID = task.id;
-            let taskContainer = document.getElementById('overlay-select-task');
-            taskContainer.classList.remove('hidden');
-            let user = getLoggedInUser();           
-            taskContainer.innerHTML = loadTaskOverlay(user.tasks[taskID]);
-            addTaskAssigned(user.tasks[taskID]);
-            addTaskSubtask(user.tasks[taskID].subtasks, 'subtasks-select-task', 'show');
-            addSubtasksStatusEventListener(user, taskID);
-            addEditTaskEventListener(taskID);
-            addDeleteTask(user, taskID);
-            
+            openTask(taskID);
         });
         touchDragDrop(task);       
     });
+}
+
+/**
+ * Opens and displays the task overlay for a specific task by its ID.
+ * @param {numbe} taskID The ID of the task to display.
+ */
+export function openTask(taskID) {
+    let taskContainer = document.getElementById('overlay-select-task');
+    taskContainer.classList.remove('hidden');
+    let user = getLoggedInUser();           
+    taskContainer.innerHTML = loadTaskOverlay(user.tasks[taskID]);
+    addTaskAssigned(user.tasks[taskID]);
+    addTaskSubtask(user.tasks[taskID].subtasks, 'subtasks-select-task', 'show');
+    addSubtasksStatusEventListener(user, taskID);
+    addEditTaskEventListener(taskID);
+    addDeleteTask(user, taskID);
 }
 
 /**

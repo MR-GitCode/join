@@ -1,17 +1,20 @@
 import {saveData, getLoggedInUser} from '../db.js';
 import {updateTasks} from '../board/board.js'
-import {addTaskEventListeners} from './board_overlay_task.js';
+import {addTaskEventListeners, openTask} from './board_overlay_task.js';
 
 let touchMoveElement = null;
-window.draggedTask = null,
+let longPressTimeout = null;
+let draggedTask = null;
 
-window.startDragging = startDragging,
-window.dragoverHandler = dragoverHandler,
-window.moveToColumn = moveToColumn,
-window.highlight = highlight,
-window.removeHighlight = removeHighlight,
-window.touchDragDrop = touchDragDrop,
-document.addEventListener("DOMContentLoaded", () => {});
+
+document.addEventListener("DOMContentLoaded", () => {
+    window.startDragging = startDragging;
+    window.dragoverHandler = dragoverHandler;
+    window.moveToColumn = moveToColumn;
+    window.highlight = highlight;
+    window.removeHighlight = removeHighlight;
+    window.touchDragDrop = touchDragDrop;
+});
 
 /**
  * Sets the ID of the task currently being dragged.
@@ -19,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {});
  * @param {number|string} taskID - The ID of the task that is being dragged.
  */
 function startDragging(taskID) {
+    console.log("start");
     draggedTask = taskID;
     let taskCard = document.getElementById(taskID);
     taskCard.classList.add("card-rotation");
@@ -42,11 +46,11 @@ function dragoverHandler(ev) {
 function moveToColumn(column) {
     let user = getLoggedInUser();
     let taskData = user.tasks[draggedTask];
-    taskData.status = `${column}`;
-    saveData(`users/${user.id}/tasks/${taskData.id}`, taskData);
-    updateTasks();
-    removeHighlight(column);
-    addTaskEventListeners();
+        taskData.status = `${column}`;
+        saveData(`users/${user.id}/tasks/${taskData.id}`, taskData);
+        updateTasks();
+        removeHighlight(column);
+        addTaskEventListeners();
   }
 
   /**
@@ -108,13 +112,16 @@ function touchStart(task) {
     let touchStartX, touchStartY;
     task.addEventListener("touchstart", (e) => {
         e.preventDefault();
-        draggedTask = task.id;
+        draggedTask = null;
+        longPressTimeout = setTimeout(() => {
+            draggedTask = task.id;
+            touchMoveElement = task.cloneNode(true);
+            touchMoveElement.classList.add("touch-drag-ghost");
+            touchMoveElement.style.width = `${task.offsetWidth}px`;
+            document.body.appendChild(touchMoveElement);
+        }, 200);
         touchStartX = e.touches[0].clientX;
         touchStartY = e.touches[0].clientY;
-        touchMoveElement = task.cloneNode(true);
-        touchMoveElement.classList.add("touch-drag-ghost");
-        touchMoveElement.style.width = `${task.offsetWidth}px`;
-        document.body.appendChild(touchMoveElement);
     }, { passive: false });
 }
 
@@ -150,6 +157,7 @@ function touchMove(task) {
  */
 function touchEnd(task) {
     task.addEventListener("touchend", (e) => {
+        clearTimeout(longPressTimeout);
         if (touchMoveElement) {
             document.body.removeChild(touchMoveElement);
             touchMoveElement = null;
@@ -164,8 +172,10 @@ function touchEnd(task) {
             }
             column.classList.remove("highlight-column");
         });
-        if (dropColumn) {
+        if (dropColumn && draggedTask) {
             moveToColumn(dropColumn);
+        } else {
+            openTask(task.id)
         }
     });
 }

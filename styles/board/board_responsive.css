@@ -213,6 +213,10 @@
         width: 100px;
         height: 41px;
     }
+
+    .tpl-no-task {
+        width: 226px;
+    }
 }
 
 @media (max-width: 460px) {
@@ -285,8 +289,8 @@
         scrollbar-width: thin !important;
     }
 
-    #close-overlay-select-task{
-        right: 2px;
+    .close-task-edit{
+        right: 2px !important;
     }
 
     .content-task-edit .form-scrollbar {

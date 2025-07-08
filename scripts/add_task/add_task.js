@@ -38,10 +38,12 @@ document.addEventListener("DOMContentLoaded", async function() {
 /**
  * Sets the minimum selectable date of the date input field to today's date.
  */
-function setMinDateToday() {
+export function setMinDateToday() {
     let dateInput = document.getElementById("input-date");
-    let today = new Date().toISOString().split('T')[0];
-    dateInput.min = today;
+    if (dateInput) {
+        let today = new Date().toISOString().split('T')[0];
+        dateInput.min = today;
+    }
 }
 
 /**

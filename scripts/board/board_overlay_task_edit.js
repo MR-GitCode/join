@@ -1,5 +1,5 @@
 import {saveData, getLoggedInUser} from '../db.js';
-import {selectedUsers, getContactsDatabank, selectedPriority, getAssignedContacts, getSubtaskOfTask} from '../add_task/add_task.js';
+import {selectedUsers, getContactsDatabank, selectedPriority, getAssignedContacts, setMinDateToday } from '../add_task/add_task.js';
 import { addTaskSubtask, addCloseEventListener, closeOverlaySelectTask} from './board_overlay_task.js';
 
 /**
@@ -23,6 +23,7 @@ export function addEditTaskEventListener(taskID) {
             addEditSubtask();
             addCloseEventListener();
             addEditButtonEventListener(taskInfo);
+            setMinDateToday();
         } )
     }
 }
