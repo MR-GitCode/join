@@ -301,7 +301,8 @@ function addEventListenerEditDeleteContact(contactID) {
  */
 function saveEdit(contact) {
     let user = getLoggedInUser();
-    document.getElementById('bt-create-contact').addEventListener("click", async () => {
+    let saveBt = document.getElementById('bt-create-contact');
+    saveBt.addEventListener("click", async () => {
         if (saveBt.disabled) return;
         let contactEdit = {
             name : document.querySelector('#name-input input').value,

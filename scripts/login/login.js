@@ -59,7 +59,7 @@ function userLogin(loginForm) {
 }
 
 /**
- * Displays a visual alert when login data  are incorrect.
+ * Displays a visual alert when login data are incorrect.
  */
 function incorrectLoginAlert() {
   let inputs = document.getElementById('loginForm').querySelectorAll('input');

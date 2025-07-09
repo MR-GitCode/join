@@ -97,10 +97,12 @@ function loadOverlayAddContact() {
                         <div id="email-input">
                             <input type="email" placeholder="Email">
                             <img src="./assets/icons/contacts/mail.svg">
+                            <div id="email-alert" class="hide-alert">Invalid email address.</div> 
                         </div>
                         <div id="phone-input">
                             <input type="tel" pattern="^\\+?(?=(?:.*\\d){2,})[0-9\\s\\-]{2,20}$" placeholder="Phone">
                             <img src="./assets/icons/contacts/call.svg">
+                            <div id="phone-alert" class="hide-alert">Please enter a phone number (2-20 characters/digits, +, space)</div>
                         </div>
                     </form>
                     <div class="bts-contact">
@@ -147,10 +149,12 @@ function loadOverlayEditContact(contact) {
                         <div id="email-input">
                             <input type="email" placeholder="Email">
                             <img src="./assets/icons/contacts/mail.svg">
+                            <div id="email-alert" class="hide-alert">Invalid email address.</div> 
                         </div>
                         <div id="phone-input">
                             <input type="tel" pattern="^\\+?(?=(?:.*\\d){2,})[0-9\\s\\-]{2,20}$" placeholder="Phone">
                             <img src="./assets/icons/contacts/call.svg">
+                            <div id="phone-alert" class="hide-alert">Please enter a phone number (2-20 characters/digits, +, space)</div> 
                         </div>
                     </form>
                     <div class="bts-contact">

@@ -106,6 +106,10 @@ function clickOutsideUl(allSubtasks) {
             iconDiv.innerHTML = defaultSubtaskIcons(subtaskID);
             iconDiv.classList.remove("subtask-icon-flex");
         }
+        let span = document.getElementById(`subtaskContent(${subtaskID})`);
+        if (span && span.textContent.trim() === "") {
+           deleteSubtaskInput(subtaskID)
+        }
     });
 }
 

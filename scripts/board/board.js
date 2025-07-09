@@ -115,6 +115,7 @@ function showFindTask(findTask) {
         }
     }
     checkContentOfColumns();
+    addTaskEventListeners();
 }
 
 /**
@@ -166,7 +167,7 @@ function loadAssignedContacts(task) {
     let assignedContacts = task.assignedContacts;
     let assignedContainer = document.getElementById(`card${task.id}-contacts`);
     assignedContainer.innerHTML = "";
-    let maxVisible = 8;
+    let maxVisible = 5;
     let totalUsers = assignedContacts.length;
     for (let assignedID = 0; assignedID < Math.min(totalUsers, maxVisible); assignedID++) {
         let assignedContact = assignedContacts[assignedID]        

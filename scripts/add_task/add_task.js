@@ -289,7 +289,6 @@ function clearTask() {
     selectedUsers.clear();
     selectedTasks = [];
     displaySelectedContacts();
-    resetPriority()
 }
 
 /**

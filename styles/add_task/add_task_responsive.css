@@ -44,6 +44,10 @@
     .subtask-scrollbar{
         width: 396px;
     }
+
+    #category-colorpicker {
+        top: 20px !important;
+    }
 }
 
 @media (max-width: 1150px) {
