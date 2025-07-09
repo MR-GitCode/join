@@ -6,7 +6,9 @@ let touchMoveElement = null;
 let longPressTimeout = null;
 let draggedTask = null;
 
-
+/**
+ * Adds event listeners after the DOM content has fully loaded.
+ */
 document.addEventListener("DOMContentLoaded", () => {
     window.startDragging = startDragging;
     window.dragoverHandler = dragoverHandler;
@@ -22,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
  * @param {number|string} taskID - The ID of the task that is being dragged.
  */
 function startDragging(taskID) {
-    console.log("start");
     draggedTask = taskID;
     let taskCard = document.getElementById(taskID);
     taskCard.classList.add("card-rotation");

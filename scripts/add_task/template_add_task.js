@@ -42,7 +42,7 @@ function loadAddSubtask(subtaskID, subtaskContent) {
                 <div class="flex-li">
                     <span id="subtaskContent(${subtaskID})" contenteditable="true">${subtaskContent}</span>
                     <div id="icons-subtask(${subtaskID})" class="edit-bts-subtask" style="display: none;" contenteditable="false">
-                        <img class="button-transition" onclick="editIconSubtask(${subtaskID})" id="edit-subtask(${subtaskID})" src="./assets/icons/add_task/edit.svg">
+                        <img class="button-transition" onclick="editIconSubtask(event, ${subtaskID})" id="edit-subtask(${subtaskID})" src="./assets/icons/add_task/edit.svg">
                         <div class="subtask-divider"></div>
                         <img class="button-transition" id="delete-subtask(${subtaskID})" onclick="deleteSubtaskInput(${subtaskID})" src="./assets/icons/add_task/delete.svg">
                     </div>
@@ -67,7 +67,7 @@ function changeSubtaskIcons(subtaskID) {
  * @returns Returned the standard icons. 
  */
 function defaultSubtaskIcons(subtaskID) {
-    return `<img class="button-transition" id="edit-subtask(${subtaskID})" src="./assets/icons/add_task/edit.svg">
+    return `<img class="button-transition" onclick="editIconSubtask(event, ${subtaskID})" id="edit-subtask(${subtaskID})" src="./assets/icons/add_task/edit.svg">
             <div class="subtask-divider"></div>
             <img class="button-transition" id="delete-subtask(${subtaskID})" onclick="deleteSubtaskInput(${subtaskID})" src="./assets/icons/add_task/delete.svg">`
 }

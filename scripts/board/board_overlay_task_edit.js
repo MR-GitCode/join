@@ -153,7 +153,11 @@ function getSubtaskOfTaskEdit(subtasksInfo) {
     let subtasks = [];
     let subStatus = "";
     for (let subtaskID = 0; subtaskID < liAmount; subtaskID++) {
-        let subDescription = document.getElementById(`subtaskContent(${subtaskID})`).innerText;
+        let subtaskElement = document.getElementById(`subtaskContent(${subtaskID})`)
+        let subDescription
+        if (subtaskElement) {
+            subDescription = subtaskElement.innerText;
+        }        
         if (subtasksInfo[subtaskID]) {
             subStatus = subtasksInfo[subtaskID].status; 
         } else {

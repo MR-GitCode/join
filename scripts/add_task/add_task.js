@@ -1,11 +1,10 @@
 import { loadData, saveData, getLoggedInUser} from "../db.js";
-import { closeOverlay } from "../board/board.js"; 
+import { closeOverlay } from "../board/board.js";
+import { changeIconsSubtask} from "../add_task/add_task_subtask.js"
 
-let subtaskTemplateLoaded = false;
-let subtaskID = 0;
 export let selectedUsers = new Set(); //Set doesn't allow same elements.
 export let selectedPriority = "none";
-let selectedTasks = [];
+export let selectedTasks = [];
 let isColorpickerChanged = false;
 
 window.selectPriority = selectPriority;
@@ -15,11 +14,6 @@ window.openCategoryMenu = openCategoryMenu;
 window.selectCategory = selectCategory;
 window.colorChanged = colorChanged;
 window.colorPickerBlur = colorPickerBlur;
-window.clearSubtaskInput = clearSubtaskInput;
-window.addSubtask = addSubtask;
-window.deleteSubtaskInput = deleteSubtaskInput;
-window.editSubtask = editSubtask;
-window.editIconSubtask = editIconSubtask;
 window.displaySelectedContacts = displaySelectedContacts;
 window.clearTask = clearTask;
 
@@ -151,101 +145,6 @@ function checkInputValue() {
         }
     });
     return isValid
-}
-
-/**
- * This function change the icon plus to close ande done.
- */
-function changeIconsSubtask() {
-    let subtaskIcons = document.getElementById('subtask-input')
-    if (subtaskIcons) {
-        subtaskIcons.addEventListener("input", function () {
-        const subtaskIcons = document.getElementById('subtask-icons'); 
-        if (this.value !== "" && !subtaskTemplateLoaded) {
-                subtaskIcons.innerHTML = loadSubtaskIcons();
-                subtaskTemplateLoaded = true;
-        } else if (this.value === "") {
-            subtaskIcons.innerHTML = loadSubtaskIconsDefault();
-            subtaskTemplateLoaded = false;          
-        }
-    })}
-}
-
-/**
- * This function clears the subtask input field.
- */
-function clearSubtaskInput() {
-    let clearInput = document.getElementById('subtask-input');
-    clearInput.value = ""
-}
-
-/**
- * This function add a subtask.
- */
-function addSubtask() {
-    let subtaskInput = document.getElementById('subtask-input'); 
-    if (!subtaskInput.value == "") {
-        let subtaskContent = subtaskInput.value; 
-        let ulContainer = document.getElementById('list-subtasks');
-        ulContainer.innerHTML += loadAddSubtask(subtaskID, subtaskContent);
-        selectedTasks.push({id: subtaskID, content: subtaskContent});
-        subtaskInput.value = "";
-        subtaskID++;
-    }  
-}
-
-/**
- * This function delete subtask.
- * @param {number} subtaskID This is the ID of the subtask.
- */
-function deleteSubtaskInput(subtaskID) {
-    let subtask = document.getElementById(`subtask(${subtaskID})`);
-    subtask.remove();
-}
-
-/**
- * This function edit the subtask and changed the icons.
- * @param {number} subtaskID This is the ID of the subtask.
- */
-export function editSubtask(subtaskID) {
-    let subtask = document.getElementById(`subtask(${subtaskID})`);
-    if (subtask) {
-        let subtaskIcons = document.getElementById(`icons-subtask(${subtaskID})`);
-        let checkIcon = document.getElementById(`edit-subtask(${subtaskID})`);
-        subtask.classList.toggle('edit-subtask');
-        if (checkIcon !== null) {
-            subtaskIcons.innerHTML = changeSubtaskIcons(subtaskID);
-            subtaskIcons.classList.add('subtask-icon-flex');
-        } else {
-            subtaskIcons.innerHTML = defaultSubtaskIcons(subtaskID);
-            subtaskIcons.classList.remove('subtask-icon-flex');
-        }
-    }
-}
-
-/**
- * Event listener to close the dropdown menu of "subtask".
- */
-document.addEventListener("click", function (event) {
-    document.querySelectorAll("#list-subtasks .list-subtask").forEach((li) => {
-        if (!li.contains(event.target)) {
-            li.classList.remove("edit-subtask");
-            li.setAttribute('contenteditable', 'false');
-            li.blur();
-            let iconDiv = li.querySelector(".edit-bts-subtask");
-            if (iconDiv) {
-                // iconDiv.innerHTML = defaultSubtaskIcons(subtaskID);
-                iconDiv.classList.remove("subtask-icon-flex");
-            } 
-            // subtaskIcons.innerHTML = changeSubtaskIcons(subtaskID);
-            // subtaskIcons.classList.add('subtask-icon-flex');
-        }
-    });
-});
-
-function editIconSubtask(subtaskID) {
-    let subtask = document.getElementById(`subtask(${subtaskID})`);
-    subtask.classList.add('edit-subtask');
 }
 
 /**

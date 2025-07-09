@@ -34,6 +34,7 @@
 .scrollbar{
     max-height: 200px;
     overflow-y: auto;
+    scrollbar-width: thin;
 }
 
 .scrollbar::-webkit-scrollbar {
@@ -93,6 +94,7 @@
     border-radius: 10px;
     box-shadow: 0px 0px 14px 3px rgba(0,0,0,0.04);
     max-height: 336px;
+    width: fit-content;
 }
 
 .assigned-username{
