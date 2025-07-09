@@ -96,7 +96,8 @@
 }
 
 .right-overlay-contact input:focus{
-    outline: 1px solid #29ABE2;
+    border: none;
+    outline: 2px solid #29ABE2;
     outline-offset: -2px;
 }
 
@@ -222,5 +223,23 @@
 
 .bt-add-contact{
     font-size: 21px !important;
+}
+
+.alert{
+  display: flex;
+  font-size: 12px;
+  font-weight: 400;
+  color: #FF8190;
+  padding-top: 8px;
+}
+
+.hide-alert{
+  display: none !important;
+}
+
+.input-alert {
+    border: none !important;
+    outline: 1px solid #FF001F !important;
+    outline-offset: -2px;
 }
     

@@ -51,63 +51,68 @@ function closeOverlay() {
 }
 
 /**
- * Checked the input values of the form.
+ * Initializes validation checks for the contact creation form.
  */
 function checkContactValues() {
-    const nameInput = document.querySelector('#name-input input');
-    const emailInput = document.querySelector('#email-input input');
-    const phoneInput = document.querySelector('#phone-input input');
-    const createBt = document.getElementById('bt-create-contact');
+    let nameInput = document.querySelector('#name-field');
+    let emailInput = document.querySelector('#email-field');
+    let phoneInput = document.querySelector('#phone-field');
+    let emailAlert = document.getElementById('email-alert');
+    let phoneAlert = document.getElementById('phone-alert');
+    let createBt = document.getElementById('bt-create-contact');
     function validateInputs() {
-        const nameValid = nameInput.value.trim().length > 0;
-        const emailIsValid = !emailInput.value.trim() || emailInput.checkValidity();
-        const phoneIsValid = !phoneInput.value.trim() || (phoneInput.checkValidity() && amountDigits(phoneInput.value));
-        createBt.disabled = !(nameValid && emailIsValid && phoneIsValid);
+        let nameValid = nameInput.value.trim().length > 0;
+        let emailValid = validateEmail(emailInput.value.trim());
+        let phoneValid = validatePhone(phoneInput.value.trim());
+        toggleAlert(emailAlert, emailInput, !emailValid && emailInput.value.trim() !== '');
+        toggleAlert(phoneAlert, phoneInput, !phoneValid && phoneInput.value.trim() !== '');
+        createBt.disabled = !(nameValid && emailValid && phoneValid);
     }
     nameInput.addEventListener('input', validateInputs);
     emailInput.addEventListener('input', validateInputs);
     phoneInput.addEventListener('input', validateInputs);
-    showValidation(emailInput);
-    showValidation(phoneInput);
     validateInputs();
-    saveContact(createBt, nameInput, emailInput, phoneInput)
+    saveContact(createBt, nameInput, emailInput, phoneInput);
 }
 
 /**
- * Adds validation to input elements.
- * @param {HTMLInputElement} input The input element to validate.
+ * Shows or hides an alert and toggles the input field's alert styling.
+ * @param {HTMLElement} alertElement The alert element to show/hide.
+ * @param {HTMLElement} inputField The input element to apply/remove error styling.
+ * @param {boolean} show Whether to show the alert.
  */
-function showValidation(input) {
-    input.addEventListener('input', () => {
-        if (input.value) {
-            if (input.type === 'tel') {
-                let digitsValidity = amountDigits(input.value);
-                if (!input.checkValidity() && !digitsValidity) {
-                    input.setCustomValidity(
-                        'Bitte geben Sie eine Telefonnummer ein (2-20 Zeichen/Ziffern, +, Leerzeichen)'
-                    );
-                } else {
-                    input.setCustomValidity('');
-                }
-                input.reportValidity();
-            } else if (input.type === 'email') {
-                input.setCustomValidity('');
-                input.reportValidity();
-            }
-        } else {
-            input.setCustomValidity('');
-            input.reportValidity();
-        }
-    });
-    input.addEventListener('blur', () => {
-        if (input.value) input.reportValidity();
-    });
+function toggleAlert(alertElement, inputField, show) {
+    alertElement.classList.toggle('hide-alert', !show);
+    inputField.classList.toggle('input-alert', show);
 }
 
 /**
- * Checks if the input string contains at least two digits.
- * @param {string} inputValue The string to check.
- * @returns {boolean} True if the string contains 2 or more digits, otherwise false.
+ * Validates if an email address is in a valid format.
+ * @param {string} email The email string to validate.
+ * @returns 
+ */
+function validateEmail(email) {
+    if (!email) return true;
+    let emailRule = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRule.test(email);
+}
+
+/**
+ * Validates a phone number for format and digit count.
+ * @param {string} phone The phone number string to validate.
+ * @returns 
+ */
+function validatePhone(phone) {
+    if (!phone) return true;
+    let phoneRule = /^\+?[0-9\s\-]{2,20}$/;
+    let digitsValidity = amountDigits(phone);
+    return phoneRule.test(phone) && digitsValidity;
+}
+
+/**
+ * Counts the number of digits in a string.
+ * @param {string} inputValue The phonenumber to evaluate
+ * @returns 
  */
 function amountDigits(inputValue) {
     return (inputValue.match(/\d/g) || []).length >= 2;

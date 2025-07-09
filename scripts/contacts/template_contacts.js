@@ -91,18 +91,18 @@ function loadOverlayAddContact() {
                 <div class="inputs-contact">
                     <form id="createContactForm">
                         <div id="name-input">
-                            <input type="text" placeholder="Name" required>
+                            <input type="text" placeholder="Name" id="name-field">
                             <img src="./assets/icons/contacts/person.svg">
                         </div>
                         <div id="email-input">
-                            <input type="email" placeholder="Email">
+                            <input type="text" placeholder="Email" id="email-field">
                             <img src="./assets/icons/contacts/mail.svg">
-                            <div id="email-alert" class="hide-alert">Invalid email address.</div> 
+                            <div id="email-alert" class="hide-alert alert">Invalid email address.</div> 
                         </div>
                         <div id="phone-input">
-                            <input type="tel" pattern="^\\+?(?=(?:.*\\d){2,})[0-9\\s\\-]{2,20}$" placeholder="Phone">
+                            <input type="text" placeholder="Phone" id="phone-field">
                             <img src="./assets/icons/contacts/call.svg">
-                            <div id="phone-alert" class="hide-alert">Please enter a phone number (2-20 characters/digits, +, space)</div>
+                            <div id="phone-alert" class="hide-alert alert">Please enter a phone number (2-20 characters/digits, +, space)</div>
                         </div>
                     </form>
                     <div class="bts-contact">
@@ -143,18 +143,18 @@ function loadOverlayEditContact(contact) {
                 <div class="inputs-contact">
                     <form id="createContactForm">
                         <div id="name-input">
-                            <input type="text" placeholder="Name">
+                            <input type="text" placeholder="Name" id="name-field">
                             <img src="./assets/icons/contacts/person.svg">
                         </div>
                         <div id="email-input">
-                            <input type="email" placeholder="Email">
+                            <input type="email" placeholder="Email" id="email-field">
                             <img src="./assets/icons/contacts/mail.svg">
-                            <div id="email-alert" class="hide-alert">Invalid email address.</div> 
+                            <div id="email-alert" class="hide-alert alert">Invalid email address.</div> 
                         </div>
                         <div id="phone-input">
-                            <input type="tel" pattern="^\\+?(?=(?:.*\\d){2,})[0-9\\s\\-]{2,20}$" placeholder="Phone">
+                            <input type="tel" placeholder="Phone" id="phone-field">
                             <img src="./assets/icons/contacts/call.svg">
-                            <div id="phone-alert" class="hide-alert">Please enter a phone number (2-20 characters/digits, +, space)</div> 
+                            <div id="phone-alert" class="hide-alert alert">Please enter a phone number (2-20 characters/digits, +, space)</div> 
                         </div>
                     </form>
                     <div class="bts-contact">
