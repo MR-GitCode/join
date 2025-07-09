@@ -87,9 +87,11 @@ function searchingTaskEventListener() {
  * @param {object} tasks Object with the informations of the user tasks.
  */
 function findTasks(tasks, findTaskInput) {
-    let findTask = tasks.filter(task =>
-        task.title.toLowerCase().includes(findTaskInput) || task.description.toLowerCase().includes(findTaskInput)
-    );
+    let findTask = tasks.filter(task => {
+        if (task) {
+            return task.title.toLowerCase().includes(findTaskInput) || task.description.toLowerCase().includes(findTaskInput)
+        } return false;
+    });
     showFindTask(findTask);   
 }
 
