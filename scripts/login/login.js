@@ -189,7 +189,8 @@ function registrationSignUp() {
  * @param {HTMLInputElement} passwordInput Password input field.
  * @param {HTMLInputElement} passwordConfirmInput Confirm password input field (sign-up only).
  * @param {HTMLInputElement} confirmPrivacyPolicy  Checkbox input for privacy policy (sign-up only).
- */HTMLInputElementfunction validateInputs(id, btn, emailInput, passwordInput, passwordConfirmInput, confirmPrivacyPolicy) {
+ */
+function validateInputs(id, btn, emailInput, passwordInput, passwordConfirmInput, confirmPrivacyPolicy) {
   let emailAlert = document.getElementById('email-alert');
   let passwordAlert = document.getElementById('password-regex-alert');
   if (id === 'login') {
