@@ -79,6 +79,15 @@ form input:focus {
   outline: 1px solid #FF001F !important;
 }
 
+.alert{
+  display: flex;
+  font-size: 12px;
+  font-weight: 400;
+  color: #FF8190;
+  padding-top: 8px;
+  text-align: left;
+}
+
 #password-alert{
   display: flex;
   font-size: 12px;
@@ -122,11 +131,6 @@ button {
   font-size: 21px;
   font-weight: 700;
   cursor: pointer;
-}
-
-.buttons:hover {
-  background-color: #29ABE2;;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 #guestBtn:hover {
@@ -238,10 +242,12 @@ button {
   background-color: #ffffff;
   border-radius: 30px;
   width: 598px;
-  height: 630px;
+  min-height: 630px;
+  max-height: 700px;
   text-align: center;
   box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
   position: relative;
+  z-index: 1001;
 }
 
 .signup-container h1 {
@@ -261,6 +267,7 @@ button {
   flex-direction: column;
   align-items: center;
   gap: 24px;
+  padding-bottom: 20px;
 }
 
 .checkbox-container {
@@ -268,7 +275,7 @@ button {
   justify-content: center;
   align-items: center;
   gap: 8px;
-  padding: 8px 0px 30px 0;
+ 
 }
 
 .checkbox-container input {
@@ -285,6 +292,7 @@ button {
 }
 
 .signup-button {
+  bottom: 30px;
   width: 126px;
   height: 55px;
   background-color: #2A3647;
@@ -302,6 +310,16 @@ button {
 }
 
 .signup-button:not(:disabled):hover{
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+}
+
+.buttons:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.buttons:not(:disabled):hover{
     background-color: #29ABE2;
     box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
 }

@@ -35,14 +35,15 @@
           <div class="index-input">
             <input type="email" id="loginEmail" autocomplete="current-password" placeholder="Email" required>
             <img src="./assets/icons/login_signUp/mail.svg">
+            <div id="email-alert" class="hide-alert alert">Invalid email address.</div> 
           </div>
           <div class="index-input">
             <input type="password" id="loginPassword" autocomplete="current-password" placeholder="Password" required>
             <img id="lockedIcon" src="./assets/icons/login_signUp/lock.svg">
-            <div id="password-alert" class="hide-alert">Check your email and password. Please try again.</div>           
+            <div id="password-alert" class="hide-alert alert">Check your email and password. Please try again.</div>           
           </div>
           <div class="login-buttons">
-            <button type="submit" class="buttons" id="loginBtn">Log in</button>
+            <button type="submit" class="buttons" id="loginBtn" disabled>Log in</button>
             <button type="button" class="guest" id="guestBtn">Guest Log in</button>
           </div>
         </form>

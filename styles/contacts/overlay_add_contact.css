@@ -226,15 +226,15 @@
 }
 
 .alert{
-  display: flex;
-  font-size: 12px;
-  font-weight: 400;
-  color: #FF8190;
-  padding-top: 8px;
+    display: flex !important;
+    font-size: 12px;
+    font-weight: 400;
+    color: #FF8190;
+    padding-top: 8px;
 }
 
 .hide-alert{
-  display: none !important;
+    display: none !important;
 }
 
 .input-alert {

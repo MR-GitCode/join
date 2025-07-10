@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   userLogin(loginForm); 
   guestLogin(guestBtn); 
   animateLogo();
+  checkLoginValues() 
   signUp();
 });
 
@@ -141,8 +142,132 @@ function login(authContainer) {
     document.getElementById('index-header').classList.remove('hidden');
     visiblePasswordLogin();
     userLogin(loginForm); 
-    guestLogin(guestBtn); 
+    guestLogin(guestBtn);
+    checkLoginValues() 
   })
+}
+
+/**
+ * Form Validation of the login overlay.
+ */
+function checkLoginValues() {
+  let emailInput = document.getElementById('loginEmail');
+  let passwordInput = document.getElementById('loginPassword')
+  let loginBtn = document.getElementById('loginBtn');
+  let validateLogin = () => validateInputs("login", loginBtn, emailInput, passwordInput)
+  emailInput.addEventListener('input', validateLogin);
+  passwordInput.addEventListener('input', validateLogin);
+} 
+
+/**
+ * Initializes the registration form functionality.
+ */
+function registrationSignUp() {
+    let nameInput = document.getElementById('signName');
+    let emailInput = document.getElementById('signEmail');
+    let passwordInput = document.getElementById('signPassword');
+    let passwordConfirmInput = document.getElementById('signConfirmPassword');
+    let confirmPrivacyPolicy = document.getElementById('confirm-policy');
+    let signBtn = document.getElementById('bt-signup');
+    let validateLogin = () => validateInputs("sign", signBtn, emailInput, passwordInput, passwordConfirmInput, confirmPrivacyPolicy)
+    nameInput.addEventListener('input', validateLogin);
+    emailInput.addEventListener('input', validateLogin);
+    passwordInput.addEventListener('input', validateLogin);
+    passwordConfirmInput.addEventListener('input', validateLogin);
+    confirmPrivacyPolicy.addEventListener('change', validateLogin);
+    signBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        sendSignUP(nameInput, emailInput, passwordInput);
+    });
+}
+
+/**
+ * Handles dynamic input validation based on form type (login or sign-up).
+ * @param {string} id Either 'login' or 'sign'.
+ * @param {HTMLElement} btn The button to enable/disable.
+ * @param {HTMLInputElement} emailInput Email input field
+ * @param {HTMLInputElement} passwordInput Password input field.
+ * @param {HTMLInputElement} passwordConfirmInput Confirm password input field (sign-up only).
+ * @param {HTMLInputElement} confirmPrivacyPolicy  Checkbox input for privacy policy (sign-up only).
+ */HTMLInputElementfunction validateInputs(id, btn, emailInput, passwordInput, passwordConfirmInput, confirmPrivacyPolicy) {
+  let emailAlert = document.getElementById('email-alert');
+  let passwordAlert = document.getElementById('password-regex-alert');
+  if (id === 'login') {
+    loginValidation(btn, emailAlert, passwordInput, emailInput)
+  } if (id === 'sign') {
+    signValidation(btn, emailAlert, passwordAlert, passwordInput, emailInput, passwordConfirmInput, confirmPrivacyPolicy)  
+  }
+}
+
+/**
+ * Validates login input fields and toggles button state
+ * @param {HTMLElement} btn The button to enable/disable 
+ * @param {HTMLElement} emailAlert Alert for email validation.
+ * @param {HTMLInputElement} passwordInput Password input field. 
+ * @param {HTMLInputElement} emailInput Email input field 
+ */
+function loginValidation(btn, emailAlert, passwordInput, emailInput) {
+  let passwordValid = passwordInput.value.length > 0;
+  let emailValid = validateEmail(emailInput.value.trim());
+  toggleAlert(emailAlert, emailInput, !emailValid && emailInput.value.trim() !== ''); 
+  btn.disabled = !(emailValid && passwordValid);
+}
+
+/**
+ *  Validates sign-up input fields and toggles button state.
+ * @param {HTMLElement} btn The button to enable/disable 
+ * @param {HTMLElement} emailAlert Alert for email validation.
+ * @param {HTMLElement} passwordAlert Alert for password format.
+ * @param {HTMLInputElement} passwordInput Password input field.
+ * @param {HTMLInputElement} emailInput Email input field 
+ * @param {HTMLInputElement} passwordConfirmInput Confirm password input field.
+ * @param {HTMLInputElement} confirmPrivacyPolicy Privacy policy checkbox.
+ */
+function signValidation(btn, emailAlert, passwordAlert, passwordInput, emailInput, passwordConfirmInput, confirmPrivacyPolicy) {
+  let name = document.getElementById('signName').value.trim();
+  let email = emailInput.value.trim();
+  let password = passwordInput.value.trim();
+  let confirmPassword = passwordConfirmInput.value.trim();
+  let emailValid = validateEmail(email);
+  let passwordValid = validatePassword(password, passwordInput);
+  let passwordsMatch = matchOfPasswords(password, confirmPassword);
+  toggleAlert(emailAlert, emailInput, !emailValid && email !== '');
+  toggleAlert(passwordAlert, passwordInput, !passwordValid && password !== '')
+  let allFieldsFilled = name && email && password && confirmPassword; 
+  btn.disabled = !(allFieldsFilled && emailValid && passwordValid && passwordsMatch && confirmPrivacyPolicy.checked);
+}
+
+/**
+ * Shows or hides an alert and toggles the input field's alert styling.
+ * @param {HTMLElement} alertElement The alert element to show/hide.
+ * @param {HTMLElement} inputField The input element to apply/remove error styling.
+ * @param {boolean} show Whether to show the alert.
+ */
+function toggleAlert(alertElement, inputField, show) {
+    alertElement.classList.toggle('hide-alert', !show);
+    inputField.classList.toggle('input-alert', show);
+}
+
+/**
+ * Validates if a password is in a valid format.
+ * @param {string} password The password string to validate.
+ * @returns 
+ */
+function validatePassword(password) {
+  let passwordRule = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/;
+    if (!password) return true;
+    return passwordRule.test(password);
+}
+
+/**
+ * Validates if an email address is in a valid format.
+ * @param {string} email The email string to validate.
+ * @returns 
+ */
+function validateEmail(email) {
+    if (!email) return true;
+    let emailRule = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRule.test(email);
 }
 
 /**
@@ -182,45 +307,6 @@ function passwordVisibility(inputId, iconId) {
       input.type = "password";
       icon.src = "./assets/icons/login_signUp/visibility_off.svg"
   }})
-}
-
-/**
- * Initializes the sign-up form behavior.
- */
-function registrationSignUp() {
-    let nameInput = document.getElementById('signName');
-    let emailInput = document.getElementById('signEmail');
-    let passwordInput = document.getElementById('signPassword');
-    let passwordConfirmInput = document.getElementById('signConfirmPassword');
-    let confirmPrivacyPolicy = document.getElementById('confirm-policy');
-    let signUpForm = document.getElementById('signUpForm');
-    validateInputs();
-    nameInput.addEventListener('input', validateInputs);
-    emailInput.addEventListener('input', validateInputs);
-    passwordInput.addEventListener('input', validateInputs);
-    passwordConfirmInput.addEventListener('input', validateInputs);
-    confirmPrivacyPolicy.addEventListener('change', validateInputs);
-    signUpForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        sendSignUP(nameInput, emailInput, passwordInput);
-    });
-}
-
-/**
- * Validates the input fields in the sign-up form.
- */
-function validateInputs() {
-  let name = document.getElementById('signName').value.trim();
-  let email = document.getElementById('signEmail').value.trim();
-  let password = document.getElementById('signPassword').value;
-  let confirmPassword = document.getElementById('signConfirmPassword').value;
-  let checkboxChecked = document.getElementById('confirm-policy').checked;
-  let signUpBt = document.getElementById('bt-signup');
-  let allFieldsFilled = name && email && password && confirmPassword;
-  let passwordsMatch = matchOfPasswords(password, confirmPassword);
-  if (signUpBt) {
-    signUpBt.disabled = !(allFieldsFilled && passwordsMatch && checkboxChecked);
-  }
 }
 
 /**

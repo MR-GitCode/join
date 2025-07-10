@@ -21,19 +21,21 @@ function loadSignUp() {
                 <div class="underline"></div>
                 <form id="signUpForm">
                     <div class="index-input">
-                        <input type="text" placeholder="Name" id="signName" required>
+                        <input type="text" placeholder="Name" id="signName">
                         <img src="./assets/icons/contacts/person.svg">
                     </div>
                     <div class="index-input">
-                        <input type="email" placeholder="Email" id="signEmail" required>
+                        <input type="text" placeholder="Email" id="signEmail">
                         <img src="./assets/icons/login_signUp/mail.svg">
+                        <div id="email-alert" class="hide-alert alert">Invalid email address.</div> 
                     </div>
                     <div class="index-input">
-                        <input type="password" placeholder="Password" id="signPassword" autocomplete="off" required>
-                        <img id="lockedIcon1" src="./assets/icons/login_signUp/lock.svg"> 
+                        <input type="password" placeholder="Password" id="signPassword" autocomplete="off">
+                        <img id="lockedIcon1" src="./assets/icons/login_signUp/lock.svg">
+                        <div id="password-regex-alert" class="hide-alert alert">Password must be at least 8 characters and include upper/lowercase letters, a number, and a special character.</div>
                     </div>
                     <div class="index-input">
-                        <input type="password" placeholder="Confirm Password" id="signConfirmPassword" autocomplete="off" required>
+                        <input type="password" placeholder="Confirm Password" id="signConfirmPassword" autocomplete="off">
                         <img id="lockedIcon2" src="./assets/icons/login_signUp/lock.svg">
                         <div id="password-alert" class="hide-alert">Your passwords don't match. Please try again.</div> 
                     </div>
@@ -41,8 +43,8 @@ function loadSignUp() {
                         <input id="confirm-policy" type="checkbox">
                         <label>I accept the <a href="./privacy-policy.html">Privacy policy</a></label>
                     </div>
-                    <button id="bt-signup" type="submit" class="signup-button" disabled>Sign up</button>
                 </form>
+                <button id="bt-signup" type="button" class="signup-button" disabled>Sign up</button>
             </div>
             <div class="overlay-signed-feedback">
                 <div id="signed-successfull">You Signed Up successfully</div>
@@ -63,15 +65,17 @@ function loadLogin() {
                 </div>
                 <form id="loginForm">
                     <div class="index-input">
-                        <input type="email" id="loginEmail" autocomplete="current-password" placeholder="Email" required>
+                        <input type="text" id="loginEmail" autocomplete="current-password" placeholder="Email">
                         <img src="./assets/icons/login_signUp/mail.svg">
+                        <div id="email-alert" class="hide-alert alert">Invalid email address.</div> 
                     </div>
                     <div class="index-input">
-                        <input type="password" id="loginPassword" autocomplete="current-password" placeholder="Password" required>
-                        <img id="lockedIcon" src="./assets/icons/login_signUp/lock.svg">           
+                        <input type="password" id="loginPassword" autocomplete="current-password" placeholder="Password">
+                        <img id="lockedIcon" src="./assets/icons/login_signUp/lock.svg">
+                        <div id="password-alert" class="hide-alert">Your passwords don't match. Please try again.</div>            
                     </div>
                     <div class="login-buttons">
-                        <button type="submit" class="buttons" id="loginBtn">Log in</button>
+                        <button type="submit" class="buttons" id="loginBtn" disabled>Log in</button>
                         <button type="button" class="guest" id="guestBtn">Guest Log in</button>
                     </div>
                 </form>
