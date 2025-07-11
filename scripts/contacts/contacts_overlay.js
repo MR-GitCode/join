@@ -53,26 +53,60 @@ function closeOverlay() {
 /**
  * Initializes validation checks for the contact creation form.
  */
+// function checkContactValues() {
+//     let nameInput = document.querySelector('#name-field');
+//     let emailInput = document.querySelector('#email-field');
+//     let phoneInput = document.querySelector('#phone-field');
+//     let emailAlert = document.getElementById('email-alert');
+//     let phoneAlert = document.getElementById('phone-alert');
+//     let createBt = document.getElementById('bt-create-contact');
+//     function validateInputs() {
+//         let nameValid = nameInput.value.trim().length > 0;
+//         let emailValid = validateEmail(emailInput.value.trim());
+//         let phoneValid = validatePhone(phoneInput.value.trim());
+//         toggleAlert(emailAlert, emailInput, !emailValid && emailInput.value.trim() !== '');
+//         toggleAlert(phoneAlert, phoneInput, !phoneValid && phoneInput.value.trim() !== '');
+//         createBt.disabled = !(nameValid && emailValid && phoneValid);
+//     }
+//     nameInput.addEventListener('input', validateInputs);
+//     emailInput.addEventListener('input', validateInputs);
+//     phoneInput.addEventListener('input', validateInputs);
+//     validateInputs();
+//     saveContact(createBt, nameInput, emailInput, phoneInput);
+// }
+
+/**
+ * Initializes contact input validation and sets up real-time validation listeners.
+ */
 function checkContactValues() {
     let nameInput = document.querySelector('#name-field');
     let emailInput = document.querySelector('#email-field');
     let phoneInput = document.querySelector('#phone-field');
+    let createBt = document.getElementById('bt-create-contact');
+    let validateContact = () => validateInputs(nameInput, emailInput, phoneInput, createBt)
+    nameInput.addEventListener('input', validateContact);
+    emailInput.addEventListener('input', validateContact);
+    phoneInput.addEventListener('input', validateContact);
+    validateContact();
+    saveContact(createBt, nameInput, emailInput, phoneInput);
+}
+
+/**
+ * Validates the contact input fields and updates button state.
+ * @param {HTMLInputElement} nameInput Input for the contact's name.
+ * @param {HTMLInputElement} emailInput Input for the contact's email.
+ * @param {HTMLInputElement} phoneInput Input for the contact's phone number.
+ * @param {HTMLInputElement} createBt The button to enable or disable based on validation.
+ */
+function validateInputs(nameInput, emailInput, phoneInput, createBt) {
     let emailAlert = document.getElementById('email-alert');
     let phoneAlert = document.getElementById('phone-alert');
-    let createBt = document.getElementById('bt-create-contact');
-    function validateInputs() {
-        let nameValid = nameInput.value.trim().length > 0;
-        let emailValid = validateEmail(emailInput.value.trim());
-        let phoneValid = validatePhone(phoneInput.value.trim());
-        toggleAlert(emailAlert, emailInput, !emailValid && emailInput.value.trim() !== '');
-        toggleAlert(phoneAlert, phoneInput, !phoneValid && phoneInput.value.trim() !== '');
-        createBt.disabled = !(nameValid && emailValid && phoneValid);
-    }
-    nameInput.addEventListener('input', validateInputs);
-    emailInput.addEventListener('input', validateInputs);
-    phoneInput.addEventListener('input', validateInputs);
-    validateInputs();
-    saveContact(createBt, nameInput, emailInput, phoneInput);
+    let nameValid = nameInput.value.trim().length > 0;
+    let emailValid = validateEmail(emailInput.value.trim());
+    let phoneValid = validatePhone(phoneInput.value.trim());
+    toggleAlert(emailAlert, emailInput, !emailValid && emailInput.value.trim() !== '');
+    toggleAlert(phoneAlert, phoneInput, !phoneValid && phoneInput.value.trim() !== '');
+    createBt.disabled = !(nameValid && emailValid && phoneValid);
 }
 
 /**
@@ -119,23 +153,37 @@ function amountDigits(inputValue) {
 }
 
 /**
- * Create a new contact.
+ * Adds a click event listener to the create button to save a new contact.
+ * @param {HTMLElement} createBt The button element to trigger contact creation.
+ * @param {HTMLInputElement} nameInput Input element for the contact's name.
+ * @param {HTMLInputElement} emailInput Input element for the contact's email.
+ * @param {HTMLInputElement} phoneInput Input element for the contact's phone number.
  */
 function saveContact(createBt, nameInput, emailInput, phoneInput) {
     let user = getLoggedInUser();   
     createBt.addEventListener("click", async () => {
         if (createBt.disabled) return;
-        let contact = {
-            name: nameInput.value,
-            email: emailInput.value,
-            phone: phoneInput.value,
-            id: getNextFreeId(),
-            badge: getBadges(nameInput.value),
-        };
+        let contact = newContact(nameInput, emailInput, phoneInput);
         await saveData(`users/${user.id}/contacts/${contact.id}/`, contact);
         closeOverlay();
         showCreateContact(contact);
     });
+}
+/**
+ * Creates a new contact object with values from the input fields.
+ * @param {HTMLInputElement} nameInput Input element for the contact's name.
+ * @param {HTMLInputElement} emailInput Input element for the contact's email.
+ * @param {HTMLInputElement} phoneInput Input element for the contact's phone number.
+ * @returns 
+ */
+function newContact(nameInput, emailInput, phoneInput) {
+    return {
+        name: nameInput.value,
+        email: emailInput.value,
+        phone: phoneInput.value,
+        id: getNextFreeId(),
+        badge: getBadges(nameInput.value),
+    }
 }
 
 /**
@@ -167,12 +215,9 @@ function showCreateContactFeedback(feedbackTyp) {
     feedback.classList.remove("show", "hide");
     feedback.classList.add("show");
     setTimeout(() => {
-        feedback.classList.add("show");
-        setTimeout(() => {
-            feedback.classList.remove("show");
-            feedback.classList.add("hide");
-        }, 2500);
-    }, 50);
+        feedback.classList.remove("show");
+        feedback.classList.add("hide");
+    }, 2500);
 }
 
 /**
@@ -302,23 +347,33 @@ function addEventListenerEditDeleteContact(contactID) {
 }
 
 /**
- * Saves the edited contact information for the user.
+ * Adds a click event listener to the save button for editing a contact.
+ * @param {object} contact The original contact object to be edited.
  */
 function saveEdit(contact) {
     let user = getLoggedInUser();
     let saveBt = document.getElementById('bt-create-contact');
     saveBt.addEventListener("click", async () => {
         if (saveBt.disabled) return;
-        let contactEdit = {
-            name : document.querySelector('#name-input input').value,
-            email : document.querySelector('#email-input input').value,
-            phone : document.querySelector('#phone-input input').value,
-            id : contact.id,
-            badge : contact.badge,
-        }
+        let contactEdit = editContact(contact);
         renderContactInformations(contactEdit); 
         await saveData(`users/${user.id}/contacts/${contactEdit.id}/`, contactEdit);
         closeOverlay();
         showCreateContactFeedback("edit");
     })  
+}
+
+/**
+ * Return the updated contact.
+ * @param {object} contact The original contact object to be edited.
+ * @returns 
+ */
+function editContact(contact) {
+    return {
+        name : document.querySelector('#name-input input').value,
+        email : document.querySelector('#email-input input').value,
+        phone : document.querySelector('#phone-input input').value,
+        id : contact.id,
+        badge : contact.badge, 
+    }
 }

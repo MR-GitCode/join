@@ -1,4 +1,4 @@
-import {loadData, getLoggedInUser, deleteData} from '../db.js';
+import {loadData, getLoggedInUser, deleteData, saveData} from '../db.js';
 import {addEventListenerToNewContact, addEventListenerEditContact} from '../contacts/contacts_overlay.js'
 
 /**
@@ -64,8 +64,8 @@ function addContacts(contacts) {
 }
 
 /**
- * Add a event listener to the contacts in the contact list an load the informations of the contact.
- * @param {object} contacts This is the object of all contacts.
+ * Add a event listener to the contacts in the contact list.
+ * @param {object} contacts The object with all contacts informations.
  */
 function addContactEventListener(contacts) {
     document.querySelectorAll('.contacts').forEach((contact) => {
@@ -74,21 +74,31 @@ function addContactEventListener(contacts) {
             document.querySelectorAll('.contacts').forEach(c => c.classList.remove("contact-active"));
             contact.classList.add("contact-active");
             let contactID = parseInt(event.currentTarget.id.replace('contact-', ''));
-            for (let i = 0; i < contacts.length; i++) {  
-                if (contacts[i] && contacts[i].id == contactID) {
-                    renderContactInformations(contacts[i]);
-                    if (window.innerWidth <= 640) {
-                        document.querySelector('.contact-selections').style.display = 'none';
-                        document.querySelector('.right-screen').style.display = 'flex';
-                        editingMenuEventListen();
-                        backToContactList();
-                    }
-                    break;
-                }
-            }
+            displayContactInformations(contacts, contactID);
         });
     });
 }
+
+/**
+ * Displays the information of the selected contact by matching the ID.
+ * @param {object} contacts The object with all contacts informations.
+ * @param {number} contactID The ID of the contact to display.
+ */
+function displayContactInformations(contacts, contactID) {
+    for (let i = 0; i < contacts.length; i++) {  
+        if (contacts[i] && contacts[i].id == contactID) {
+            renderContactInformations(contacts[i]);
+            if (window.innerWidth <= 640) {
+                document.querySelector('.contact-selections').style.display = 'none';
+                document.querySelector('.right-screen').style.display = 'flex';
+                editingMenuEventListen();
+                backToContactList();
+            }
+            break
+        }
+    }
+}
+
 /**
  * Renders the detailed contact information for a given contact.
  * @param {object} contacts The contact object containing user information.
@@ -135,9 +145,31 @@ function backToContactList() {
 export function addEventListenerDeleteContact(contactID, infoContainer) {
     let user = getLoggedInUser();
     document.getElementById('delete-contact').addEventListener("click", async () => {
-        await deleteData(`users/${user.id}/contacts/`, contactID);
+        if(user.contacts.length === 1){
+            let userData = getUserData(user);
+            await saveData(`users/${user.id}/`, userData);
+        } else {            
+            await deleteData(`users/${user.id}/contacts/`, contactID); 
+        }
         infoContainer.innerHTML = "";
         addContactList();
         document.getElementById('contact-list').scrollIntoView({ behavior: "smooth", block: "start" });
     })
+}
+
+/**
+ * 
+ * @param {object} user The object with all user informations
+ * @returns 
+ */
+function getUserData(user) {
+    return {
+        badge : user.badge,
+        contacts : "",
+        email : user.email,
+        name : user.name,
+        password : user.password,
+        phone : user.phone || "",
+        tasks : user.taks || ""
+    } 
 }

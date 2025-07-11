@@ -17,7 +17,6 @@ function init(version) {
             loadData();
             setTimeout(toggleLoadingSpinner(), 3000);
             break;
-
         default:
             loadData();
             break;

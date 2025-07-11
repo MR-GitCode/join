@@ -3,10 +3,6 @@ import { getBadges } from '../contacts/contacts_overlay.js';
 
 /**
  * Initializes the login page after the DOM has fully loaded.
- * - Sets up visible password toggle
- * - Handles user login
- * - Handles guest login
- * - Starts logo animation
  */
 document.addEventListener('DOMContentLoaded', () => {
   const loginForm = document.getElementById('loginForm');
@@ -34,28 +30,32 @@ function animateLogo() {
 }
 
 /**
- * Handles user login form submission.
+ * Initializes user login by attaching a submit event listener to the login form.
  * @param {HTMLFormElement} loginForm The login form element.
  */
 function userLogin(loginForm) {
   if (loginForm) {
     removeIncorrectLoginAlert();
-    loginForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const email = document.getElementById('loginEmail').value.trim();
-      const password = document.getElementById('loginPassword').value.trim();
-      await loadData();
-      const users = getUsers();
-      const foundUser = users.find(
-        (user) => user.email === email && user.password === password
-      );
-      if (foundUser) {
-        localStorage.setItem('user', JSON.stringify({id: foundUser.id}));
-        window.location.href = './summary.html';
-      } else {
-        incorrectLoginAlert()
-      }
-    });
+    loginForm.addEventListener('submit', handleLoginSubmit);
+  }
+}
+
+/**
+ * Handles user login form submission.
+ * @param {event} e The submit event object.
+ */
+async function handleLoginSubmit(e) {
+  e.preventDefault();
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value.trim();
+  await loadData();
+  const users = getUsers();
+  const foundUser = users.find(user => user.email === email && user.password === password);
+  if (foundUser) {
+    localStorage.setItem('user', JSON.stringify({id: foundUser.id}));
+    window.location.href = './summary.html';
+  } else {
+    incorrectLoginAlert();
   }
 }
 
@@ -170,10 +170,7 @@ function registrationSignUp() {
     let confirmPrivacyPolicy = document.getElementById('confirm-policy');
     let signBtn = document.getElementById('bt-signup');
     let validateLogin = () => validateInputs("sign", signBtn, emailInput, passwordInput, passwordConfirmInput, confirmPrivacyPolicy)
-    nameInput.addEventListener('input', validateLogin);
-    emailInput.addEventListener('input', validateLogin);
-    passwordInput.addEventListener('input', validateLogin);
-    passwordConfirmInput.addEventListener('input', validateLogin);
+    [nameInput, emailInput, passwordInput, passwordConfirmInput].forEach(input => input.addEventListener('input', validateLogin));
     confirmPrivacyPolicy.addEventListener('change', validateLogin);
     signBtn.addEventListener('click', (event) => {
         event.preventDefault();
@@ -311,7 +308,7 @@ function passwordVisibility(inputId, iconId) {
 }
 
 /**
- * Compares the password and confirm password fields for a match.
+ * Checks whether the provided password and confirmation password match.
  * @param {string} password The entered password.
  * @param {string} confirmPassword The entered confirmation password.
  * @returns Returns true if passwords match and are not empty, false otherwise.
@@ -320,20 +317,42 @@ function matchOfPasswords(password, confirmPassword) {
   let confirmPasswordInput = document.getElementById('signConfirmPassword');
   let passwordAlert = document.getElementById('password-alert');
   if (password && confirmPassword) {
-    if (password === confirmPassword) {
-      confirmPasswordInput.classList.remove('input-alert');
-      passwordAlert.classList.add("hide-alert");
-      return true;
-    } else {
-      confirmPasswordInput.classList.add('input-alert');
-      passwordAlert.classList.remove("hide-alert");
-      return false;
-    }
+    return passwordsAreMatch(password, confirmPassword, confirmPasswordInput, passwordAlert)
   } else {
+    return passwordsAreDifferent(confirmPasswordInput, passwordAlert)
+  }
+}
+
+/**
+ * Compares the password and confirmation password and updates the UI accordingly.
+ * @param {string} password The main password.
+ * @param {string} confirmPassword The confirmation password.
+ * @param {HTMLInputElement} confirmPasswordInput The DOM input element for the confirmation password.
+ * @param {HTMLElement} passwordAlert The DOM element for displaying a password mismatch alert.
+ * @returns 
+ */
+function passwordsAreMatch(password, confirmPassword, confirmPasswordInput, passwordAlert) {
+  if (password === confirmPassword) {
+    confirmPasswordInput.classList.remove('input-alert');
+    passwordAlert.classList.add("hide-alert");
+    return true;
+  } else {
+    confirmPasswordInput.classList.add('input-alert');
+    passwordAlert.classList.remove("hide-alert");
+    return false;
+  }
+} 
+
+/**
+ * Resets the password validation when either password field is empty.
+ * @param {HTMLInputElement} confirmPasswordInput The DOM input element for the confirmation password.
+ * @param {HTMLElement} passwordAlert The DOM element for displaying a password mismatch alert.
+ * @returns 
+ */
+function passwordsAreDifferent(confirmPasswordInput, passwordAlert) {
     confirmPasswordInput.classList.remove('input-alert');
     passwordAlert.classList.add("hide-alert");
     return false;
-  }
 }
 
 /**

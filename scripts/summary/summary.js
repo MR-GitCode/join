@@ -62,14 +62,7 @@ function renderSummary(tasks) {
  * @returns 
  */
 function countTasks (tasks) {
-  const taskCounts = {
-    todo: 0,
-    done: 0,
-    inProgress: 0,
-    feedback: 0,
-    urgent: [],
-    total: tasks.length,
-  };
+  const taskCounts = amountOfTasks(tasks);
   for (let task of tasks) {
     if (!task) continue;
     if (task.status === 'todo') taskCounts.todo++;
@@ -79,6 +72,22 @@ function countTasks (tasks) {
     if (task.priority === 'urgent') taskCounts.urgent.push(task);
   }
   return taskCounts;
+}
+
+/**
+ * Return the amount of the "Todo", "done" etc. of all tasks.
+ * @param {object} tasks The object with all tasks informations 
+ * @returns 
+ */
+function amountOfTasks(tasks) {
+  return {
+    todo: 0,
+    done: 0,
+    inProgress: 0,
+    feedback: 0,
+    urgent: [],
+    total: tasks.length,
+  }
 }
 
 /**

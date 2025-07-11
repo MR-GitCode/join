@@ -173,7 +173,7 @@ function addEditSubtask() {
 }
 
 /**
- * 
+ * Retrieves the updated subtasks from the edit.
  * @param {object} subtasksInfo The subtasks objects of the task being edited.
  * @returns 
  */

@@ -102,9 +102,7 @@ function findTasks(tasks, findTaskInput) {
  * @param {object} findTask  Object of filtered task objects to display.
  */
 function showFindTask(findTask) {
-    document.querySelectorAll('.columns-content').forEach(column => {
-        column.innerHTML = "";
-    });
+    clearColumns();
     for (let taskIndex = 0; taskIndex < findTask.length; taskIndex++) {
         let task = findTask[taskIndex];
         if (task) {
@@ -126,9 +124,7 @@ function showFindTask(findTask) {
 export function updateTasks() {
     let user = getLoggedInUser();
     let tasksData = Object.values(user.tasks);
-    document.querySelectorAll('.columns-content').forEach(column => {
-        column.innerHTML = "";
-    });
+    clearColumns();
     for (let task of tasksData) {
         if (task) {
             let status = task.status;
@@ -141,6 +137,15 @@ export function updateTasks() {
     }
     checkContentOfColumns();
 } 
+
+/**
+ * Clears the content of all columns
+ */
+function clearColumns() {
+    document.querySelectorAll('.columns-content').forEach(column => {
+        column.innerHTML = "";
+    });
+}
 
 /**
  * Load the progress bar of the subtask an show the amount of the done subtasks.

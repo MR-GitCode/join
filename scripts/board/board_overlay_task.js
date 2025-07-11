@@ -53,29 +53,38 @@ async function addDeleteTask(user, taskID) {
 }
 
 /**
- * Changed and saved the subtask status. 
+ * Adds click event listeners to all subtask status icons in the DOM.
  * @param {object} user This is the object of the user.
  * @param {number} taskID This is the index of the task. 
  */
 function addSubtasksStatusEventListener(user, taskID) {
     document.querySelectorAll('.subtask-status').forEach(subtaskImg => {
         subtaskImg.addEventListener("click", () => {
-            let doneSrc = './assets/icons/board/done_button.svg'
-            let openSrc = './assets/icons/board/open_button.svg'
-            let subtaskStatus
-            let subtaskId
-            if (subtaskImg.src.endsWith('open_button.svg')) {
-                subtaskImg.src = doneSrc;
-                subtaskStatus = "done";
-                subtaskId = subtaskImg.id
-            } else {
-                subtaskImg.src = openSrc;
-                subtaskStatus = "open";
-                subtaskId = subtaskImg.id
-            }           
+            let {subtaskId, subtaskStatus} = toggleSubtaskImg(subtaskImg);
             saveData(`users/${user.id}/tasks/${taskID}/subtasks/${subtaskId}/status`, subtaskStatus)
         })
     })
+}
+
+/**
+ * Toggles the image and status of a subtask icon.
+ * @param {HTMLImageElement} subtaskImg The image element representing the subtask's status.
+ * @returns 
+ */
+function toggleSubtaskImg(subtaskImg) {
+    let doneSrc = './assets/icons/board/done_button.svg';
+    let openSrc = './assets/icons/board/open_button.svg';
+    let subtaskStatus;
+    let subtaskId;
+    if (subtaskImg.src.endsWith('open_button.svg')) {
+        subtaskImg.src = doneSrc;
+        subtaskStatus = "done";
+        subtaskId = subtaskImg.id;
+    } else {
+        subtaskImg.src = openSrc;
+        subtaskStatus = "open";
+        subtaskId = subtaskImg.id;
+    } return {subtaskId, subtaskStatus};
 }
 
 /**
