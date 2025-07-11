@@ -212,6 +212,9 @@ transform: translate3d(1px, -1px, 1px);
 }
 
 .category-select:focus{
+    border-color: #29ABE2 !important;
+    outline: 1px solid #29ABE2;
+    outline-offset: -2px;
     padding-left: 35px;
 }
 

@@ -44,6 +44,7 @@ h1{
 .form-add-task input[type=text]:focus,
 .form-add-task input[type=date]:focus,
 .form-add-task textarea:focus{
+    border-color: #29ABE2 !important;
     outline: 1px solid #29ABE2;
     outline-offset: -2px;
 }

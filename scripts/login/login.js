@@ -351,7 +351,7 @@ async function sendSignUP(nameInput, emailInput, passwordInput) {
     name : nameInput.value,
     password : passwordInput.value,
     phone : "",
-    task : "",
+    tasks : "",
   }
   await saveData(`users/${usersAmount}/`, newUser);
   showSignedSuccessfully();

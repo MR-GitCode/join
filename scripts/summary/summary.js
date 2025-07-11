@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', loadSummary);
 async function loadSummary() {
   await loadData();
   const user = getLoggedInUser();
-  showGreeting(user)
+  showGreeting(user);
   renderSummary(user.tasks);
 }
 
