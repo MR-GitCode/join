@@ -45,6 +45,19 @@ function loadBagesForCard(assignedContact) {
     return `<div class="badges-cards" style="background-color:${assignedContact.badge.color}">${assignedContact.badge.initials}</div>`
 }
 
+/**
+ * @param {number} amount Amount of the contacts. 
+ * @returns Return the template of the more badges
+ */
+function loadMoreBages(amount) {
+    return `<div class="badges-cards more-badge">+${amount}</div>`
+}
+
+/**
+ * 
+ * @param {object} task Object of the task.
+ * @returns Return the template of the piority img. 
+ */
 function loadPriorityImage(task) {
     return `<img src="./assets/icons/add_task/Prio_${task.priority}.svg" onerror="this.style.display='none';">`
 }
@@ -110,9 +123,9 @@ function loadOverlayAddTaskBoard() {
                                         <p>Urgent</p>
                                         <img id="svg-urgent" src="./assets/icons/add_task/Prio_urgent.svg">
                                     </div>
-                                    <div id="bt-medium" onclick="selectPriority('medium')" class="bt-priority">
+                                    <div id="bt-medium" onclick="selectPriority('medium')" class="bt-priority bt-medium">
                                         <p>Medium</p>
-                                        <img id="svg-medium" src="./assets/icons/add_task/Prio_medium.svg">
+                                        <img id="svg-medium" src="./assets/icons/add_task/Prio_medium_white.svg">
                                     </div>
                                     <div id="bt-low" onclick="selectPriority('low')" class="bt-priority">
                                         <p>Low</p>

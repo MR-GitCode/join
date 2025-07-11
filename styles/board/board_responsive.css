@@ -10,6 +10,10 @@
         padding-right: 15px;
     }
 
+    .card {
+        align-items: flex-start;
+    }
+
     .content {
         overflow-x: hidden;
         width: 100%;
@@ -44,18 +48,12 @@
     }
     
     .columns-content {
-    /* flex: 1; */
         overflow-y: hidden;
         overflow-x: auto;
         max-width: calc(100vw - 232px);
         scrollbar-width: thin;
         scrollbar-color: #A8A8A8 transparent;
-        /* padding-right: 3px; */
     }
-
-    /* .columns-scrollbar {
-        overflow-x: auto;
-    } */
 
     .columns {
         width: fit-content;
@@ -84,6 +82,18 @@
     .tpl-no-task{
         width: 390px;
     }
+
+    #overlay-add-task h1 {
+        padding-bottom: 15px;
+    }
+
+    .content-add-task {
+        gap: 10px;
+    }
+
+    .form-add-task {
+        height: 450px !important;
+    }
 }
 
 @media (max-width: 1160px) {
@@ -94,10 +104,6 @@
     .header-board h1{
         padding-right: 2%;
     }
-/* 
-    .header-board {
-        justify-content: flex-start;
-    }  */
 }
 
 @media (max-width: 1024px) {

@@ -116,10 +116,7 @@ function touchStart(task) {
         draggedTask = null;
         longPressTimeout = setTimeout(() => {
             draggedTask = task.id;
-            touchMoveElement = task.cloneNode(true);
-            touchMoveElement.classList.add("touch-drag-ghost");
-            touchMoveElement.style.width = `${task.offsetWidth}px`;
-            document.body.appendChild(touchMoveElement);
+            createTouchGhost(task);
         }, 200);
         touchStartX = e.touches[0].clientX;
         touchStartY = e.touches[0].clientY;
@@ -127,32 +124,51 @@ function touchStart(task) {
 }
 
 /**
+ * Create the Ghost HTML Elemnt of the task.
+ * @param {HTMLElement} task The Element of the card.
+ */
+function createTouchGhost(task) {
+    touchMoveElement = task.cloneNode(true);
+    touchMoveElement.classList.add("touch-drag-ghost");
+    touchMoveElement.style.width = `${task.offsetWidth}px`;
+    document.body.appendChild(touchMoveElement);
+}
+
+/**
  * Adds touchmove event listener to update the position of the ghost element
  * and highlight potential drop zones (columns) on touch drag.
- * 
  * @param {HTMLElement} task The Element of the card. 
  */
 function touchMove(task) {
     task.addEventListener("touchmove", (e) => {
         if (!touchMoveElement) return;
-        touchMoveElement.style.left = `${e.touches[0].clientX - touchMoveElement.offsetWidth / 2}px`;
-        touchMoveElement.style.top = `${e.touches[0].clientY - touchMoveElement.offsetHeight / 2}px`;
+        let x = e.touches[0].clientX;
+        let y = e.touches[0].clientY;
+        touchMoveElement.style.left = `${x - touchMoveElement.offsetWidth / 2}px`;
+        touchMoveElement.style.top = `${y - touchMoveElement.offsetHeight / 2}px`;
         document.querySelectorAll(".columns-content").forEach(column => {
-            let rect = column.getBoundingClientRect();
-            let x = e.touches[0].clientX;
-            let y = e.touches[0].clientY;
-            if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
-                highlight(column.id);
-            } else {
-                column.classList.remove("highlight-column");
-            }
+            checkHighlight(column, x, y);
         });
-    },{passive: true}); 
+    }, { passive: true });
 }
 
 /**
- * Adds touchend event listener to finalize touch drag.
- * Removes ghost element and moves the card to the drop column if applicable.
+ * Checks whether the current touch position is within a column and highlights it.
+ * @param {HTMLElement} column The column to potentially highlight.
+ * @param {number} x The current X coordinate of the touch point.
+ * @param {number} y The current y coordinate of the touch point.
+ */
+function checkHighlight(column, x, y) {
+    let rect = column.getBoundingClientRect();
+    if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
+        highlight(column.id);
+    } else {
+        column.classList.remove("highlight-column");
+    }
+}
+
+/**
+ * Adds a touchend event listener to the given task element to handle drag and drop or opening the task.
  * 
  * @param {HTMLElement} task The Element of the card.
  */
@@ -163,20 +179,31 @@ function touchEnd(task) {
             document.body.removeChild(touchMoveElement);
             touchMoveElement = null;
         }
-        let dropColumn = null;
-        document.querySelectorAll(".columns-content").forEach(column => {
-            let rect = column.getBoundingClientRect();
-            let x = e.changedTouches[0].clientX;
-            let y = e.changedTouches[0].clientY;
-            if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
-                dropColumn = column.id;
-            }
-            column.classList.remove("highlight-column");
-        });
+        let dropColumn = getDropColumn(e);
         if (dropColumn && draggedTask) {
             moveToColumn(dropColumn);
         } else {
             openTask(task.id)
         }
     });
+}
+
+/**
+ * Determines the column element over which the touch event ended based on touch coordinates.
+ * Removes the highlight from all columns.
+ * @param {TouchEvent} e  The touchend event object.
+ * @returns 
+ */
+function getDropColumn(e) {
+    let x = e.changedTouches[0].clientX;
+    let y = e.changedTouches[0].clientY;
+    let dropColumn = null;
+    document.querySelectorAll(".columns-content").forEach(column => {
+        let rect = column.getBoundingClientRect();
+        if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
+            dropColumn = column.id;
+        }
+        column.classList.remove("highlight-column");
+    });
+    return dropColumn;
 }

@@ -75,8 +75,7 @@ export function editSubtask(subtaskID) {
         } else {
             subtaskIcons.innerHTML = defaultSubtaskIcons(subtaskID);
             subtaskIcons.classList.remove('subtask-icon-flex');
-        }
-    }
+    }}
 }
 
 /**
@@ -90,7 +89,7 @@ document.addEventListener("click", function (event) {
     } else {
         clickInsideUl(clickedLI, allSubtasks)
     }
-});
+})
 
 /**
  * Resets all subtask list items to non-editable mode.

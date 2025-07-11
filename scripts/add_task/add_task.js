@@ -3,7 +3,7 @@ import { closeOverlay } from "../board/board.js";
 import { changeIconsSubtask} from "../add_task/add_task_subtask.js"
 
 export let selectedUsers = new Set(); //Set doesn't allow same elements.
-export let selectedPriority = "none";
+export let selectedPriority = "medium";
 export let selectedTasks = [];
 let isColorpickerChanged = false;
 
@@ -136,15 +136,24 @@ function checkInputValue() {
         if (field.value === "") {
             isValid = false
             field.classList.add("error-border");
-            let error = document.createElement("p");
-            error.classList.add("error-message");
-            error.innerText = "This field is required";
-            field.parentNode.appendChild(error);
+            showErrorMessage(field, "This field is required");
         } else {
             field.classList.remove("error-border");
         }
     });
     return isValid
+}
+
+/**
+ * Displays an error message below a specified input field.
+ * @param {*} field The input field where the error occurred.
+ * @param {*} message  The error message to display.
+ */
+function showErrorMessage(field, message) {
+    let error = document.createElement("p");
+    error.className = "error-message";
+    error.innerText = message;
+    field.parentNode.appendChild(error);
 }
 
 /**
@@ -189,7 +198,6 @@ function toggleUserSelection(userId) {
     let userContainer = document.querySelector(`img[data-id="${userId}"]`);
     let optionOfMenu = userContainer?.closest('.menu-option');
     if (!userContainer || !optionOfMenu) return;
-
     if (selectedUsers.has(userId)) {
         selectedUsers.delete(userId);
         optionOfMenu.classList.remove('bg-menu-option');
@@ -233,7 +241,6 @@ function checkSelectedUsers() {
         let userContainer = document.querySelector(`img[data-id="${userId}"]`);
         let optionOfMenu = userContainer?.closest('.menu-option');
         if (!userContainer || !optionOfMenu) continue;
-
         optionOfMenu.classList.add('bg-menu-option');
         userContainer.src = "./assets/icons/add_task/checked_white.svg";
     }
@@ -334,7 +341,20 @@ export async function createTask() {
     let user = getLoggedInUser();
     let tasksData = user.tasks || {};
     let nextTaskID = getNextFreeId(tasksData);
-    let task = {
+    let task = newTask(user, nextTaskID);
+    await saveData(`users/${user.id}/tasks/${task.id}`, task);
+    clearTask();
+    createTaskFeedback();
+}
+
+/**
+ * 
+ * @param {object} user The user object with all informations.
+ * @param {number} nextTaskID  The ID to assign to the new task.
+ * @returns 
+ */
+function newTask(user, nextTaskID) {
+    return {
         id: nextTaskID,
         title: document.getElementById('input-title').value,
         description: document.getElementById('description').value,
@@ -345,9 +365,6 @@ export async function createTask() {
         subtasks: getSubtaskOfTask(),
         status: 'todo',
     };
-    await saveData(`users/${user.id}/tasks/${task.id}`, task);
-    clearTask();
-    createTaskFeedback();
 }
 
 /**
@@ -360,16 +377,23 @@ function createTaskFeedback() {
     document.body.appendChild(overlay);
     let feedback = document.getElementById('task-created');
     overlay.style.display = 'flex';
+    animateFeedback(feedback); 
+}
+
+/**
+ * Animates a feedback message with a slide-in and slide-out effect.
+ * @param {HTMLElement} feedback The feedback element to animate.
+ */
+function animateFeedback(feedback) {
     feedback.classList.remove('move-in', 'move-out');
     feedback.classList.add('move-in');
     setTimeout(() => {
-        feedback.classList.remove('move-in');
-        feedback.classList.add('move-out');
+        feedback.classList.replace('move-in', 'move-out');
     }, 1000);
     setTimeout(() => {
-        overlay.style.display = 'none';
+        feedback.closest('.overlay-create-feedback').style.display = 'none';
         feedback.classList.remove('move-out');
-    }, 1500); 
+    }, 1500);
 }
 
 /**
@@ -394,18 +418,27 @@ export function getSubtaskOfTask() {
     let liAmount = document.querySelectorAll("#list-subtasks li").length;
     let subtasks = []; 
     for (let subtaskID = 0; subtaskID < liAmount; subtaskID++) {
-        let subDescription = document.getElementById(`subtaskContent(${subtaskID})`).innerText;
-        let subStatus = "open";
-        let subtask = {
-            description : subDescription,
-            status : subStatus
-        }
+        let subtask = createSubtask(subtaskID);
         subtasks.push(subtask);    
     }
     if (subtasks.length === 0) {
         subtasks = ""
     }
     return subtasks;
+}
+
+/**
+ * Creates a subtask object from the given subtask ID.
+ * @param {number} subtaskID The index of the subtask.
+ * @returns 
+ */
+function createSubtask(subtaskID) {
+    let subDescription = document.getElementById(`subtaskContent(${subtaskID})`).innerText;
+    let subStatus = "open";
+    return {
+        description: subDescription,
+        status: subStatus
+    };
 }
 
 /**
@@ -427,6 +460,5 @@ export function getAssignedContacts(user) {
     }
     if (assignedContacts.length === 0) {
         assignedContacts = ""
-    }
-    return assignedContacts;
+    } return assignedContacts;
 }

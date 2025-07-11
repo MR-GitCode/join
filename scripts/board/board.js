@@ -45,8 +45,10 @@ export function addCloseEventListener() {
     document.getElementById("overlay-add-task").addEventListener("click", function (event) {
         let overlayContainer = document.querySelector(".content-add-task");
         let closeButton = document.getElementById('close-overlay');
-        if (closeButton.contains(event.target) || (!overlayContainer.contains(event.target) && !event.target.closest('.button-transition'))) {
+        if ((closeButton && closeButton.contains(event.target)) ||
+            (overlayContainer && !overlayContainer.contains(event.target) && !event.target.closest('.button-transition'))) {
             closeOverlay();
+            addTaskEventListeners()
         }
     });
 }
@@ -175,7 +177,7 @@ function loadAssignedContacts(task) {
     }
     if (totalUsers > maxVisible) {
         let amount = totalUsers - maxVisible;
-        assignedContainer.innerHTML += `<div class="badges-cards more-badge">+${amount}</div>`;
+        assignedContainer.innerHTML += loadMoreBages(amount);
     }
 }
 

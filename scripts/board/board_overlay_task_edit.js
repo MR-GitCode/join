@@ -3,28 +3,37 @@ import {selectedUsers, getContactsDatabank, selectedPriority, getAssignedContact
 import { addTaskSubtask, addCloseEventListener, closeOverlaySelectTask} from './board_overlay_task.js';
 
 /**
+ * Stops the event propagation, loads the edit task overlay with task information,
+ * and sets up all related UI elements and event listeners for editing the task.
+ * @param {Object} taskInfo The information object of the task to edit.
+ * @param {Event} event The click event object.
+ */
+function handleEditTaskClick(taskInfo, event) {
+    event.stopPropagation();
+    let taskOverlay = document.getElementById('overlay-select-task');
+    taskOverlay.innerHTML = "";
+    taskOverlay.innerHTML = loadEditTask(taskInfo);
+    editInputValue(taskInfo);
+    editTaskAssigned(taskInfo);
+    addAssignedEventListener(taskInfo);
+    editPriority(taskInfo);
+    addTaskSubtask(taskInfo.subtasks, 'list-subtasks');
+    addEditSubtask();
+    addCloseEventListener();
+    addEditButtonEventListener(taskInfo);
+    setMinDateToday();
+}
+
+/**
  * Add a click event listener to the "edit" button.
+ * @param {number} taskID The ID of the task.
  */
 export function addEditTaskEventListener(taskID) {
     let user = getLoggedInUser();
-    let taskInfo = user.tasks[taskID]
+    let taskInfo = user.tasks[taskID];
     let editTask = document.getElementById('edit-task');
-    if(editTask) {
-        editTask.addEventListener("click", function(event) {
-            event.stopPropagation();
-            let taskOverlay = document.getElementById('overlay-select-task');
-            taskOverlay.innerHTML = "";
-            taskOverlay.innerHTML = loadEditTask(taskInfo);
-            editInputValue(taskInfo);
-            editTaskAssigned(taskInfo);
-            addAssignedEventListener(taskInfo);
-            editPriority(taskInfo);
-            addTaskSubtask(taskInfo.subtasks, 'list-subtasks');
-            addEditSubtask();
-            addCloseEventListener();
-            addEditButtonEventListener(taskInfo);
-            setMinDateToday();
-        } )
+    if (editTask) {
+        editTask.addEventListener("click", (event) => handleEditTaskClick(taskInfo, event));
     }
 }
 
@@ -66,16 +75,25 @@ function editTaskAssigned (task) {
     let assignedContacts = task.assignedContacts;
     let assignedContainer = document.getElementById(`selected-contacts`);
     assignedContainer.innerHTML = "";
+    renderAssignedBadges(assignedContacts, assignedContainer);
+}
+
+/**
+ * Renders user badges for assigned contacts.
+ * @param {object} assignedContacts Array of assigned contact objects.
+ * @param {HTMLElement} assignedContainer The DOM element where badges should be rendered
+ */
+function renderAssignedBadges(assignedContacts, assignedContainer) {
     let maxVisible = 5;
     let totalUsers = assignedContacts.length;
     for (let assignedID = 0; assignedID < Math.min(totalUsers, maxVisible); assignedID++) {
         let assignedContact = assignedContacts[assignedID];
         selectedUsers.add(assignedContact.id);
         assignedContainer.innerHTML += loadBagesForCard(assignedContact)
-    }
-        if (totalUsers > maxVisible) {
+    } 
+    if (totalUsers > maxVisible) {
         let amount = totalUsers - maxVisible;
-        assignedContainer.innerHTML += `<div class="badges-cards more-badge">+${amount}</div>`;
+        assignedContainer.innerHTML += loadMoreBages(amount);
     }
 }
 
@@ -98,20 +116,30 @@ function editPriority(taskInfo) {
 function addEditButtonEventListener (taskInfo) {
     let user = getLoggedInUser();
     document.getElementById('bt-edit').addEventListener("click", async function () {
-        let task = {
-            id: taskInfo.id,
-            title: document.getElementById('input-title').value,
-            description: document.getElementById('description').value,
-            enddate: document.getElementById('input-date').value,
-            priority: priorityOfEditTask(taskInfo),
-            assignedContacts: getAssignedContacts(user),
-            subtasks: getSubtaskOfTaskEdit(taskInfo.subtasks),
-            status: taskInfo.status,
-            category: taskInfo.category,
-        };    
+        let task = editTask(user, taskInfo);    
         await saveData(`users/${user.id}/tasks/${task.id}`, task);
         closeOverlaySelectTask();
     })
+}
+
+/**
+ * Constructs and returns an updated task object with new values from the edit form.
+ * @param {object} user The currently logged-in user.
+ * @param {object} taskInfo The original task information being edited.
+ * @returns 
+ */
+function editTask(user, taskInfo) {
+    return {
+        id: taskInfo.id,
+        title: document.getElementById('input-title').value,
+        description: document.getElementById('description').value,
+        enddate: document.getElementById('input-date').value,
+        priority: priorityOfEditTask(taskInfo),
+        assignedContacts: getAssignedContacts(user),
+        subtasks: getSubtaskOfTaskEdit(taskInfo.subtasks),
+        status: taskInfo.status,
+        category: taskInfo.category,
+    }
 }
 
 /**
@@ -145,32 +173,29 @@ function addEditSubtask() {
 }
 
 /**
- * Retrieves all subtasks from the list and returns them as an array of objects.
- * @returns Array of subtask objects with description and status.
+ * 
+ * @param {object} subtasksInfo The subtasks objects of the task being edited.
+ * @returns 
  */
 function getSubtaskOfTaskEdit(subtasksInfo) {
     let liAmount = document.querySelectorAll("#list-subtasks li").length;
     let subtasks = [];
-    let subStatus = "";
     for (let subtaskID = 0; subtaskID < liAmount; subtaskID++) {
-        let subtaskElement = document.getElementById(`subtaskContent(${subtaskID})`)
-        let subDescription
-        if (subtaskElement) {
-            subDescription = subtaskElement.innerText;
-        }        
-        if (subtasksInfo[subtaskID]) {
-            subStatus = subtasksInfo[subtaskID].status; 
-        } else {
-            subStatus = "open"; 
-        }      
-        let subtask = {
-            description : subDescription,
-            status : subStatus
-        }
-        subtasks.push(subtask);    
+        let subtaskElement = document.getElementById(`subtaskContent(${subtaskID})`)         
+        subtasks.push({
+            description : subtaskElement?.innerText,
+            status : getSubtaskStatus(subtasksInfo, subtaskID)
+        });
     }
-    if (subtasks.length === 0) {
-        subtasks = ""
-    }
-    return subtasks;
+    return subtasks.length? subtasks : "";
+}
+
+/**
+ * Return the status of the subtask.
+ * @param {object} subtasksInfo The object of the subtask with all informations.
+ * @param {number} subtaskID Index of the subtask.
+ * @returns 
+ */
+function getSubtaskStatus(subtasksInfo, subtaskID) {
+    return subtasksInfo[subtaskID]?.status || "open"; 
 }
