@@ -137,4 +137,25 @@
   form input {
     width: 265px
   }
+
+  .underline {
+     margin: 12px 0 16px 0;
+  }
+
+  #signUpForm{
+    gap: 18px;
+    padding-bottom: 15px;
+  }
+}
+
+@media (max-height: 700px) {  
+  .log-in-card{
+    height: 400px !important;
+    gap: 15px;
+  }
+
+  .login-buttons {
+    gap: 10px;
+    margin-top: 0;
+  }
 }

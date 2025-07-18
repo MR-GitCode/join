@@ -391,7 +391,10 @@ function animateFeedback(feedback) {
         feedback.classList.replace('move-in', 'move-out');
     }, 1000);
     setTimeout(() => {
-        feedback.closest('.overlay-create-feedback').style.display = 'none';
+        let overlay = feedback.closest('.overlay-create-feedback');
+        if (overlay) {
+            overlay.remove();
+        }
         feedback.classList.remove('move-out');
     }, 1500);
 }

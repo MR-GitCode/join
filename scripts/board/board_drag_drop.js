@@ -5,6 +5,8 @@ import {addTaskEventListeners, openTask} from './board_overlay_task.js';
 let touchMoveElement = null;
 let longPressTimeout = null;
 let draggedTask = null;
+let startColumn = null;
+let isLongPress = false;
 
 /**
  * Adds event listeners after the DOM content has fully loaded.
@@ -36,6 +38,7 @@ function startDragging(taskID) {
  */
 function dragoverHandler(ev) {
     ev.preventDefault();
+    autoScrollBoard(ev.clientY);
   }
 
 /**
@@ -105,22 +108,40 @@ function dragStart(task) {
 
 /**
  * Adds touchstart event listener to initialize touch dragging.
- * Clones the task element and creates a ghost element to follow the finger.
  * 
  * @param {HTMLElement} task The Element of the card.
  */
 function touchStart(task) {
-    let touchStartX, touchStartY;
     task.addEventListener("touchstart", (e) => {
-        e.preventDefault();
+        isLongPress = false;
         draggedTask = null;
+        startColumn = task.closest(".columns-content")?.id;
         longPressTimeout = setTimeout(() => {
+            isLongPress = true;
             draggedTask = task.id;
-            createTouchGhost(task);
         }, 200);
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
     }, { passive: false });
+}
+
+/**
+ * Adds touchmove event listener to update the position of the ghost element
+ * Clones the task element and creates a ghost element to follow the finger.
+ * @param {HTMLElement} task The Element of the card.  
+ */
+function touchMove(task) {
+    task.addEventListener("touchmove", (e) => {
+        if (!isLongPress || !draggedTask) return;
+        let x = e.touches[0].clientX;
+        let y = e.touches[0].clientY;
+        let currentColumn = document.elementFromPoint(x, y)?.closest(".columns-content")?.id;
+        if (!touchMoveElement && currentColumn && currentColumn !== startColumn) {
+            createTouchGhost(task);
+        }
+        if (touchMoveElement) {
+            checkHighlight(touchMoveElement, x, y);
+            autoScrollBoard(y);
+        }
+    }, { passive: true });
 }
 
 /**
@@ -135,36 +156,22 @@ function createTouchGhost(task) {
 }
 
 /**
- * Adds touchmove event listener to update the position of the ghost element
- * and highlight potential drop zones (columns) on touch drag.
- * @param {HTMLElement} task The Element of the card. 
- */
-function touchMove(task) {
-    task.addEventListener("touchmove", (e) => {
-        if (!touchMoveElement) return;
-        let x = e.touches[0].clientX;
-        let y = e.touches[0].clientY;
-        touchMoveElement.style.left = `${x - touchMoveElement.offsetWidth / 2}px`;
-        touchMoveElement.style.top = `${y - touchMoveElement.offsetHeight / 2}px`;
-        document.querySelectorAll(".columns-content").forEach(column => {
-            checkHighlight(column, x, y);
-        });
-    }, { passive: true });
-}
-
-/**
  * Checks whether the current touch position is within a column and highlights it.
- * @param {HTMLElement} column The column to potentially highlight.
+ * @param {HTMLElement} touchMoveElement - The element being moved by touch.
  * @param {number} x The current X coordinate of the touch point.
  * @param {number} y The current y coordinate of the touch point.
  */
-function checkHighlight(column, x, y) {
-    let rect = column.getBoundingClientRect();
-    if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
-        highlight(column.id);
-    } else {
-        column.classList.remove("highlight-column");
-    }
+function checkHighlight(touchMoveElement, x, y) {
+    touchMoveElement.style.left = `${x - touchMoveElement.offsetWidth / 2}px`;
+    touchMoveElement.style.top = `${y - touchMoveElement.offsetHeight / 2}px`;
+    document.querySelectorAll(".columns-content").forEach(column => {
+        let rect = column.getBoundingClientRect();
+        if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
+            highlight(column.id);
+        } else {
+            column.classList.remove("highlight-column");
+        }        
+    });
 }
 
 /**
@@ -175,15 +182,15 @@ function checkHighlight(column, x, y) {
 function touchEnd(task) {
     task.addEventListener("touchend", (e) => {
         clearTimeout(longPressTimeout);
+        let dropColumn = getDropColumn(e);
         if (touchMoveElement) {
             document.body.removeChild(touchMoveElement);
             touchMoveElement = null;
         }
-        let dropColumn = getDropColumn(e);
-        if (dropColumn && draggedTask) {
+        if (draggedTask && dropColumn && dropColumn !== startColumn) {
             moveToColumn(dropColumn);
-        } else {
-            openTask(task.id)
+        } else if (startColumn != dropColumn && dropColumn) {
+            openTask(task.id);
         }
     });
 }
@@ -206,4 +213,17 @@ function getDropColumn(e) {
         column.classList.remove("highlight-column");
     });
     return dropColumn;
+}
+
+/**
+ * Automatically scrolls the board container vertically when the cursor or touch point
+ * is near the top or bottom.
+ * @param {number} y The current y coordinate of the touch point.
+ */
+function autoScrollBoard(y) {
+    let boardContainer = document.querySelector('.display-position');
+    let scrollSpeed = 10;
+    let distanceToBorder = 120;
+    if (y < distanceToBorder) boardContainer.scrollBy(0, -scrollSpeed);
+    else if (window.innerHeight - y < distanceToBorder) boardContainer.scrollBy(0, scrollSpeed);
 }

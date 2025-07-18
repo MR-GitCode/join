@@ -47,9 +47,31 @@ export function openTask(taskID) {
  */
 async function addDeleteTask(user, taskID) {
     document.getElementById('delete-task').addEventListener("click", async () => {
-        await deleteData(`users/${user.id}/tasks/`, taskID);
+        if(user.tasks.length === 1){
+            let userData = getUserData(user);
+            await saveData(`users/${user.id}/`, userData);
+        } else {            
+            await deleteData(`users/${user.id}/tasks/`, taskID);
+        }
         closeOverlaySelectTask();   
     })
+}
+
+/**
+ * Returns a sanitized or defaulted version of the user data object.
+ * @param {object} user The object with all user informations
+ * @returns 
+ */
+function getUserData(user) {
+    return {
+        badge : user.badge || "",
+        contacts : user.contacts || "",
+        email : user.email || "",
+        name : user.name || "",
+        password : user.password,
+        phone : user.phone || "",
+        tasks : ""
+    } 
 }
 
 /**

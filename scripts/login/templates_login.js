@@ -32,7 +32,7 @@ function loadSignUp() {
                     <div class="index-input">
                         <input type="password" placeholder="Password" id="signPassword" autocomplete="off">
                         <img id="lockedIcon1" src="./assets/icons/login_signUp/lock.svg">
-                        <div id="password-regex-alert" class="hide-alert alert">Password must be at least 8 characters and include upper/lowercase letters, a number, and a special character.</div>
+                        <div id="password-regex-alert" class="hide-alert alert">Password must be at least 8 characters and include upper/lowercase letters and a number.</div>
                     </div>
                     <div class="index-input">
                         <input type="password" placeholder="Confirm Password" id="signConfirmPassword" autocomplete="off">

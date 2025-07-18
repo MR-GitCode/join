@@ -81,19 +81,20 @@ form input:focus {
 
 .alert{
   display: flex;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 400;
-  color: #FF8190;
+  color: #FF001F;
   padding-top: 8px;
   text-align: left;
 }
 
 #password-alert{
   display: flex;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 400;
-  color: #FF8190;
+  color: #FF001F;
   padding-top: 8px;
+  text-align: start;
 }
 
 .hide-alert{
@@ -268,7 +269,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
   padding-bottom: 20px;
 }
 

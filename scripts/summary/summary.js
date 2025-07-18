@@ -1,5 +1,4 @@
 import { loadData, getLoggedInUser } from '../db.js';
-import { createDayGreeting , createSummaryOfTasks} from './template-summary.js';
 
 document.addEventListener('DOMContentLoaded', loadSummary);
 
@@ -51,7 +50,7 @@ function renderSummary(tasks) {
     console.warn("No element with class 'task-content' found.");
     return;
   }
-  let taskCounts = countTasks(tasks);
+  let taskCounts = countTasks(tasks); 
   let deadline = getNearestUrgentDeadline(taskCounts.urgent);
   taskContent.innerHTML = createSummaryOfTasks(taskCounts, deadline);
 }
@@ -80,14 +79,15 @@ function countTasks (tasks) {
  * @returns 
  */
 function amountOfTasks(tasks) {
+  let validTasks = Array.isArray(tasks) ? tasks.filter(task => task !== null) : [];
   return {
     todo: 0,
     done: 0,
     inProgress: 0,
     feedback: 0,
     urgent: [],
-    total: tasks.length,
-  }
+    total: validTasks.length,
+  };
 }
 
 /**

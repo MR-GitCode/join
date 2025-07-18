@@ -94,12 +94,14 @@
     right: 40px;
     width: 32px;
     height: 32px;
+    z-index: 700;
 }
 
 #close-overlay-select-task:hover{
     background-color: #EEEEEE;
     border-radius: 50px;
     cursor: pointer;
+    z-index: 700;
 }
 
 #subtasks-select-task{

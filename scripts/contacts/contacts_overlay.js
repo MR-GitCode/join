@@ -51,31 +51,6 @@ function closeOverlay() {
 }
 
 /**
- * Initializes validation checks for the contact creation form.
- */
-// function checkContactValues() {
-//     let nameInput = document.querySelector('#name-field');
-//     let emailInput = document.querySelector('#email-field');
-//     let phoneInput = document.querySelector('#phone-field');
-//     let emailAlert = document.getElementById('email-alert');
-//     let phoneAlert = document.getElementById('phone-alert');
-//     let createBt = document.getElementById('bt-create-contact');
-//     function validateInputs() {
-//         let nameValid = nameInput.value.trim().length > 0;
-//         let emailValid = validateEmail(emailInput.value.trim());
-//         let phoneValid = validatePhone(phoneInput.value.trim());
-//         toggleAlert(emailAlert, emailInput, !emailValid && emailInput.value.trim() !== '');
-//         toggleAlert(phoneAlert, phoneInput, !phoneValid && phoneInput.value.trim() !== '');
-//         createBt.disabled = !(nameValid && emailValid && phoneValid);
-//     }
-//     nameInput.addEventListener('input', validateInputs);
-//     emailInput.addEventListener('input', validateInputs);
-//     phoneInput.addEventListener('input', validateInputs);
-//     validateInputs();
-//     saveContact(createBt, nameInput, emailInput, phoneInput);
-// }
-
-/**
  * Initializes contact input validation and sets up real-time validation listeners.
  */
 function checkContactValues() {

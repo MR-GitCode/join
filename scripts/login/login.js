@@ -170,11 +170,25 @@ function registrationSignUp() {
     let confirmPrivacyPolicy = document.getElementById('confirm-policy');
     let signBtn = document.getElementById('bt-signup');
     let validateLogin = () => validateInputs("sign", signBtn, emailInput, passwordInput, passwordConfirmInput, confirmPrivacyPolicy)
-    [nameInput, emailInput, passwordInput, passwordConfirmInput].forEach(input => input.addEventListener('input', validateLogin));
+    nameInput.addEventListener('input', validateLogin);
+    emailInput.addEventListener('input', validateLogin);
+    passwordInput.addEventListener('input', validateLogin);
+    passwordConfirmInput.addEventListener('input', validateLogin);
     confirmPrivacyPolicy.addEventListener('change', validateLogin);
+    addEventListenerSignBtn(signBtn, nameInput, emailInput, passwordInput)
+}
+
+/**
+ *  Adds a click event listener to the sign-up button
+ * @param {HTMLButtonElement} signBtn The sign-up button element.
+ * @param {HTMLInputElement} nameInput Input field for the user's name.
+ * @param {HTMLInputElement} emailInput Input field for the user's email.
+ * @param {HTMLInputElement} passwordInput Input field for the user's password.
+ */
+function addEventListenerSignBtn(signBtn, nameInput, emailInput, passwordInput) {
     signBtn.addEventListener('click', (event) => {
-        event.preventDefault();
-        sendSignUP(nameInput, emailInput, passwordInput);
+      event.preventDefault();
+      sendSignUP(nameInput, emailInput, passwordInput);
     });
 }
 
@@ -252,7 +266,7 @@ function toggleAlert(alertElement, inputField, show) {
  * @returns 
  */
 function validatePassword(password) {
-  let passwordRule = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/;
+  let passwordRule = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
     if (!password) return true;
     return passwordRule.test(password);
 }

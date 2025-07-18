@@ -227,9 +227,9 @@
 
 .alert{
     display: flex !important;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 400;
-    color: #FF8190;
+    color: red;
     padding-top: 8px;
 }
 

@@ -78,4 +78,3 @@ export function getLoggedInUser() {
 export function getUsers() {
   return users;
 }
-

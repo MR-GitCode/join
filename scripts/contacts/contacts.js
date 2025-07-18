@@ -17,7 +17,7 @@ if (window.location.pathname.endsWith('contacts.html')) {
  */
 export function addContactList() {
     let contactList = [];
-    let contacts = getLoggedInUser().contacts;   
+    let contacts = Object.values(getLoggedInUser().contacts);   
     if (contacts) {
        for (let i = 0; i < contacts.length; i++) {
         if(contacts[i]){
@@ -145,7 +145,8 @@ function backToContactList() {
 export function addEventListenerDeleteContact(contactID, infoContainer) {
     let user = getLoggedInUser();
     document.getElementById('delete-contact').addEventListener("click", async () => {
-        if(user.contacts.length === 1){
+        let validContacts = user.contacts.filter(contact => contact !== null);
+        if(validContacts.length === 1){
             let userData = getUserData(user);
             await saveData(`users/${user.id}/`, userData);
         } else {            
@@ -158,7 +159,7 @@ export function addEventListenerDeleteContact(contactID, infoContainer) {
 }
 
 /**
- * 
+ * Returns a sanitized or defaulted version of the user data object.
  * @param {object} user The object with all user informations
  * @returns 
  */
@@ -170,6 +171,6 @@ function getUserData(user) {
         name : user.name,
         password : user.password,
         phone : user.phone || "",
-        tasks : user.taks || ""
+        tasks : user.tasks || ""
     } 
 }

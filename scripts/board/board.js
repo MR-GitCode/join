@@ -31,11 +31,18 @@ function openOverlay() {
         overlayContainer.innerHTML = loadOverlayAddTaskBoard();
         overlayContainer.classList.add('active');
         document.body.classList.add('no-scroll');
-        addCloseEventListener();
-        addCreateTaskEventListener();
-        addAssignedEventListener();
-        addCategoryEventListener();
+        addAddTaskOverlayEventListener()
     }
+}
+
+/**
+ * Add event listener to the add task overlay.
+ */
+function addAddTaskOverlayEventListener() {
+    addCloseEventListener();
+    addCreateTaskEventListener();
+    addAssignedEventListener();
+    addCategoryEventListener();
 }
 
 /**

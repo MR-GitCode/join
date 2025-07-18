@@ -138,7 +138,7 @@
 
     .left-form,
     .right-form {
-        gap: 16px;
+        gap: 20px;
         align-items: center;
     }
 
@@ -147,7 +147,7 @@
     }
 
     .priority {
-       width: 396px;
+       width: 310px;
        height: 48px;
        gap: 0;
        justify-content: space-between;
@@ -167,23 +167,21 @@
     #subtask-input,
     #input-assign,
     #input-title {
-        width: 298px !important;
+        width: 290px !important;
     }
 
     input[type="date"],
     .input-menu,
     .category-select,
-    .bg-drop-down {
-        width: 318px !important;
+    .bg-drop-down,
+    .subtask-scrollbar {
+        width: 310px !important;
     }
 
     #description {
-        width: 284px !important;
+        width: 276px !important;
     }
 
-    .priority {
-        width: 318px;
-    }
 
     .bt-priority {
         width: 100px;
@@ -198,5 +196,9 @@
 
     .subtask-scrollbar {
         width: 318px;  
+    }
+
+    .required-info-mobil{
+        padding-left: 5px;
     }
 }
